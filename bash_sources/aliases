@@ -1,0 +1,61 @@
+#!/bin/bash
+
+
+alias add-repo='sudo add-apt-repository'
+alias aliases='edit ~/.bash_sources/aliases'
+alias apt-auto='sudo apt-mark auto '
+alias apt-no-rec='apt install --no-install-recommends '
+alias bash-reload='source ~/.bash_profile'
+alias bashfont='sudo dpkg-reconfigure -plow console-setup'
+alias bashrc='edit ~/.bashrc'
+alias battery='upower -i $(upower -e | command grep battery)'
+alias cl='clear'
+alias cmd='command'
+alias date='date "+%F_%T"'
+alias du='du -h'
+alias ex='exit'
+alias find-hardlink='find . -samefile $1'
+alias git-update-dotfiles='(cd ~/dotfiles && git add -A && git commit -m "$(command date "+%F_%T")" && git push -u origin master)'
+alias git-update='git add -A && git commit -m "$(command date "+%F_%T")" && git push -u origin master'
+alias gpp='g++ -std=c++17'
+alias histcl='cd && history -c && history -w && clear'
+alias l1='ls -CF1'
+alias l='ls -CF'
+alias L='ls -lF --block-size=MiB'
+alias la='ls -alF'
+alias less='less -R'
+alias lh='ls -a | grep "^\."'
+alias li='ls -i'
+alias ll='ls -alF --color | less -R'
+alias mkdir='mkdir -p '
+alias modprobe='sudo modprobe '
+alias mpa='mpv --no-audio-display --loop-playlist --volume=70'
+alias off='shutdown -h now'
+alias offupg='sudo apt update ; sudo apt full-upgrade -y ; sudo apt autoremove -y ; sudo apt autoclean ; sudo shutdown -h now'
+alias op='xdg-open $1 &> /dev/null'
+alias powertop='sudo powertop'
+alias qmv='command qmv -v -f "do"'
+alias s='sudo "$BASH" -c "$(history -p !!)"'
+alias si='sudo -i'
+alias softrestart='sudo service lightdm restart'
+alias suspend='systemctl suspend'
+alias tag='ctags -R'
+alias temp='sensors; nvidia-smi; nvidia-smi -q -d temperature; sudo hddtemp /dev/sd?'
+alias tmux-conf='edit ~/dotfiles/tmux.conf'
+alias type='type -a'
+alias upgrade='sudo apt update && sudo apt full-upgrade && sudo apt autoremove -y && sudo apt autoclean'
+alias vimrc='edit ~/.vimrc'
+alias watch='watch -n 1'
+alias wifi-restart='sudo rfkill block wifi && sudo rfkill unblock wifi'
+alias wtemp='watch -n 1 "sensors; nvidia-smi; nvidia-smi -q -d temperature; sudo hddtemp /dev/sd?"'
+alias xresources='edit ~/.Xresources'
+
+
+# Auto-alias for scripts in ~/scripts directory
+for script in ~/scripts/*
+do
+    if [ -f "$script" ]
+    then
+        alias $(basename $script)="$script"
+    fi
+done
