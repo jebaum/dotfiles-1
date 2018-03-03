@@ -9,20 +9,13 @@ XTerm*loginshell: False
 XTerm*cursorBlink: True
 
 ! Fonts and Encoding
-XTerm*utf8: True
-XTerm*locale: True
-XTerm*utf8Title: True
-XTerm*renderFont: True
-XTerm*preeditType: Root
-XTerm*xftAntialias: true
 XTerm*faceName: xft:Inconsolata-10
-
-! Trim trailing spaces
-XTerm*trimSelection: true
-
-! Fix alt-key inputting
-! XTerm*eightBitInput: false
-! XTerm*metaSendsEscape: true
+XTerm*locale: True
+XTerm*preeditType: Root
+XTerm*renderFont: True
+XTerm*utf8: True
+XTerm*utf8Title: True
+XTerm*xftAntialias: true
 
 ! Copy and paste with clipboard
 XTerm*translations: #override \
