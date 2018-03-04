@@ -15,7 +15,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Terminal emulator title 'patch', while using tmux
+" tmux - title fix
 if has ("title")
     " if there is no &t_ts sequence, is the terminal type known?
     if &t_ts == "" && ( &term == "screen" || &term == "xterm" )
