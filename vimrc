@@ -150,7 +150,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'godlygeek/tabular'
     Plug 'henrik/vim-indexed-search'
     Plug 'jistr/vim-nerdtree-tabs'
-    Plug 'kshenoy/vim-signature'
     Plug 'mbbill/undotree'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'scrooloose/nerdcommenter'
@@ -159,6 +158,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'Valloric/vim-operator-highlight'
     Plug 'w0rp/ale'
     Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'kshenoy/vim-signature'
 call plug#end()
 
 " Plugins' options -- DON'T SORT!
@@ -174,6 +174,11 @@ let g:ophigh_color=3                          " Operator highlight - change colo
 let g:undotree_SetFocusWhenToggle=1           " undotree - autofocus
 let g:undotree_SplitWidth=32                  " undotree - window width
 let g:SignatureMarkTextHLDynamic = 1
+
+" Plugins' autocmd
+autocmd InsertEnter * SignatureRefresh
+autocmd BufEnter * SignatureRefresh
+
 
 " 'set' OPTIONS
 set autoindent                 " Always set autoindenting on
@@ -287,3 +292,6 @@ ca rep %!cat
 ca sort sort i
 ca Tabularize" Tab / " /l0
 ca TabularizeS Tab /\S\+/l1
+
+
+autocmd BufWinEnter * SignatureRefresh

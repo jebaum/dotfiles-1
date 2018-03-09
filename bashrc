@@ -76,7 +76,7 @@ export EDITOR=vim
 source ~/.bash_sources/aliases
 source ~/.bash_sources/mounting
 
-# FUNCTIONS
+# FUNCTIONS gg
 
 rm-inum()
 {
