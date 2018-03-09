@@ -117,7 +117,7 @@ map <F10> :call ToggleMouse()<CR>
 
 " Simple compile and run
 "" C/C++
-autocmd filetype c,cpp nmap <F8> :w! <bar> exec '!g++ -std=c++17 '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
+autocmd filetype c,cpp nmap <F8> :w! <bar> exec '!g++ -std=c++17 -g '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
 
 " Optional packages
 packadd matchit
@@ -140,11 +140,12 @@ set statusline+=%=                                         " Switch to the right
 set statusline+=Line\:\ %l/                                " Current line
 set statusline+=%L                                         " Total lines
 set statusline+=\ \|\ Column\:\ %c                         " Current column
-set statusline+=\ \|\ %p%%\ \|                               " Percent through file
+set statusline+=\ \|\ %p%%\ \|                             " Percent through file
 
 " Plug - plugins
 call plug#begin('~/.vim/plugged')
     Plug 'airblade/vim-gitgutter'
+    Plug 'christoomey/vim-tmux-navigator'
     Plug 'ervandew/supertab'
     Plug 'godlygeek/tabular'
     Plug 'henrik/vim-indexed-search'
@@ -154,24 +155,25 @@ call plug#begin('~/.vim/plugged')
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'scrooloose/nerdcommenter'
     Plug 'scrooloose/nerdtree'
+    Plug 'tpope/vim-surround'
     Plug 'Valloric/vim-operator-highlight'
     Plug 'w0rp/ale'
     Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'tpope/vim-surround'
-    Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " Plugins' options -- DON'T SORT!
 let g:ale_set_highlights=0                    " ALE - disable highlight
 let g:ale_set_quickfix=1                      " ALE - enable quicklist
 let g:ale_sign_column_always=1                " ALE - sing column always visible
+let g:indexed_search_colors=0                 " IndexedSearch - no color of messages
 let g:NERDCommentEmptyLines=1                 " NERDCommenter - allow commenting empty lines
 let g:NERDSpaceDelims=1                       " NERDCommenter - add space after comment delimiters
-let g:NERDTreeWinPos="right"                  " NERDTree - always on right side
 let g:nerdtree_tabs_open_on_console_startup=1 " NERDTree(Tabs) - open on startup
-let g:indexed_search_colors=0                 " IndexedSearch - no color of messages
+let g:NERDTreeWinPos="right"                  " NERDTree - always on right side
 let g:ophigh_color=3                          " Operator highlight - change color
+let g:undotree_SetFocusWhenToggle=1           " undotree - autofocus
 let g:undotree_SplitWidth=32                  " undotree - window width
+let g:SignatureMarkTextHLDynamic = 1
 
 " 'set' OPTIONS
 set autoindent                 " Always set autoindenting on
@@ -181,6 +183,7 @@ set cursorline                 " Current line highlight
 set history=50                 " Keep 50 lines of command line history
 set hlsearch                   " Search highlight
 set ignorecase                 " Ignoring case of letters while searching
+set winwidth=110
 set incsearch                  " Do incremental searching
 set laststatus=2               " To always display status line
 set linebreak                  " Don't break words while warping lines
@@ -217,11 +220,11 @@ hi  WildMenu          ctermbg=cyan
 let mapleader="`"
 map <space> <leader>
 "" Function keys -- also mapped: <F6>, <F8>, <F10>
-imap <F2> <Esc>gTi
-imap <F3> <Esc>gti
-map <F2> gT
-map <F3> gt
-map <F4> :tabe<CR>
+imap <F1> <Esc>gTi
+imap <F2> <Esc>gti
+map <F1> gT
+map <F2> gt
+map <F3> :tabe<CR>
 map <F5> :set invrelativenumber<CR>
 map <F9> :w <bar> make<CR>
 "" Leader + function keys
