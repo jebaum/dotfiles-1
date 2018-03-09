@@ -292,6 +292,3 @@ ca rep %!cat
 ca sort sort i
 ca Tabularize" Tab / " /l0
 ca TabularizeS Tab /\S\+/l1
-
-
-autocmd BufWinEnter * SignatureRefresh
