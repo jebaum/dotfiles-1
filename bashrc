@@ -16,9 +16,6 @@ shopt -s checkwinsize
 # Make 'less' more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Better autocompletion (like in zsh), but use Shift-Tab
-bind '"\e[Z":menu-complete'
-
 # Colored prompt
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
@@ -60,6 +57,9 @@ if ! shopt -oq posix; then
     fi
 fi
 
+# Better autocompletion (like in zsh), but use Shift-Tab
+bind '"\e[Z":menu-complete'
+
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -74,6 +74,7 @@ export EDITOR=vim
 
 # SOURCES
 source ~/.bash_sources/aliases
+source ~/.bash_sources/games
 source ~/.bash_sources/mounting
 
 # FUNCTIONS gg

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+game() {
+    case "$1" in
+        1|steam)
+            steam &
+            ;;
+        2|dosbox)
+            dosbox &
+            ;;
+        3|minecraft)
+            java -jar ~/games/Minecraft.jar &
+            ;;
+        4|terraria)
+
+            ;;
+        *)
+            echo "1) Steam"
+            echo "2) DOSbox"
+            echo "3) Minecraft"
+            read option
+            game $option
+            ;;
+    esac
+
+    exit
+}
