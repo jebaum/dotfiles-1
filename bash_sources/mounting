@@ -1,11 +1,12 @@
 #!/bin/bash
 
 
+# DEVICES
 mnt()
 {
     mnt_base()
     {
-        if [ "$(command udisksctl mount -b $1 | true ; echo ${PIPESTATUS[0]})" = "0" ] 
+        if [ "$(command udisksctl mount -b $1 | true ; echo ${PIPESTATUS[0]})" = "0" ]
         then
             MOUNT_LOCATION="$(command udisksctl info -b $1 | command grep MountPoints | command cut -c25-)"
             echo "$1 linked to /mnt/$2"
@@ -93,3 +94,56 @@ cdm() {
 }
 
 alias lm='ls /mnt/'
+
+
+# FTP
+ftp-mnt()
+{
+    if [ $1 = "-c" -o $1 = "--custom-name" ]
+    then
+        shift 1
+        mkdir /ftp/$1
+        curlftpfs $2 /ftp/$1
+    else
+        x=0
+        for x1 in $@
+        do
+            flag=true
+            x2="server0"
+            while [ $flag = true ]
+            do
+                if [ -d /ftp/$x2 ]
+                then
+                    (( x++ ))
+                    x2="${x2::6}$x"
+                else
+                    flag=false
+                fi
+            done
+            mkdir /ftp/$x2
+            curlftpfs $1 /ftp/$x2
+        done
+    fi
+}
+
+ftp-umnt()
+{
+    cd
+    if [ -d /ftp/$1 ]
+    then
+        cd
+        fusermount -u /ftp/$1
+        rmdir /ftp/$1
+        cd - &> /dev/null
+    elif [ $1 = "-n" -o $1 = "--numbers" ]
+    then
+        shift 1
+        for x in $@
+        do
+            x="server$x"
+            fusermount -u /ftp/$x
+            rmdir /ftp/$x
+        done
+    fi
+    cd - &> /dev/null
+}
