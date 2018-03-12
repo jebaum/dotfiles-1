@@ -2,8 +2,7 @@
 " ### VIMRC ###
 " #############
 
-" Use Vim settings, rather than Vi settings
-" This must be first, because it changes other options as a side effect.
+" Use Vim settings -- always 1st
 set nocompatible
 
 " Enable syntax highlight
