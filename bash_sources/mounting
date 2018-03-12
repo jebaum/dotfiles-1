@@ -4,22 +4,10 @@
 # DEVICES
 mnt()
 {
-    mnt_base()
-    {
-        if [ "$(command udisksctl mount -b $1 | true ; echo ${PIPESTATUS[0]})" = "0" ]
-        then
-            MOUNT_LOCATION="$(command udisksctl info -b $1 | command grep MountPoints | command cut -c25-)"
-            echo "$1 linked to /mnt/$2"
-            echo "    Mounted at "${MOUNT_LOCATION}""
-            command ln -rs "${MOUNT_LOCATION}" /mnt/$2
-            echo "$1" > /mnt/.$2
-        fi
-    }
-
     if [ $1 = "-c" -o $1 = "--custom-name" ]
     then
         shift 1
-        mnt_base $2 $1
+        ~/.bash_sources/mnt_base $2 $1
     else
         x=0
         for x1 in $@
@@ -36,21 +24,13 @@ mnt()
                     flag=false
                 fi
             done
-            mnt_base $x1 $x2
+            ~/.bash_sources/mnt_base $x1 $x2
         done
     fi
 }
 
 umnt()
 {
-    umnt_base()
-    {
-        DEVICE="$(command cat /mnt/.$1)"
-        cd
-        command udisksctl unmount -b ${DEVICE}
-        cd - &> /dev/null
-    }
-
     if [ -e $1 ]
     then
         cd
@@ -62,14 +42,14 @@ umnt()
         for x in $@
         do
             x="drive$x"
-            umnt_base $x
+            ~/.bash_sources/umnt_base $x
         done
     else
         for x in $@
         do
             if [ ${x::5} = "drive" ]
             then
-                umnt_base $x
+                ~/.bash_sources/umnt_base $x
             else
                 echo "No such drive"
             fi
@@ -99,6 +79,7 @@ alias lm='ls /mnt/'
 # FTP
 ftp-mnt()
 {
+    rmdir /ftp/* &> /dev/null
     if [ $1 = "-c" -o $1 = "--custom-name" ]
     then
         shift 1
@@ -131,19 +112,16 @@ ftp-umnt()
     cd
     if [ -d /ftp/$1 ]
     then
-        cd
         fusermount -u /ftp/$1
-        rmdir /ftp/$1
-        cd - &> /dev/null
-    elif [ $1 = "-n" -o $1 = "--numbers" ]
+    elif [ $1 = "-n" ]
     then
         shift 1
         for x in $@
         do
             x="server$x"
             fusermount -u /ftp/$x
-            rmdir /ftp/$x
         done
     fi
+    rmdir /ftp/* &> /dev/null
     cd - &> /dev/null
 }

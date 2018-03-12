@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ "$(command udisksctl mount -b $1 | true ; echo ${PIPESTATUS[0]})" = "0" ]
+then
+    MOUNT_LOCATION="$(command udisksctl info -b $1 | command grep MountPoints | command cut -c25-)"
+    echo "$1 linked to /mnt/$2"
+    echo "    Mounted at "${MOUNT_LOCATION}""
+    command ln -rs "${MOUNT_LOCATION}" /mnt/$2
+    echo "$1" > /mnt/.$2
+fi

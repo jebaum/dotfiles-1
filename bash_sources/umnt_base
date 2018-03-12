@@ -1,0 +1,6 @@
+#!/bin/bash
+
+DEVICE="$(command cat /mnt/.$1)"
+cd
+command udisksctl unmount -b ${DEVICE}
+cd - &> /dev/null
