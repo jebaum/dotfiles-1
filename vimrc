@@ -16,12 +16,9 @@ endif
 
 " tmux - title fix
 if has ("title")
-    " if there is no &t_ts sequence, is the terminal type known?
     if &t_ts == "" && ( &term == "screen" || &term == "xterm" )
-        " add the missing control sequence for xterm or screen
         let &t_ts = "\e]2;"
     endif
-    " enable setting the title only if vim can read the old one
     if &t_ts != ""
         set title
     endif
@@ -187,7 +184,6 @@ set cursorline                 " Current line highlight
 set history=50                 " Keep 50 lines of command line history
 set hlsearch                   " Search highlight
 set ignorecase                 " Ignoring case of letters while searching
-set winwidth=110
 set incsearch                  " Do incremental searching
 set laststatus=2               " To always display status line
 set linebreak                  " Don't break words while warping lines
@@ -210,6 +206,7 @@ hi  Comment           ctermfg=grey
 hi  CursorLineNr      ctermfg=magenta
 hi  DefinedMacro      ctermfg=DarkRed
 hi  LineNr            ctermfg=grey
+hi  Normal            ctermfg=DarkGreen
 hi  Number            ctermfg=DarkCyan
 hi  PreProc           ctermfg=LightGreen
 hi  SignColumn        ctermbg=black
