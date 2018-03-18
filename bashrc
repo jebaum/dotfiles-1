@@ -72,6 +72,9 @@ fi
 # Changes default editor to vim
 export EDITOR=vim
 
+# BINDONGS
+bind Space:magic-space
+
 # SOURCES
 source ~/.bash_sources/aliases
 source ~/.bash_sources/games

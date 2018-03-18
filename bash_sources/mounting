@@ -41,11 +41,10 @@ mnt()
 
 umnt()
 {
+    cd
     if [ -e $1 ]
     then
-        cd
         command udisksctl unmount -b $1
-        cd - &> /dev/null
     elif [ $1 = "-n" -o $1 = "--numbers" ]
     then
         shift 1
@@ -72,6 +71,7 @@ umnt()
         unlink $LINKS
         rm /mnt/.${LINKS:5}
     fi
+    cd - &> /dev/null
 }
 
 cdm() {
