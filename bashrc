@@ -93,6 +93,11 @@ windows()
     reboot
 }
 
+fuse-umnt()
+{
+    fusermount -u $@
+}
+
 apt()
 {
     if [ $1 == "purge" ]
