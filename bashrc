@@ -79,32 +79,4 @@ bind Space:magic-space
 source ~/.bash_sources/aliases
 source ~/.bash_sources/games
 source ~/.bash_sources/mounting
-
-# FUNCTIONS gg
-
-rm-inum()
-{
-    find . -inum $1 -delete
-}
-
-windows()
-{
-    sudo grub-reboot 2
-    reboot
-}
-
-fuse-umnt()
-{
-    fusermount -u $@
-}
-
-apt()
-{
-    if [ $1 == "purge" ]
-    then
-        shift 1
-        command sudo apt purge --auto-remove $@
-    else
-        command sudo apt $@
-    fi
-}
+source ~/.bash_sources/functions

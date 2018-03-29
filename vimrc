@@ -118,7 +118,11 @@ autocmd filetype c,cpp nmap <F8> :w! <bar> exec '!g++ -std=c++17 -g '.shellescap
 " Optional packages
 packadd matchit
 
+
+"------------------------------------------------------------------------------
 " Status line -- DO NOT SORT!!
+"------------------------------------------------------------------------------
+
 set statusline=
 set statusline+=[%n]                                       " Buffer number
 set statusline+=\ \                                        " Separator
@@ -138,7 +142,11 @@ set statusline+=%L                                         " Total lines
 set statusline+=\ \|\ Column\:\ %c                         " Current column
 set statusline+=\ \|\ %p%%\ \|                             " Percent through file
 
+
+"------------------------------------------------------------------------------
 " Plug - plugins
+"------------------------------------------------------------------------------
+
 call plug#begin('~/.vim/plugged')
     Plug 'airblade/vim-gitgutter'
     Plug 'christoomey/vim-tmux-navigator'
@@ -146,6 +154,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'godlygeek/tabular'
     Plug 'henrik/vim-indexed-search'
     Plug 'jistr/vim-nerdtree-tabs'
+    Plug 'kshenoy/vim-signature'
+    Plug 'lervag/vimtex'
     Plug 'mbbill/undotree'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'scrooloose/nerdcommenter'
@@ -154,7 +164,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'Valloric/vim-operator-highlight'
     Plug 'w0rp/ale'
     Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'kshenoy/vim-signature'
 call plug#end()
 
 " Plugins' options -- DON'T SORT!
@@ -176,7 +185,10 @@ autocmd InsertEnter * SignatureRefresh
 autocmd BufEnter * SignatureRefresh
 
 
+"------------------------------------------------------------------------------
 " 'set' OPTIONS
+"------------------------------------------------------------------------------
+
 set autoindent                 " Always set autoindenting on
 set background=dark            " Dark background
 set backspace=indent,eol,start " Allow backspacing over everything in insert mode
@@ -201,7 +213,11 @@ set splitright                 " New windows open on right when split horizontal
 set t_Co=256                   " 256 color support
 set wildmenu                   " Menu for command linecompletion
 
-"   Syntax_highlight
+
+"------------------------------------------------------------------------------
+" SYNTAX HIGHLIGHT
+"------------------------------------------------------------------------------
+
 hi  Comment           ctermfg=grey
 hi  CursorLineNr      ctermfg=magenta
 hi  DefinedMacro      ctermfg=DarkRed
@@ -217,10 +233,15 @@ hi  String            ctermfg=DarkCyan
 hi  Type              ctermfg=white
 hi  WildMenu          ctermbg=cyan
 
-" MAPPING
+
+"------------------------------------------------------------------------------
+" KEY MAPPING
+"------------------------------------------------------------------------------
+
 let mapleader="`"
 map <space> <leader>
-"" Function keys -- also mapped: <F6>, <F8>, <F10>
+
+" Function keys -- also mapped: <F6>, <F8>, <F10>
 imap <F1> <Esc>gTi
 imap <F2> <Esc>gti
 map <F1> gT
@@ -228,10 +249,12 @@ map <F2> gt
 map <F3> :tabe<CR>
 map <F5> :set invrelativenumber<CR>
 map <F9> :w <bar> make<CR>
-"" Leader + function keys
+
+" Leader + function keys
 map <leader><F1> :UndotreeToggle<CR>
 map <leader><F2> :set wrap!<CR>
-"" Ctrl + sth / Tab
+
+" Ctrl + sth / Tab
 inoremap <C-p> <ESC>"+pa
 noremap <C-o> o<ESC>
 noremap <C-p> "+p
@@ -240,13 +263,15 @@ noremap <C-u> O<ESC>
 noremap <C-w><Tab> :vnew<CR>
 noremap <C-y> "+y
 noremap <Tab> <C-w><C-w>
-"" Leader + sth
+
+" Leader + sth
 map <leader>h :noh<CR>
 map <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>v gg0vG$
 noremap <leader>= gg=G``
 noremap <leader>x Y:!<C-R>"<C-H><CR>
-"" Normal keys
+
+" Normal keys
 map - $
 map c- <plug>NERDCommenterToEOL
 map c<BS> <leader>cu
@@ -262,10 +287,13 @@ map N Nzz
 map n nzz
 map tg 'tdmt
 map tt mt<C-]>
+nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
 noremap '' ``
 noremap q: q:
 noremap s gh
-"" <nop>
+
+" <nop>
 map ` <nop>
 map c <nop>
 map gh <nop>
@@ -273,7 +301,11 @@ map q <nop>
 map Q <nop>
 map ZZ <nop>
 
+
+"------------------------------------------------------------------------------
 " COMMANDS
+"------------------------------------------------------------------------------
+
 command Ctags w <bar> Silent !ctags -a %
 command Q qa!
 command SortBlock :normal! vip:sort i<CR>
@@ -281,10 +313,18 @@ command W wq
 command Ww :execute ':silent w !sudo tee % > /dev/null' | :edit!
 command WW :execute ':silent w !sudo tee % > /dev/null' | :edit! | q
 
+
+"------------------------------------------------------------------------------
 " ALIASES
+"------------------------------------------------------------------------------
+
 ca nonum set nonumber
 ca Plug PlugUpgrade <bar> PlugUpdate
 ca rep %!cat
 ca sort sort i
 ca Tabularize" Tab / " /l0
 ca TabularizeS Tab /\S\+/l1
+
+"------------------------------------------------------------------------------
+" TEMPORARY
+"------------------------------------------------------------------------------

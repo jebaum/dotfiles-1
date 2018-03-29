@@ -55,7 +55,6 @@ alias xfce-term-menu='xfce4-terminal --show-menubar'
 alias xfce-term='xfce4-terminal'
 alias xresources='edit ~/.Xresources'
 
-
 # Auto-alias for scripts in ~/scripts directory
 for script in ~/scripts/*
 do

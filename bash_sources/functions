@@ -1,0 +1,39 @@
+#!/bin/bash
+
+
+rm-inum()
+{
+    find . -inum $1 -delete
+}
+
+windows()
+{
+    sudo grub-reboot 2
+    reboot
+}
+
+fuse-umnt()
+{
+    fusermount -u $@
+}
+
+apt()
+{
+    if [ $1 == "purge" ]
+    then
+        shift 1
+        command sudo apt purge --auto-remove $@
+    else
+        command sudo apt $@
+    fi
+}
+
+install-elementary()
+{
+    while IFS= read -r var
+    do
+        list=$list' '$var
+    done < "$HOME/dotfiles/soft_list"
+
+    command sudo apt install $list
+}

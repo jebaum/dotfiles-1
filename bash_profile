@@ -16,6 +16,3 @@ xrdb -merge $HOME/.Xresources
 
 # Update .tmux.conf on start
 tmux source ~/.tmux.conf
-
-# Clear on start
-clear
