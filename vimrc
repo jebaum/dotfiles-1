@@ -149,8 +149,8 @@ set statusline+=\ \|\ %p%%\ \|                             " Percent through fil
 
 call plug#begin('~/.vim/plugged')
     Plug 'airblade/vim-gitgutter'
+    Plug 'ajh17/VimCompletesMe'
     Plug 'christoomey/vim-tmux-navigator'
-    Plug 'ervandew/supertab'
     Plug 'godlygeek/tabular'
     Plug 'henrik/vim-indexed-search'
     Plug 'jistr/vim-nerdtree-tabs'
@@ -178,7 +178,7 @@ let g:NERDTreeWinPos="right"                  " NERDTree - always on right side
 let g:ophigh_color=3                          " Operator highlight - change color
 let g:undotree_SetFocusWhenToggle=1           " undotree - autofocus
 let g:undotree_SplitWidth=32                  " undotree - window width
-let g:SignatureMarkTextHLDynamic = 1
+let g:SignatureMarkTextHLDynamic=1            " Signature - git gutter compability
 
 " Plugins' autocmd
 autocmd InsertEnter * SignatureRefresh
@@ -239,6 +239,7 @@ hi  WildMenu          ctermbg=cyan
 "------------------------------------------------------------------------------
 
 let mapleader="`"
+let maplocalleader=','
 map <space> <leader>
 
 " Function keys -- also mapped: <F6>, <F8>, <F10>
@@ -324,6 +325,7 @@ ca rep %!cat
 ca sort sort i
 ca Tabularize" Tab / " /l0
 ca TabularizeS Tab /\S\+/l1
+
 
 "------------------------------------------------------------------------------
 " TEMPORARY

@@ -12,7 +12,8 @@ stty -ixon
 source ~/.bashrc
 
 # Update xterm on start
-xrdb -merge $HOME/.Xresources
+# xrdb -load $HOME/.Xresources &
+# xrdb -merge $HOME/.Xresources
 
 # Update .tmux.conf on start
 tmux source ~/.tmux.conf

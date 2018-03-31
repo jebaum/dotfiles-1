@@ -13,7 +13,6 @@ alias cl='clear'
 alias cmd='command'
 alias date='date "+%F_%T"'
 alias du='du -h'
-alias electrum="~/.electrum/electrum & disown"
 alias ex='exit'
 alias find-hardlink='find . -samefile $1'
 alias ftp='ncftp'

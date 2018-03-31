@@ -77,6 +77,7 @@ bind Space:magic-space
 
 # SOURCES
 source ~/.bash_sources/aliases
+source ~/.bash_sources/app
+source ~/.bash_sources/functions
 source ~/.bash_sources/games
 source ~/.bash_sources/mounting
-source ~/.bash_sources/functions

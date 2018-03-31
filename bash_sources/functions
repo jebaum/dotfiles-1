@@ -28,12 +28,18 @@ apt()
     fi
 }
 
-install-elementary()
+term-title()
 {
-    while IFS= read -r var
+    title=$@
+    wmctrl -r :ACTIVE: -N "$title"
+}
+
+install-essentials()
+{
+    while IFS= read -r app
     do
-        list=$list' '$var
-    done < "$HOME/dotfiles/soft_list"
+        list=$list' '$(echo $app | cut -f1 -d"#")
+    done < "$HOME/.essential-software.list"
 
     command sudo apt install $list
 }

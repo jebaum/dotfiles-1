@@ -1,0 +1,24 @@
+#!/bin/bash
+
+app() {
+    case "$1" in
+        1|electrum)
+            $HOME/app/electrum/electrum & disown > /dev/null
+            ;;
+        *)
+            echo "1) Electrum"
+
+            echo ""
+            echo "e) Edit"
+            echo "q) Quit"
+            echo ""
+            printf 'Choose: '
+            read -r option
+            if [ $option = "e" -o $option = "edit" ]; then
+                edit $HOME/.bash_sources/app
+            elif [ ! $option = "q" -a ! $option = "quit" ]; then
+                app $option
+            fi
+            ;;
+    esac
+}
