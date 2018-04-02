@@ -2,7 +2,6 @@
 
 
 alias add-repo='sudo add-apt-repository'
-alias aliases='edit ~/.bash_sources/aliases'
 alias bash-reload='source ~/.bash_profile'
 alias bashrc='edit ~/.bashrc'
 alias battery='upower -i $(upower -e | command grep battery)'
