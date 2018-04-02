@@ -23,6 +23,21 @@ apt()
     then
         shift 1
         command sudo apt purge --auto-remove $@
+    elif [ $1 == "auto" ]
+    then
+        shift 1
+        command sudo apt-mark auto $@
+    elif [ $1 == "--no-rec" ]
+    then
+        shift 1
+        command apt install --no-install-recommends $@
+    elif [ $1 == "upgrade" ]
+    then
+        shift 1
+        command sudo apt update
+        command sudo apt full-upgrade
+        command sudo apt autoremove -y
+        command sudo apt autoclean
     else
         command sudo apt $@
     fi
@@ -36,9 +51,9 @@ term-title()
 
 install-essentials()
 {
-    while IFS= read -r app
+    while IFS= read -r pkg
     do
-        list=$list' '$(echo $app | cut -f1 -d"#")
+        list=$list' '$(echo $pkg| cut -f1 -d"#")
     done < "$HOME/.essential-software.list"
 
     command sudo apt install $list
