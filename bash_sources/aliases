@@ -2,8 +2,8 @@
 
 
 alias add-repo='sudo add-apt-repository'
-alias bash-reload='source ~/.bash_profile'
-alias bashrc='edit ~/.bashrc'
+alias bash-reload='source $HOME/.bash_profile'
+alias bashrc='edit $HOME/.bashrc'
 alias battery='upower -i $(upower -e | command grep battery)'
 alias cl='clear'
 alias date='date "+%F_%T"'
@@ -36,17 +36,17 @@ alias sudo='sudo '
 alias suspend='systemctl suspend'
 alias tag='ctags -R'
 alias temp='sensors; nvidia-smi; nvidia-smi -q -d temperature; sudo hddtemp /dev/sd?'
-alias tmux-conf='edit ~/dotfiles/tmux.conf'
+alias tmux-conf='edit $HOME/dotfiles/tmux.conf'
 alias type='type -a'
-alias vimrc='edit ~/.vimrc'
+alias vimrc='edit $HOME/.vimrc'
 alias watch='watch -n 1'
 alias wifi-restart='sudo rfkill block wifi && sudo rfkill unblock wifi'
 alias wtemp='watch -n 1 "sensors; nvidia-smi; nvidia-smi -q -d temperature; sudo hddtemp /dev/sd?"'
 alias xfce-term-menu='xfce4-terminal --show-menubar'
 alias xfce-term='xfce4-terminal'
 
-# Auto-alias for scripts in ~/scripts directory
-for script in ~/scripts/*
+# Auto-alias for scripts in $HOME/scripts directory
+for script in $HOME/scripts/*
 do
     if [ -f "$script" ]
     then

@@ -62,7 +62,7 @@ bind '"\e[Z":menu-complete'
 
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias grep='grep --color=always'
     alias fgrep='fgrep --color=always'
@@ -76,8 +76,8 @@ export EDITOR=vim
 bind Space:magic-space
 
 # SOURCES
-source ~/.bash_sources/aliases
-source ~/.bash_sources/app
-source ~/.bash_sources/functions
-source ~/.bash_sources/games
-source ~/.bash_sources/mounting
+source $HOME/.bash_sources/aliases
+source $HOME/.bash_sources/app
+source $HOME/.bash_sources/functions
+source $HOME/.bash_sources/games
+source $HOME/.bash_sources/mounting

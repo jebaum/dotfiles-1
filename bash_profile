@@ -9,11 +9,11 @@ stty -ixon
 # setterm -foreground green -store
 
 # Source .bashrc
-source ~/.bashrc
+source $HOME/.bashrc
 
 # Update xterm on start
 # xrdb -load $HOME/.Xresources &
 # xrdb -merge $HOME/.Xresources
 
 # Update .tmux.conf on start
-tmux source ~/.tmux.conf
+tmux source $HOME/.tmux.conf

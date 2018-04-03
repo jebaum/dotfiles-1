@@ -2,6 +2,11 @@
 " ### VIMRC ###
 " #############
 
+
+"------------------------------------------------------------------------------
+" GENERAL
+"------------------------------------------------------------------------------
+
 " Use Vim settings -- always 1st
 set nocompatible
 
@@ -37,15 +42,15 @@ command! -nargs=+ Silent execute 'silent <args>' | redraw!
 autocmd BufEnter * sign define dummy
 autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 
-" Highlight whitespace at the ends of lines
-highlight ExtraWhitespace ctermbg=red
+" Adds a highlight group for extra whitespace at the ends of lines -- DO NOT CHANGE HERE! USE SYNTAX HIGHLIGHT SECTION!
+hi ExtraWhitespace cterm=NONe
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-" Highlight C/C++ macros
+" Adds a higlight group for C/C++ macros
 function! HighlightDefinedMacros()
     syn clear DefinedMacro
     for l in getline('1','$')
@@ -64,6 +69,7 @@ aug QFClose
     au!
     au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 aug END
+
 " QuickFix window below other windows
 au FileType qf wincmd J
 
@@ -148,22 +154,29 @@ set statusline+=\ \|\ %p%%\ \|                             " Percent through fil
 "------------------------------------------------------------------------------
 
 call plug#begin('~/.vim/plugged')
-    Plug 'airblade/vim-gitgutter'
-    Plug 'ajh17/VimCompletesMe'
-    Plug 'christoomey/vim-tmux-navigator'
-    Plug 'godlygeek/tabular'
-    Plug 'henrik/vim-indexed-search'
-    Plug 'jistr/vim-nerdtree-tabs'
-    Plug 'kshenoy/vim-signature'
-    Plug 'lervag/vimtex'
-    Plug 'mbbill/undotree'
-    Plug 'octol/vim-cpp-enhanced-highlight'
-    Plug 'scrooloose/nerdcommenter'
-    Plug 'scrooloose/nerdtree'
-    Plug 'tpope/vim-surround'
-    Plug 'Valloric/vim-operator-highlight'
-    Plug 'w0rp/ale'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'airblade/vim-gitgutter'
+Plug 'ajh17/VimCompletesMe'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'godlygeek/tabular'
+Plug 'henrik/vim-indexed-search'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'kshenoy/vim-signature'
+Plug 'lervag/vimtex'
+Plug 'mbbill/undotree'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'raviqqe/vim-nonblank'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'semanser/vim-outdated-plugins'
+Plug 't9md/vim-choosewin'
+Plug 'thaerkh/vim-workspace'
+Plug 'tpope/vim-surround'
+Plug 'Valloric/vim-operator-highlight'
+Plug 'w0rp/ale'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
 call plug#end()
 
 " Plugins' options -- DON'T SORT!
@@ -179,11 +192,11 @@ let g:ophigh_color=3                          " Operator highlight - change colo
 let g:undotree_SetFocusWhenToggle=1           " undotree - autofocus
 let g:undotree_SplitWidth=32                  " undotree - window width
 let g:SignatureMarkTextHLDynamic=1            " Signature - git gutter compability
+let g:indent_guides_enable_on_vim_startup=1
 
 " Plugins' autocmd
 autocmd InsertEnter * SignatureRefresh
 autocmd BufEnter * SignatureRefresh
-
 
 "------------------------------------------------------------------------------
 " 'set' OPTIONS
@@ -218,29 +231,43 @@ set wildmenu                   " Menu for command linecompletion
 " SYNTAX HIGHLIGHT
 "------------------------------------------------------------------------------
 
-hi  Comment           ctermfg=grey
-hi  CursorLineNr      ctermfg=magenta
-hi  DefinedMacro      ctermfg=DarkRed
-hi  LineNr            ctermfg=grey
-hi  Normal            ctermfg=DarkGreen
-hi  Number            ctermfg=DarkCyan
-hi  PreProc           ctermfg=LightGreen
-hi  SignColumn        ctermbg=black
-hi  Special           ctermfg=red
-hi  StatusLine        ctermfg=yellow
-hi  StatusLineNC      ctermfg=white
-hi  String            ctermfg=DarkCyan
-hi  Type              ctermfg=white
-hi  WildMenu          ctermbg=cyan
+hi  Comment          ctermfg=grey
+hi  CursorLineNr     ctermfg=magenta
+hi  DefinedMacro     ctermfg=DarkRed
+hi  ExtraWhitespace  ctermbg=red
+hi  LineNr           ctermfg=grey
+hi  Normal           ctermfg=DarkGreen
+hi  Number           ctermfg=DarkCyan
+hi  PreProc          ctermfg=LightGreen
+hi  SignColumn       ctermbg=black
+hi  Special          ctermfg=red
+hi  StatusLine       ctermfg=yellow
+hi  StatusLineNC     ctermfg=white
+hi  String           ctermfg=DarkCyan
+hi  Type             ctermfg=white
+hi  WildMenu         ctermbg=cyan
 
 
 "------------------------------------------------------------------------------
 " KEY MAPPING
 "------------------------------------------------------------------------------
 
+" Set leader
 let mapleader="`"
 let maplocalleader=','
 map <space> <leader>
+
+" Leader + sth
+map <leader>h :noh<CR>
+map <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>v gg0vG$
+noremap <leader>= gg=G``
+noremap <leader>x Y:!<C-R>"<C-H><CR>
+
+" Leader + function keys
+map <leader><F1> :UndotreeToggle<CR>
+map <leader><F2> :set wrap!<CR>
+nnoremap <leader>w :ToggleWorkspace<CR>
 
 " Function keys -- also mapped: <F6>, <F8>, <F10>
 imap <F1> <Esc>gTi
@@ -251,10 +278,6 @@ map <F3> :tabe<CR>
 map <F5> :set invrelativenumber<CR>
 map <F9> :w <bar> make<CR>
 
-" Leader + function keys
-map <leader><F1> :UndotreeToggle<CR>
-map <leader><F2> :set wrap!<CR>
-
 " Ctrl + sth / Tab
 inoremap <C-p> <ESC>"+pa
 noremap <C-o> o<ESC>
@@ -264,13 +287,6 @@ noremap <C-u> O<ESC>
 noremap <C-w><Tab> :vnew<CR>
 noremap <C-y> "+y
 noremap <Tab> <C-w><C-w>
-
-" Leader + sth
-map <leader>h :noh<CR>
-map <leader>n :NERDTreeToggle<CR>
-nnoremap <leader>v gg0vG$
-noremap <leader>= gg=G``
-noremap <leader>x Y:!<C-R>"<C-H><CR>
 
 " Normal keys
 map - $
