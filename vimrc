@@ -164,7 +164,6 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'kshenoy/vim-signature'
 Plug 'lervag/vimtex'
 Plug 'mbbill/undotree'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'raviqqe/vim-nonblank'
 Plug 'scrooloose/nerdcommenter'
@@ -192,7 +191,6 @@ let g:ophigh_color=3                          " Operator highlight - change colo
 let g:undotree_SetFocusWhenToggle=1           " undotree - autofocus
 let g:undotree_SplitWidth=32                  " undotree - window width
 let g:SignatureMarkTextHLDynamic=1            " Signature - git gutter compability
-let g:indent_guides_enable_on_vim_startup=1
 
 " Plugins' autocmd
 autocmd InsertEnter * SignatureRefresh
@@ -263,11 +261,11 @@ map <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>v gg0vG$
 noremap <leader>= gg=G``
 noremap <leader>x Y:!<C-R>"<C-H><CR>
+nnoremap <leader>w :ToggleWorkspace<CR>
 
 " Leader + function keys
 map <leader><F1> :UndotreeToggle<CR>
 map <leader><F2> :set wrap!<CR>
-nnoremap <leader>w :ToggleWorkspace<CR>
 
 " Function keys -- also mapped: <F6>, <F8>, <F10>
 imap <F1> <Esc>gTi
