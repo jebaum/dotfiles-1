@@ -3,9 +3,9 @@
 " #############
 
 
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " GENERAL
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 
 " Use Vim settings -- always 1st
 set nocompatible
@@ -125,9 +125,9 @@ autocmd filetype c,cpp nmap <F8> :w! <bar> exec '!g++ -std=c++17 -g '.shellescap
 packadd matchit
 
 
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " Status line -- DO NOT SORT!!
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 
 set statusline=
 set statusline+=[%n]                                       " Buffer number
@@ -149,32 +149,35 @@ set statusline+=\ \|\ Column\:\ %c                         " Current column
 set statusline+=\ \|\ %p%%\ \|                             " Percent through file
 
 
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " Plug - plugins
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'airblade/vim-gitgutter'
-Plug 'ajh17/VimCompletesMe'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'godlygeek/tabular'
-Plug 'henrik/vim-indexed-search'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'kshenoy/vim-signature'
-Plug 'lervag/vimtex'
-Plug 'mbbill/undotree'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'raviqqe/vim-nonblank'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'semanser/vim-outdated-plugins'
-Plug 't9md/vim-choosewin'
-Plug 'thaerkh/vim-workspace'
-Plug 'tpope/vim-surround'
-Plug 'Valloric/vim-operator-highlight'
-Plug 'w0rp/ale'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'cohama/agit.vim'                  " Agit
+Plug 'w0rp/ale'                         " ALE
+Plug 'octol/vim-cpp-enhanced-highlight' " C++ Enhanced Highlight
+Plug 't9md/vim-choosewin'               " Choosewin
+Plug 'tpope/vim-fugitive'               " FUGITIVE
+Plug 'airblade/vim-gitgutter'           " GitGutter
+Plug 'henrik/vim-indexed-search'        " IndexedSearch
+Plug 'Xuyuanp/nerdtree-git-plugin'      " NERDTree-Git
+Plug 'jistr/vim-nerdtree-tabs'          " NERDTree(Tabs)
+Plug 'scrooloose/nerdcommenter'         " NERDCommenter
+Plug 'scrooloose/nerdtree'              " NERDTree
+Plug 'Valloric/vim-operator-highlight'  " Operator Highlight
+Plug 'semanser/vim-outdated-plugins'    " Outdated-plugins
+Plug 'kshenoy/vim-signature'            " Signature
+Plug 'tpope/vim-surround'               " Surround
+Plug 'christoomey/vim-tmux-navigator'   " Tmux Navigator
+Plug 'godlygeek/tabular'                " Tabular
+Plug 'mbbill/undotree'                  " UndoTree
+Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
+Plug 'lervag/vimtex'                    " VimTex
+Plug 'raviqqe/vim-nonblank'             " Vim-NONBlank
+Plug 'yaroot/vissort'                   " Visual Block Sorting
+Plug 'thaerkh/vim-workspace'            " Workspace
 
 call plug#end()
 
@@ -185,20 +188,22 @@ let g:ale_sign_column_always=1                " ALE - sing column always visible
 let g:indexed_search_colors=0                 " IndexedSearch - no color of messages
 let g:NERDCommentEmptyLines=1                 " NERDCommenter - allow commenting empty lines
 let g:NERDSpaceDelims=1                       " NERDCommenter - add space after comment delimiters
-let g:nerdtree_tabs_open_on_console_startup=1 " NERDTree(Tabs) - open on startup
 let g:NERDTreeWinPos="right"                  " NERDTree - always on right side
+let g:nerdtree_tabs_open_on_console_startup=1 " NERDTree(Tabs) - open on startup
 let g:ophigh_color=3                          " Operator highlight - change color
+let g:SignatureMarkTextHLDynamic=1            " Signature - git gutter compability
 let g:undotree_SetFocusWhenToggle=1           " undotree - autofocus
 let g:undotree_SplitWidth=32                  " undotree - window width
-let g:SignatureMarkTextHLDynamic=1            " Signature - git gutter compability
 
 " Plugins' autocmd
-autocmd InsertEnter * SignatureRefresh
-autocmd BufEnter * SignatureRefresh
+autocmd FileType agit NERDTreeToggle   " Fix for Agit and NERDTree
+autocmd BufEnter * SignatureRefresh    " Fix for Signature and gitgutter
+autocmd InsertEnter * SignatureRefresh " Fix for Signature and gitgutter
 
-"------------------------------------------------------------------------------
+
+"-------------------------------------------------------------------------------
 " 'set' OPTIONS
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 
 set autoindent                 " Always set autoindenting on
 set background=dark            " Dark background
@@ -225,9 +230,9 @@ set t_Co=256                   " 256 color support
 set wildmenu                   " Menu for command linecompletion
 
 
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " SYNTAX HIGHLIGHT
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 
 hi  Comment          ctermfg=grey
 hi  CursorLineNr     ctermfg=magenta
@@ -246,9 +251,9 @@ hi  Type             ctermfg=white
 hi  WildMenu         ctermbg=cyan
 
 
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " KEY MAPPING
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 
 " Set leader
 let mapleader="`"
@@ -315,9 +320,9 @@ map Q <nop>
 map ZZ <nop>
 
 
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " COMMANDS
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 
 command Ctags w <bar> Silent !ctags -a %
 command Q qa!
@@ -327,10 +332,11 @@ command Ww :execute ':silent w !sudo tee % > /dev/null' | :edit!
 command WW :execute ':silent w !sudo tee % > /dev/null' | :edit! | q
 
 
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " ALIASES
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 
+ca agit Agit
 ca nonum set nonumber
 ca Plug PlugUpgrade <bar> PlugUpdate
 ca rep %!cat
@@ -339,6 +345,6 @@ ca Tabularize" Tab / " /l0
 ca TabularizeS Tab /\S\+/l1
 
 
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " TEMPORARY
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------

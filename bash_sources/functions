@@ -3,18 +3,18 @@
 
 rm-inum()
 {
-    find . -inum $1 -delete
+    command find . -inum $1 -delete
 }
 
 windows()
 {
-    sudo grub-reboot 2
-    reboot
+    command sudo grub-reboot 2
+    command reboot
 }
 
 fuse-umnt()
 {
-    fusermount -u $@
+    command fusermount -u $@
 }
 
 apt()
@@ -43,10 +43,19 @@ apt()
     fi
 }
 
+offupg()
+{
+    command sudo apt update
+    command sudo apt full-upgrade -y
+    command sudo apt autoremove -y
+    command sudo apt autoclean
+    command sudo shutdown -h now
+}
+
 term-title()
 {
     title=$@
-    wmctrl -r :ACTIVE: -N "$title"
+    command wmctrl -r :ACTIVE: -N "$title"
 }
 
 install-essentials()
@@ -57,4 +66,15 @@ install-essentials()
     done < "$HOME/.essential-software.list"
 
     command sudo apt install $list
+}
+
+git()
+{
+    if [ $1 == "update" ]; then
+        command git add -A
+        command git commit -m "$(command date "+%F_%T")"
+        command git push -u origin master
+    else
+        command git $@
+    fi
 }

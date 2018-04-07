@@ -15,6 +15,7 @@ linking  bash_sources      $HOME/.bash_sources
 linking  bashrc            $HOME/.bashrc
 linking  dosbox-0.74.conf  $HOME/.dosbox/dosbox-0.74.conf
 linking  feh               $HOME/.config/feh/
+linking  mpv/              $HOME/.config/mpv
 linking  tmux.conf         $HOME/.tmux.conf
 linking  vimrc             $HOME/.vimrc
 linking  Xresources        $HOME/.Xresources

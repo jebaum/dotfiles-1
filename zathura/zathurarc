@@ -3,6 +3,10 @@
 #################
 
 
+#-------------------------------------------------------------------------------
+# GENERAL
+#-------------------------------------------------------------------------------
+
 # Open document in fit-width mode by default
 set adjust-open "best-fit"
 
@@ -15,11 +19,15 @@ set smooth-scroll "true"
 set scroll-full-overlap 0.01
 set scroll-step 100
 
+#-------------------------------------------------------------------------------
 # MAPPING
-## Normal
-map f toggle_fullscreen
-map <Return> navigate next
+#-------------------------------------------------------------------------------
 
-## In fullsreen
-map [fullscreen] f toggle_fullscreen
+# Normal
+map <Return> navigate next
+map f toggle_fullscreen
+
+# In fullscreen
+map [fullscreen] <Esc> toggle_fullscreen
 map [fullscreen] <Return> navigate next
+map [fullscreen] f toggle_fullscreen

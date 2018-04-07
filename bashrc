@@ -3,14 +3,17 @@
 ##############
 
 
+#-------------------------------------------------------------------------------
+# GENERAL
+#-------------------------------------------------------------------------------
+
 # Bash history options
 HISTCONTROL=ignoreboth
 HISTFILESIZE=100
 HISTSIZE=100
 shopt -s histappend
 
-# Check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# Check the window size after each command and update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
 # Make 'less' more friendly for non-text input files, see lesspipe(1)
@@ -63,7 +66,7 @@ bind '"\e[Z":menu-complete'
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    alias ls='ls --color=always'
     alias grep='grep --color=always'
     alias fgrep='fgrep --color=always'
     alias egrep='egrep --color=always'
@@ -72,10 +75,18 @@ fi
 # Changes default editor to vim
 export EDITOR=vim
 
+
+#-------------------------------------------------------------------------------
 # BINDONGS
+#-------------------------------------------------------------------------------
+
 bind Space:magic-space
 
+
+#-------------------------------------------------------------------------------
 # SOURCES
+#-------------------------------------------------------------------------------
+
 source $HOME/.bash_sources/aliases
 source $HOME/.bash_sources/app
 source $HOME/.bash_sources/functions
