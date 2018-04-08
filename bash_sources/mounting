@@ -1,6 +1,11 @@
 #!/bin/bash
 
 
+fuse-umnt()
+{
+    command fusermount -u $@
+}
+
 # DEVICES
 mnt()
 {
