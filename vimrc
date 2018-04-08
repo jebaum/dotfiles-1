@@ -194,6 +194,7 @@ let g:ophigh_color=3                          " Operator highlight - change colo
 let g:SignatureMarkTextHLDynamic=1            " Signature - git gutter compability
 let g:undotree_SetFocusWhenToggle=1           " undotree - autofocus
 let g:undotree_SplitWidth=32                  " undotree - window width
+let g:vimtex_compiler_latexmk = {'callback' : 0}
 
 " Plugins' autocmd
 autocmd FileType agit NERDTreeToggle   " Fix for Agit and NERDTree

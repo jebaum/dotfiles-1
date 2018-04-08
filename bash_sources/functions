@@ -31,6 +31,10 @@ apt()
     then
         shift 1
         command apt install --no-install-recommends $@
+    elif [ $1 -- "reinstall" ]
+    then
+        shift 1
+        command sudo apt install --reinstall $@
     elif [ $1 == "upgrade" ]
     then
         shift 1
