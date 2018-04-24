@@ -161,21 +161,23 @@ Plug 'octol/vim-cpp-enhanced-highlight' " C++ Enhanced Highlight
 Plug 't9md/vim-choosewin'               " Choosewin
 Plug 'tpope/vim-fugitive'               " FUGITIVE
 Plug 'airblade/vim-gitgutter'           " GitGutter
+Plug 'ludovicchabant/vim-gutentags'     " Gutentags
 Plug 'henrik/vim-indexed-search'        " IndexedSearch
-Plug 'Xuyuanp/nerdtree-git-plugin'      " NERDTree-Git
-Plug 'jistr/vim-nerdtree-tabs'          " NERDTree(Tabs)
 Plug 'scrooloose/nerdcommenter'         " NERDCommenter
 Plug 'scrooloose/nerdtree'              " NERDTree
+Plug 'Xuyuanp/nerdtree-git-plugin'      " NERDTree-Git
+Plug 'jistr/vim-nerdtree-tabs'          " NERDTree(Tabs)
 Plug 'Valloric/vim-operator-highlight'  " Operator Highlight
 Plug 'semanser/vim-outdated-plugins'    " Outdated-plugins
 Plug 'kshenoy/vim-signature'            " Signature
 Plug 'tpope/vim-surround'               " Surround
-Plug 'christoomey/vim-tmux-navigator'   " Tmux Navigator
 Plug 'godlygeek/tabular'                " Tabular
+Plug 'christoomey/vim-tmux-navigator'   " Tmux Navigator
 Plug 'mbbill/undotree'                  " UndoTree
 Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
-Plug 'lervag/vimtex'                    " VimTex
 Plug 'raviqqe/vim-nonblank'             " Vim-NONBlank
+Plug 'skywind3000/vim-preview'          " vim-preview
+Plug 'lervag/vimtex'                    " VimTex
 Plug 'yaroot/vissort'                   " Visual Block Sorting
 Plug 'thaerkh/vim-workspace'            " Workspace
 
@@ -263,14 +265,11 @@ map <space> <leader>
 
 " Leader + sth
 map <leader>h :noh<CR>
-map <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>v gg0vG$
 noremap <leader>= gg=G``
 noremap <leader>x Y:!<C-R>"<C-H><CR>
-nnoremap <leader>w :ToggleWorkspace<CR>
 
-" Leader + function keys
-map <leader><F1> :UndotreeToggle<CR>
+" Leader + function keys -- also mapped: <F1>
 map <leader><F2> :set wrap!<CR>
 
 " Function keys -- also mapped: <F6>, <F8>, <F10>
@@ -284,21 +283,15 @@ map <F9> :w <bar> make<CR>
 
 " Ctrl + sth / Tab
 inoremap <C-p> <ESC>"+pa
-noremap <C-o> o<ESC>
+noremap <C-o> O<ESC>
 noremap <C-p> "+p
 noremap <C-q><C-q> q
-noremap <C-u> O<ESC>
 noremap <C-w><Tab> :vnew<CR>
 noremap <C-y> "+y
 noremap <Tab> <C-w><C-w>
 
 " Normal keys
 map - $
-map c- <plug>NERDCommenterToEOL
-map c<BS> <leader>cu
-map c<space> <leader>c<space>
-map cc <leader>cc
-map cm <leader>cm
 map co :copen<CR>
 map G G0
 map gg gg0
@@ -306,9 +299,8 @@ map j gj
 map k gk
 map N Nzz
 map n nzz
-map tg 'tdmt
-map tt mt<C-]>
 noremap '' ``
+noremap <CR> o<ESC>
 noremap q: q:
 noremap s gh
 
@@ -321,11 +313,24 @@ map Q <nop>
 map ZZ <nop>
 
 
+" Plugins' mapping -------------------------------------------------------------
+
+map <leader><F1> :UndotreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
+map c- <plug>NERDCommenterToEOL
+map c<BS> <leader>cu
+map c<space> <leader>c<space>
+map cc <leader>cc
+map cm <leader>cm
+map tt :PreviewTag<CR>
+nnoremap <leader>w :ToggleWorkspace<CR>
+
+
 "-------------------------------------------------------------------------------
 " COMMANDS
 "-------------------------------------------------------------------------------
 
-command Ctags w <bar> Silent !ctags -a %
+command Ctags w <bar> Silent !ctags --fields=+nS -a %
 command Q qa!
 command SortBlock :normal! vip:sort i<CR>
 command W wq
@@ -342,6 +347,7 @@ ca nonum set nonumber
 ca Plug PlugUpgrade <bar> PlugUpdate
 ca rep %!cat
 ca sort sort i
+ca sortcolumn !sort -k
 ca Tabularize" Tab / " /l0
 ca TabularizeS Tab /\S\+/l1
 

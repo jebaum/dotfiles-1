@@ -12,7 +12,6 @@ alias du='du -h'
 alias ex='exit'
 alias find-hardlink='find . -samefile $1'
 alias gpp='g++ -std=c++17 -g'
-alias gpu-switch='prime-switch && xfce4-session-logout --logout'
 alias l1='ls -CF1'
 alias l='ls -CF'
 alias L='ls -lF --block-size=MiB'
@@ -44,6 +43,7 @@ alias wifi-restart='sudo rfkill block wifi && sudo rfkill unblock wifi'
 alias wtemp='watch -n 1 "sensors; nvidia-smi; nvidia-smi -q -d temperature; sudo hddtemp /dev/sd?"'
 alias xfce-term-menu='xfce4-terminal --show-menubar'
 alias xfce-term='xfce4-terminal'
+alias yt-mp3='youtube-dl -x --audio-format mp3'
 
 # Auto-alias for scripts in $HOME/scripts directory
 for script in $HOME/scripts/*

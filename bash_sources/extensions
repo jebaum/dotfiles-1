@@ -42,7 +42,7 @@ git-update()
 
 mpv()
 {
-    if [ $1 == "loop" -o $1 == "-l" ]; then
+    if [ "$1" == "loop" -o "$1" == "-l" ]; then
         shift 1
         command mpv --loop-playlist "$@"
     else
