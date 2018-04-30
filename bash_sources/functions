@@ -32,7 +32,7 @@ install-essentials()
     while IFS= read -r pkg
     do
         list=$list' '$(echo $pkg| cut -f1 -d"#")
-    done < "$HOME/.essential-software.list"
+    done < "$HOME/.essentials.list"
 
     command sudo apt install $list
 }

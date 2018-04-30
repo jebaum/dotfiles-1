@@ -165,8 +165,8 @@ Plug 'ludovicchabant/vim-gutentags'     " Gutentags
 Plug 'henrik/vim-indexed-search'        " IndexedSearch
 Plug 'scrooloose/nerdcommenter'         " NERDCommenter
 Plug 'scrooloose/nerdtree'              " NERDTree
-Plug 'Xuyuanp/nerdtree-git-plugin'      " NERDTree-Git
 Plug 'jistr/vim-nerdtree-tabs'          " NERDTree(Tabs)
+Plug 'Xuyuanp/nerdtree-git-plugin'      " NERDTree-Git
 Plug 'Valloric/vim-operator-highlight'  " Operator Highlight
 Plug 'semanser/vim-outdated-plugins'    " Outdated-plugins
 Plug 'kshenoy/vim-signature'            " Signature
@@ -174,9 +174,9 @@ Plug 'tpope/vim-surround'               " Surround
 Plug 'godlygeek/tabular'                " Tabular
 Plug 'christoomey/vim-tmux-navigator'   " Tmux Navigator
 Plug 'mbbill/undotree'                  " UndoTree
-Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
 Plug 'raviqqe/vim-nonblank'             " Vim-NONBlank
 Plug 'skywind3000/vim-preview'          " vim-preview
+Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
 Plug 'lervag/vimtex'                    " VimTex
 Plug 'yaroot/vissort'                   " Visual Block Sorting
 Plug 'thaerkh/vim-workspace'            " Workspace
@@ -199,9 +199,10 @@ let g:undotree_SplitWidth=32                  " undotree - window width
 let g:vimtex_compiler_latexmk = {'callback' : 0}
 
 " Plugins' autocmd
-autocmd FileType agit NERDTreeToggle   " Fix for Agit and NERDTree
 autocmd BufEnter * SignatureRefresh    " Fix for Signature and gitgutter
+autocmd FileType agit NERDTreeToggle   " Fix for Agit and NERDTree
 autocmd InsertEnter * SignatureRefresh " Fix for Signature and gitgutter
+autocmd VimEnter * VSO i               " Vissort - case insensivity
 
 
 "-------------------------------------------------------------------------------
@@ -347,7 +348,6 @@ ca nonum set nonumber
 ca Plug PlugUpgrade <bar> PlugUpdate
 ca rep %!cat
 ca sort sort i
-ca sortcolumn !sort -k
 ca Tabularize" Tab / " /l0
 ca TabularizeS Tab /\S\+/l1
 
