@@ -1,0 +1,66 @@
+#!/bin/bash
+
+game() {
+    steam_id()
+    {
+        steam steam://rungameid/$1 & disown
+    }
+
+    exiter=1
+    case "$1" in
+        1|steam)
+            steam & disown
+            ;;
+        2|dosbox)
+            dosbox & disown
+            ;;
+        3|minecraft)
+            java -jar $HOME/games/Minecraft.jar & disown
+            ;;
+        4|terraria)
+            steam_id 105600
+            ;;
+        5|dont-starve)
+            steam_id 219740
+            ;;
+        6|ftl)
+            steam_id 212680
+            ;;
+        7|zelda-classic)
+            cd $HOME/games/ZeldaClassic/
+            ./zelda-l & disown
+            ;;
+        8|katawa-shoujo)
+            cd $HOME/games/Katawa_Shoujo/
+            ./Katawa Shoujo.sh & disown
+            ;;
+        *)
+            echo "1) Steam"
+            echo "2) DOSbox"
+            echo "3) Minecraft"
+            echo "4) Terraria"
+            echo "5) Don't Starve"
+            echo "6) FTL: Faster Than Light"
+            echo "7) Zelda Classic"
+            echo "8) Katawa Shoujo"
+
+            echo ""
+            echo "e) Edit"
+            echo "q) Quit"
+            echo ""
+            printf 'Choose: '
+            read -r option
+            if [ $option = "e" -o $option = "edit" ]; then
+                exiter=0
+                edit $HOME/.bash_sources/games
+            elif [ $option = "q" -o $option = "quit" ]; then
+                exiter=0
+            else
+                game $option
+            fi
+            ;;
+    esac
+    if [ $exiter = 1 ]; then
+        exit
+    fi
+}

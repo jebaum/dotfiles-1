@@ -7,7 +7,7 @@ linking() {
     fi
 
     if [ ! -e $3 ]; then
-        ln -sf $(pwd)/$2 $1
+        ln -sf $(pwd)/$2 $3
     fi
 }
 
