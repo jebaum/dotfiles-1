@@ -13,6 +13,10 @@ HISTFILESIZE=100
 HISTSIZE=100
 shopt -s histappend
 
+# Use Vi mode
+set -o vi
+set show-mode-in-prompt on
+
 # Check the window size after each command and update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 

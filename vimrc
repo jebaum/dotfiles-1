@@ -163,21 +163,22 @@ Plug 'tpope/vim-fugitive'               " FUGITIVE
 Plug 'airblade/vim-gitgutter'           " GitGutter
 Plug 'ludovicchabant/vim-gutentags'     " Gutentags
 Plug 'henrik/vim-indexed-search'        " IndexedSearch
+Plug 'jistr/vim-nerdtree-tabs'          " NERDTree(Tabs)
 Plug 'scrooloose/nerdcommenter'         " NERDCommenter
 Plug 'scrooloose/nerdtree'              " NERDTree
-Plug 'jistr/vim-nerdtree-tabs'          " NERDTree(Tabs)
 Plug 'Xuyuanp/nerdtree-git-plugin'      " NERDTree-Git
-Plug 'Valloric/vim-operator-highlight'  " Operator Highlight
 Plug 'semanser/vim-outdated-plugins'    " Outdated-plugins
+Plug 'Valloric/vim-operator-highlight'  " Operator Highlight
 Plug 'kshenoy/vim-signature'            " Signature
 Plug 'tpope/vim-surround'               " Surround
-Plug 'godlygeek/tabular'                " Tabular
 Plug 'christoomey/vim-tmux-navigator'   " Tmux Navigator
+Plug 'godlygeek/tabular'                " Tabular
 Plug 'mbbill/undotree'                  " UndoTree
+Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
+Plug 'junegunn/vim-peekaboo'            " vim-peekaboo
+Plug 'lervag/vimtex'                    " VimTex
 Plug 'raviqqe/vim-nonblank'             " Vim-NONBlank
 Plug 'skywind3000/vim-preview'          " vim-preview
-Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
-Plug 'lervag/vimtex'                    " VimTex
 Plug 'yaroot/vissort'                   " Visual Block Sorting
 Plug 'thaerkh/vim-workspace'            " Workspace
 

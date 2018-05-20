@@ -1,0 +1,9 @@
+###############
+### INPUTRC ###
+###############
+
+# Use Vi mode
+set editing-mode vi
+
+# Show which mode is used right now
+set show-mode-in-prompt on

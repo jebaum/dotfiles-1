@@ -5,3 +5,5 @@ toggle_menu
 
 # BINDING
 toggle_fullscreen f
+next_img j
+prev_img k

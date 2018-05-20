@@ -1,6 +1,22 @@
 cd 
 filter 
 open_with
-open_with 
-delete
 open_with kvm
+rename 
+rename Zastosowanie całek do liczenia pól.pdf
+open_with dosbox
+open_with``
+reload_cwd 
+rename Zbior Mendla - klasa 1.pdf
+find 
+open_with 0
+h t
+help t
+help 
+delete
+cd ..
+cd /home/x/dotfiles
+cd backups
+
+Q
+open_with 
