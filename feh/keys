@@ -4,6 +4,7 @@ save_filelist
 toggle_menu
 
 # BINDING
+next_img j space Right
+prev_img k Left
 toggle_fullscreen f
-next_img j
-prev_img k
+zoom_fit s

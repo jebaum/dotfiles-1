@@ -8,15 +8,31 @@ open_with dosbox
 open_with``
 reload_cwd 
 rename Zbior Mendla - klasa 1.pdf
-find 
 open_with 0
 h t
 help t
 help 
-delete
 cd ..
 cd /home/x/dotfiles
 cd backups
-
 Q
+cd dotfiles/
+
+abort 
+cd music/japan/
+search go
+llkjh`
+open_with unzip
+open_with unzip -r
+open_with unzip -d
 open_with 
+delete
+cd /home/x/music/japan/
+h
+help
+open_with mpv
+find othe
+find plan
+find 
+find dr
+open_with feh
