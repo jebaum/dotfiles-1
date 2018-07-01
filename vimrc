@@ -174,7 +174,7 @@ Plug 'tpope/vim-surround'               " Surround
 Plug 'christoomey/vim-tmux-navigator'   " Tmux Navigator
 Plug 'godlygeek/tabular'                " Tabular
 Plug 'mbbill/undotree'                  " UndoTree
-" Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
+Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
 Plug 'junegunn/vim-peekaboo'            " vim-peekaboo
 Plug 'lervag/vimtex'                    " VimTex
 Plug 'mg979/vim-visual-multi'           " Visual-Multi
@@ -267,6 +267,7 @@ let maplocalleader=','
 map <space> <leader>
 
 " Leader + sth
+inoremap <leader><Tab> <C-v><Tab>
 map <leader>h :noh<CR>
 nnoremap <leader>v gg0vG$
 noremap <leader>= gg=G``
