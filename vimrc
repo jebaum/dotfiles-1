@@ -174,9 +174,10 @@ Plug 'tpope/vim-surround'               " Surround
 Plug 'christoomey/vim-tmux-navigator'   " Tmux Navigator
 Plug 'godlygeek/tabular'                " Tabular
 Plug 'mbbill/undotree'                  " UndoTree
-Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
+" Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
 Plug 'junegunn/vim-peekaboo'            " vim-peekaboo
 Plug 'lervag/vimtex'                    " VimTex
+Plug 'mg979/vim-visual-multi'           " Visual-Multi
 Plug 'raviqqe/vim-nonblank'             " Vim-NONBlank
 Plug 'skywind3000/vim-preview'          " vim-preview
 Plug 'yaroot/vissort'                   " Visual Block Sorting
@@ -304,10 +305,10 @@ map n nzz
 noremap '' ``
 noremap <CR> o<ESC>
 noremap q: q:
-noremap s gh
 
 " <nop>
 map ` <nop>
+map s <nop>
 map c <nop>
 map gh <nop>
 map q <nop>

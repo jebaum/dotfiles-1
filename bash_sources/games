@@ -8,41 +8,51 @@ game() {
 
     exiter=1
     case "$1" in
-        1|steam)
+        1|01|steam)
             steam & disown
             ;;
-        2|dosbox)
+        2|02|dosbox)
             dosbox & disown
             ;;
-        3|minecraft)
+        3|03|minecraft)
             java -jar $HOME/games/Minecraft.jar & disown
             ;;
-        4|terraria)
+        4|04|terraria)
             steam_id 105600
             ;;
-        5|dont-starve)
+        5|05|dont-starve)
             steam_id 219740
             ;;
-        6|ftl)
+        6|06|ftl)
             steam_id 212680
             ;;
-        7|zelda-classic)
+        7|07|zelda-classic)
             cd $HOME/games/ZeldaClassic/
             ./zelda-l & disown
             ;;
-        8|katawa-shoujo)
+        8|08|katawa-shoujo)
             cd $HOME/games/Katawa_Shoujo/
             ./Katawa Shoujo.sh & disown
             ;;
+        9|09|hacknet)
+            steam_id 365450
+            ;;
+        10|ddlc)
+            cd $HOME/games/DDLC
+            ./DDLC.sh & disown
+            ;;
         *)
-            echo "1) Steam"
-            echo "2) DOSbox"
-            echo "3) Minecraft"
-            echo "4) Terraria"
-            echo "5) Don't Starve"
-            echo "6) FTL: Faster Than Light"
-            echo "7) Zelda Classic"
-            echo "8) Katawa Shoujo"
+            clear
+            echo "01 | Steam"
+            echo "02 | DOSbox"
+            echo "03 | Minecraft"
+            echo "04 | Terraria"
+            echo "05 | Don't Starve"
+            echo "06 | FTL: Faster Than Light"
+            echo "07 | Zelda Classic"
+            echo "08 | Katawa Shoujo"
+            echo "09 | Hacknet"
+            echo "10 | Doki Doki Literature Club!"
 
             echo ""
             echo "e) Edit"

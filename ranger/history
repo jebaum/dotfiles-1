@@ -1,8 +1,6 @@
-cd 
 filter 
 open_with
 open_with kvm
-rename 
 rename Zastosowanie całek do liczenia pól.pdf
 open_with dosbox
 open_with``
@@ -12,12 +10,10 @@ open_with 0
 h t
 help t
 help 
-cd ..
 cd /home/x/dotfiles
 cd backups
 Q
 cd dotfiles/
-
 abort 
 cd music/japan/
 search go
@@ -25,8 +21,6 @@ llkjh`
 open_with unzip
 open_with unzip -r
 open_with unzip -d
-open_with 
-delete
 cd /home/x/music/japan/
 h
 help
@@ -35,4 +29,18 @@ find othe
 find plan
 find 
 find dr
+delete
+open_with 
+rename 
+rename mal
+cd Desktop/
+cd /home/x
+cd /home/x/Desktop
+cd 201602a0/
+
 open_with feh
+c
+cd  ~
+cd ../...
+cd ..
+cd 

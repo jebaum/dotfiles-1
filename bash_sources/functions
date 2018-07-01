@@ -9,7 +9,7 @@ rm-inum()
 windows()
 {
     command sudo grub-reboot 2
-    command reboot
+    command sudo reboot
 }
 
 offupg()
