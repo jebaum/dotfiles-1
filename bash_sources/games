@@ -32,7 +32,7 @@ game() {
             ;;
         8|08|katawa-shoujo)
             cd $HOME/games/Katawa_Shoujo/
-            ./Katawa Shoujo.sh & disown
+            ./Katawa\ Shoujo.sh & disown
             ;;
         9|09|hacknet)
             steam_id 365450

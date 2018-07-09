@@ -7,12 +7,6 @@
 " GENERAL
 "-------------------------------------------------------------------------------
 
-" Use Vim settings -- always 1st
-set nocompatible
-
-" Enable syntax highlight
-syntax on
-
 " Download vim-plug (if is not installed)
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl --create-dirs -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -43,7 +37,7 @@ autocmd BufEnter * sign define dummy
 autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 
 " Adds a highlight group for extra whitespace at the ends of lines -- DO NOT CHANGE HERE! USE SYNTAX HIGHLIGHT SECTION!
-hi ExtraWhitespace cterm=NONe
+hi ExtraWhitespace cterm=NONE
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/

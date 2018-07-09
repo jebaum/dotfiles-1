@@ -30,7 +30,6 @@ linking  $x  dosbox-0.74.conf  $HOME/.dosbox/dosbox-0.74.conf
 linking  $x  feh               $HOME/.config/feh/
 linking  $x  inputrc           $HOME/.inputrc
 linking  $x  mpv/              $HOME/.config/mpv
-linking  $x  ranger            $HOME/.config/ranger
 linking  $x  tmux.conf         $HOME/.tmux.conf
 linking  $x  vimrc             $HOME/.vimrc
 linking  $x  Xresources        $HOME/.Xresources

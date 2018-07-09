@@ -8,9 +8,21 @@ app() {
         2|kanjitomo)
             java -Xmx1000m -jar $HOME/app/KanjiTomo/KanjiTomo.jar -run & disown > /dev/null
             ;;
+        3|xampp)
+            sudo /opt/lampp/manager-linux-x64.run
+            ;;
+        4|tor)
+            sh -c '"$HOME/app/TOR_browser/Browser/start-tor-browser" --detach || ([ !  -x "$HOME/app/TOR_browser/Browser/start-tor-browser" ] && "$(dirname "$*")"/Browser/start-tor-browser --detach)' dummy %k
+            ;;
+        5|demonsaw)
+            $HOME/app/demonsaw/Demonsaw & disown
+            ;;
         *)
             echo "1) Electrum"
             echo "2) KanjiTomo"
+            echo "3) XAMPP"
+            echo "4) TOR"
+            echo "5) Demonsaw"
 
             echo ""
             echo "e) Edit"
