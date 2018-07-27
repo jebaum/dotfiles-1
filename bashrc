@@ -95,5 +95,4 @@ source $HOME/.bash_sources/aliases
 source $HOME/.bash_sources/app
 source $HOME/.bash_sources/extensions
 source $HOME/.bash_sources/functions
-source $HOME/.bash_sources/games
 source $HOME/.bash_sources/mounting

@@ -17,24 +17,58 @@ app() {
         5|demonsaw)
             $HOME/app/demonsaw/Demonsaw & disown
             ;;
-        *)
-            echo "1) Electrum"
-            echo "2) KanjiTomo"
-            echo "3) XAMPP"
-            echo "4) TOR"
-            echo "5) Demonsaw"
+        6|freenet)
+            echo ""
+            echo "Which action would you preform?"
+            echo "1) start"
+            echo "2) stop"
+            echo "3) restart"
+            echo ""
+            echo "4) Back to menu"
+            echo ""
+            printf "\$:"
 
-            echo ""
-            echo "e) Edit"
-            echo "q) Quit"
-            echo ""
-            printf 'Choose: '
-            read -r option
-            if [ $option = "e" -o $option = "edit" ]; then
-                edit $HOME/.bash_sources/app
-            elif [ ! $option = "q" -a ! $option = "quit" ]; then
-                app $option
-            fi
-            ;;
-    esac
-}
+            read -r action
+            case "$action" in
+                1)
+                    $HOME/app/freenet/run.sh start
+                    ;;
+                2)
+                    $HOME/app/freenet/run.sh stop
+                    ;;
+                3)
+                    $HOME/app/freenet/run.sh restart
+                    ;;
+                4)
+                    app
+                    ;;
+                *)
+                    app 6
+                    ;;
+
+                esac
+                ;;
+
+            *)
+                echo ""
+                echo "1) Electrum"
+                echo "2) KanjiTomo"
+                echo "3) XAMPP"
+                echo "4) TOR"
+                echo "5) Demonsaw"
+                echo "6) Freenet"
+
+                echo ""
+                echo "e) Edit"
+                echo "q) Quit"
+                echo ""
+                printf 'Choose: '
+                read -r option
+                if [ $option = "e" -o $option = "edit" ]; then
+                    edit $HOME/.bash_sources/app
+                elif [ ! $option = "q" -a ! $option = "quit" ]; then
+                    app $option
+                fi
+                ;;
+        esac
+    }

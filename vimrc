@@ -32,10 +32,6 @@ filetype plugin indent on
 " Redraw after 'silent' command
 command! -nargs=+ Silent execute 'silent <args>' | redraw!
 
-" Adds gutter
-autocmd BufEnter * sign define dummy
-autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
-
 " Adds a highlight group for extra whitespace at the ends of lines -- DO NOT CHANGE HERE! USE SYNTAX HIGHLIGHT SECTION!
 hi ExtraWhitespace cterm=NONE
 match ExtraWhitespace /\s\+$/
