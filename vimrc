@@ -7,6 +7,9 @@
 " GENERAL
 "-------------------------------------------------------------------------------
 
+" Use Vim settings -- always 1st
+set nocompatible
+
 " Download vim-plug (if is not installed)
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl --create-dirs -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -23,10 +26,7 @@ if has ("title")
     endif
 endif
 
-" Open file at the last known position
-autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
-
-" Turns on detection, plugin and indent
+" Turns on detection, plugin and indent (needed only when there isn't vim-plug)
 filetype plugin indent on
 
 " Redraw after 'silent' command
@@ -50,7 +50,7 @@ function! HighlightDefinedMacros()
         endif
     endfor
 endfunction
-"|
+"| BufWinEnter enable only with view session
 autocmd BufWinEnter *.* exec HighlightDefinedMacros()
 autocmd InsertEnter * exec HighlightDefinedMacros()
 
@@ -62,6 +62,14 @@ aug END
 
 " QuickFix window below other windows
 au FileType qf wincmd J
+
+" View session
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+autocmd BufWinEnter *.* exec "normal! zR"
+
+" Open file at the last known position (if there is no view session)
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
 
 " Backups etc.
 set backup
@@ -78,12 +86,12 @@ set tabstop=4
 set cindent
 
 " Folding
-autocmd BufWinEnter *.* silent loadview " Load saved foldings
-autocmd BufWinLeave *.* mkview " Save foldings
+au BufReadPre * setlocal foldmethod=indent
+au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 set foldlevel=10
-set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
+
 
 " Toggle cursorline's underline
 let hl_state=0   " set value to 0 to start without underline, set to 1 to start with underline
@@ -120,23 +128,23 @@ packadd matchit
 "-------------------------------------------------------------------------------
 
 set statusline=
-set statusline+=[%n]                                       " Buffer number
-set statusline+=\ \                                        " Separator
-set statusline+=%f                                         " Path to the file
-set statusline+=\ \                                        " Separator
-set statusline+=%y                                         " Filetype
-set statusline+=[%{&ff}]                                   " File format
-set statusline+=[%{&fileencoding?&fileencoding:&encoding}] " File encoding
-set statusline+=\ \                                        " Separator
-set statusline+=%r                                         " Readonly flag
-set statusline+=%w                                         " Preview flag
-set statusline+=\ \                                        " Separator
-set statusline+=%m                                         " Modified flag
-set statusline+=%=                                         " Switch to the right side
-set statusline+=Line\:\ %l/                                " Current line
-set statusline+=%L                                         " Total lines
-set statusline+=\ \|\ Column\:\ %c                         " Current column
-set statusline+=\ \|\ %p%%\ \|                             " Percent through file
+set statusline+=[%n]                                                                                   " Buffer number
+set statusline+=\ \                                                                                    " Separator
+set statusline+=%f                                                                                     " Path to the file
+set statusline+=\ \                                                                                    " Separator
+set statusline+=%y                                                                                     " Filetype
+set statusline+=[%{&ff}]                                                                               " File format
+set statusline+=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"} " File encoding
+set statusline+=\ \                                                                                    " Separator
+set statusline+=%r                                                                                     " Readonly flag
+set statusline+=%w                                                                                     " Preview flag
+set statusline+=\ \                                                                                    " Separator
+set statusline+=%m                                                                                     " Modified flag
+set statusline+=%=                                                                                     " Switch to the right side
+set statusline+=Line\:\ %l/                                                                            " Current line
+set statusline+=%L                                                                                     " Total lines
+set statusline+=\ \|\ Column\:\ %c                                                                     " Current column
+set statusline+=\ \|\ %p%%\ \|                                                                         " Percent through file
 
 
 "-------------------------------------------------------------------------------
@@ -164,6 +172,7 @@ Plug 'tpope/vim-surround'               " Surround
 Plug 'christoomey/vim-tmux-navigator'   " Tmux Navigator
 Plug 'godlygeek/tabular'                " Tabular
 Plug 'mbbill/undotree'                  " UndoTree
+Plug 'RRethy/vim-illuminate'            " vim-illuminate
 Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
 Plug 'junegunn/vim-peekaboo'            " vim-peekaboo
 Plug 'lervag/vimtex'                    " VimTex
@@ -175,20 +184,23 @@ Plug 'thaerkh/vim-workspace'            " Workspace
 
 call plug#end()
 
-" Plugins' options -- DON'T SORT!
-let g:ale_set_highlights=0                    " ALE - disable highlight
-let g:ale_set_quickfix=1                      " ALE - enable quicklist
-let g:ale_sign_column_always=1                " ALE - sing column always visible
-let g:indexed_search_colors=0                 " IndexedSearch - no color of messages
-let g:NERDCommentEmptyLines=1                 " NERDCommenter - allow commenting empty lines
-let g:NERDSpaceDelims=1                       " NERDCommenter - add space after comment delimiters
-let g:NERDTreeWinPos="right"                  " NERDTree - always on right side
-let g:nerdtree_tabs_open_on_console_startup=1 " NERDTree(Tabs) - open on startup
-let g:ophigh_color=3                          " Operator highlight - change color
-let g:SignatureMarkTextHLDynamic=1            " Signature - git gutter compability
-let g:undotree_SetFocusWhenToggle=1           " undotree - autofocus
-let g:undotree_SplitWidth=32                  " undotree - window width
-let g:vimtex_compiler_latexmk = {'callback' : 0}
+" Plugins' options
+let g:ale_set_highlights=0                       " ALE - disable highlight
+let g:ale_set_quickfix=1                         " ALE - enable quicklist
+let g:ale_sign_column_always=1                   " ALE - sing column always visible
+let g:indexed_search_colors=0                    " IndexedSearch - no color of messages
+let g:NERDCommentEmptyLines=1                    " NERDCommenter - allow commenting empty lines
+let g:NERDSpaceDelims=1                          " NERDCommenter - add space after comment delimiters
+let g:nerdtree_tabs_open_on_console_startup=1    " NERDTree(Tabs) - open on startup
+let g:nerdtree_tabs_smart_startup_focus=2        " NERDTree(Tabs) - always focus file window after startup
+let g:NERDTreeWinPos="right"                     " NERDTree - always on right side
+let g:ophigh_color=3                             " Operator highlight - change color
+let g:SignatureMarkTextHLDynamic=1               " Signature - git gutter compability
+let g:undotree_SetFocusWhenToggle=1              " undotree - autofocus
+let g:undotree_ShortIndicators=1                 " undotree - short time indicators
+let g:undotree_SplitWidth=32                     " undotree - window width
+let g:Illuminate_delay = 0                       " vim-illuminate - time delay in milliseconds
+let g:vimtex_compiler_latexmk = {'callback' : 0} " VimTeX - compiler
 
 " Plugins' autocmd
 autocmd BufEnter * SignatureRefresh    " Fix for Signature and gitgutter
@@ -246,6 +258,9 @@ hi  String           ctermfg=DarkCyan
 hi  Type             ctermfg=white
 hi  WildMenu         ctermbg=cyan
 
+" Plugins' highlight -----------------------------------------------------------
+
+hi  illuminatedWord  cterm=underline
 
 "-------------------------------------------------------------------------------
 " KEY MAPPING
@@ -293,6 +308,8 @@ map j gj
 map k gk
 map N Nzz
 map n nzz
+nnoremap f z
+nnoremap F zf%
 noremap '' ``
 noremap <CR> o<ESC>
 noremap q: q:

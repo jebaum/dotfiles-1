@@ -6,7 +6,7 @@ app() {
             $HOME/app/electrum/electrum & disown > /dev/null
             ;;
         2|kanjitomo)
-            java -Xmx1000m -jar $HOME/app/KanjiTomo/KanjiTomo.jar -run & disown > /dev/null
+            java -Xmx1000m -jar $HOME/app/KanjiTomo/KanjiTomo.jar -run & disown
             ;;
         3|xampp)
             sudo /opt/lampp/manager-linux-x64.run
@@ -18,57 +18,47 @@ app() {
             $HOME/app/demonsaw/Demonsaw & disown
             ;;
         6|freenet)
-            echo ""
+            echo
             echo "Which action would you preform?"
             echo "1) start"
             echo "2) stop"
             echo "3) restart"
-            echo ""
+            echo
             echo "4) Back to menu"
-            echo ""
+            echo
             printf "\$:"
 
             read -r action
             case "$action" in
-                1)
-                    $HOME/app/freenet/run.sh start
-                    ;;
-                2)
-                    $HOME/app/freenet/run.sh stop
-                    ;;
-                3)
-                    $HOME/app/freenet/run.sh restart
-                    ;;
-                4)
-                    app
-                    ;;
-                *)
-                    app 6
-                    ;;
+                1) $HOME/app/freenet/run.sh start ;;
+                2) $HOME/app/freenet/run.sh stop ;;
+                3) $HOME/app/freenet/run.sh restart ;;
+                4) app ;;
+                *) app 6 ;;
 
-                esac
-                ;;
+            esac
+            ;;
 
-            *)
-                echo ""
-                echo "1) Electrum"
-                echo "2) KanjiTomo"
-                echo "3) XAMPP"
-                echo "4) TOR"
-                echo "5) Demonsaw"
-                echo "6) Freenet"
+        *)
+            echo
+            echo "1) Electrum"
+            echo "2) KanjiTomo"
+            echo "3) XAMPP"
+            echo "4) TOR"
+            echo "5) Demonsaw"
+            echo "6) Freenet"
 
-                echo ""
-                echo "e) Edit"
-                echo "q) Quit"
-                echo ""
-                printf 'Choose: '
-                read -r option
-                if [ $option = "e" -o $option = "edit" ]; then
-                    edit $HOME/.bash_sources/app
-                elif [ ! $option = "q" -a ! $option = "quit" ]; then
-                    app $option
-                fi
-                ;;
-        esac
-    }
+            echo
+            echo "e) Edit"
+            echo
+            echo "* Type anthing else to cancel *"
+            echo
+            read -r -p 'Choose: ' option
+            if [ $option = "e" -o $option = "edit" ]; then
+                edit $HOME/.bash_sources/app
+            else
+                app $option
+            fi
+            ;;
+    esac
+}
