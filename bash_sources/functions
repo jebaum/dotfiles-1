@@ -1,15 +1,20 @@
 #!/bin/bash
 
 
-rm-inum()
+install-essentials()
 {
-    command find . -inum $1 -delete
+    while IFS= read -r pkg
+    do
+        list=$list' '$(echo $pkg| cut -f1 -d"#")
+    done < "$HOME/lists/essentials.list"
+
+
+    command sudo apt install $list
 }
 
-windows()
+lf()
 {
-    command sudo grub-reboot 2
-    command sudo reboot
+    ls -1 $1 | tr '\n' '\0' | xargs -0 -n 1 basename
 }
 
 offupg()
@@ -21,19 +26,19 @@ offupg()
     command sudo shutdown -h now
 }
 
+rm-inum()
+{
+    command find . -inum $1 -delete
+}
+
 term-title()
 {
     title=$@
     command wmctrl -r :ACTIVE: -N "$title"
 }
 
-install-essentials()
+windows()
 {
-    while IFS= read -r pkg
-    do
-        list=$list' '$(echo $pkg| cut -f1 -d"#")
-    done < "$HOME/lists/essentials.list"
-
-
-    command sudo apt install $list
+    command sudo grub-reboot 2
+    command sudo reboot
 }

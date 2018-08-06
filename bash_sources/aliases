@@ -2,6 +2,7 @@
 
 
 alias add-repo='sudo add-apt-repository'
+alias ap='clear && sudo create_ap'
 alias bash-reload='source $HOME/.bash_profile'
 alias bashrc='edit $HOME/.bashrc'
 alias battery='upower -i $(upower -e | command grep battery)'
@@ -17,7 +18,6 @@ alias l='ls -CF'
 alias L='ls -lhF --block-size=MiB'
 alias la='ls -alhF'
 alias less='less -R'
-alias Lf='find ./ -printf "%f\n" | sort'
 alias lh='ls -a | grep "^\."'
 alias li='ls -i'
 alias ll='ls -alhF --color | less -R'
@@ -47,12 +47,3 @@ alias wtemp='watch -n 1 "sensors; nvidia-smi; nvidia-smi -q -d temperature; sudo
 alias xfce-term-menu='xfce4-terminal --show-menubar'
 alias xfce-term='xfce4-terminal'
 alias yt-mp3='youtube-dl -x --audio-format mp3'
-
-# Auto-alias for scripts in $HOME/scripts directory
-for script in $HOME/scripts/*
-do
-    if [ -f "$script" ]
-    then
-        alias $(basename $script)="$script"
-    fi
-done

@@ -40,19 +40,19 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-" Adds a higlight group for C/C++ macros
-function! HighlightDefinedMacros()
-    syn clear DefinedMacro
+" Adds a higlight group for C/C++ preprocessor defined macros
+function! HighlightC_PreprocessorDefines()
+    syn clear C_PreprocessorDefine
     for l in getline('1','$')
         if l =~ '^\s*#\s*define\s\+'
             let macro = substitute(l, '^\s*#\s*define\s\+\(\k\+\).*$', '\1', '')
-            exe 'syn keyword DefinedMacro ' . macro
+            exe 'syn keyword C_PreprocessorDefine ' . macro
         endif
     endfor
 endfunction
 "| BufWinEnter enable only with view session
-autocmd BufWinEnter *.* exec HighlightDefinedMacros()
-autocmd InsertEnter * exec HighlightDefinedMacros()
+autocmd BufWinEnter *.* exec HighlightC_PreprocessorDefines()
+autocmd InsertEnter * exec HighlightC_PreprocessorDefines()
 
 " Quit QuickFix window along with source file window
 aug QFClose
@@ -63,10 +63,9 @@ aug END
 " QuickFix window below other windows
 au FileType qf wincmd J
 
-" View session
+" View session (exec in BufWinEnter unfolds all on enter)
 autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
-autocmd BufWinEnter *.* exec "normal! zR"
+autocmd BufWinEnter *.* silent loadview | exec "normal! zR"
 
 " Open file at the last known position (if there is no view session)
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
@@ -86,8 +85,10 @@ set tabstop=4
 set cindent
 
 " Folding
-au BufReadPre * setlocal foldmethod=indent
-au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+augroup vimrc
+    au BufReadPre * setlocal foldmethod=indent
+    au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+augroup END
 set foldlevel=10
 set foldnestmax=10
 set nofoldenable
@@ -157,29 +158,29 @@ Plug 'cohama/agit.vim'                  " Agit
 Plug 'w0rp/ale'                         " ALE
 Plug 'octol/vim-cpp-enhanced-highlight' " C++ Enhanced Highlight
 Plug 't9md/vim-choosewin'               " Choosewin
-Plug 'tpope/vim-fugitive'               " FUGITIVE
 Plug 'airblade/vim-gitgutter'           " GitGutter
 Plug 'ludovicchabant/vim-gutentags'     " Gutentags
 Plug 'henrik/vim-indexed-search'        " IndexedSearch
-Plug 'jistr/vim-nerdtree-tabs'          " NERDTree(Tabs)
 Plug 'scrooloose/nerdcommenter'         " NERDCommenter
 Plug 'scrooloose/nerdtree'              " NERDTree
+Plug 'jistr/vim-nerdtree-tabs'          " NERDTree(Tabs)
 Plug 'Xuyuanp/nerdtree-git-plugin'      " NERDTree-Git
-Plug 'semanser/vim-outdated-plugins'    " Outdated-plugins
 Plug 'Valloric/vim-operator-highlight'  " Operator Highlight
+Plug 'semanser/vim-outdated-plugins'    " Outdated-plugins
 Plug 'kshenoy/vim-signature'            " Signature
+Plug 'klassegeljakt/vim-stealth'        " Stealth
 Plug 'tpope/vim-surround'               " Surround
-Plug 'christoomey/vim-tmux-navigator'   " Tmux Navigator
 Plug 'godlygeek/tabular'                " Tabular
+Plug 'christoomey/vim-tmux-navigator'   " Tmux Navigator
 Plug 'mbbill/undotree'                  " UndoTree
 Plug 'RRethy/vim-illuminate'            " vim-illuminate
-Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
-Plug 'junegunn/vim-peekaboo'            " vim-peekaboo
-Plug 'lervag/vimtex'                    " VimTex
-Plug 'mg979/vim-visual-multi'           " Visual-Multi
 Plug 'raviqqe/vim-nonblank'             " Vim-NONBlank
+Plug 'junegunn/vim-peekaboo'            " vim-peekaboo
 Plug 'skywind3000/vim-preview'          " vim-preview
+Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
+Plug 'lervag/vimtex'                    " VimTex
 Plug 'yaroot/vissort'                   " Visual Block Sorting
+Plug 'mg979/vim-visual-multi'           " Visual-Multi
 Plug 'thaerkh/vim-workspace'            " Workspace
 
 call plug#end()
@@ -189,11 +190,11 @@ let g:ale_set_highlights=0                       " ALE - disable highlight
 let g:ale_set_quickfix=1                         " ALE - enable quicklist
 let g:ale_sign_column_always=1                   " ALE - sing column always visible
 let g:indexed_search_colors=0                    " IndexedSearch - no color of messages
-let g:NERDCommentEmptyLines=1                    " NERDCommenter - allow commenting empty lines
 let g:NERDSpaceDelims=1                          " NERDCommenter - add space after comment delimiters
-let g:nerdtree_tabs_open_on_console_startup=1    " NERDTree(Tabs) - open on startup
-let g:nerdtree_tabs_smart_startup_focus=2        " NERDTree(Tabs) - always focus file window after startup
+let g:NERDCommentEmptyLines=1                    " NERDCommenter - allow commenting empty lines
 let g:NERDTreeWinPos="right"                     " NERDTree - always on right side
+let g:nerdtree_tabs_smart_startup_focus=2        " NERDTree(Tabs) - always focus file window after startup
+let g:nerdtree_tabs_open_on_console_startup=1    " NERDTree(Tabs) - open on startup
 let g:ophigh_color=3                             " Operator highlight - change color
 let g:SignatureMarkTextHLDynamic=1               " Signature - git gutter compability
 let g:undotree_SetFocusWhenToggle=1              " undotree - autofocus
@@ -203,8 +204,8 @@ let g:Illuminate_delay = 0                       " vim-illuminate - time delay i
 let g:vimtex_compiler_latexmk = {'callback' : 0} " VimTeX - compiler
 
 " Plugins' autocmd
+autocmd FileType agit NERDTreeClose    " Fix for Agit and NERDTree
 autocmd BufEnter * SignatureRefresh    " Fix for Signature and gitgutter
-autocmd FileType agit NERDTreeToggle   " Fix for Agit and NERDTree
 autocmd InsertEnter * SignatureRefresh " Fix for Signature and gitgutter
 autocmd VimEnter * VSO i               " Vissort - case insensivity
 
@@ -214,7 +215,7 @@ autocmd VimEnter * VSO i               " Vissort - case insensivity
 "-------------------------------------------------------------------------------
 
 set autoindent                 " Always set autoindenting on
-set background=dark            " Dark background
+set background=dark            " Dark background (needed for proper colors)
 set backspace=indent,eol,start " Allow backspacing over everything in insert mode
 set cursorline                 " Current line highlight
 set history=50                 " Keep 50 lines of command line history
@@ -235,6 +236,7 @@ set smartindent                " Smart indention
 set splitbelow                 " New windows open on right when split verticaly
 set splitright                 " New windows open on right when split horizontaly
 set t_Co=256                   " 256 color support
+set viewoptions-=options,folds " View options
 set wildmenu                   " Menu for command linecompletion
 
 
@@ -242,25 +244,26 @@ set wildmenu                   " Menu for command linecompletion
 " SYNTAX HIGHLIGHT
 "-------------------------------------------------------------------------------
 
-hi  Comment          ctermfg=grey
-hi  CursorLineNr     ctermfg=magenta
-hi  DefinedMacro     ctermfg=DarkRed
-hi  ExtraWhitespace  ctermbg=red
-hi  LineNr           ctermfg=grey
-hi  Normal           ctermfg=DarkGreen
-hi  Number           ctermfg=DarkCyan
-hi  PreProc          ctermfg=LightGreen
-hi  SignColumn       ctermbg=black
-hi  Special          ctermfg=red
-hi  StatusLine       ctermfg=yellow
-hi  StatusLineNC     ctermfg=white
-hi  String           ctermfg=DarkCyan
-hi  Type             ctermfg=white
-hi  WildMenu         ctermbg=cyan
+hi  C_PreprocessorDefine  ctermfg=DarkRed
+hi  Comment               ctermfg=grey
+hi  CursorLineNr          ctermfg=magenta
+hi  ExtraWhitespace       ctermbg=red
+hi  LineNr                ctermfg=grey
+hi  Normal                ctermfg=DarkGreen   ctermbg=black  guibg=black
+hi  Number                ctermfg=DarkCyan
+hi  PreProc               ctermfg=LightGreen
+hi  SignColumn            ctermbg=black
+hi  Special               ctermfg=red
+hi  StatusLine            ctermfg=yellow
+hi  StatusLineNC          ctermfg=white
+hi  String                ctermfg=DarkCyan
+hi  Type                  ctermfg=white
+hi  WildMenu              ctermbg=cyan
 
 " Plugins' highlight -----------------------------------------------------------
 
 hi  illuminatedWord  cterm=underline
+
 
 "-------------------------------------------------------------------------------
 " KEY MAPPING
@@ -300,6 +303,7 @@ noremap <C-y> "+y
 noremap <Tab> <C-w><C-w>
 
 " Normal keys
+"
 map - $
 map co :copen<CR>
 map G G0
@@ -308,11 +312,11 @@ map j gj
 map k gk
 map N Nzz
 map n nzz
-nnoremap f z
-nnoremap F zf%
 noremap '' ``
 noremap <CR> o<ESC>
-noremap q: q:
+noremap f z
+noremap F zfa{
+noremap z f
 
 " <nop>
 map ` <nop>
@@ -327,6 +331,7 @@ map ZZ <nop>
 " Plugins' mapping -------------------------------------------------------------
 
 map <leader><F1> :UndotreeToggle<CR>
+map <leader><F3> :Stealth<CR>
 map <leader>n :NERDTreeToggle<CR>
 map c- <plug>NERDCommenterToEOL
 map c<BS> <leader>cu
@@ -335,6 +340,9 @@ map cc <leader>cc
 map cm <leader>cm
 map tt :PreviewTag<CR>
 nnoremap <leader>w :ToggleWorkspace<CR>
+
+"" Fix mappings broken by plugins
+autocmd VimEnter * noremap <leader>x Y:!<C-R>"<C-H><CR>
 
 
 "-------------------------------------------------------------------------------

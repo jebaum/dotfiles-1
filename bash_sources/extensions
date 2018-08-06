@@ -42,9 +42,15 @@ git-update()
 
 mpv()
 {
-    if [ "$1" == "loop" -o "$1" == "-l" ]; then
-        shift 1
-        command mpv --loop-playlist "$@"
+    if [ "$1" == '' ]; then
+        command mpv ./
+    elif [ "$1" == "-l" ]; then
+        if [ "$2" == '' ]; then
+            command mpv --loop-playlist ./
+        else
+            shift 1
+            command mpv --loop-playlist "$@"
+        fi
     else
         command mpv "$@"
     fi

@@ -79,6 +79,14 @@ fi
 # Changes default editor to vim
 export EDITOR=vim
 
+# Auto-alias for scripts in $HOME/scripts directory
+for script in $HOME/scripts/*
+do
+    if [ -f "$script" ]
+    then
+        alias $(basename $script)="$script"
+    fi
+done
 
 #-------------------------------------------------------------------------------
 # BINDONGS
@@ -92,7 +100,6 @@ bind Space:magic-space
 #-------------------------------------------------------------------------------
 
 source $HOME/.bash_sources/aliases
-source $HOME/.bash_sources/app
 source $HOME/.bash_sources/extensions
 source $HOME/.bash_sources/functions
 source $HOME/.bash_sources/mounting
