@@ -85,7 +85,7 @@ set tabstop=4
 set cindent
 
 " Folding
-augroup vimrc
+augroup folding
     au BufReadPre * setlocal foldmethod=indent
     au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 augroup END
@@ -281,7 +281,7 @@ nnoremap <leader>v gg0vG$
 noremap <leader>= gg=G``
 noremap <leader>x Y:!<C-R>"<C-H><CR>
 
-" Leader + function keys -- also mapped: <F1>
+" Leader + function keys -- also mapped: <F1>, <F3>
 map <leader><F2> :set wrap!<CR>
 
 " Function keys -- also mapped: <F6>, <F8>, <F10>
@@ -303,9 +303,7 @@ noremap <C-y> "+y
 noremap <Tab> <C-w><C-w>
 
 " Normal keys
-"
 map - $
-map co :copen<CR>
 map G G0
 map gg gg0
 map j gj
@@ -314,6 +312,7 @@ map N Nzz
 map n nzz
 noremap '' ``
 noremap <CR> o<ESC>
+noremap db dbx
 noremap f z
 noremap F zfa{
 noremap z f
@@ -341,9 +340,9 @@ map cm <leader>cm
 map tt :PreviewTag<CR>
 nnoremap <leader>w :ToggleWorkspace<CR>
 
-"" Fix mappings broken by plugins
+"" Mappings' fixes
 autocmd VimEnter * noremap <leader>x Y:!<C-R>"<C-H><CR>
-
+noremap dd dd
 
 "-------------------------------------------------------------------------------
 " COMMANDS
