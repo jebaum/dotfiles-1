@@ -12,11 +12,6 @@ install-essentials()
     command sudo apt install $list
 }
 
-lf()
-{
-    ls -1 $1 | tr '\n' '\0' | xargs -0 -n 1 basename
-}
-
 offupg()
 {
     command sudo apt update
