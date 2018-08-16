@@ -8,7 +8,6 @@ install-essentials()
         list=$list' '$(echo $pkg| cut -f1 -d"#")
     done < "$HOME/lists/essentials.list"
 
-
     command sudo apt install $list
 }
 
@@ -19,11 +18,6 @@ offupg()
     command sudo apt autoremove -y
     command sudo apt autoclean
     command sudo shutdown -h now
-}
-
-rm-inum()
-{
-    command find . -inum $1 -delete
 }
 
 term-title()

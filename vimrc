@@ -174,16 +174,17 @@ Plug 'godlygeek/tabular'                " Tabular
 Plug 'christoomey/vim-tmux-navigator'   " Tmux Navigator
 Plug 'mbbill/undotree'                  " UndoTree
 Plug 'RRethy/vim-illuminate'            " vim-illuminate
+Plug 'pangloss/vim-javascript'          " vim-javascript
 Plug 'raviqqe/vim-nonblank'             " Vim-NONBlank
 Plug 'junegunn/vim-peekaboo'            " vim-peekaboo
-Plug 'skywind3000/vim-preview'          " vim-preview
 Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
 Plug 'lervag/vimtex'                    " VimTex
 Plug 'yaroot/vissort'                   " Visual Block Sorting
-Plug 'mg979/vim-visual-multi'           " Visual-Multi
+Plug 'wesQ3/vim-windowswap'             " WindowSwap.vim
 Plug 'thaerkh/vim-workspace'            " Workspace
 
 call plug#end()
+
 
 " Plugins' options
 let g:ale_set_highlights=0                       " ALE - disable highlight
@@ -279,7 +280,6 @@ inoremap <leader><Tab> <C-v><Tab>
 map <leader>h :noh<CR>
 nnoremap <leader>v gg0vG$
 noremap <leader>= gg=G``
-noremap <leader>x Y:!<C-R>"<C-H><CR>
 
 " Leader + function keys -- also mapped: <F1>, <F3>
 map <leader><F2> :set wrap!<CR>
@@ -294,8 +294,9 @@ map <F5> :set invrelativenumber<CR>
 map <F9> :w <bar> make<CR>
 
 " Ctrl + sth / Tab
+inoremap <C-d> <ESC>:t.<CR>i
 inoremap <C-p> <ESC>"+pa
-noremap <C-o> O<ESC>
+noremap <C-d> :t.<CR>
 noremap <C-p> "+p
 noremap <C-q><C-q> q
 noremap <C-w><Tab> :vnew<CR>
@@ -311,10 +312,9 @@ map k gk
 map N Nzz
 map n nzz
 noremap '' ``
-noremap <CR> o<ESC>
-noremap db dbx
 noremap f z
 noremap F zfa{
+noremap <CR> o<ESC>
 noremap z f
 
 " <nop>
@@ -339,10 +339,8 @@ map cc <leader>cc
 map cm <leader>cm
 map tt :PreviewTag<CR>
 nnoremap <leader>w :ToggleWorkspace<CR>
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-"" Mappings' fixes
-autocmd VimEnter * noremap <leader>x Y:!<C-R>"<C-H><CR>
-noremap dd dd
 
 "-------------------------------------------------------------------------------
 " COMMANDS
