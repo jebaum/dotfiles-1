@@ -145,7 +145,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'cohama/agit.vim'                  " Agit
 Plug 'w0rp/ale'                         " ALE
 Plug 'octol/vim-cpp-enhanced-highlight' " C++ Enhanced Highlight
-Plug 't9md/vim-choosewin'               " Choosewin
 Plug 'airblade/vim-gitgutter'           " GitGutter
 Plug 'ludovicchabant/vim-gutentags'     " Gutentags
 Plug 'henrik/vim-indexed-search'        " IndexedSearch
@@ -157,16 +156,18 @@ Plug 'Valloric/vim-operator-highlight'  " Operator Highlight
 Plug 'semanser/vim-outdated-plugins'    " Outdated-plugins
 Plug 'kshenoy/vim-signature'            " Signature
 Plug 'klassegeljakt/vim-stealth'        " Stealth
-Plug 'tpope/vim-surround'               " Surround
+Plug 'ervandew/supertab'                " Supertab
 Plug 'godlygeek/tabular'                " Tabular
 Plug 'christoomey/vim-tmux-navigator'   " Tmux Navigator
+Plug 'SirVer/ultisnips'                 " UltiSnips
 Plug 'mbbill/undotree'                  " UndoTree
+Plug 'OrangeT/vim-csharp'               " Vim-CSharp
 Plug 'RRethy/vim-illuminate'            " vim-illuminate
 Plug 'pangloss/vim-javascript'          " vim-javascript
 Plug 'raviqqe/vim-nonblank'             " Vim-NONBlank
 Plug 'junegunn/vim-peekaboo'            " vim-peekaboo
 Plug 'skywind3000/vim-preview'          " vim-preview
-Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
+Plug 'honza/vim-snippets'               " vim-snippets
 Plug 'lervag/vimtex'                    " VimTex
 Plug 'yaroot/vissort'                   " Visual Block Sorting
 Plug 'wesQ3/vim-windowswap'             " WindowSwap.vim
@@ -176,6 +177,7 @@ call plug#end()
 
 
 " Plugins' options
+
 let g:ale_set_highlights=0                       " ALE - disable highlight
 let g:ale_set_quickfix=1                         " ALE - enable quicklist
 let g:ale_sign_column_always=1                   " ALE - sing column always visible
@@ -187,13 +189,19 @@ let g:nerdtree_tabs_smart_startup_focus=2        " NERDTree(Tabs) - always focus
 let g:nerdtree_tabs_open_on_console_startup=1    " NERDTree(Tabs) - open on startup
 let g:ophigh_color=3                             " Operator highlight - change color
 let g:SignatureMarkTextHLDynamic=1               " Signature - git gutter compability
+let g:UltiSnipsExpandTrigger="<tab>"             " UltiSnips  - set trigger key
+let g:UltiSnipsJumpBackwardTrigger="<C-q>"       " UltiSnips - as in variable name
+let g:UltiSnipsJumpForwardTrigger="<C-w>"        " UltiSnips - as in variable name
+let g:UltiSnipsEditSplit="vertical"              " UltiSnips - if you want :UltiSnipsEdit to split your window
 let g:undotree_SetFocusWhenToggle=1              " undotree - autofocus
 let g:undotree_ShortIndicators=1                 " undotree - short time indicators
 let g:undotree_SplitWidth=32                     " undotree - window width
 let g:Illuminate_delay = 0                       " vim-illuminate - time delay in milliseconds
 let g:vimtex_compiler_latexmk = {'callback' : 0} " VimTeX - compiler
 
+
 " Plugins' autocmd
+
 autocmd FileType agit NERDTreeClose    " Fix for Agit and NERDTree
 autocmd BufEnter * SignatureRefresh    " Fix for Signature and gitgutter
 autocmd InsertEnter * SignatureRefresh " Fix for Signature and gitgutter
@@ -351,6 +359,7 @@ command WW :execute ':silent w !sudo tee % > /dev/null' | :edit! | q
 "-------------------------------------------------------------------------------
 
 ca agit Agit
+ca ft set filetype=
 ca nonum set nonumber
 ca Plug PlugUpgrade <bar> PlugUpdate
 ca rep %!cat
