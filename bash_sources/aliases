@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 alias add-repo='sudo add-apt-repository'
 alias ap='clear && sudo create_ap'
 alias bash-reload='source $HOME/.bash_profile'
@@ -25,6 +24,7 @@ alias logout='xfce4-session-logout --logout'
 alias mkdir='mkdir -p '
 alias mkpasswd='expect_mkpasswd'
 alias modprobe='sudo modprobe '
+alias number-of-files='ls -1 | wc -l'
 alias off='shutdown -h now'
 alias op='xdg-open $1 &> /dev/null'
 alias q='exit'

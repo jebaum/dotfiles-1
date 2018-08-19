@@ -93,7 +93,6 @@ set foldlevel=10
 set foldnestmax=10
 set nofoldenable
 
-
 " Toggle cursorline's underline
 let hl_state=0   " set value to 0 to start without underline, set to 1 to start with underline
 "|
@@ -103,18 +102,7 @@ else
     hi CursorLine cterm=underline
 endif
 "|
-map <F6> :if (hl_state == 0) <bar> hi CursorLine cterm=underline <bar> let hl_state=1 <bar>  else <bar> hi CursorLine cterm=none <bar> let hl_state=0 <bar> endif <CR>
-
-" Toggle mouse
-function ToggleMouse()
-    if &mouse == 'a'
-        set mouse=
-    else
-        set mouse=a
-    endif
-endfunc
-"|
-map <F10> :call ToggleMouse()<CR>
+map <F4> :if (hl_state == 0) <bar> hi CursorLine cterm=underline <bar> let hl_state=1 <bar>  else <bar> hi CursorLine cterm=none <bar> let hl_state=0 <bar> endif <CR>
 
 " Simple compile and run
 "" C/C++
@@ -129,23 +117,23 @@ packadd matchit
 "-------------------------------------------------------------------------------
 
 set statusline=
-set statusline+=[%n]                                                                                   " Buffer number
-set statusline+=\ \                                                                                    " Separator
-set statusline+=%f                                                                                     " Path to the file
-set statusline+=\ \                                                                                    " Separator
-set statusline+=%y                                                                                     " Filetype
-set statusline+=[%{&ff}]                                                                               " File format
-set statusline+=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"} " File encoding
-set statusline+=\ \                                                                                    " Separator
-set statusline+=%r                                                                                     " Readonly flag
-set statusline+=%w                                                                                     " Preview flag
-set statusline+=\ \                                                                                    " Separator
-set statusline+=%m                                                                                     " Modified flag
-set statusline+=%=                                                                                     " Switch to the right side
-set statusline+=Line\:\ %l/                                                                            " Current line
-set statusline+=%L                                                                                     " Total lines
-set statusline+=\ \|\ Column\:\ %c                                                                     " Current column
-set statusline+=\ \|\ %p%%\ \|                                                                         " Percent through file
+set statusline+=[%n]                                                                                     " Buffer number
+set statusline+=\ \                                                                                      " Separator
+set statusline+=%f                                                                                       " Path to the file
+set statusline+=\ \                                                                                      " Separator
+set statusline+=%y                                                                                       " Filetype
+set statusline+=[%{&ff}]                                                                                 " File format
+set statusline+=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",BOM\":\"\").\"]\ \"} " File encoding
+set statusline+=\ \                                                                                      " Separator
+set statusline+=%r                                                                                       " Readonly flag
+set statusline+=%w                                                                                       " Preview flag
+set statusline+=\ \                                                                                      " Separator
+set statusline+=%m                                                                                       " Modified flag
+set statusline+=%=                                                                                       " Switch to the right side
+set statusline+=Line\:\ %l/                                                                              " Current line
+set statusline+=%L                                                                                       " Total lines
+set statusline+=\ \|\ Column\:\ %c                                                                       " Current column
+set statusline+=\ \|\ %p%%\ \|                                                                           " Percent through file
 
 
 "-------------------------------------------------------------------------------
@@ -177,6 +165,7 @@ Plug 'RRethy/vim-illuminate'            " vim-illuminate
 Plug 'pangloss/vim-javascript'          " vim-javascript
 Plug 'raviqqe/vim-nonblank'             " Vim-NONBlank
 Plug 'junegunn/vim-peekaboo'            " vim-peekaboo
+Plug 'skywind3000/vim-preview'          " vim-preview
 Plug 'ajh17/VimCompletesMe'             " VimCompletesMe
 Plug 'lervag/vimtex'                    " VimTex
 Plug 'yaroot/vissort'                   " Visual Block Sorting
@@ -280,11 +269,12 @@ inoremap <leader><Tab> <C-v><Tab>
 map <leader>h :noh<CR>
 nnoremap <leader>v gg0vG$
 noremap <leader>= gg=G``
+noremap <leader>" :vnew<CR>
 
 " Leader + function keys -- also mapped: <F1>, <F3>
 map <leader><F2> :set wrap!<CR>
 
-" Function keys -- also mapped: <F6>, <F8>, <F10>
+" Function keys -- also mapped: <F4>, <F8>, <F10> ; do not use <F11>
 imap <F1> <Esc>gTi
 imap <F2> <Esc>gti
 map <F1> gT
@@ -312,9 +302,10 @@ map k gk
 map N Nzz
 map n nzz
 noremap '' ``
+noremap <CR> o<ESC>
 noremap f z
 noremap F zfa{
-noremap <CR> o<ESC>
+noremap gr gd[{V%::s/<C-R>///gc<left><left><left>
 noremap z f
 
 " <nop>
@@ -347,7 +338,8 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 "-------------------------------------------------------------------------------
 
 command Ctags w <bar> Silent !ctags --fields=+nS -a %
-command Q qa!
+command Q q!
+command QQ qa!
 command SortBlock :normal! vip:sort i<CR>
 command W wq
 command Ww :execute ':silent w !sudo tee % > /dev/null' | :edit!
