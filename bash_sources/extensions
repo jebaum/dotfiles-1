@@ -1,8 +1,7 @@
 #!/bin/bash
 
 
-apt()
-{
+apt() {
     case "$1" in
         purge)
             shift 1
@@ -33,19 +32,28 @@ apt()
     esac
 }
 
-git-update()
-{
-    command git add -A
-    command git commit -m "$(command date "+%F_%T")"
-    command git push -u origin master
+git() {
+    case "$1" in
+        init)
+            command git init
+            echo "tags" > .gitignore
+            ;;
+        update)
+            command git add -A
+            command git commit -m "$(command date "+%F_%T")"
+            command git push -u origin master
+            ;;
+        *)
+            command git $@
+            ;;
+    esac
 }
 
-mpv()
-{
-    if [ "$1" == '' ]; then
+mpv() {
+    if [[ -z "$1" ]]; then
         command mpv ./
-    elif [ "$1" == "-l" ]; then
-        if [ "$2" == '' ]; then
+    elif [[ "$1" == "-l" ]]; then
+        if [ -z "$2" ]; then
             command mpv --loop-playlist ./
         else
             shift 1

@@ -82,11 +82,14 @@ export EDITOR=vim
 # Auto-alias for scripts in $HOME/scripts directory
 for script in $HOME/scripts/*
 do
-    if [ -f "$script" ]
-    then
+    if [ -f "$script" -a -x "$script" ]; then
         alias $(basename $script)="$script"
     fi
 done
+#
+## Re-alias for scripts which need 'source' prefix
+alias game="source $HOME/scripts/game"
+
 
 #-------------------------------------------------------------------------------
 # BINDONGS
