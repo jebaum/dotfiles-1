@@ -1,9 +1,7 @@
-######################
-### BASHRC_PROFILE ###
-######################
+####################
+### BASH_PROFILE ###
+####################
 
-# Update PATH variable to include $HOME/scripts/bin directory
-export PATH=$PATH":$HOME/scripts/bin"
 
 # Disable XON flow control
 stty -ixon

@@ -41,18 +41,18 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 " Adds a higlight group for C/C++ preprocessor defined macros
-function! HighlightC_PreprocessorDefines()
-    syn clear C_PreprocessorDefine
+function! HighlightC_PreProcDefines()
+    syn clear C_PreProcDefine
     for l in getline('1','$')
         if l =~ '^\s*#\s*define\s\+'
             let macro = substitute(l, '^\s*#\s*define\s\+\(\k\+\).*$', '\1', '')
-            exe 'syn keyword C_PreprocessorDefine ' . macro
+            exe 'syn keyword C_PreProcDefine ' . macro
         endif
     endfor
 endfunction
 "| BufWinEnter enable only with view session
-autocmd BufWinEnter *.* exec HighlightC_PreprocessorDefines()
-autocmd InsertEnter * exec HighlightC_PreprocessorDefines()
+autocmd BufWinEnter *.* exec HighlightC_PreProcDefines()
+autocmd InsertEnter * exec HighlightC_PreProcDefines()
 
 " Quit QuickFix window along with source file window
 aug QFClose
@@ -84,14 +84,6 @@ set softtabstop=4
 set tabstop=4
 set cindent
 
-" Folding
-augroup folding
-    au BufReadPre * setlocal foldmethod=indent
-    au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
-augroup END
-set foldlevel=10
-set foldnestmax=10
-set nofoldenable
 
 " Toggle cursorline's underline
 let hl_state=0   " set value to 0 to start without underline, set to 1 to start with underline
@@ -152,7 +144,6 @@ Plug 'scrooloose/nerdcommenter'         " NERDCommenter
 Plug 'scrooloose/nerdtree'              " NERDTree
 Plug 'jistr/vim-nerdtree-tabs'          " NERDTree(Tabs)
 Plug 'Xuyuanp/nerdtree-git-plugin'      " NERDTree-Git
-Plug 'Valloric/vim-operator-highlight'  " Operator Highlight
 Plug 'semanser/vim-outdated-plugins'    " Outdated-plugins
 Plug 'kshenoy/vim-signature'            " Signature
 Plug 'klassegeljakt/vim-stealth'        " Stealth
@@ -165,12 +156,13 @@ Plug 'OrangeT/vim-csharp'               " Vim-CSharp
 Plug 'RRethy/vim-illuminate'            " vim-illuminate
 Plug 'pangloss/vim-javascript'          " vim-javascript
 Plug 'raviqqe/vim-nonblank'             " Vim-NONBlank
+Plug 'Valloric/vim-operator-highlight'  " vim-operator-highlight
 Plug 'junegunn/vim-peekaboo'            " vim-peekaboo
 Plug 'skywind3000/vim-preview'          " vim-preview
 Plug 'honza/vim-snippets'               " vim-snippets
 Plug 'lervag/vimtex'                    " VimTex
 Plug 'yaroot/vissort'                   " Visual Block Sorting
-Plug 'wesQ3/vim-windowswap'             " WindowSwap.vim
+Plug 'wesQ3/vim-windowswap'             " WindowSwap
 Plug 'thaerkh/vim-workspace'            " Workspace
 
 call plug#end()
@@ -187,7 +179,6 @@ let g:NERDCommentEmptyLines=1                    " NERDCommenter - allow comment
 let g:NERDTreeWinPos="right"                     " NERDTree - always on right side
 let g:nerdtree_tabs_smart_startup_focus=2        " NERDTree(Tabs) - always focus file window after startup
 let g:nerdtree_tabs_open_on_console_startup=1    " NERDTree(Tabs) - open on startup
-let g:ophigh_color=3                             " Operator highlight - change color
 let g:SignatureMarkTextHLDynamic=1               " Signature - git gutter compability
 let g:UltiSnipsExpandTrigger="<tab>"             " UltiSnips  - set trigger key
 let g:UltiSnipsJumpBackwardTrigger="<C-q>"       " UltiSnips - as in variable name
@@ -197,6 +188,7 @@ let g:undotree_SetFocusWhenToggle=1              " undotree - autofocus
 let g:undotree_ShortIndicators=1                 " undotree - short time indicators
 let g:undotree_SplitWidth=32                     " undotree - window width
 let g:Illuminate_delay = 0                       " vim-illuminate - time delay in milliseconds
+let g:ophigh_highlight_link_group=1              " vim-operator-highlight - add highlight group
 let g:vimtex_compiler_latexmk = {'callback' : 0} " VimTeX - compiler
 
 
@@ -206,6 +198,23 @@ autocmd FileType agit NERDTreeClose    " Fix for Agit and NERDTree
 autocmd BufEnter * SignatureRefresh    " Fix for Signature and gitgutter
 autocmd InsertEnter * SignatureRefresh " Fix for Signature and gitgutter
 autocmd VimEnter * VSO i               " Vissort - case insensivity
+
+
+"-------------------------------------------------------------------------------
+" FOLDING
+"-------------------------------------------------------------------------------
+
+" Languages
+au FileType javascript setlocal foldmethod=syntax
+
+" Normally -- DO NOT SORT!!
+au BufReadPre * setlocal foldmethod=indent
+au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+
+" 'set'
+set foldlevel=10
+set foldnestmax=10
+set nofoldenable
 
 
 "-------------------------------------------------------------------------------
@@ -242,25 +251,33 @@ set wildmenu                   " Menu for command linecompletion
 " SYNTAX HIGHLIGHT
 "-------------------------------------------------------------------------------
 
-hi  C_PreprocessorDefine  ctermfg=DarkRed
-hi  Comment               ctermfg=grey
-hi  CursorLineNr          ctermfg=magenta
-hi  ExtraWhitespace       ctermbg=red
-hi  LineNr                ctermfg=grey
-hi  Normal                ctermfg=DarkGreen   ctermbg=black  guibg=black
-hi  Number                ctermfg=DarkCyan
-hi  PreProc               ctermfg=LightGreen
-hi  SignColumn            ctermbg=black
-hi  Special               ctermfg=red
-hi  StatusLine            ctermfg=yellow
-hi  StatusLineNC          ctermfg=white
-hi  String                ctermfg=DarkCyan
-hi  Type                  ctermfg=white
-hi  WildMenu              ctermbg=cyan
+hi  C_PreProcDefine  ctermfg=DarkRed
+hi  Comment          ctermfg=grey
+hi  CursorLineNr     ctermfg=magenta
+hi  ExtraWhitespace  ctermbg=red
+hi  LineNr           ctermfg=grey
+hi  Normal           ctermfg=DarkGreen   ctermbg=black  guibg=black
+hi  Number           ctermfg=DarkCyan
+hi  PreProc          ctermfg=LightGreen
+hi  SignColumn       ctermbg=black
+hi  Special          ctermfg=red
+hi  StatusLine       ctermfg=yellow
+hi  StatusLineNC     ctermfg=white
+hi  String           ctermfg=DarkCyan
+hi  Type             ctermfg=white
+hi  WildMenu         ctermbg=cyan
 
-" Plugins' highlight -----------------------------------------------------------
+
+" Plugins' highlight
 
 hi  illuminatedWord  cterm=underline
+hi  jsObjectProp     ctermfg=yellow
+hi  OperatorChars    ctermfg=3
+
+
+" HiLink ------------------------------------------------------------------------
+
+hi link Noise OperatorChars
 
 
 "-------------------------------------------------------------------------------
@@ -366,6 +383,13 @@ ca rep %!cat
 ca sort sort i
 ca Tabularize" Tab / " /l0
 ca TabularizeS Tab /\S\+/l1
+
+
+"-------------------------------------------------------------------------------
+" DEBUG - source debug options
+"-------------------------------------------------------------------------------
+
+" source $HOME/dotfiles/debug.vim
 
 
 "-------------------------------------------------------------------------------

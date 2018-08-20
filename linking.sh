@@ -2,7 +2,7 @@
 
 
 linking() {
-    if [ $1 == "-f" -o $1 == "--force" ]; then
+    if [[ $1 == "-f" ]]; then
         rm -rf $3
     fi
 
@@ -12,8 +12,8 @@ linking() {
 }
 
 
-if [ ! $1 == "" ]; then
-    x=$1
+if [[ $1 == "-f" ]]; then
+    x="-f"
 else
     x="n"
 fi
@@ -21,18 +21,19 @@ fi
 
 cd $(dirname $0)
 
-# linking  $x  terminator_config  $HOME/.config/terminator/config
-
 linking  $x  bash_profile      $HOME/.bash_profile
 linking  $x  bash_sources      $HOME/.bash_sources
 linking  $x  bashrc            $HOME/.bashrc
 linking  $x  dosbox-0.74.conf  $HOME/.dosbox/dosbox-0.74.conf
-linking  $x  feh               $HOME/.config/feh/
+linking  $x  feh               $HOME/.config/feh
 linking  $x  inputrc           $HOME/.inputrc
 linking  $x  mpv/              $HOME/.config/mpv
+linking  $x  profile           $HOME/.profile
 linking  $x  tmux.conf         $HOME/.tmux.conf
 linking  $x  vimrc             $HOME/.vimrc
 linking  $x  Xresources        $HOME/.Xresources
 linking  $x  zathura           $HOME/.config/zathura
+
+# linking  $x  terminator_config  $HOME/.config/terminator/config
 
 cd - > /dev/null
