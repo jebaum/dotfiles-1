@@ -102,7 +102,7 @@ bind Space:magic-space
 # SOURCES
 #-------------------------------------------------------------------------------
 
-source $HOME/.bash_sources/aliases
-source $HOME/.bash_sources/extensions
-source $HOME/.bash_sources/functions
-source $HOME/.bash_sources/mounting
+for src in $HOME/.bash_sources/*
+do
+    source $src
+done

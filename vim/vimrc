@@ -52,13 +52,13 @@ set cindent
 " Toggle cursorline's underline
 let hl_state=0   " set value to 0 to start without underline, set to 1 to start with underline
 "|
-if (hl_state == 0)
-    hi CursorLine cterm=none
-else
+if hl_state
     hi CursorLine cterm=underline
+else
+    hi CursorLine cterm=none
 endif
 "|
-map <F4> :if (hl_state == 0) <bar> hi CursorLine cterm=underline <bar> let hl_state=1 <bar>  else <bar> hi CursorLine cterm=none <bar> let hl_state=0 <bar> endif <CR>
+map <F4> :if hl_state <bar> hi CursorLine cterm=none <bar> let hl_state=0 <bar> else <bar> hi CursorLine cterm=underline <bar> let hl_state=1 <bar> endif <CR>
 
 
 "-------------------------------------------------------------------------------
@@ -150,7 +150,6 @@ Plug 'raviqqe/vim-nonblank'             " Vim-NONBlank
 Plug 'Valloric/vim-operator-highlight'  " vim-operator-highlight
 Plug 'junegunn/vim-peekaboo'            " vim-peekaboo
 Plug 'skywind3000/vim-preview'          " vim-preview
-Plug 'honza/vim-snippets'               " vim-snippets
 Plug 'lervag/vimtex'                    " VimTex
 Plug 'yaroot/vissort'                   " Visual Block Sorting
 Plug 'wesQ3/vim-windowswap'             " WindowSwap
@@ -158,7 +157,7 @@ Plug 'wesQ3/vim-windowswap'             " WindowSwap
 call plug#end()
 
 
-" Plugins' options
+" Plugins' variables
 
 let g:ale_set_highlights=0                       " ALE - disable highlight
 let g:ale_set_quickfix=1                         " ALE - enable quicklist
@@ -171,9 +170,9 @@ let g:nerdtree_tabs_smart_startup_focus=2        " NERDTree(Tabs) - always focus
 let g:nerdtree_tabs_open_on_console_startup=1    " NERDTree(Tabs) - open on startup
 let g:SignatureMarkTextHLDynamic=1               " Signature - git gutter compability
 let g:UltiSnipsExpandTrigger="<tab>"             " UltiSnips  - set trigger key
-let g:UltiSnipsJumpBackwardTrigger="<C-q>"       " UltiSnips - as in variable name
-let g:UltiSnipsJumpForwardTrigger="<C-w>"        " UltiSnips - as in variable name
-let g:UltiSnipsEditSplit="vertical"              " UltiSnips - if you want :UltiSnipsEdit to split your window
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"       " UltiSnips - as in variable name
+let g:UltiSnipsJumpForwardTrigger="<tab>"        " UltiSnips - as in variable name
+let g:UltiSnipsEditSplit="context"               " UltiSnips - :UltiSnipsEdit splits window instead of taking over it
 let g:undotree_SetFocusWhenToggle=1              " undotree - autofocus
 let g:undotree_ShortIndicators=1                 " undotree - short time indicators
 let g:undotree_SplitWidth=32                     " undotree - window width
@@ -272,7 +271,7 @@ hi link Noise OperatorChars
 
 
 "-------------------------------------------------------------------------------
-" KEY MAPPING
+" MAPPINGS
 "-------------------------------------------------------------------------------
 
 " Set leader
@@ -299,7 +298,7 @@ map <F3> :tabe<CR>
 map <F5> :set invrelativenumber<CR>
 map <F9> :w <bar> make<CR>
 
-" Ctrl + sth / Tab
+" Ctrl + sth -- also mapped: a, s
 inoremap <C-d> <ESC>:t.<CR>i
 inoremap <C-p> <ESC>"+pa
 noremap <C-d> :t.<CR>
@@ -307,7 +306,6 @@ noremap <C-p> "+p
 noremap <C-q><C-q> q
 noremap <C-w><Tab> :vnew<CR>
 noremap <C-y> "+y
-noremap <Tab> <C-w><C-w>
 
 " Normal keys
 map - $
@@ -319,6 +317,7 @@ map N Nzz
 map n nzz
 noremap '' ``
 noremap <CR> o<ESC>
+noremap <Tab> <C-w><C-w>
 noremap f z
 noremap F zfa{
 noremap gr gd[{V%::s/<C-R>///gc<left><left><left>
@@ -338,6 +337,7 @@ map ZZ <nop>
 
 map <leader><F1> :UndotreeToggle<CR>
 map <leader><F3> :Stealth<CR>
+map <leader><F5> :UltiSnipsEdit<CR>
 map <leader>n :NERDTreeToggle<CR>
 map c- <plug>NERDCommenterToEOL
 map c<BS> <leader>cu
