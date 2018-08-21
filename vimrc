@@ -10,12 +10,6 @@
 " Use Vim settings -- always 1st
 set nocompatible
 
-" Download vim-plug (if is not installed)
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl --create-dirs -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 " tmux - title fix
 if has ("title")
     if &t_ts == "" && ( &term == "screen" || &term == "xterm" )
@@ -32,42 +26,13 @@ filetype plugin indent on
 " Redraw after 'silent' command
 command! -nargs=+ Silent execute 'silent <args>' | redraw!
 
-" Adds a highlight group for extra whitespace at the ends of lines -- DO NOT CHANGE HERE! USE SYNTAX HIGHLIGHT SECTION!
-hi ExtraWhitespace cterm=NONE
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
-
-" Adds a higlight group for C/C++ preprocessor defined macros
-function! HighlightC_PreProcDefines()
-    syn clear C_PreProcDefine
-    for l in getline('1','$')
-        if l =~ '^\s*#\s*define\s\+'
-            let macro = substitute(l, '^\s*#\s*define\s\+\(\k\+\).*$', '\1', '')
-            exe 'syn keyword C_PreProcDefine ' . macro
-        endif
-    endfor
-endfunction
-"| BufWinEnter enable only with view session
-autocmd BufWinEnter *.* exec HighlightC_PreProcDefines()
-autocmd InsertEnter * exec HighlightC_PreProcDefines()
-
 " Quit QuickFix window along with source file window
-aug QFClose
-    au!
-    au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
-aug END
+autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 
 " QuickFix window below other windows
-au FileType qf wincmd J
+autocmd FileType qf wincmd J
 
-" View session (exec in BufWinEnter unfolds all on enter)
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview | exec "normal! zR"
-
-" Open file at the last known position (if there is no view session)
+" Open file at the last known position
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
 
 " Backups etc.
@@ -84,7 +49,6 @@ set softtabstop=4
 set tabstop=4
 set cindent
 
-
 " Toggle cursorline's underline
 let hl_state=0   " set value to 0 to start without underline, set to 1 to start with underline
 "|
@@ -96,16 +60,35 @@ endif
 "|
 map <F4> :if (hl_state == 0) <bar> hi CursorLine cterm=underline <bar> let hl_state=1 <bar>  else <bar> hi CursorLine cterm=none <bar> let hl_state=0 <bar> endif <CR>
 
-" Simple compile and run
-"" C/C++
-autocmd filetype c,cpp nmap <F8> :w! <bar> exec '!g++ -std=c++17 -g '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
 
-" Optional packages
-packadd matchit
+"-------------------------------------------------------------------------------
+" EXTRA HIGHLIGHT GROUPS
+"-------------------------------------------------------------------------------
+
+" Extra whitespace at the ends of lines
+hi ExtraWhitespace cterm=NONE
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" C/C++ preprocessor defined macros
+function! HighlightC_PreProcDefines()
+    syn clear C_PreProcDefine
+    for l in getline('1','$')
+        if l =~ '^\s*#\s*define\s\+'
+            let macro = substitute(l, '^\s*#\s*define\s\+\(\k\+\).*$', '\1', '')
+            exe 'syn keyword C_PreProcDefine ' . macro
+        endif
+    endfor
+endfunction
+autocmd FileType c,cpp,h,hpp call HighlightC_PreProcDefines()
+autocmd InsertEnter * exec HighlightC_PreProcDefines()
 
 
 "-------------------------------------------------------------------------------
-" Status line -- DO NOT SORT!!
+" STATUS LINE
 "-------------------------------------------------------------------------------
 
 set statusline=
@@ -129,8 +112,15 @@ set statusline+=\ \|\ %p%%\ \|                                                  
 
 
 "-------------------------------------------------------------------------------
-" Plug - plugins
+" PLUGINS (Plug)
 "-------------------------------------------------------------------------------
+
+" Download vim-plug (if is not installed)
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl --create-dirs -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 
 call plug#begin('~/.vim/plugged')
 
@@ -140,6 +130,7 @@ Plug 'octol/vim-cpp-enhanced-highlight' " C++ Enhanced Highlight
 Plug 'airblade/vim-gitgutter'           " GitGutter
 Plug 'ludovicchabant/vim-gutentags'     " Gutentags
 Plug 'henrik/vim-indexed-search'        " IndexedSearch
+Plug 'tmhedberg/matchit'                " matchit
 Plug 'scrooloose/nerdcommenter'         " NERDCommenter
 Plug 'scrooloose/nerdtree'              " NERDTree
 Plug 'jistr/vim-nerdtree-tabs'          " NERDTree(Tabs)
@@ -163,7 +154,6 @@ Plug 'honza/vim-snippets'               " vim-snippets
 Plug 'lervag/vimtex'                    " VimTex
 Plug 'yaroot/vissort'                   " Visual Block Sorting
 Plug 'wesQ3/vim-windowswap'             " WindowSwap
-Plug 'thaerkh/vim-workspace'            " Workspace
 
 call plug#end()
 
@@ -205,11 +195,11 @@ autocmd VimEnter * VSO i               " Vissort - case insensivity
 "-------------------------------------------------------------------------------
 
 " Languages
-au FileType javascript setlocal foldmethod=syntax
+autocmd FileType javascript setlocal foldmethod=syntax
 
 " Normally -- DO NOT SORT!!
-au BufReadPre * setlocal foldmethod=indent
-au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+autocmd BufReadPre * setlocal foldmethod=indent
+autocmd BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 
 " 'set'
 set foldlevel=10
@@ -233,6 +223,7 @@ set laststatus=2               " To always display status line
 set linebreak                  " Don't break words while warping lines
 set nostartofline              " Cursor is kept in the same column (if possible)
 set noswapfile                 " Disable swap file
+set nowrap                     " Do not wrap lines on default
 set nrformats=                 " Ignore non-DEC numeral systems when in- or decrementing with <C-a>/<C-x>
 set number                     " Enable line numbers
 set ruler                      " Show the cursor position all the time
@@ -354,8 +345,6 @@ map c<space> <leader>c<space>
 map cc <leader>cc
 map cm <leader>cm
 map tt :PreviewTag<CR>
-nnoremap <leader>w :ToggleWorkspace<CR>
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 
 "-------------------------------------------------------------------------------
@@ -383,6 +372,14 @@ ca rep %!cat
 ca sort sort i
 ca Tabularize" Tab / " /l0
 ca TabularizeS Tab /\S\+/l1
+
+
+"-------------------------------------------------------------------------------
+" SIMPLE COMPILE AND RUN
+"-------------------------------------------------------------------------------
+
+" C/C++
+autocmd filetype c,cpp nmap <F8> :w! <bar> exec '!g++ -std=c++17 -g '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
 
 
 "-------------------------------------------------------------------------------
