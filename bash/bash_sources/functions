@@ -1,14 +1,11 @@
 #!/bin/bash
 
 
-install-essentials()
+calm-down-fans()
 {
-    while IFS= read -r pkg
-    do
-        list=$list' '$(echo $pkg| cut -f1 -d"#")
-    done < "$HOME/lists/essentials.list"
-
-    command sudo apt install $list
+    echo 'auto' > '/sys/bus/pci/devices/0000:00:01.0/power/control'
+    echo 'auto' > '/sys/bus/pci/devices/0000:01:00.0/power/control'
+    echo 'error' > '/usr_tmp/fan_problem'
 }
 
 offupg()

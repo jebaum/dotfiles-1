@@ -164,6 +164,7 @@ let g:ale_set_quickfix=1                         " ALE - enable quicklist
 let g:ale_sign_column_always=1                   " ALE - sing column always visible
 let g:indexed_search_colors=0                    " IndexedSearch - no color of messages
 let g:NERDSpaceDelims=1                          " NERDCommenter - add space after comment delimiters
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 let g:NERDCommentEmptyLines=1                    " NERDCommenter - allow commenting empty lines
 let g:NERDTreeWinPos="right"                     " NERDTree - always on right side
 let g:nerdtree_tabs_smart_startup_focus=2        " NERDTree(Tabs) - always focus file window after startup
