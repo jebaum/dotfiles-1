@@ -32,6 +32,16 @@ apt() {
     esac
 }
 
+feh() {
+    if [ -z ${1} ]; then
+        command feh 2> /dev/null & disown
+    elif [ ! -z $2 ]; then
+        command feh $@ 2> /dev/null & disown
+    else
+        command feh --start-at $1 "$(dirname "$1")" 2> /dev/null & disown
+    fi
+}
+
 git() {
     case "$1" in
         init)

@@ -159,27 +159,27 @@ call plug#end()
 
 " Plugins' variables
 
-let g:ale_set_highlights=0                       " ALE - disable highlight
-let g:ale_set_quickfix=1                         " ALE - enable quicklist
-let g:ale_sign_column_always=1                   " ALE - sing column always visible
-let g:indexed_search_colors=0                    " IndexedSearch - no color of messages
-let g:NERDSpaceDelims=1                          " NERDCommenter - add space after comment delimiters
-let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
-let g:NERDCommentEmptyLines=1                    " NERDCommenter - allow commenting empty lines
-let g:NERDTreeWinPos="right"                     " NERDTree - always on right side
-let g:nerdtree_tabs_smart_startup_focus=2        " NERDTree(Tabs) - always focus file window after startup
-let g:nerdtree_tabs_open_on_console_startup=1    " NERDTree(Tabs) - open on startup
-let g:SignatureMarkTextHLDynamic=1               " Signature - git gutter compability
-let g:UltiSnipsExpandTrigger="<tab>"             " UltiSnips  - set trigger key
-let g:UltiSnipsJumpBackwardTrigger="<S-tab>"       " UltiSnips - as in variable name
-let g:UltiSnipsJumpForwardTrigger="<tab>"        " UltiSnips - as in variable name
-let g:UltiSnipsEditSplit="context"               " UltiSnips - :UltiSnipsEdit splits window instead of taking over it
-let g:undotree_SetFocusWhenToggle=1              " undotree - autofocus
-let g:undotree_ShortIndicators=1                 " undotree - short time indicators
-let g:undotree_SplitWidth=32                     " undotree - window width
-let g:Illuminate_delay = 0                       " vim-illuminate - time delay in milliseconds
-let g:ophigh_highlight_link_group=1              " vim-operator-highlight - add highlight group
-let g:vimtex_compiler_latexmk = {'callback' : 0} " VimTeX - compiler
+let g:ale_set_highlights=0                                            " ALE                     - disable highlight
+let g:ale_set_quickfix=1                                              " ALE                     - enable quicklist
+let g:ale_sign_column_always=1                                        " ALE                     - sing column always visible
+let g:indexed_search_colors=0                                         " IndexedSearch           - no color of messages
+let g:NERDSpaceDelims=1                                               " NERDCommenter           - add space after comment delimiters
+let g:NERDCommentEmptyLines=1                                         " NERDCommenter           - allow commenting empty lines
+let g:NERDTreeWinPos="right"                                          " NERDTree                - always on right side
+let g:nerdtree_tabs_smart_startup_focus=2                             " NERDTree(Tabs)          - always focus file window after startup
+let g:nerdtree_tabs_open_on_console_startup=1                         " NERDTree(Tabs)          - open on startup
+let g:SignatureMarkTextHLDynamic=1                                    " Signature               - git gutter compability
+let g:UltiSnipsEditSplit="context"                                    " UltiSnips               - :UltiSnipsEdit splits window instead of taking over it
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"                          " UltiSnips               - as in variable name
+let g:UltiSnipsJumpForwardTrigger="<tab>"                             " UltiSnips               - as in variable name
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips'] " UltiSnips               - set dafault directory for snippets
+let g:UltiSnipsExpandTrigger="<tab>"                                  " UltiSnips               - set trigger key
+let g:undotree_SetFocusWhenToggle=1                                   " undotree                - autofocus
+let g:undotree_ShortIndicators=1                                      " undotree                - short time indicators
+let g:undotree_SplitWidth=32                                          " undotree                - window width
+let g:Illuminate_delay = 0                                            " vim-illuminate          - time delay in milliseconds
+let g:ophigh_highlight_link_group=1                                   " vim-operator-highlight  - add highlight group
+let g:vimtex_compiler_latexmk = {'callback' : 0}                      " VimTeX                  - compiler
 
 
 " Plugins' autocmd
@@ -366,7 +366,7 @@ command WW :execute ':silent w !sudo tee % > /dev/null' | :edit! | q
 "-------------------------------------------------------------------------------
 
 ca agit Agit
-ca ft set filetype=
+ca ft set filetype
 ca nonum set nonumber
 ca Plug PlugUpgrade <bar> PlugUpdate
 ca rep %!cat
