@@ -37,9 +37,9 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exec "nor
 
 " Backups etc.
 set backup
-set backupdir=~/.vimtmp//
+set backupdir=~/.vimtmp/backup/
 set directory=~/.vimtmp//
-set undodir=~/.vimtmp//
+set undodir=~/.vimtmp/undo/
 set undofile
 
 " Indentation rules
