@@ -30,6 +30,7 @@ linking  $x  inputrc            $HOME/.inputrc
 linking  $x  mpv/               $HOME/.config/mpv
 linking  $x  profile            $HOME/.profile
 linking  $x  tmux.conf          $HOME/.tmux.conf
+linking  $x  vim/UltiSnips      $HOME/.vim/UltiSnips
 linking  $x  vim/vimrc          $HOME/.vimrc
 linking  $x  Xresources         $HOME/.Xresources
 linking  $x  zathura            $HOME/.config/zathura
@@ -38,4 +39,5 @@ linking  $x  zathura            $HOME/.config/zathura
 
 cd - > /dev/null
 
-mkdir $HOME/.vimtmp
+mkdir -p $HOME/.vimtmp/backup
+mkdir -p $HOME/.vimtmp/undo

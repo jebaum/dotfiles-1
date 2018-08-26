@@ -122,7 +122,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/bundle')
 
 Plug 'cohama/agit.vim'                  " Agit
 Plug 'w0rp/ale'                         " ALE
@@ -387,7 +387,7 @@ autocmd filetype c,cpp nmap <F8> :w! <bar> exec '!g++ -std=c++17 -g '.shellescap
 " DEBUG - source debug options
 "-------------------------------------------------------------------------------
 
-" source $HOME/dotfiles/debug.vim
+" source $HOME/dotfiles/vim/sources/debug.vim
 
 
 "-------------------------------------------------------------------------------
