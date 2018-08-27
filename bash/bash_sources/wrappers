@@ -33,12 +33,18 @@ apt() {
 }
 
 feh() {
-    if [ -z ${1} ]; then
-        command feh 2> /dev/null & disown
+    if [ -z $1 ]; then
+        : $(command feh)
     elif [ ! -z $2 ]; then
-        command feh $@ 2> /dev/null & disown
+        : $(command feh $@)
     else
-        command feh --start-at $1 "$(dirname "$1")" 2> /dev/null & disown
+        file="$(readlink -f $1)"
+        if [ -d $file ]; then
+            : $(command feh "$file")
+        else
+            dir="$(dirname "$file")"
+            : $(command feh --start-at "$file" "$dir")
+        fi
     fi
 }
 
