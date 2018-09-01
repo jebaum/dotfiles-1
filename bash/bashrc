@@ -80,16 +80,20 @@ fi
 export EDITOR=vim
 
 # Auto-alias for scripts in $HOME/scripts directory
-for script in $HOME/scripts/*
-do
+for script in $HOME/scripts/*; do
     if [ -f "$script" -a -x "$script" ]; then
         alias $(basename $script)="$script"
     fi
 done
 #
+for script in $HOME/scripts/sudo/*; do
+    if [ -f "$script" -a -x "$script" ]; then
+        alias $(basename $script)="sudo $script"
+    fi
+done
+#
 ## Re-alias for scripts which need 'source' prefix
 alias game="source $HOME/scripts/game"
-alias calm-down-fans="sudo $HOME/scripts/calm-down-fans"
 
 
 #-------------------------------------------------------------------------------

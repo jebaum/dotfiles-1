@@ -156,7 +156,6 @@ Plug 'wesQ3/vim-windowswap'             " WindowSwap
 
 call plug#end()
 
-
 " Plugins' variables
 
 let g:ale_set_highlights=0                                            " ALE                     - disable highlight
