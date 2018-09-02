@@ -27,7 +27,7 @@ filetype plugin indent on
 command! -nargs=+ Silent execute 'silent <args>' | redraw!
 
 " Quit QuickFix window along with source file window
-autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix" | q | endif
 
 " QuickFix window below other windows
 autocmd FileType qf wincmd J
@@ -365,20 +365,24 @@ command SortBlock :normal! vip:sort i<CR>
 command W wq
 command Ww :execute ':silent w !sudo tee % > /dev/null' | :edit!
 command WW :execute ':silent w !sudo tee % > /dev/null' | :edit! | q
+command! -nargs=+ FT execute 'set filetype=<args>'
 
 
 "-------------------------------------------------------------------------------
 " ALIASES
 "-------------------------------------------------------------------------------
 
-ca agit Agit
-ca ft set filetype
 ca nonum set nonumber
 ca Plug PlugUpgrade <bar> PlugUpdate
 ca rep %!cat
 ca sort sort i
 ca Tabularize" Tab / " /l0
 ca TabularizeS Tab /\S\+/l1
+
+" Lowercasing aliases
+"
+ca agit Agit
+ca ft FT
 
 
 "-------------------------------------------------------------------------------
