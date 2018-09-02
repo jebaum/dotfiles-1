@@ -112,6 +112,14 @@ set statusline+=\ \|\ %p%%\ \|                                                  
 
 
 "-------------------------------------------------------------------------------
+" PACKAGES
+" "-------------------------------------------------------------------------------
+
+packadd matchit
+packadd termdebug
+
+
+"-------------------------------------------------------------------------------
 " PLUGINS (Plug)
 "-------------------------------------------------------------------------------
 
@@ -130,7 +138,6 @@ Plug 'octol/vim-cpp-enhanced-highlight' " C++ Enhanced Highlight
 Plug 'airblade/vim-gitgutter'           " GitGutter
 Plug 'ludovicchabant/vim-gutentags'     " Gutentags
 Plug 'henrik/vim-indexed-search'        " IndexedSearch
-Plug 'tmhedberg/matchit'                " matchit
 Plug 'scrooloose/nerdcommenter'         " NERDCommenter
 Plug 'scrooloose/nerdtree'              " NERDTree
 Plug 'jistr/vim-nerdtree-tabs'          " NERDTree(Tabs)
