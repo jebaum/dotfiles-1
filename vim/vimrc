@@ -3,9 +3,9 @@
 " #############
 
 
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 " GENERAL
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 
 " Use Vim settings -- always 1st
 set nocompatible
@@ -49,21 +49,43 @@ set softtabstop=4
 set tabstop=4
 set cindent
 
+
+"-----------------------------------------------------------------------------
+" FUNCTIONS
+"-----------------------------------------------------------------------------
+
+" Fill rest of line with characters
+function! FillLine( str )
+    let tw = &textwidth
+    if tw==0 | let tw = 80 | endif
+    .s/[[:space:]]*$//
+    let reps = (tw - col("$")) / len(a:str)
+    if reps > 0
+        .s/$/\=(' '.repeat(a:str, reps))/
+    endif
+endfunction
+
 " Toggle cursorline's underline
-let hl_state=0   " set value to 0 to start without underline, set to 1 to start with underline
-"|
-if hl_state
-    hi CursorLine cterm=underline
-else
-    hi CursorLine cterm=none
-endif
-"|
-map <F4> :if hl_state <bar> hi CursorLine cterm=none <bar> let hl_state=0 <bar> else <bar> hi CursorLine cterm=underline <bar> let hl_state=1 <bar> endif <CR>
+let s:hl_state=0
+function! ToggleCursorUnerline()
+    if s:hl_state
+        hi CursorLine cterm=underline
+        let s:hl_state=0
+    else
+        hi CursorLine cterm=none
+        let s:hl_state=1
+    endif
+endfunction
+autocmd VimEnter * execute "call ToggleCursorUnerline()"
 
 
-"-------------------------------------------------------------------------------
+" CALLING COMMANDS -----------------------------------------------------------
+command! -nargs=+ FillLine call FillLine('<args>')
+
+
+"-----------------------------------------------------------------------------
 " EXTRA HIGHLIGHT GROUPS
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 
 " Extra whitespace at the ends of lines
 hi ExtraWhitespace cterm=NONE
@@ -87,9 +109,9 @@ autocmd FileType c,cpp,h,hpp call HighlightC_PreProcDefines()
 autocmd InsertEnter * exec HighlightC_PreProcDefines()
 
 
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 " STATUS LINE
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 
 set statusline=
 set statusline+=[%n]                                                                                     " Buffer number
@@ -111,17 +133,17 @@ set statusline+=\ \|\ Column\:\ %c                                              
 set statusline+=\ \|\ %p%%\ \|                                                                           " Percent through file
 
 
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 " PACKAGES
-" "-------------------------------------------------------------------------------
+" "-----------------------------------------------------------------------------
 
 packadd matchit
 packadd termdebug
 
 
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 " PLUGINS (Plug)
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 
 " Download vim-plug (if is not installed)
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -135,6 +157,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'cohama/agit.vim'                  " Agit
 Plug 'w0rp/ale'                         " ALE
 Plug 'octol/vim-cpp-enhanced-highlight' " C++ Enhanced Highlight
+Plug 'easymotion/vim-easymotion'        " EasyMotion
 Plug 'airblade/vim-gitgutter'           " GitGutter
 Plug 'ludovicchabant/vim-gutentags'     " Gutentags
 Plug 'henrik/vim-indexed-search'        " IndexedSearch
@@ -146,6 +169,7 @@ Plug 'semanser/vim-outdated-plugins'    " Outdated-plugins
 Plug 'kshenoy/vim-signature'            " Signature
 Plug 'klassegeljakt/vim-stealth'        " Stealth
 Plug 'ervandew/supertab'                " Supertab
+Plug 'tpope/vim-surround'               " Surround
 Plug 'godlygeek/tabular'                " Tabular
 Plug 'christoomey/vim-tmux-navigator'   " Tmux Navigator
 Plug 'SirVer/ultisnips'                 " UltiSnips
@@ -162,6 +186,7 @@ Plug 'yaroot/vissort'                   " Visual Block Sorting
 Plug 'wesQ3/vim-windowswap'             " WindowSwap
 
 call plug#end()
+
 
 " Plugins' variables
 
@@ -196,9 +221,9 @@ autocmd InsertEnter * SignatureRefresh " Fix for Signature and gitgutter
 autocmd VimEnter * VSO i               " Vissort - case insensivity
 
 
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 " FOLDING
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 
 " Languages
 autocmd FileType javascript setlocal foldmethod=syntax
@@ -213,9 +238,9 @@ set foldnestmax=10
 set nofoldenable
 
 
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 " 'set' OPTIONS
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 
 set autoindent                 " Always set autoindenting on
 set background=dark            " Dark background (needed for proper colors)
@@ -244,9 +269,9 @@ set viewoptions-=options,folds " View options
 set wildmenu                   " Menu for command linecompletion
 
 
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 " SYNTAX HIGHLIGHT
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 
 hi  C_PreProcDefine  ctermfg=DarkRed
 hi  Comment          ctermfg=grey
@@ -265,35 +290,35 @@ hi  Type             ctermfg=white
 hi  WildMenu         ctermbg=cyan
 
 
-" Plugins' highlight
+" Plugins' highlight ---------------------------------------------------------
 
 hi  illuminatedWord  cterm=underline
 hi  jsObjectProp     ctermfg=yellow
 hi  OperatorChars    ctermfg=3
 
 
-" HiLink ------------------------------------------------------------------------
+" HiLink -----------------------------------------------------------------------------
 
 hi link Noise OperatorChars
 
 
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 " MAPPINGS
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 
 " Set leader
 let mapleader="`"
 let maplocalleader=','
 map <space> <leader>
 
-" Leader + sth
+" leader + sth
 inoremap <leader><Tab> <C-v><Tab>
 map <leader>h :noh<CR>
 nnoremap <leader>v gg0vG$
 noremap <leader>= gg=G``
 noremap <leader>" :vnew<CR>
 
-" Leader + function keys -- also mapped: <F1>, <F3>
+" leader + function keys -- also mapped: <F1>, <F3>
 map <leader><F2> :set wrap!<CR>
 
 " Function keys -- also mapped: <F4>, <F8>, <F10> ; do not use <F11>
@@ -332,7 +357,6 @@ noremap z f
 
 " <nop>
 map ` <nop>
-map s <nop>
 map c <nop>
 map gh <nop>
 map q <nop>
@@ -340,7 +364,12 @@ map Q <nop>
 map ZZ <nop>
 
 
-" Plugins' mapping -------------------------------------------------------------
+" FUNCTIONS' MAPPING ---------------------------------------------------------
+
+map <F4> :call ToggleCursorUnerline()<CR>
+
+
+" PLUGINS' MAPPING -----------------------------------------------------------
 
 map <leader><F1> :UndotreeToggle<CR>
 map <leader><F3> :Stealth<CR>
@@ -351,12 +380,21 @@ map c<BS> <leader>cu
 map c<space> <leader>c<space>
 map cc <leader>cc
 map cm <leader>cm
+map s cs
 map tt :PreviewTag<CR>
+vmap s S
+
+" Move to line
+map <leader>l <Plug>(easymotion-bd-jk)
+nmap <leader>l <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <leader>w <Plug>(easymotion-bd-w)
 
 
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 " COMMANDS
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 
 command Ctags w <bar> Silent !ctags --fields=+nS -a %
 command Q q!
@@ -368,9 +406,9 @@ command WW :execute ':silent w !sudo tee % > /dev/null' | :edit! | q
 command! -nargs=+ FT execute 'set filetype=<args>'
 
 
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 " ALIASES
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 
 ca nonum set nonumber
 ca Plug PlugUpgrade <bar> PlugUpdate
@@ -385,21 +423,21 @@ ca agit Agit
 ca ft FT
 
 
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 " SIMPLE COMPILE AND RUN
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 
 " C/C++
 autocmd filetype c,cpp nmap <F8> :w! <bar> exec '!g++ -std=c++17 -g '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
 
 
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 " DEBUG - source debug options
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 
 " source $HOME/dotfiles/vim/sources/debug.vim
 
 
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 " TEMPORARY
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
