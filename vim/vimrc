@@ -172,7 +172,6 @@ Plug 'scrooloose/nerdcommenter'                               " NERDCommenter
 Plug 'scrooloose/nerdtree'                                    " NERDTree
 Plug 'jistr/vim-nerdtree-tabs'                                " NERDTree(Tabs)
 Plug 'Xuyuanp/nerdtree-git-plugin'                            " NERDTree-Git
-Plug 'semanser/vim-outdated-plugins'                          " Outdated-plugins
 Plug 'kshenoy/vim-signature'                                  " Signature
 Plug 'klassegeljakt/vim-stealth'                              " Stealth
 Plug 'tpope/vim-surround'                                     " Surround

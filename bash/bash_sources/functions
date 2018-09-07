@@ -7,6 +7,9 @@ offupg()
     command sudo apt full-upgrade -y
     command sudo apt autoremove -y
     command sudo apt autoclean
+    if hash vim 2> /dev/null; then
+        vim +PlugUpgrade +PlugUpdate +qa
+    fi
     command sudo shutdown -h now
 }
 
@@ -14,6 +17,16 @@ term-title()
 {
     title=$@
     command wmctrl -r :ACTIVE: -N "$title"
+}
+
+upgrade() {
+    command sudo apt update
+    command sudo apt full-upgrade
+    command sudo apt autoremove -y
+    command sudo apt autoclean
+    if hash vim 2> /dev/null; then
+        vim +PlugUpgrade +PlugUpdate +qa
+    fi
 }
 
 windows()
