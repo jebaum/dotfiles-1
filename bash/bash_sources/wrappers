@@ -32,22 +32,6 @@ apt() {
     esac
 }
 
-feh() {
-    if [ -z $1 ]; then
-        : $(command feh)
-    elif [ ! -z $2 ]; then
-        : $(command feh $@)
-    else
-        file="$(readlink -f $1)"
-        if [ -d $file ]; then
-            : $(command feh "$file")
-        else
-            dir="$(dirname "$file")"
-            : $(command feh --start-at "$file" "$dir")
-        fi
-    fi
-}
-
 git() {
     case "$1" in
         init)

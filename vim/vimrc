@@ -78,6 +78,17 @@ function! ToggleCursorUnerline()
 endfunction
 autocmd VimEnter * execute "call ToggleCursorUnerline()"
 
+" Build YouCompleteMe
+function! BuildYCM(info)
+    " info is a dictionary with 3 fields
+    " - name:   name of the plugin
+    " - status: 'installed', 'updated', or 'unchanged'
+    " - force:  set on PlugInstall! or PlugUpdate!
+    if a:info.status == 'installed' || a:info.force
+        !./install.py --clang-completer
+    endif
+endfunction
+
 
 " CALLING COMMANDS -----------------------------------------------------------
 command! -nargs=+ FillLine call FillLine('<args>')
@@ -168,7 +179,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'      " NERDTree-Git
 Plug 'semanser/vim-outdated-plugins'    " Outdated-plugins
 Plug 'kshenoy/vim-signature'            " Signature
 Plug 'klassegeljakt/vim-stealth'        " Stealth
-Plug 'ervandew/supertab'                " Supertab
 Plug 'tpope/vim-surround'               " Surround
 Plug 'godlygeek/tabular'                " Tabular
 Plug 'christoomey/vim-tmux-navigator'   " Tmux Navigator
@@ -184,36 +194,59 @@ Plug 'skywind3000/vim-preview'          " vim-preview
 Plug 'lervag/vimtex'                    " VimTex
 Plug 'yaroot/vissort'                   " Visual Block Sorting
 Plug 'wesQ3/vim-windowswap'             " WindowSwap
+Plug 'Valloric/YouCompleteMe'           " YouCompleteMe
 
 call plug#end()
 
 
-" Plugins' variables
+" VARIABLES ------------------------------------------------------------------
 
-let g:ale_set_highlights=0                                            " ALE                     - disable highlight
-let g:ale_set_quickfix=1                                              " ALE                     - enable quicklist
-let g:ale_sign_column_always=1                                        " ALE                     - sing column always visible
-let g:indexed_search_colors=0                                         " IndexedSearch           - no color of messages
-let g:NERDSpaceDelims=1                                               " NERDCommenter           - add space after comment delimiters
-let g:NERDCommentEmptyLines=1                                         " NERDCommenter           - allow commenting empty lines
-let g:NERDTreeWinPos="right"                                          " NERDTree                - always on right side
-let g:nerdtree_tabs_smart_startup_focus=2                             " NERDTree(Tabs)          - always focus file window after startup
-let g:nerdtree_tabs_open_on_console_startup=1                         " NERDTree(Tabs)          - open on startup
-let g:SignatureMarkTextHLDynamic=1                                    " Signature               - git gutter compability
-let g:UltiSnipsEditSplit="context"                                    " UltiSnips               - :UltiSnipsEdit splits window instead of taking over it
-let g:UltiSnipsJumpBackwardTrigger="<S-tab>"                          " UltiSnips               - as in variable name
-let g:UltiSnipsJumpForwardTrigger="<tab>"                             " UltiSnips               - as in variable name
-let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips'] " UltiSnips               - set dafault directory for snippets
-let g:UltiSnipsExpandTrigger="<tab>"                                  " UltiSnips               - set trigger key
-let g:undotree_SetFocusWhenToggle=1                                   " undotree                - autofocus
-let g:undotree_ShortIndicators=1                                      " undotree                - short time indicators
-let g:undotree_SplitWidth=32                                          " undotree                - window width
-let g:Illuminate_delay = 0                                            " vim-illuminate          - time delay in milliseconds
-let g:ophigh_highlight_link_group=1                                   " vim-operator-highlight  - add highlight group
-let g:vimtex_compiler_latexmk = {'callback' : 0}                      " VimTeX                  - compiler
+let g:ale_set_highlights = 0                                          " ALE                    - disable highlight
+let g:ale_set_quickfix = 1                                            " ALE                    - enable quicklist
+let g:ale_sign_column_always = 1                                      " ALE                    - sing column always visible
+let g:indexed_search_colors = 0                                       " IndexedSearch          - no color of messages
+let g:NERDSpaceDelims = 1                                             " NERDCommenter          - add space after comment delimiters
+let g:NERDCommentEmptyLines = 1                                       " NERDCommenter          - allow commenting empty lines
+let g:NERDTreeWinPos = "right"                                        " NERDTree               - always on right side
+let g:nerdtree_tabs_smart_startup_focus = 2                           " NERDTree(Tabs)         - always focus file window after startup
+let g:nerdtree_tabs_open_on_console_startup = 1                       " NERDTree(Tabs)         - open on startup
+let g:SignatureMarkTextHLDynamic = 1                                  " Signature              - git gutter compability
+let g:UltiSnipsEditSplit = "context"                                  " UltiSnips              - :UltiSnipsEdit splits window instead of taking over it
+let g:UltiSnipsJumpBackwardTrigger = "<S-tab>"                        " UltiSnips              - as in variable name
+let g:UltiSnipsJumpForwardTrigger = "<tab>"                           " UltiSnips              - as in variable name
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips'] " UltiSnips              - set dafault directory for snippets
+let g:UltiSnipsExpandTrigger = "<tab>"                                " UltiSnips              - set trigger key
+let g:undotree_SetFocusWhenToggle = 1                                 " undotree               - autofocus
+let g:undotree_ShortIndicators = 1                                    " undotree               - short time indicators
+let g:undotree_SplitWidth = 32                                        " undotree               - window width
+let g:Illuminate_delay = 0                                            " vim-illuminate         - time delay in milliseconds
+let g:ophigh_highlight_link_group = 1                                 " vim-operator-highlight - add highlight group
+let g:vimtex_compiler_latexmk = {'callback' : 0}                      " VimTeX                 - compiler
+
+" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_complete_in_comments = 1
+let g:ycm_global_ycm_extra_conf = '$HOME/dotfiles/vim/ycm_extra_conf.py'
+let g:ycm_key_list_stop_completion = ['<C-y>']
+let g:ycm_max_num_candidates = 20
+let g:ycm_min_num_of_chars_for_completion=2
+let g:ycm_show_diagnostics_ui = 0
+
+let g:ycm_semantic_triggers = {
+            \   'c' : ['->', '.','re![_a-zA-z0-9]'],
+            \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s', 're!\[.*\]\s'],
+            \   'ocaml' : ['.', '#'],
+            \   'cpp,objcpp' : ['->', '.', '::','re![_a-zA-Z0-9]'],
+            \   'perl' : ['->'],
+            \   'php' : ['->', '::'],
+            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+            \   'ruby' : ['.', '::'],
+            \   'lua' : ['.', ':'],
+            \   'erlang' : [':'],
+            \ }
 
 
-" Plugins' autocmd
+" AUTOCMD --------------------------------------------------------------------
 
 autocmd FileType agit NERDTreeClose    " Fix for Agit and NERDTree
 autocmd BufEnter * SignatureRefresh    " Fix for Signature and gitgutter
