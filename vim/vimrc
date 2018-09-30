@@ -81,7 +81,7 @@ autocmd VimEnter * execute "call ToggleCursorUnerline()"
 " Build YouCompleteMe
 function! BuildYCM(info)
     if a:info.status == 'installed' || a:info.force
-        !./install.py --clang-completer
+        !./install.py --clang-completer --java-completer
     endif
 endfunction
 
@@ -163,11 +163,11 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'cohama/agit.vim'                                        " Agit
 Plug 'w0rp/ale'                                               " ALE
+Plug 'osyo-manga/vim-anzu'                                    " Anzu
 Plug 'octol/vim-cpp-enhanced-highlight'                       " C++ Enhanced Highlight
 Plug 'easymotion/vim-easymotion'                              " EasyMotion
 Plug 'airblade/vim-gitgutter'                                 " GitGutter
 Plug 'ludovicchabant/vim-gutentags'                           " Gutentags
-Plug 'henrik/vim-indexed-search'                              " IndexedSearch
 Plug 'scrooloose/nerdcommenter'                               " NERDCommenter
 Plug 'scrooloose/nerdtree'                                    " NERDTree
 Plug 'jistr/vim-nerdtree-tabs'                                " NERDTree(Tabs)
@@ -179,6 +179,8 @@ Plug 'godlygeek/tabular'                                      " Tabular
 Plug 'christoomey/vim-tmux-navigator'                         " Tmux Navigator
 Plug 'SirVer/ultisnips'                                       " UltiSnips
 Plug 'mbbill/undotree'                                        " UndoTree
+Plug 'arthurxavierx/vim-caser'                                " vim-caser
+Plug 'romainl/vim-cool'                                       " vim-cool
 Plug 'OrangeT/vim-csharp'                                     " Vim-CSharp
 Plug 'RRethy/vim-illuminate'                                  " vim-illuminate
 Plug 'pangloss/vim-javascript'                                " vim-javascript
@@ -217,7 +219,8 @@ let g:ophigh_highlight_link_group = 1                                 " vim-oper
 let g:vimtex_compiler_latexmk = {'callback' : 0}                      " VimTeX                 - compiler
 
 " YouCompleteMe
-let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_complete_in_comments = 1
 let g:ycm_global_ycm_extra_conf = '$HOME/dotfiles/vim/ycm_extra_conf.py'
 let g:ycm_key_list_stop_completion = ['<C-y>']
@@ -416,6 +419,12 @@ nmap <leader>l <Plug>(easymotion-overwin-line)
 
 " Move to word
 map  <leader>w <Plug>(easymotion-bd-w)
+
+" Anzu
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
 
 
 "-----------------------------------------------------------------------------

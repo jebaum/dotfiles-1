@@ -6,53 +6,38 @@ import ycm_core
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
-#  flags = [
-    #  '-Wall',
-    #  '-Wextra',
-    #  '-Werror',
-#  #    '-Wc++98-compat',
-#  #    '-Wno-long-long',
-#  #    '-Wno-variadic-macros',
-#  #    '-fexceptions',
-    #  # THIS IS IMPORTANT! Without a "-std=<something>" flag, clang won't know which
-    #  # language to use when compiling headers. So it will guess. Badly. So C++
-    #  # headers will be compiled as C headers. You don't want that so ALWAYS specify
-    #  # a "-std=<something>".
-    #  # For a C project, you would set this to something like 'c99' instead of
-    #  # 'c++11'.
-    #  '-std=c++11',
-    #  # ...and the same thing goes for the magic -x option which specifies the
-    #  # language that the files to be compiled are written in. This is mostly
-    #  # relevant for c++ headers.
-    #  # For a C project, you would set this to 'c' instead of 'c++'.
-    #  '-x', 'c++',
-    #  # This path will only work on OS X, but extra paths that don't exist are not
-    #  # harmful
-#  #    '-isystem', '/System/Library/Frameworks/Python.framework/Headers',
-#  #    '-isystem', '/usr/local/include',
-#  #    '-isystem', '/usr/local/include/eigen3',
-#
-    #  '-I', '/usr/lib/clang/3.6.0/include',
-    #  '-I', '/usr/include',
-    #  '-I', '.'
-#  ]
-
 flags = [
-'-Wall',
-'-Wextra',
-'-Wno-variadic-macros',
-'-fexceptions',
-'-DNDEBUG',
-'-DUNIT_TESTS',
-'-std=c++11',
-'-x', 'c++',
-'-isystem', '/home/sehe/custom/boost',
-'-isystem', '/usr/lib/gcc/x86_64-linux-gnu/4.8/include',
-'-I', 'src',
-'-I', 'include',
-'-isystem', '/usr/include',
-'-isystem', '/usr/local/include',
+    '-Wall',
+    '-Wextra',
+    '-Werror',
+#    '-Wc++98-compat',
+#    '-Wno-long-long',
+#    '-Wno-variadic-macros',
+#    '-fexceptions',
+    # THIS IS IMPORTANT! Without a "-std=<something>" flag, clang won't know which
+    # language to use when compiling headers. So it will guess. Badly. So C++
+    # headers will be compiled as C headers. You don't want that so ALWAYS specify
+    # a "-std=<something>".
+    # For a C project, you would set this to something like 'c99' instead of
+    # 'c++11'.
+    '-std=c++11',
+    # ...and the same thing goes for the magic -x option which specifies the
+    # language that the files to be compiled are written in. This is mostly
+    # relevant for c++ headers.
+    # For a C project, you would set this to 'c' instead of 'c++'.
+    '-x', 'c++',
+    # This path will only work on OS X, but extra paths that don't exist are not
+    # harmful
+#    '-isystem', '/System/Library/Frameworks/Python.framework/Headers',
+#    '-isystem', '/usr/local/include',
+#    '-isystem', '/usr/local/include/eigen3',
+
+    '-I', '/usr/lib/clang/3.6.0/include',
+    '-I', '/usr/include',
+    '-I', '.'
 ]
+
+
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
