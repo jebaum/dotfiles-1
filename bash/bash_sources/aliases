@@ -1,7 +1,7 @@
 #!/bin/bash
 
 alias add-repo='sudo add-apt-repository'
-alias agit='vim +"let g:nerdtree_tabs_open_on_console_startup=0" +Agit +"-tabclose" +NERDTreeToggle +"execute "normal! \<C-w>=""'
+alias agit='vim +"let g:nerdtree_tabs_open_on_console_startup=0" +Agit +"-tabclose"'
 alias ap='clear && sudo create_ap'
 alias bash-reload='source $HOME/.bash_profile'
 alias bashrc='edit $HOME/.bashrc'
