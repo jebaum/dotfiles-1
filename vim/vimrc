@@ -248,6 +248,7 @@ autocmd FileType agit NERDTreeClose    " Fix for Agit and NERDTree
 autocmd BufEnter * SignatureRefresh    " Fix for Signature and gitgutter
 autocmd InsertEnter * SignatureRefresh " Fix for Signature and gitgutter
 autocmd VimEnter * VSO i               " Vissort - case insensivity
+autocmd VimEnter * unmap <leader>ww
 
 
 "-----------------------------------------------------------------------------
@@ -347,7 +348,7 @@ nnoremap <leader>v gg0vG$
 noremap <leader>= gg=G``
 noremap <leader>" :vnew<CR>
 
-" leader + function keys -- also mapped: <F1>, <F3>
+" leader + function keys -- also mapped: <F1>, <F3>, <F4>
 map <leader><F2> :set wrap!<CR>
 
 " Function keys -- also mapped: <F4>, <F8>, <F10> ; do not use <F11>
@@ -402,6 +403,7 @@ map <F4> :call ToggleCursorUnerline()<CR>
 
 map <leader><F1> :UndotreeToggle<CR>
 map <leader><F3> :Stealth<CR>
+map <leader><F4> :call WindowSwap#EasyWindowSwap()<CR>
 map <leader><F5> :UltiSnipsEdit<CR>
 map <leader>n :NERDTreeToggle<CR>
 map c- <plug>NERDCommenterToEOL
@@ -418,7 +420,7 @@ map <leader>l <Plug>(easymotion-bd-jk)
 nmap <leader>l <Plug>(easymotion-overwin-line)
 
 " Move to word
-map  <leader>w <Plug>(easymotion-bd-w)
+map <leader>w <Plug>(easymotion-bd-w)
 
 " Anzu
 nmap n <Plug>(anzu-n-with-echo)
@@ -434,6 +436,7 @@ nmap # <Plug>(anzu-sharp-with-echo)
 command Ctags w <bar> Silent !ctags --fields=+nS -a %
 command Q q!
 command QQ qa!
+command Sort :normal! :sort i<CR>
 command SortBlock :normal! vip:sort i<CR>
 command W wq
 command Ww :execute ':silent w !sudo tee % > /dev/null' | :edit!
@@ -448,7 +451,6 @@ command! -nargs=+ FT execute 'set filetype=<args>'
 ca nonum set nonumber
 ca Plug PlugUpgrade <bar> PlugUpdate
 ca rep %!cat
-ca sort sort i
 ca Tabularize" Tab / " /l0
 ca TabularizeS Tab /\S\+/l1
 
