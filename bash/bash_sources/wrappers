@@ -52,6 +52,10 @@ git() {
 mpv() {
     if [[ -z "$1" ]]; then
         command mpv ./
+    elif [[ "$1" == "-s" ]]; then
+        sub="$2"
+        shift 2
+        command mpv --sub-files="$sub" "$@"
     elif [[ "$1" == "-l" ]]; then
         if [ -z "$2" ]; then
             command mpv --loop-playlist ./

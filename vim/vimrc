@@ -78,11 +78,16 @@ function! ToggleCursorUnerline()
 endfunction
 autocmd VimEnter * execute "call ToggleCursorUnerline()"
 
-" Build YouCompleteMe
+" Build YouCompleteMe - for Plug
 function! BuildYCM(info)
     if a:info.status == 'installed' || a:info.force
         !./install.py --clang-completer --java-completer
     endif
+endfunction
+
+" Build YouCompleteMe - manual
+function! BuildYCM_manual()
+    !~/.vim/bundle/YouCompleteMe/install.py --clang-completer --java-completer
 endfunction
 
 
