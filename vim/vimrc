@@ -184,7 +184,6 @@ Plug 'godlygeek/tabular'                                      " Tabular
 Plug 'christoomey/vim-tmux-navigator'                         " Tmux Navigator
 Plug 'SirVer/ultisnips'                                       " UltiSnips
 Plug 'mbbill/undotree'                                        " UndoTree
-Plug 'arthurxavierx/vim-caser'                                " vim-caser
 Plug 'romainl/vim-cool'                                       " vim-cool
 Plug 'OrangeT/vim-csharp'                                     " Vim-CSharp
 Plug 'RRethy/vim-illuminate'                                  " vim-illuminate
