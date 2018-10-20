@@ -147,7 +147,7 @@ set statusline+=\ \|\ %p%%\ \|                                                  
 
 "-----------------------------------------------------------------------------
 " PACKAGES
-" "-----------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 
 packadd matchit
 packadd termdebug
@@ -173,12 +173,16 @@ Plug 'octol/vim-cpp-enhanced-highlight'                       " C++ Enhanced Hig
 Plug 'easymotion/vim-easymotion'                              " EasyMotion
 Plug 'airblade/vim-gitgutter'                                 " GitGutter
 Plug 'ludovicchabant/vim-gutentags'                           " Gutentags
+Plug 'RRethy/vim-illuminate'                                  " Illuminate
+Plug 'thaerkh/vim-indentguides'                               " Indentguides
 Plug 'scrooloose/nerdcommenter'                               " NERDCommenter
 Plug 'scrooloose/nerdtree'                                    " NERDTree
 Plug 'jistr/vim-nerdtree-tabs'                                " NERDTree(Tabs)
 Plug 'Xuyuanp/nerdtree-git-plugin'                            " NERDTree-Git
+Plug 'raviqqe/vim-nonblank'                                   " NONBlank
+Plug 'Valloric/vim-operator-highlight'                        " Operator-highlight
+Plug 'junegunn/vim-peekaboo'                                  " Peekaboo
 Plug 'kshenoy/vim-signature'                                  " Signature
-Plug 'klassegeljakt/vim-stealth'                              " Stealth
 Plug 'tpope/vim-surround'                                     " Surround
 Plug 'godlygeek/tabular'                                      " Tabular
 Plug 'christoomey/vim-tmux-navigator'                         " Tmux Navigator
@@ -186,15 +190,12 @@ Plug 'SirVer/ultisnips'                                       " UltiSnips
 Plug 'mbbill/undotree'                                        " UndoTree
 Plug 'romainl/vim-cool'                                       " vim-cool
 Plug 'OrangeT/vim-csharp'                                     " Vim-CSharp
-Plug 'RRethy/vim-illuminate'                                  " vim-illuminate
 Plug 'pangloss/vim-javascript'                                " vim-javascript
-Plug 'raviqqe/vim-nonblank'                                   " Vim-NONBlank
-Plug 'Valloric/vim-operator-highlight'                        " vim-operator-highlight
-Plug 'junegunn/vim-peekaboo'                                  " vim-peekaboo
 Plug 'skywind3000/vim-preview'                                " vim-preview
 Plug 'lervag/vimtex'                                          " VimTex
 Plug 'yaroot/vissort'                                         " Visual Block Sorting
 Plug 'wesQ3/vim-windowswap'                                   " WindowSwap
+Plug 'thaerkh/vim-workspace'                                  " Workspace
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') } " YouCompleteMe
 
 call plug#end()
@@ -221,6 +222,7 @@ let g:undotree_SplitWidth = 32                                        " undotree
 let g:Illuminate_delay = 0                                            " vim-illuminate         - time delay in milliseconds
 let g:ophigh_highlight_link_group = 1                                 " vim-operator-highlight - add highlight group
 let g:vimtex_compiler_latexmk = {'callback' : 0}                      " VimTeX                 - compiler
+let g:indentguides_tabchar = '|'
 
 " YouCompleteMe
 let g:ycm_add_preview_to_completeopt = 1
@@ -286,6 +288,7 @@ set ignorecase                 " Ignoring case of letters while searching
 set incsearch                  " Do incremental searching
 set laststatus=2               " To always display status line
 set linebreak                  " Don't break words while warping lines
+set listchars=""               " Helps with vim-indentguides - no $ at the end of lines
 set nostartofline              " Cursor is kept in the same column (if possible)
 set noswapfile                 " Disable swap file
 set nowrap                     " Do not wrap lines on default
@@ -312,7 +315,7 @@ hi  Comment          ctermfg=grey
 hi  CursorLineNr     ctermfg=magenta
 hi  ExtraWhitespace  ctermbg=red
 hi  LineNr           ctermfg=grey
-hi  Normal           ctermfg=DarkGreen   ctermbg=black  guibg=black
+hi  Normal           ctermfg=DarkGreen
 hi  Number           ctermfg=DarkCyan
 hi  PreProc          ctermfg=LightGreen
 hi  SignColumn       ctermbg=black
@@ -406,9 +409,8 @@ map <F4> :call ToggleCursorUnerline()<CR>
 " PLUGINS' MAPPING -----------------------------------------------------------
 
 map <leader><F1> :UndotreeToggle<CR>
-map <leader><F3> :Stealth<CR>
-map <leader><F4> :call WindowSwap#EasyWindowSwap()<CR>
-map <leader><F5> :UltiSnipsEdit<CR>
+map <leader><F3> :call WindowSwap#EasyWindowSwap()<CR>
+map <leader><F4> :UltiSnipsEdit<CR>
 map <leader>n :NERDTreeToggle<CR>
 map c- <plug>NERDCommenterToEOL
 map c<BS> <leader>cu
@@ -417,6 +419,7 @@ map cc <leader>cc
 map cm <leader>cm
 map s cs
 map tt :PreviewTag<CR>
+nnoremap <leader>s :ToggleWorkspace<CR>
 vmap s S
 
 " Move to line
@@ -442,10 +445,12 @@ command Q q!
 command QQ qa!
 command Sort :normal! :sort i<CR>
 command SortBlock :normal! vip:sort i<CR>
+command TabSpace execute 'Tab /\S\+/l1'
 command W wq
 command Ww :execute ':silent w !sudo tee % > /dev/null' | :edit!
 command WW :execute ':silent w !sudo tee % > /dev/null' | :edit! | q
 command! -nargs=+ FT execute 'set filetype=<args>'
+command! -nargs=+ TabChar execute 'Tabularize / <args> /l0'
 
 
 "-----------------------------------------------------------------------------
@@ -455,21 +460,24 @@ command! -nargs=+ FT execute 'set filetype=<args>'
 ca nonum set nonumber
 ca Plug PlugUpgrade <bar> PlugUpdate
 ca rep %!cat
-ca Tabularize" Tab / " /l0
-ca TabularizeS Tab /\S\+/l1
 
 " Lowercasing aliases
-"
 ca agit Agit
 ca ft FT
 
 
 "-----------------------------------------------------------------------------
-" SIMPLE COMPILE AND RUN
+" RUN SINGLE FILE CODE (with simple compiling beforehand if necessary)
 "-----------------------------------------------------------------------------
 
 " C/C++
 autocmd filetype c,cpp nmap <F8> :w! <bar> exec '!g++ -std=c++17 -g '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
+
+" Python
+autocmd filetype python nmap <F8> :w! <bar> !python %<CR>
+
+" HTML // even though it's not a proggramming language
+autocmd filetype html nmap <F8> :w! <bar> !exo-open --launch WebBrowser %<CR><CR>
 
 
 "-----------------------------------------------------------------------------
