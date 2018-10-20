@@ -76,6 +76,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=always'
 fi
 
+shopt -s extglob
+
 # Changes default editor to vim
 export EDITOR=vim
 

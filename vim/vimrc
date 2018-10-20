@@ -222,7 +222,6 @@ let g:undotree_SplitWidth = 32                                        " undotree
 let g:Illuminate_delay = 0                                            " vim-illuminate         - time delay in milliseconds
 let g:ophigh_highlight_link_group = 1                                 " vim-operator-highlight - add highlight group
 let g:vimtex_compiler_latexmk = {'callback' : 0}                      " VimTeX                 - compiler
-let g:indentguides_tabchar = '|'
 
 " YouCompleteMe
 let g:ycm_add_preview_to_completeopt = 1
@@ -476,8 +475,20 @@ autocmd filetype c,cpp nmap <F8> :w! <bar> exec '!g++ -std=c++17 -g '.shellescap
 " Python
 autocmd filetype python nmap <F8> :w! <bar> !python %<CR>
 
-" HTML // even though it's not a proggramming language
-autocmd filetype html nmap <F8> :w! <bar> !exo-open --launch WebBrowser %<CR><CR>
+" HTML
+autocmd filetype html nmap <F8> :w! <bar> !xdg-open %<CR><CR>
+
+" Shell Script
+autocmd filetype sh nmap <F8> :w! <bar> !%:p<CR>
+
+" Lisp
+autocmd filetype lisp nmap <F8> :w <bar> !clisp %<CR>
+
+" Lua
+autocmd filetype lua nmap <F8> :w <bar> !lua %<CR>
+
+" LaTeX
+autocmd filetype tex nmap <F8> :w<CR><LocalLeader>lv:!latexmk -c && rm %:t:r.synctex.gz<CR><CR>
 
 
 "-----------------------------------------------------------------------------
