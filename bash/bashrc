@@ -67,6 +67,9 @@ fi
 # Better autocompletion (like in zsh), but use Shift-Tab
 bind '"\e[Z":menu-complete'
 
+# Enable extended globbing
+shopt -s extglob
+
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
@@ -75,8 +78,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=always'
     alias egrep='egrep --color=always'
 fi
-
-shopt -s extglob
 
 # Changes default editor to vim
 export EDITOR=vim
