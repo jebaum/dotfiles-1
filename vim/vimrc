@@ -174,7 +174,7 @@ Plug 'easymotion/vim-easymotion'                              " EasyMotion
 Plug 'airblade/vim-gitgutter'                                 " GitGutter
 Plug 'ludovicchabant/vim-gutentags'                           " Gutentags
 Plug 'RRethy/vim-illuminate'                                  " Illuminate
-Plug 'thaerkh/vim-indentguides'                               " Indentguides
+Plug 'nathanaelkane/vim-indent-guides'                        " Indent Guides
 Plug 'scrooloose/nerdcommenter'                               " NERDCommenter
 Plug 'scrooloose/nerdtree'                                    " NERDTree
 Plug 'jistr/vim-nerdtree-tabs'                                " NERDTree(Tabs)
@@ -206,6 +206,8 @@ call plug#end()
 let g:ale_set_highlights = 0                                          " ALE                    - disable highlight
 let g:ale_set_quickfix = 1                                            " ALE                    - enable quicklist
 let g:ale_sign_column_always = 1                                      " ALE                    - sing column always visible
+let g:indent_guides_enable_on_vim_startup = 1                         " Indent Guides          - enable on startup
+let g:indent_guides_auto_colors = 0                                   " Indent Guides          - turn off default colors
 let g:indexed_search_colors = 0                                       " IndexedSearch          - no color of messages
 let g:NERDSpaceDelims = 1                                             " NERDCommenter          - add space after comment delimiters
 let g:NERDCommentEmptyLines = 1                                       " NERDCommenter          - allow commenting empty lines
@@ -226,12 +228,25 @@ let g:vimtex_compiler_latexmk = {'callback' : 0}                      " VimTeX  
 " YouCompleteMe
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
 let g:ycm_global_ycm_extra_conf = '$HOME/dotfiles/vim/ycm_extra_conf.py'
 let g:ycm_key_list_stop_completion = ['<C-y>']
 let g:ycm_max_num_candidates = 20
-let g:ycm_min_num_of_chars_for_completion=2
+let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_show_diagnostics_ui = 0
+
+let g:ycm_filetype_blacklist = {
+            \ 'tagbar': 1,
+            \ 'qf': 1,
+            \ 'notes': 1,
+            \ 'unite': 1,
+            \ 'vimwiki': 1,
+            \ 'pandoc': 1,
+            \ 'infolog': 1,
+            \ 'mail': 1
+            \}
 
 let g:ycm_semantic_triggers = {
             \   'c' : ['->', '.','re![_a-zA-z0-9]'],
@@ -277,32 +292,33 @@ set nofoldenable
 " 'set' OPTIONS
 "-----------------------------------------------------------------------------
 
-set autoindent                 " Always set autoindenting on
-set background=dark            " Dark background (needed for proper colors)
-set backspace=indent,eol,start " Allow backspacing over everything in insert mode
-set cursorline                 " Current line highlight
-set history=50                 " Keep 50 lines of command line history
-set hlsearch                   " Search highlight
-set ignorecase                 " Ignoring case of letters while searching
-set incsearch                  " Do incremental searching
-set laststatus=2               " To always display status line
-set linebreak                  " Don't break words while warping lines
-set listchars=""               " Helps with vim-indentguides - no $ at the end of lines
-set nostartofline              " Cursor is kept in the same column (if possible)
-set noswapfile                 " Disable swap file
-set nowrap                     " Do not wrap lines on default
-set nrformats=                 " Ignore non-DEC numeral systems when in- or decrementing with <C-a>/<C-x>
-set number                     " Enable line numbers
-set ruler                      " Show the cursor position all the time
-set scrolloff=5                " Minimal number of screen lines to keep above and below the cursor
-set showcmd                    " Display incomplete commands
-set smartcase                  " If searching with capital letter then use match case
-set smartindent                " Smart indention
-set splitbelow                 " New windows open on right when split verticaly
-set splitright                 " New windows open on right when split horizontaly
-set t_Co=256                   " 256 color support
-set viewoptions-=options,folds " View options
-set wildmenu                   " Menu for command linecompletion
+set autoindent                       " Always set autoindenting on
+set background=dark                  " Dark background (needed for proper colors)
+set backspace=indent,eol,start       " Allow backspacing over everything in insert mode
+set cursorline                       " Current line highlight
+set history=50                       " Keep 50 lines of command line history
+set hlsearch                         " Search highlight
+set ignorecase                       " Ignoring case of letters while searching
+set incsearch                        " Do incremental searching
+set laststatus=2                     " To always display status line
+set linebreak                        " Don't break words while warping lines
+set listchars=""                     " Helps with vim-indentguides - no $ at the end of lines
+set nostartofline                    " Cursor is kept in the same column (if possible)
+set noswapfile                       " Disable swap file
+set nowrap                           " Do not wrap lines on default
+set nrformats=                       " Ignore non-DEC numeral systems when in- or decrementing with <C-a>/<C-x>
+set number                           " Enable line numbers
+set omnifunc=syntaxcomplete#Complete " Omnifunc
+set ruler                            " Show the cursor position all the time
+set scrolloff=5                      " Minimal number of screen lines to keep above and below the cursor
+set showcmd                          " Display incomplete commands
+set smartcase                        " If searching with capital letter then use match case
+set smartindent                      " Smart indention
+set splitbelow                       " New windows open on right when split verticaly
+set splitright                       " New windows open on right when split horizontaly
+set t_Co=256                         " 256 color support
+set viewoptions-=options,folds       " View options
+set wildmenu                         " Menu for command linecompletion
 
 
 "-----------------------------------------------------------------------------
@@ -328,9 +344,10 @@ hi  WildMenu         ctermbg=cyan
 
 " Plugins' highlight ---------------------------------------------------------
 
-hi  illuminatedWord  cterm=underline
-hi  jsObjectProp     ctermfg=yellow
-hi  OperatorChars    ctermfg=3
+hi  illuminatedWord   cterm=underline
+hi  jsObjectProp      ctermfg=yellow
+hi  OperatorChars     ctermfg=3
+hi  IndentGuidesEven  ctermbg=236
 
 
 " HiLink -----------------------------------------------------------------------------
@@ -444,7 +461,7 @@ command Q q!
 command QQ qa!
 command Sort :normal! :sort i<CR>
 command SortBlock :normal! vip:sort i<CR>
-command TabSpace execute 'Tab /\S\+/l1'
+command TabSpace execute 'Tabularize /\S\+/l1'
 command W wq
 command Ww :execute ':silent w !sudo tee % > /dev/null' | :edit!
 command WW :execute ':silent w !sudo tee % > /dev/null' | :edit! | q
