@@ -23,7 +23,7 @@ endif
 " Turns on detection, plugin and indent
 filetype plugin indent on
 
-" Redraw after 'command silent'
+" Redraw after command 'silent'
 command! -nargs=+ Silent execute 'silent <args>' | redraw!
 
 " Quit QuickFix window along with source file window
@@ -331,8 +331,8 @@ set wildmenu                         " Menu for command linecompletion
 
 hi  C_PreProcDefine  ctermfg=DarkRed
 hi  Comment          ctermfg=grey
-hi  CursorColumn     cterm=NONE          ctermbg=235
-hi  CursorLine       cterm=NONE          ctermbg=235
+hi  CursorColumn     ctermbg=235
+hi  CursorLine       ctermbg=235         cterm=NONE
 hi  CursorLineNr     ctermfg=magenta
 hi  ExtraWhitespace  ctermbg=red
 hi  LineNr           ctermfg=grey
@@ -378,13 +378,13 @@ noremap <leader>" :vnew<CR>
 " leader + function keys -- also mapped: <F1>, <F3>, <F4>
 map <leader><F2> :set wrap!<CR>
 
-" Function keys -- also mapped: <F4>, <F8>, <F10> ; do not use <F11>
+" Function keys -- also mapped: <F8>, <F10> ; do not use <F11>
 imap <F1> <Esc>gTi
 imap <F2> <Esc>gti
 map <F1> gT
 map <F2> gt
 map <F3> :tabe<CR>
-map <F5> :set invrelativenumber<CR>
+map <F4> :set invrelativenumber<CR>
 map <F9> :w <bar> make<CR>
 
 " Ctrl + sth -- also mapped: a, s
@@ -422,8 +422,6 @@ map ZZ <nop>
 
 
 " FUNCTIONS' MAPPING ---------------------------------------------------------
-
-map <F4> :call ToggleCursorUnerline()<CR>
 
 
 " PLUGINS' MAPPING -----------------------------------------------------------
