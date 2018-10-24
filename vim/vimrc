@@ -20,10 +20,10 @@ if has ("title")
     endif
 endif
 
-" Turns on detection, plugin and indent (needed only when there isn't vim-plug)
+" Turns on detection, plugin and indent
 filetype plugin indent on
 
-" Redraw after 'silent' command
+" Redraw after 'command silent'
 command! -nargs=+ Silent execute 'silent <args>' | redraw!
 
 " Quit QuickFix window along with source file window
@@ -65,18 +65,20 @@ function! FillLine( str )
     endif
 endfunction
 
-" Toggle cursorline's underline
-let s:hl_state=0
-function! ToggleCursorUnerline()
-    if s:hl_state
-        hi CursorLine cterm=underline
-        let s:hl_state=0
-    else
-        hi CursorLine cterm=none
-        let s:hl_state=1
-    endif
+" Preview of Vim 256 colors
+function! Color_demo()
+    30 vnew
+    setlocal nonumber
+    setlocal statusline=[%n]
+    setlocal statusline+=\ Color\ demo
+    let num = 255
+    while num >= 0
+        exec 'hi col_'.num.' ctermbg='.num.' ctermfg=white'
+        exec 'syn match col_'.num.' "ctermbg='.num.':...." containedIn=ALL'
+        call append(0, 'ctermbg='.num.':....')
+        let num = num - 1
+    endwhile
 endfunction
-autocmd VimEnter * execute "call ToggleCursorUnerline()"
 
 " Build YouCompleteMe - for Plug
 function! BuildYCM(info)
@@ -85,7 +87,7 @@ function! BuildYCM(info)
     endif
 endfunction
 
-" Build YouCompleteMe - manual
+" Build YouCompleteMe
 function! BuildYCM_manual()
     !~/.vim/bundle/YouCompleteMe/install.py --clang-completer --java-completer
 endfunction
@@ -174,7 +176,7 @@ Plug 'easymotion/vim-easymotion'                              " EasyMotion
 Plug 'airblade/vim-gitgutter'                                 " GitGutter
 Plug 'ludovicchabant/vim-gutentags'                           " Gutentags
 Plug 'RRethy/vim-illuminate'                                  " Illuminate
-Plug 'nathanaelkane/vim-indent-guides'                        " Indent Guides
+Plug 'Yggdroot/indentLine'                                    " indentLine
 Plug 'scrooloose/nerdcommenter'                               " NERDCommenter
 Plug 'scrooloose/nerdtree'                                    " NERDTree
 Plug 'jistr/vim-nerdtree-tabs'                                " NERDTree(Tabs)
@@ -207,9 +209,6 @@ call plug#end()
 let g:ale_set_highlights = 0                                          " ALE                    - disable highlight
 let g:ale_set_quickfix = 1                                            " ALE                    - enable quicklist
 let g:ale_sign_column_always = 1                                      " ALE                    - sing column always visible
-let g:indent_guides_enable_on_vim_startup = 1                         " Indent Guides          - enable on startup
-let g:indent_guides_auto_colors = 0                                   " Indent Guides          - turn off default colors
-let g:indexed_search_colors = 0                                       " IndexedSearch          - no color of messages
 let g:NERDSpaceDelims = 1                                             " NERDCommenter          - add space after comment delimiters
 let g:NERDCommentEmptyLines = 1                                       " NERDCommenter          - allow commenting empty lines
 let g:NERDTreeWinPos = "right"                                        " NERDTree               - always on right side
@@ -223,6 +222,7 @@ let g:undotree_SetFocusWhenToggle = 1                                 " undotree
 let g:undotree_ShortIndicators = 1                                    " undotree               - short time indicators
 let g:undotree_SplitWidth = 32                                        " undotree               - window width
 let g:Illuminate_delay = 0                                            " vim-illuminate         - time delay in milliseconds
+let g:markdown_enable_spell_checking = 0                              " vim-markdown           - disable spell checking
 let g:ophigh_highlight_link_group = 1                                 " vim-operator-highlight - add highlight group
 let g:vimtex_compiler_latexmk = {'callback' : 0}                      " VimTeX                 - compiler
 
@@ -265,6 +265,8 @@ let g:ycm_semantic_triggers = {
 
 " AUTOCMD --------------------------------------------------------------------
 
+autocmd VimEnter * execute "hi Conceal ctermbg=NONE"
+
 autocmd FileType agit NERDTreeClose    " Fix for Agit and NERDTree
 autocmd BufEnter * SignatureRefresh    " Fix for Signature and gitgutter
 autocmd InsertEnter * SignatureRefresh " Fix for Signature and gitgutter
@@ -296,6 +298,7 @@ set nofoldenable
 set autoindent                       " Always set autoindenting on
 set background=dark                  " Dark background (needed for proper colors)
 set backspace=indent,eol,start       " Allow backspacing over everything in insert mode
+set cursorcolumn
 set cursorline                       " Current line highlight
 set history=50                       " Keep 50 lines of command line history
 set hlsearch                         " Search highlight
@@ -328,6 +331,8 @@ set wildmenu                         " Menu for command linecompletion
 
 hi  C_PreProcDefine  ctermfg=DarkRed
 hi  Comment          ctermfg=grey
+hi  CursorColumn     cterm=NONE          ctermbg=235
+hi  CursorLine       cterm=NONE          ctermbg=235
 hi  CursorLineNr     ctermfg=magenta
 hi  ExtraWhitespace  ctermbg=red
 hi  LineNr           ctermfg=grey
@@ -348,8 +353,6 @@ hi  WildMenu         ctermbg=cyan
 hi  illuminatedWord   cterm=underline
 hi  jsObjectProp      ctermfg=yellow
 hi  OperatorChars     ctermfg=3
-hi  IndentGuidesEven  ctermbg=236
-
 
 " HiLink -----------------------------------------------------------------------------
 
