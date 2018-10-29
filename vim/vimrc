@@ -206,37 +206,38 @@ call plug#end()
 
 " VARIABLES ------------------------------------------------------------------
 
-let g:ale_set_highlights = 0                                          " ALE                    - disable highlight
-let g:ale_set_quickfix = 1                                            " ALE                    - enable quicklist
-let g:ale_sign_column_always = 1                                      " ALE                    - sing column always visible
-let g:NERDSpaceDelims = 1                                             " NERDCommenter          - add space after comment delimiters
-let g:NERDCommentEmptyLines = 1                                       " NERDCommenter          - allow commenting empty lines
-let g:NERDTreeWinPos = "right"                                        " NERDTree               - always on right side
-let g:nerdtree_tabs_smart_startup_focus = 2                           " NERDTree(Tabs)         - always focus file window after startup
-let g:nerdtree_tabs_open_on_console_startup = 1                       " NERDTree(Tabs)         - open on startup
-let g:SignatureMarkTextHLDynamic = 1                                  " Signature              - git gutter compability
-let g:UltiSnipsEditSplit = "context"                                  " UltiSnips              - :UltiSnipsEdit splits window instead of taking over it
-let g:UltiSnipsExpandTrigger = '<C-j>'                                " UltiSnips              - custom expand key to work with YCM
-let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips'] " UltiSnips              - set dafault directory for snippets
-let g:undotree_SetFocusWhenToggle = 1                                 " undotree               - autofocus
-let g:undotree_ShortIndicators = 1                                    " undotree               - short time indicators
-let g:undotree_SplitWidth = 32                                        " undotree               - window width
-let g:Illuminate_delay = 0                                            " vim-illuminate         - time delay in milliseconds
-let g:markdown_enable_spell_checking = 0                              " vim-markdown           - disable spell checking
-let g:ophigh_highlight_link_group = 1                                 " vim-operator-highlight - add highlight group
-let g:vimtex_compiler_latexmk = {'callback' : 0}                      " VimTeX                 - compiler
+let g:ale_set_highlights                    = 0                                 " ALE                    - disable highlight
+let g:ale_set_quickfix                      = 1                                 " ALE                    - enable quicklist
+let g:ale_sign_column_always                = 1                                 " ALE                    - sing column always visible
+let g:NERDSpaceDelims                       = 1                                 " NERDCommenter          - add space after comment delimiters
+let g:NERDCommentEmptyLines                 = 1                                 " NERDCommenter          - allow commenting empty lines
+let g:NERDTreeWinPos                        = "right"                           " NERDTree               - always on right side
+let g:nerdtree_tabs_smart_startup_focus     = 2                                 " NERDTree(Tabs)         - always focus file window after startup
+let g:nerdtree_tabs_open_on_console_startup = 1                                 " NERDTree(Tabs)         - open on startup
+let g:SignatureMarkTextHLDynamic            = 1                                 " Signature              - git gutter compability
+let g:UltiSnipsEditSplit                    = "context"                         " UltiSnips              - :UltiSnipsEdit splits window instead of taking over it
+let g:UltiSnipsExpandTrigger                = '<C-j>'                           " UltiSnips              - custom expand key to work with YCM
+let g:UltiSnipsSnippetDirectories           = ['~/.vim/UltiSnips', 'UltiSnips'] " UltiSnips              - set dafault directory for snippets
+let g:undotree_SetFocusWhenToggle           = 1                                 " undotree               - autofocus
+let g:undotree_ShortIndicators              = 1                                 " undotree               - short time indicators
+let g:undotree_SplitWidth                   = 32                                " undotree               - window width
+let g:Illuminate_delay                      = 0                                 " vim-illuminate         - time delay in milliseconds
+let g:vim_markdown_no_default_key_mappings  = 1                                 " vim-markdown           - disable mappings
+let g:markdown_enable_spell_checking        = 0                                 " vim-markdown           - disable spell checking
+let g:ophigh_highlight_link_group           = 1                                 " vim-operator-highlight - add highlight group
+let g:vimtex_compiler_latexmk               = {'callback' : 0}                  " VimTeX                 - compiler
 
 " YouCompleteMe
-let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_add_preview_to_completeopt                = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_complete_in_comments = 1
-let g:ycm_complete_in_strings = 1
-let g:ycm_global_ycm_extra_conf = '$HOME/dotfiles/vim/ycm_extra_conf.py'
-let g:ycm_key_list_stop_completion = ['<C-y>']
-let g:ycm_max_num_candidates = 20
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_show_diagnostics_ui = 0
+let g:ycm_collect_identifiers_from_tags_files       = 1
+let g:ycm_complete_in_comments                      = 1
+let g:ycm_complete_in_strings                       = 1
+let g:ycm_global_ycm_extra_conf                     = '$HOME/dotfiles/vim/ycm_extra_conf.py'
+let g:ycm_key_list_stop_completion                  = ['<C-y>']
+let g:ycm_max_num_candidates                        = 20
+let g:ycm_min_num_of_chars_for_completion           = 2
+let g:ycm_show_diagnostics_ui                       = 0
 
 let g:ycm_filetype_blacklist = {
             \ 'tagbar': 1,
@@ -264,8 +265,6 @@ let g:ycm_semantic_triggers = {
 
 
 " AUTOCMD --------------------------------------------------------------------
-
-autocmd VimEnter * execute "hi Conceal ctermbg=NONE"
 
 autocmd FileType agit NERDTreeClose    " Fix for Agit and NERDTree
 autocmd BufEnter * SignatureRefresh    " Fix for Signature and gitgutter
@@ -298,7 +297,7 @@ set nofoldenable
 set autoindent                       " Always set autoindenting on
 set background=dark                  " Dark background (needed for proper colors)
 set backspace=indent,eol,start       " Allow backspacing over everything in insert mode
-set cursorcolumn
+set cursorcolumn                     " Current column highlight
 set cursorline                       " Current line highlight
 set history=50                       " Keep 50 lines of command line history
 set hlsearch                         " Search highlight
@@ -307,6 +306,7 @@ set incsearch                        " Do incremental searching
 set laststatus=2                     " To always display status line
 set linebreak                        " Don't break words while warping lines
 set listchars=""                     " Helps with vim-indentguides - no $ at the end of lines
+set modeline                         " Enable modelines
 set nostartofline                    " Cursor is kept in the same column (if possible)
 set noswapfile                       " Disable swap file
 set nowrap                           " Do not wrap lines on default
@@ -335,7 +335,7 @@ hi  CursorColumn     ctermbg=235
 hi  CursorLine       ctermbg=235         cterm=NONE
 hi  CursorLineNr     ctermfg=magenta
 hi  ExtraWhitespace  ctermbg=red
-hi  LineNr           ctermfg=grey
+hi  LineNr           ctermfg=242
 hi  Normal           ctermfg=DarkGreen
 hi  Number           ctermfg=DarkCyan
 hi  PreProc          ctermfg=LightGreen
@@ -409,8 +409,8 @@ noremap <CR> o<ESC>
 noremap <Tab> <C-w><C-w>
 noremap f z
 noremap F zfa{
-noremap gr gd[{V%::s/<C-R>///gc<left><left><left>
 noremap z f
+noremap Z z
 
 " <nop>
 map ` <nop>
@@ -419,9 +419,6 @@ map gh <nop>
 map q <nop>
 map Q <nop>
 map ZZ <nop>
-
-
-" FUNCTIONS' MAPPING ---------------------------------------------------------
 
 
 " PLUGINS' MAPPING -----------------------------------------------------------
@@ -435,16 +432,14 @@ map c<BS> <leader>cu
 map c<space> <leader>c<space>
 map cc <leader>cc
 map cm <leader>cm
-map s cs
 map tt :PreviewTag<CR>
+nmap s ysiw
 nnoremap <leader>s :ToggleWorkspace<CR>
 vmap s S
 
-" Move to line
+" EasyMotion
 map <leader>l <Plug>(easymotion-bd-jk)
 nmap <leader>l <Plug>(easymotion-overwin-line)
-
-" Move to word
 map <leader>w <Plug>(easymotion-bd-w)
 
 " Anzu
@@ -463,6 +458,7 @@ command Q q!
 command QQ qa!
 command SortBlock :normal! vip:sort i<CR>
 command W wq
+command NoNum set number!
 command Ww :execute ':silent w !sudo tee % > /dev/null' | :edit!
 command WW :execute ':silent w !sudo tee % > /dev/null' | :edit! | q
 command! -range -nargs=+ TabChar execute '<line1>,<line2>Tabularize / <args> /l0'
@@ -474,12 +470,7 @@ command! -range TabSpace execute '<line1>,<line2>Tabularize /\S\+/l1'
 " ALIASES
 "-----------------------------------------------------------------------------
 
-ca nonum set nonumber
 ca Plug PlugUpgrade <bar> PlugUpdate
-ca rep %!cat
-
-" Lowercasing aliases
-ca agit Agit
 ca ft setf
 
 
