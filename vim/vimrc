@@ -43,11 +43,12 @@ set undodir=~/.vimtmp/undo/
 set undofile
 
 " Indentation rules
+set autoindent
+set cindent
 set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-set cindent
 
 
 "-----------------------------------------------------------------------------
@@ -294,7 +295,6 @@ set nofoldenable
 " 'set' OPTIONS
 "-----------------------------------------------------------------------------
 
-set autoindent                       " Always set autoindenting on
 set background=dark                  " Dark background (needed for proper colors)
 set backspace=indent,eol,start       " Allow backspacing over everything in insert mode
 set cursorcolumn                     " Current column highlight
@@ -454,11 +454,12 @@ nmap # <Plug>(anzu-sharp-with-echo)
 "-----------------------------------------------------------------------------
 
 command Ctags w <bar> Silent !ctags --fields=+nS -a %
+command ExecCurrentLine normal :.w !sh<CR>
+command NoNum set number!
 command Q q!
 command QQ qa!
 command SortBlock :normal! vip:sort i<CR>
 command W wq
-command NoNum set number!
 command Ww :execute ':silent w !sudo tee % > /dev/null' | :edit!
 command WW :execute ':silent w !sudo tee % > /dev/null' | :edit! | q
 command! -range -nargs=+ TabChar execute '<line1>,<line2>Tabularize / <args> /l0'
@@ -498,6 +499,9 @@ autocmd filetype lua nmap <F8> :w <bar> !lua %<CR>
 
 " LaTeX
 autocmd filetype tex nmap <F8> :w<CR><LocalLeader>lv:!latexmk -c && rm %:t:r.synctex.gz<CR><CR>
+
+" Markdown
+autocmd filetype markdown nmap <F8> :w <bar> !grip -b % 1> /dev/null<CR><CR>
 
 
 "-----------------------------------------------------------------------------
