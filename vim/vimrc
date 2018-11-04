@@ -135,11 +135,12 @@ autocmd InsertEnter * exec HighlightC_PreProcDefines()
 
 function! FileSize()
     let bytes = getfsize(expand(@%))
-    let bytes = bytes + 1
     if (bytes >= 1024*1024)
-        return '~' . float2nr(round(bytes/(1024*1024.0))) . ' MB'
+        return '~' . float2nr(round(bytes/(1024*1024.0))) . ' MiB'
     elseif (bytes >= 1024)
-        return '~' . float2nr(round(bytes/1024.0)) . ' kB'
+        return '~' . float2nr(round(bytes/1024.0)) . ' KiB'
+    elseif (bytes <= 0)
+        return '0 B'
     else
         return bytes . ' B'
     endif
@@ -147,7 +148,6 @@ endfunction
 
 set statusline=
 set statusline+=[%n]                                                                          " Buffer number
-set statusline+=%(\ \ %{FugitiveStatusline()}%)
 set statusline+=\ \                                                                           " Separator
 set statusline+=%f\                                                                           " Relative path to the file
 set statusline+=\                                                                             " Separator
@@ -162,7 +162,7 @@ set statusline+=%w                                                              
 set statusline+=\ \                                                                           " Separator
 set statusline+=%m                                                                            " Modified flag
 set statusline+=%=                                                                            " Switch to the right side
-set statusline+=<0x%B>                                                                        " Hex code of character under cursor
+set statusline+=0x%B                                                                          " Hex code of character under cursor
 set statusline+=\ \|\                                                                         " Separator
 set statusline+=%l/                                                                           " Current line
 set statusline+=%L                                                                            " Total lines
@@ -193,11 +193,9 @@ endif
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'cohama/agit.vim'                                        " Agit
 Plug 'w0rp/ale'                                               " ALE
 Plug 'osyo-manga/vim-anzu'                                    " Anzu
 Plug 'easymotion/vim-easymotion'                              " EasyMotion
-Plug 'tpope/vim-fugitive'                                     " fugitive.vim
 Plug 'airblade/vim-gitgutter'                                 " GitGutter
 Plug 'ludovicchabant/vim-gutentags'                           " Gutentags
 Plug 'RRethy/vim-illuminate'                                  " Illuminate

@@ -35,6 +35,7 @@ linking  $x  vim/UltiSnips      $HOME/.vim/UltiSnips
 linking  $x  vim/vimrc          $HOME/.vimrc
 linking  $x  Xresources         $HOME/.Xresources
 linking  $x  zathura            $HOME/.config/zathura
+linking  $x  rtv                $HOME/.config/rtv
 
 # linking  $x  terminator $HOME/.config/terminator
 
