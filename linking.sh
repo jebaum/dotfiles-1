@@ -28,6 +28,7 @@ linking  $x  dosbox-0.74.conf   $HOME/.dosbox/dosbox-0.74.conf
 linking  $x  feh                $HOME/.config/feh
 linking  $x  inputrc            $HOME/.inputrc
 linking  $x  mpv/               $HOME/.config/mpv
+linking  $x  myclirc            $HOME/.myclirc
 linking  $x  profile            $HOME/.profile
 linking  $x  tmux.conf          $HOME/.tmux.conf
 linking  $x  vim/UltiSnips      $HOME/.vim/UltiSnips

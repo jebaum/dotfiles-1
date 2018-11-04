@@ -67,3 +67,12 @@ mpv() {
         command mpv "$@"
     fi
 }
+
+mycli(){
+    if [[ $1 == "-r" ]]; then
+        shift 1
+        command mycli -u root $@
+    else
+        command mycli $@
+    fi
+}

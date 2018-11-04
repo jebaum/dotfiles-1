@@ -35,7 +35,6 @@ jump_first 0
 jump_last dollar
 jump_fwd C-n
 jump_back C-p
-jump_random z
 
 quit q
 
@@ -44,8 +43,7 @@ quit q
 # Image management
 # ----------------------------
 
-save_image w
-save_filelist W
+save_image S
 
 remove d
 delete D
@@ -56,7 +54,6 @@ mirror bar
 orient_1 greater
 orient_3 less
 
-render R
 size_to_image s
 
 
@@ -96,8 +93,6 @@ scroll_right_page C-l
 # Zoom
 # ----------------------------
 
-# zoom_in plus
-# zoom_out minus
 zoom_default equal
 zoom_fit s
 zoom_fill exclam
