@@ -113,7 +113,13 @@ match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+
+" Comments in SQL
+hi SQL_Comment cterm=NONE
+match SQL_Comment /\s*--.*$/
+autocmd BufWinEnter *.sql match SQL_Comment /\s*--.*$/
+autocmd InsertEnter *.sql match SQL_Comment /\s*--.*$/
+autocmd InsertLeave *.sql match SQL_Comment /\s*--.*$/
 
 " C/C++ preprocessor defined macros
 function! HighlightC_PreProcDefines()
@@ -126,7 +132,11 @@ function! HighlightC_PreProcDefines()
     endfor
 endfunction
 autocmd FileType c,cpp,h,hpp call HighlightC_PreProcDefines()
-autocmd InsertEnter * exec HighlightC_PreProcDefines()
+autocmd InsertEnter c,cpp,h,hpp exec HighlightC_PreProcDefines()
+
+
+" Clear all maches after leaving buffer --------------------------------------
+autocmd BufWinLeave * call clearmatches()
 
 
 "-----------------------------------------------------------------------------
@@ -193,6 +203,7 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'w0rp/ale'                                               " ALE
 Plug 'osyo-manga/vim-anzu'                                    " Anzu
+Plug 'vim-scripts/dbext.vim'                                  " dbext.vim
 Plug 'easymotion/vim-easymotion'                              " EasyMotion
 Plug 'airblade/vim-gitgutter'                                 " GitGutter
 Plug 'ludovicchabant/vim-gutentags'                           " Gutentags
@@ -206,7 +217,9 @@ Plug 'raviqqe/vim-nonblank'                                   " NONBlank
 Plug 'Valloric/vim-operator-highlight'                        " Operator-highlight
 Plug 'junegunn/vim-peekaboo'                                  " Peekaboo
 Plug 'sheerun/vim-polyglot'                                   " Polyglot
+Plug 'mechatroner/rainbow_csv'                                " Rainbow CSV
 Plug 'kshenoy/vim-signature'                                  " Signature
+Plug 'vim-scripts/SQLComplete.vim'                            " SQLComplete.vim
 Plug 'tpope/vim-surround'                                     " Surround
 Plug 'godlygeek/tabular'                                      " Tabular
 Plug 'christoomey/vim-tmux-navigator'                         " Tmux Navigator
@@ -214,33 +227,33 @@ Plug 'SirVer/ultisnips'                                       " UltiSnips
 Plug 'mbbill/undotree'                                        " UndoTree
 Plug 'romainl/vim-cool'                                       " vim-cool
 Plug 'skywind3000/vim-preview'                                " vim-preview
+Plug 'shmup/vim-sql-syntax'                                   " vim-sql-syntax
+Plug 'alcesleo/vim-uppercase-sql'                             " vim-uppercase-sql
 Plug 'yaroot/vissort'                                         " Visual Block Sorting
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') } " YouCompleteMe
 
 call plug#end()
 
-
 " VARIABLES ------------------------------------------------------------------
-
-let g:ale_set_highlights                    = 0                                 " ALE                    - disable highlight
-let g:ale_set_quickfix                      = 1                                 " ALE                    - enable quicklist
-let g:ale_sign_column_always                = 1                                 " ALE                    - sing column always visible
-let g:NERDSpaceDelims                       = 1                                 " NERDCommenter          - add space after comment delimiters
-let g:NERDCommentEmptyLines                 = 1                                 " NERDCommenter          - allow commenting empty lines
-let g:NERDTreeWinPos                        = "right"                           " NERDTree               - always on right side
-let g:nerdtree_tabs_smart_startup_focus     = 2                                 " NERDTree(Tabs)         - always focus file window after startup
-let g:nerdtree_tabs_open_on_console_startup = 1                                 " NERDTree(Tabs)         - open on startup
-let g:SignatureMarkTextHLDynamic            = 1                                 " Signature              - git gutter compability
-let g:UltiSnipsEditSplit                    = "context"                         " UltiSnips              - :UltiSnipsEdit splits window instead of taking over it
-let g:UltiSnipsExpandTrigger                = '<C-j>'                           " UltiSnips              - custom expand key to work with YCM
-let g:UltiSnipsSnippetDirectories           = ['~/.vim/UltiSnips', 'UltiSnips'] " UltiSnips              - set dafault directory for snippets
-let g:undotree_SetFocusWhenToggle           = 1                                 " undotree               - autofocus
-let g:undotree_ShortIndicators              = 1                                 " undotree               - short time indicators
-let g:undotree_SplitWidth                   = 32                                " undotree               - window width
-let g:Illuminate_delay                      = 0                                 " vim-illuminate         - time delay in milliseconds
-let g:ophigh_highlight_link_group           = 1                                 " vim-operator-highlight - add highlight group
-let g:vim_markdown_new_list_item_indent = 2
-let g:vimtex_compiler_latexmk               = {'callback' : 0}                  " VimTeX                 - compiler
+"
+let g:ale_set_highlights                    = 0                                 " ALE                     - disable highlight
+let g:ale_set_quickfix                      = 1                                 " ALE                     - enable quicklist
+let g:ale_sign_column_always                = 1                                 " ALE                     - sing column always visible
+let g:NERDSpaceDelims                       = 1                                 " NERDCommenter           - add space after comment delimiters
+let g:NERDCommentEmptyLines                 = 1                                 " NERDCommenter           - allow commenting empty lines
+let g:NERDTreeWinPos                        = "right"                           " NERDTree                - always on right side
+let g:nerdtree_tabs_smart_startup_focus     = 2                                 " NERDTree(Tabs)          - always focus file window after startup
+let g:nerdtree_tabs_open_on_console_startup = 1                                 " NERDTree(Tabs)          - open on startup
+let g:vim_markdown_new_list_item_indent     = 2                                 " Polyglot > vim-markdown - change list indent
+let g:SignatureMarkTextHLDynamic            = 1                                 " Signature               - git gutter compability
+let g:UltiSnipsEditSplit                    = "context"                         " UltiSnips               - :UltiSnipsEdit splits window instead of taking over it
+let g:UltiSnipsExpandTrigger                = '<C-j>'                           " UltiSnips               - custom expand key to work with YCM
+let g:UltiSnipsSnippetDirectories           = ['~/.vim/UltiSnips', 'UltiSnips'] " UltiSnips               - set dafault directory for snippets
+let g:undotree_SetFocusWhenToggle           = 1                                 " undotree                - autofocus
+let g:undotree_ShortIndicators              = 1                                 " undotree                - short time indicators
+let g:undotree_SplitWidth                   = 32                                " undotree                - window width
+let g:Illuminate_delay                      = 0                                 " vim-illuminate          - time delay in milliseconds
+let g:ophigh_highlight_link_group           = 1                                 " vim-operator-highlight  - add highlight group
 
 " YouCompleteMe
 let g:ycm_add_preview_to_completeopt                = 1
@@ -262,7 +275,7 @@ let g:ycm_filetype_blacklist = {
             \ 'vimwiki': 1,
             \ 'pandoc': 1,
             \ 'infolog': 1,
-            \ 'mail': 1
+            \ 'mail': 1,
             \}
 
 let g:ycm_semantic_triggers = {
@@ -334,7 +347,7 @@ set splitbelow                       " New windows open on right when split vert
 set splitright                       " New windows open on right when split horizontaly
 set t_Co=256                         " 256 color support
 set viewoptions-=options,folds       " View options
-set wildmenu                         " Menu for command linecompletion
+set wildmenu                         " Menu for command line completion
 
 
 "-----------------------------------------------------------------------------
@@ -350,6 +363,8 @@ hi  ExtraWhitespace  ctermbg=red
 hi  LineNr           ctermfg=242
 hi  Normal           ctermfg=DarkGreen
 hi  Number           ctermfg=DarkCyan
+hi  Pmenu            ctermfg=black       ctermbg=cyan
+hi  PmenuSel         ctermfg=black       ctermbg=blue
 hi  PreProc          ctermfg=LightGreen
 hi  SignColumn       ctermbg=black
 hi  Special          ctermfg=red         ctermbg=black
@@ -359,8 +374,6 @@ hi  String           ctermfg=DarkCyan
 hi  Type             ctermfg=white
 hi  WildMenu         ctermbg=cyan
 
-hi PmenuSel ctermfg=black ctermbg=blue
-
 " Plugins' highlight ---------------------------------------------------------
 
 hi  illuminatedWord   cterm=underline
@@ -369,7 +382,8 @@ hi  OperatorChars     ctermfg=3
 
 " HiLink -----------------------------------------------------------------------------
 
-hi link Noise OperatorChars
+hi  link  Noise        OperatorChars
+hi  link  SQL_Comment  Comment
 
 
 "-----------------------------------------------------------------------------
@@ -400,8 +414,9 @@ map <F3> :tabe<CR>
 map <F4> :set invrelativenumber<CR>
 map <F9> :w <bar> make<CR>
 
-" Ctrl + sth -- also mapped: a, s
+" Ctrl + sth
 inoremap <C-d> <ESC>:t.<CR>i
+inoremap <C-o> <C-x><C-o>
 inoremap <C-p> <ESC>"+pa
 noremap <C-d> :t.<CR>
 noremap <C-p> "+p
@@ -418,8 +433,10 @@ map k gk
 map N Nzz
 map n nzz
 noremap '' ``
+noremap 0 ^
 noremap <CR> o<ESC>
 noremap <Tab> <C-w><C-w>
+noremap ^ 0
 noremap f z
 noremap F zfa{
 noremap z f
@@ -528,3 +545,5 @@ autocmd filetype markdown nmap <F8> :w <bar> !grip -b % 1> /dev/null<CR><CR>
 "-----------------------------------------------------------------------------
 " TEMPORARY
 "-----------------------------------------------------------------------------
+
+syntax enable
