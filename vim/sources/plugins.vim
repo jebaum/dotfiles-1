@@ -1,16 +1,15 @@
-
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " DOWNLOAD VIM-PLUG (if is not installed)
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl --create-dirs -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " FUNCTIONS
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 
 " Build YouCompleteMe - for Plug
 function! BuildYCM(info)
@@ -25,37 +24,37 @@ function! BuildYCM_manual()
 endfunction
 
 
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " INSTALL PLUGINS (Plug)
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 
 call plug#begin('~/.vim/bundle')
 execute 'source ' . '$HOME/dotfiles/vim/plugins_list.vim'
 call plug#end()
 
 
-"-----------------------------------------------------------------------------
-" VARIABLES ------------------------------------------------------------------
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
+" VARIABLES
+"-------------------------------------------------------------------------------
 
-let g:ale_set_highlights                    = 0                                 " ALE                     - disable highlight
-let g:ale_set_quickfix                      = 1                                 " ALE                     - enable quicklist
-let g:ale_sign_column_always                = 1                                 " ALE                     - sing column always visible
-let g:NERDSpaceDelims                       = 1                                 " NERDCommenter           - add space after comment delimiters
-let g:NERDCommentEmptyLines                 = 1                                 " NERDCommenter           - allow commenting empty lines
-let g:NERDTreeWinPos                        = "right"                           " NERDTree                - always on right side
-let g:nerdtree_tabs_smart_startup_focus     = 2                                 " NERDTree(Tabs)          - always focus file window after startup
-let g:nerdtree_tabs_open_on_console_startup = 1                                 " NERDTree(Tabs)          - open on startup
-let g:vim_markdown_new_list_item_indent     = 2                                 " Polyglot > vim-markdown - change list indent
-let g:SignatureMarkTextHLDynamic            = 1                                 " Signature               - git gutter compability
-let g:UltiSnipsEditSplit                    = "context"                         " UltiSnips               - :UltiSnipsEdit splits window instead of taking over it
-let g:UltiSnipsExpandTrigger                = '<C-j>'                           " UltiSnips               - custom expand key to work with YCM
-let g:UltiSnipsSnippetDirectories           = ['~/.vim/UltiSnips', 'UltiSnips'] " UltiSnips               - set dafault directory for snippets
-let g:undotree_SetFocusWhenToggle           = 1                                 " undotree                - autofocus
-let g:undotree_ShortIndicators              = 1                                 " undotree                - short time indicators
-let g:undotree_SplitWidth                   = 32                                " undotree                - window width
-let g:Illuminate_delay                      = 0                                 " vim-illuminate          - time delay in milliseconds
-let g:ophigh_highlight_link_group           = 1                                 " vim-operator-highlight  - add highlight group
+let g:ale_set_highlights                    = 0                               " ALE                     - disable highlight
+let g:ale_set_quickfix                      = 1                               " ALE                     - enable quicklist
+let g:ale_sign_column_always                = 1                               " ALE                     - sing column always visible
+let g:NERDSpaceDelims                       = 1                               " NERDCommenter           - add space after comment delimiters
+let g:NERDCommentEmptyLines                 = 1                               " NERDCommenter           - allow commenting empty lines
+let g:NERDTreeWinPos                        = "right"                         " NERDTree                - always on right side
+let g:nerdtree_tabs_smart_startup_focus     = 2                               " NERDTree(Tabs)          - always focus file window after startup
+let g:nerdtree_tabs_open_on_console_startup = 1                               " NERDTree(Tabs)          - open on startup
+let g:vim_markdown_new_list_item_indent     = 2                               " Polyglot > vim-markdown - change list indent
+let g:SignatureMarkTextHLDynamic            = 1                               " Signature               - git gutter compability
+let g:UltiSnipsEditSplit                    = "context"                       " UltiSnips               - :UltiSnipsEdit splits window instead of taking over it
+let g:UltiSnipsExpandTrigger                = '<C-j>'                         " UltiSnips               - custom expand key to work with YCM
+let g:UltiSnipsSnippetDirectories           = ['$HOME/dotfilesvim/UltiSnips'] " UltiSnips               - set dafault directory for snippets
+let g:undotree_SetFocusWhenToggle           = 1                               " undotree                - autofocus
+let g:undotree_ShortIndicators              = 1                               " undotree                - short time indicators
+let g:undotree_SplitWidth                   = 32                              " undotree                - window width
+let g:Illuminate_delay                      = 0                               " vim-illuminate          - time delay in milliseconds
+let g:ophigh_highlight_link_group           = 1                               " vim-operator-highlight  - add highlight group
 
 " YouCompleteMe
 let g:ycm_add_preview_to_completeopt                = 1
@@ -94,9 +93,9 @@ let g:ycm_semantic_triggers = {
             \ }
 
 
-"-----------------------------------------------------------------------------
-" AUTOCMD --------------------------------------------------------------------
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
+" AUTOCMD
+"-------------------------------------------------------------------------------
 
 autocmd FileType agit NERDTreeClose    " Fix for Agit and NERDTree
 autocmd BufEnter * SignatureRefresh    " Fix for Signature and gitgutter
@@ -105,11 +104,9 @@ autocmd VimEnter * VSO i               " Vissort - case insensivity
 
 
 
-"-----------------------------------------------------------------------------
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " PACKAGES
-"-----------------------------------------------------------------------------
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 
 packadd matchit
 packadd termdebug

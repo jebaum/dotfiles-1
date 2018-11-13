@@ -1,5 +1,4 @@
-
-" Use Vim settings -- always 1st
+" Use Vim settings
 set nocompatible
 
 " " tmux - title fix

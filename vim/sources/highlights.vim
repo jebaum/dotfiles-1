@@ -1,6 +1,6 @@
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " EXTRA HIGHLIGHT GROUPS
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 
 " Extra whitespace at the ends of lines
 hi ExtraWhitespace cterm=NONE
@@ -30,20 +30,20 @@ autocmd FileType c,cpp,h,hpp call HighlightC_PreProcDefines()
 autocmd InsertEnter c,cpp,h,hpp exec HighlightC_PreProcDefines()
 
 
-" Clear all maches after leaving buffer --------------------------------------
+" Clear all maches after leaving buffer ----------------------------------------
 autocmd BufWinLeave * call clearmatches()
 
 
-
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " SYNTAX HIGHLIGHT
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 
 hi  C_PreProcDefine  ctermfg=DarkRed
 hi  Comment          ctermfg=grey
 hi  CursorColumn     ctermbg=235
 hi  CursorLine       ctermbg=235         cterm=NONE
 hi  CursorLineNr     ctermfg=magenta
+hi  ColorColumn      ctermbg=233
 hi  ExtraWhitespace  ctermbg=red
 hi  LineNr           ctermfg=242
 hi  Normal           ctermfg=DarkGreen
@@ -59,13 +59,13 @@ hi  String           ctermfg=DarkCyan
 hi  Type             ctermfg=white
 hi  WildMenu         ctermbg=cyan
 
-" Plugins' highlight ---------------------------------------------------------
+" Plugins' highlight -----------------------------------------------------------
 
 hi  illuminatedWord   cterm=underline
 hi  jsObjectProp      ctermfg=yellow
 hi  OperatorChars     ctermfg=3
 
-" HiLink -----------------------------------------------------------------------------
+" HiLink -----------------------------------------------------------------------
 
 hi  link  Noise        OperatorChars
 hi  link  SQL_Comment  Comment

@@ -22,7 +22,6 @@ fi
 cd $(dirname $0)
 
 linking  $x  bash/bash_profile       $HOME/.bash_profile
-linking  $x  bash/bash_sources       $HOME/.bash_sources
 linking  $x  bash/bashrc             $HOME/.bashrc
 linking  $x  feh                     $HOME/.config/feh
 linking  $x  mpv/                    $HOME/.config/mpv
@@ -34,7 +33,6 @@ linking  $x  other/profile           $HOME/.profile
 linking  $x  other/tmux.conf         $HOME/.tmux.conf
 linking  $x  other/Xresources        $HOME/.Xresources
 linking  $x  other/zathura           $HOME/.config/zathura
-linking  $x  vim/UltiSnips           $HOME/.vim/UltiSnips
 linking  $x  vim/vimrc               $HOME/.vimrc
 
 # linking  $x  other/terminator_config $HOME/.config/terminator

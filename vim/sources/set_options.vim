@@ -1,9 +1,6 @@
-"-----------------------------------------------------------------------------
-" 'set' OPTIONS
-"-----------------------------------------------------------------------------
-
 set background=dark                  " Dark background (needed for proper colors)
 set backspace=indent,eol,start       " Allow backspacing over everything in insert mode
+set colorcolumn=+1                   " Highlight 81st column
 set cursorcolumn                     " Current column highlight
 set cursorline                       " Current line highlight
 set history=50                       " Keep 50 lines of command line history
@@ -27,5 +24,6 @@ set smartcase                        " If searching with capital letter then use
 set splitbelow                       " New windows open on right when split verticaly
 set splitright                       " New windows open on right when split horizontaly
 set t_Co=256                         " 256 color support
+set textwidth=80                     " Set default textwidth to 80 columns
 set viewoptions-=options,folds       " View options
 set wildmenu                         " Menu for command line completion

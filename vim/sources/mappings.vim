@@ -1,7 +1,3 @@
-"-----------------------------------------------------------------------------
-" MAPPINGS
-"-----------------------------------------------------------------------------
-
 " Set leader
 let mapleader="`"
 let maplocalleader=','
@@ -66,7 +62,7 @@ map Q <nop>
 map ZZ <nop>
 
 
-" PLUGINS' MAPPING -----------------------------------------------------------
+" PLUGINS' MAPPING -------------------------------------------------------------
 
 map <leader><F1> :UndotreeToggle<CR>
 map <leader><F3> :call WindowSwap#EasyWindowSwap()<CR>

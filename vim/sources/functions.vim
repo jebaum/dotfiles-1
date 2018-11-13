@@ -34,6 +34,6 @@ function! RangeFT(start, end, filetype, ...)
 endfunction
 
 
-" CALLING COMMANDS -----------------------------------------------------------
+" CALLING COMMANDS -------------------------------------------------------------
 command! -nargs=+ FillLine call FillLine('<args>')
 command! -nargs=+ RangeFT call RangeFT(<f-args>)
