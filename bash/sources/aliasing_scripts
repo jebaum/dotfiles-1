@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Auto-alias for scripts in $HOME/scripts directory
+
+# Normal scripts
+for script in $HOME/scripts/*; do
+    if [ -f "$script" -a -x "$script" ]; then
+        alias $(basename $script)="$script"
+    fi
+done
+
+# Scripts needing sudo
+for script in $HOME/scripts/sudo/*; do
+    if [ -f "$script" -a -x "$script" ]; then
+        alias $(basename $script)="sudo $script"
+    fi
+done
+
+# Wrappers
+for script in $HOME/scripts/wrappers/*; do
+    if [ -f "$script" -a -x "$script" ]; then
+        alias $(basename $script)="$script"
+    fi
+done
+
+# Scripts needing to be sourced
+for script in $HOME/scripts/source/*; do
+    if [ -f "$script" -a -x "$script" ]; then
+        alias $(basename $script)="source $script"
+    fi
+done
