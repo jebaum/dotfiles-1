@@ -22,4 +22,5 @@ done
 # FUNCTIONS        | $HOME/dotfiles/bash/sources/functions
 # MOUNTING         | $HOME/dotfiles/bash/sources/mounting
 # OTHER            | $HOME/dotfiles/bash/sources/other
+# PRIVATE          | $HOME/dotfiles/bash/sources/private
 # WRAPPERS         | $HOME/dotfiles/bash/sources/wrappers

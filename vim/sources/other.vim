@@ -1,15 +1,15 @@
 " Use Vim settings
 set nocompatible
 
-" " tmux - title fix
-" if has ("title")
-    " if &t_ts == "" && ( &term == "screen" || &term == "xterm" )
-        " let &t_ts = "\e]2;"
-    " endif
-    " if &t_ts != ""
-        " set title
-    " endif
-" endif
+" tmux - title fix
+if has ("title")
+    if &t_ts == "" && ( &term == "screen" || &term == "xterm" )
+        let &t_ts = "\e]2;"
+    endif
+    if &t_ts != ""
+        set title
+    endif
+endif
 
 " Turns on detection, plugin and indent
 filetype plugin indent on

@@ -103,6 +103,38 @@ autocmd InsertEnter * SignatureRefresh " Fix for Signature and gitgutter
 autocmd VimEnter * VSO i               " Vissort - case insensivity
 
 
+"-------------------------------------------------------------------------------
+" MAPPINGS
+"-------------------------------------------------------------------------------
+
+map <leader><F1> :UndotreeToggle<CR>
+map <leader><F3> :call WindowSwap#EasyWindowSwap()<CR>
+map <leader><F4> :UltiSnipsEdit<CR>
+map <leader>n :NERDTreeToggle<CR>
+map c- <plug>NERDCommenterToEOL
+map c<BS> <leader>cu
+map c<space> <leader>c<space>
+map cc <leader>cc
+map cm <leader>cm
+map tt :PreviewTag<CR>
+nmap s ysiw
+nnoremap <leader>s :ToggleWorkspace<CR>
+vmap s S
+
+" EasyMotion
+map <leader>l <Plug>(easymotion-bd-jk)
+nmap <leader>l <Plug>(easymotion-overwin-line)
+map <leader>w <Plug>(easymotion-bd-w)
+
+" Anzu
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+
+" fzf
+nmap <Leader>f :Files<CR>
+
 
 "-------------------------------------------------------------------------------
 " PACKAGES
