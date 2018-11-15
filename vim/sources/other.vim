@@ -35,3 +35,11 @@ set backupdir=~/.vimtmp/backup/
 set directory=~/.vimtmp//
 set undodir=~/.vimtmp/undo/
 set undofile
+
+
+"-------------------------------------------------------------------------------
+" PACKAGES
+"-------------------------------------------------------------------------------
+
+packadd matchit
+packadd termdebug

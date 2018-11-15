@@ -59,13 +59,10 @@ hi  String           ctermfg=DarkCyan
 hi  Type             ctermfg=white
 hi  WildMenu         ctermbg=cyan
 
-" Plugins' highlight -----------------------------------------------------------
 
-hi  illuminatedWord   cterm=underline
-hi  jsObjectProp      ctermfg=yellow
-hi  OperatorChars     ctermfg=3
-
-" HiLink -----------------------------------------------------------------------
+"-------------------------------------------------------------------------------
+" HiLink
+"-------------------------------------------------------------------------------
 
 hi  link  Noise        OperatorChars
 hi  link  SQL_Comment  Comment

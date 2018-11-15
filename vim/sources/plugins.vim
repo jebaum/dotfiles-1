@@ -44,6 +44,7 @@ let g:NERDSpaceDelims                       = 1                               " 
 let g:NERDCommentEmptyLines                 = 1                               " NERDCommenter           - allow commenting empty lines
 let g:NERDTreeWinPos                        = "right"                         " NERDTree                - always on right side
 let g:nerdtree_tabs_smart_startup_focus     = 2                               " NERDTree(Tabs)          - always focus file window after startup
+let g:nerdtree_tabs_autofind                = 1                               " NERDTree(Tabs)          - automatically find and select currently opened file
 let g:nerdtree_tabs_open_on_console_startup = 1                               " NERDTree(Tabs)          - open on startup
 let g:vim_markdown_new_list_item_indent     = 2                               " Polyglot > vim-markdown - change list indent
 let g:SignatureMarkTextHLDynamic            = 1                               " Signature               - git gutter compability
@@ -108,17 +109,19 @@ autocmd VimEnter * VSO i               " Vissort - case insensivity
 "-------------------------------------------------------------------------------
 
 map <leader><F1> :UndotreeToggle<CR>
-map <leader><F3> :call WindowSwap#EasyWindowSwap()<CR>
 map <leader><F4> :UltiSnipsEdit<CR>
-map <leader>n :NERDTreeToggle<CR>
+map tt :PreviewTag<CR>
+nnoremap <leader>s :ToggleWorkspace<CR>
+
+" NERDCommenter
 map c- <plug>NERDCommenterToEOL
 map c<BS> <leader>cu
 map c<space> <leader>c<space>
 map cc <leader>cc
 map cm <leader>cm
-map tt :PreviewTag<CR>
+
+" Surround
 nmap s ysiw
-nnoremap <leader>s :ToggleWorkspace<CR>
 vmap s S
 
 " EasyMotion
@@ -133,12 +136,14 @@ nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
 
 " fzf
+nmap <Leader>a :Ag<CR>
 nmap <Leader>f :Files<CR>
 
 
 "-------------------------------------------------------------------------------
-" PACKAGES
+" HIGHLIGHTS
 "-------------------------------------------------------------------------------
 
-packadd matchit
-packadd termdebug
+hi  illuminatedWord   cterm=underline
+hi  jsObjectProp      ctermfg=yellow
+hi  OperatorChars     ctermfg=3

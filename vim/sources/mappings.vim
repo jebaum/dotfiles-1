@@ -18,7 +18,6 @@ imap <F1> <Esc>gTi
 imap <F2> <Esc>gti
 map <F1> gT
 map <F2> gt
-map <F3> :tabe<CR>
 map <F4> :set invrelativenumber<CR>
 map <F9> :w <bar> make<CR>
 
