@@ -1,7 +1,7 @@
-" Use Vim settings
+" Use vIM's defaults instad of VI's
 set nocompatible
 
-" tmux - title fix
+" tmux - window title fix
 if has ("title")
     if &t_ts == "" && ( &term == "screen" || &term == "xterm" )
         let &t_ts = "\e]2;"
@@ -28,6 +28,9 @@ autocmd FileType qf wincmd J
 
 " Open file at the last known position
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
+
+" Disable continuation of comments to the next line
+autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
 " Backups etc.
 set backup
