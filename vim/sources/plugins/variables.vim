@@ -9,6 +9,7 @@ let g:NERDCommentEmptyLines             = 1 " NERDCommenter           - allow co
 let g:vim_markdown_new_list_item_indent = 2 " Polyglot > vim-markdown - change list indent
 let g:SignatureMarkTextHLDynamic        = 1 " Signature               - git gutter compability
 let g:Illuminate_delay                  = 0 " vim-illuminate          - time delay in milliseconds
+let g:ophigh_highlight_link_group       = 1 " vim-operator-highlight  - add highlight group
 
 " NERDTree
 let g:NERDTreeWinPos                                = "right"                                       "  Always on right side

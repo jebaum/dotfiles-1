@@ -37,7 +37,7 @@ source $HOME/dotfiles/vim/sources/highlights.vim
 " PLUGINS - FUNCTIONS  | $HOME/dotfiles/vim/sources/plugins/functions.vim
 " PLUGINS - GENERAL    | $HOME/dotfiles/vim/sources/plugins/general.vim
 " PLUGINS - LIST       | $HOME/dotfiles/vim/sources/plugins/list.vim
-" PLUGINS - VARIABLES  | $HOME/dotfiles/vim/sources/plugins/mappings.vim
+" PLUGINS - MAPPINGS   | $HOME/dotfiles/vim/sources/plugins/mappings.vim
 " PLUGINS - VARIABLES  | $HOME/dotfiles/vim/sources/plugins/variables.vim
 " RUN SINGLE FILE CODE | $HOME/dotfiles/vim/sources/run_single_file_code.vim
 " STATUS LINE          | $HOME/dotfiles/vim/sources/statusline.vim

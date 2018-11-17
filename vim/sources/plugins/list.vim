@@ -12,6 +12,7 @@ Plug 'Yggdroot/indentLine'                                    " indentLine
 Plug 'sheerun/vim-polyglot'                                   " Polyglot
 Plug 'inkarkat/vim-SyntaxRange'                               " SyntaxRange
 Plug 'romainl/vim-cool'                                       " vim-cool
+Plug 'Valloric/vim-operator-highlight'                        " vim-operator-highlight
 Plug 'shmup/vim-sql-syntax'                                   " vim-sql-syntax
 
 " git INTEGRATION
@@ -34,7 +35,7 @@ Plug 'skywind3000/vim-preview'                                " vim-preview
 Plug 'thaerkh/vim-workspace'                                  " Workspace
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') } " YouCompleteMe
 
-" NAVIGATIONi, MOTION etc.
+" NAVIGATION, MOTION etc.
 Plug 'easymotion/vim-easymotion'                              " EasyMotion
 Plug 'junegunn/fzf'                                           " fzf
 Plug 'junegunn/fzf.vim'                                       " fzf.vim
@@ -43,3 +44,5 @@ Plug 'christoomey/vim-tmux-navigator'                         " Tmux Navigator
 " DEPENDENCES
 Plug 'vim-scripts/dbext.vim'                                  " dbext.vim   | for: YouCompleteMe
 Plug 'inkarkat/vim-ingo-library'                              " ingo-lirary | for: SyntaxRange
+
+Plug 'honza/vim-snippets'

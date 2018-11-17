@@ -29,9 +29,6 @@ endfunction
 autocmd FileType c,cpp,h,hpp call HighlightC_PreProcDefines()
 autocmd InsertEnter c,cpp,h,hpp exec HighlightC_PreProcDefines()
 
-" Operators
-syntax match OperatorChars "?\|+\|-\|\*\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
-
 
 "-------------------------------------------------------------------------------
 " Clear all maches after leaving buffer
