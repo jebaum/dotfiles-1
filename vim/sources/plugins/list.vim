@@ -44,5 +44,3 @@ Plug 'christoomey/vim-tmux-navigator'                         " Tmux Navigator
 " DEPENDENCES
 Plug 'vim-scripts/dbext.vim'                                  " dbext.vim   | for: YouCompleteMe
 Plug 'inkarkat/vim-ingo-library'                              " ingo-lirary | for: SyntaxRange
-
-Plug 'honza/vim-snippets'
