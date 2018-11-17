@@ -1,6 +1,5 @@
 " CODE MANIPULATION
 Plug 'scrooloose/nerdcommenter'                               " NERDCommenter
-Plug 'raviqqe/vim-nonblank'                                   " NONBlank
 Plug 'tpope/vim-surround'                                     " Surround
 Plug 'godlygeek/tabular'                                      " Tabular
 Plug 'alcesleo/vim-uppercase-sql'                             " vim-uppercase-sql
@@ -10,7 +9,6 @@ Plug 'yaroot/vissort'                                         " Visual Block Sor
 Plug 'osyo-manga/vim-anzu'                                    " Anzu
 Plug 'RRethy/vim-illuminate'                                  " Illuminate
 Plug 'Yggdroot/indentLine'                                    " indentLine
-Plug 'Valloric/vim-operator-highlight'                        " Operator-highlight
 Plug 'sheerun/vim-polyglot'                                   " Polyglot
 Plug 'inkarkat/vim-SyntaxRange'                               " SyntaxRange
 Plug 'romainl/vim-cool'                                       " vim-cool

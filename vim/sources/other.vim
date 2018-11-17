@@ -29,8 +29,11 @@ autocmd FileType qf wincmd J
 " Open file at the last known position
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
 
-" Disable continuation of comments to the next line
-autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
+" Disable continuation of comments to the next line (it seriously must by splitted)
+autocmd FileType * set fo-=c fo-=r fo-=o
+
+" Trim trailing whitespace
+autocmd BufWritePre * silent! undojoin | %s/\s\+$//e | %s/\(\n\r\?\)\+\%$//e
 
 " Backups etc.
 set backup

@@ -24,16 +24,6 @@ function! Color_demo()
     endwhile
 endfunction
 
-function! RangeFT(start, end, filetype, ...)
-    let a:include=get(a:,1,0)
-    if a:include
-        call SyntaxRange#Include(a:start, a:end, a:filetype)
-    else
-        call SyntaxRange#Include(a:start, a:end, a:filetype, 'NonText')
-    endif
-endfunction
-
 
 " CALLING COMMANDS -------------------------------------------------------------
 command! -nargs=+ FillLine call FillLine('<args>')
-command! -nargs=+ RangeFT call RangeFT(<f-args>)

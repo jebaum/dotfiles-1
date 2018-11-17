@@ -29,8 +29,13 @@ endfunction
 autocmd FileType c,cpp,h,hpp call HighlightC_PreProcDefines()
 autocmd InsertEnter c,cpp,h,hpp exec HighlightC_PreProcDefines()
 
+" Operators
+syntax match OperatorChars "?\|+\|-\|\*\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
 
-" Clear all maches after leaving buffer ----------------------------------------
+
+"-------------------------------------------------------------------------------
+" Clear all maches after leaving buffer
+
 autocmd BufWinLeave * call clearmatches()
 
 
@@ -38,26 +43,30 @@ autocmd BufWinLeave * call clearmatches()
 " SYNTAX HIGHLIGHT
 "-------------------------------------------------------------------------------
 
+hi  ColorColumn   ctermbg=233
+hi  Comment       ctermfg=grey
+hi  CursorColumn  ctermbg=235
+hi  CursorLine    ctermbg=235         cterm=NONE
+hi  CursorLineNr  ctermfg=magenta
+hi  LineNr        ctermfg=242
+hi  Normal        ctermfg=DarkGreen
+hi  Number        ctermfg=DarkCyan
+hi  Pmenu         ctermfg=black       ctermbg=cyan
+hi  PmenuSel      ctermfg=black       ctermbg=blue
+hi  PreProc       ctermfg=LightGreen
+hi  SignColumn    ctermbg=black
+hi  Special       ctermfg=red         ctermbg=black
+hi  StatusLine    ctermfg=yellow
+hi  StatusLineNC  ctermfg=white
+hi  String        ctermfg=DarkCyan
+hi  Type          ctermfg=white
+hi  WildMenu      ctermbg=cyan
+
+" EXTRA ------------------------------------------------------------------------
+
 hi  C_PreProcDefine  ctermfg=DarkRed
-hi  Comment          ctermfg=grey
-hi  CursorColumn     ctermbg=235
-hi  CursorLine       ctermbg=235         cterm=NONE
-hi  CursorLineNr     ctermfg=magenta
-hi  ColorColumn      ctermbg=233
 hi  ExtraWhitespace  ctermbg=red
-hi  LineNr           ctermfg=242
-hi  Normal           ctermfg=DarkGreen
-hi  Number           ctermfg=DarkCyan
-hi  Pmenu            ctermfg=black       ctermbg=cyan
-hi  PmenuSel         ctermfg=black       ctermbg=blue
-hi  PreProc          ctermfg=LightGreen
-hi  SignColumn       ctermbg=black
-hi  Special          ctermfg=red         ctermbg=black
-hi  StatusLine       ctermfg=yellow
-hi  StatusLineNC     ctermfg=white
-hi  String           ctermfg=DarkCyan
-hi  Type             ctermfg=white
-hi  WildMenu         ctermbg=cyan
+hi  OperatorChars    ctermfg=3
 
 
 "-------------------------------------------------------------------------------

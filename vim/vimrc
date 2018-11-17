@@ -18,6 +18,7 @@ endfunction
 
 " Source directories
 call SourceDirectory('$HOME/dotfiles/vim/sources')
+call SourceDirectory('$HOME/dotfiles/vim/sources/plugins')
 
 " For some reason 'highlights.vim' doesn't source
 source $HOME/dotfiles/vim/sources/highlights.vim
@@ -33,8 +34,11 @@ source $HOME/dotfiles/vim/sources/highlights.vim
 " HIGHLIGHTS           | $HOME/dotfiles/vim/sources/highlights.vim
 " MAPPINGS             | $HOME/dotfiles/vim/sources/mappings.vim
 " OTHER                | $HOME/dotfiles/vim/sources/other.vim
-" PLUGINS              | $HOME/dotfiles/vim/sources/plugins.vim
-" PLUGINS - LIST       | $HOME/dotfiles/vim/plugins_list.vim
+" PLUGINS - FUNCTIONS  | $HOME/dotfiles/vim/sources/plugins/functions.vim
+" PLUGINS - GENERAL    | $HOME/dotfiles/vim/sources/plugins/general.vim
+" PLUGINS - LIST       | $HOME/dotfiles/vim/sources/plugins/list.vim
+" PLUGINS - VARIABLES  | $HOME/dotfiles/vim/sources/plugins/mappings.vim
+" PLUGINS - VARIABLES  | $HOME/dotfiles/vim/sources/plugins/variables.vim
 " RUN SINGLE FILE CODE | $HOME/dotfiles/vim/sources/run_single_file_code.vim
 " STATUS LINE          | $HOME/dotfiles/vim/sources/statusline.vim
 " SYNTAX               | $HOME/dotfiles/vim/sources/syntax_menegment.vim
