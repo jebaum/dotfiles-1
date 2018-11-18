@@ -12,6 +12,7 @@ Plug 'Yggdroot/indentLine'                                    " indentLine
 Plug 'sheerun/vim-polyglot'                                   " Polyglot
 Plug 'inkarkat/vim-SyntaxRange'                               " SyntaxRange
 Plug 'romainl/vim-cool'                                       " vim-cool
+Plug 'Valloric/vim-operator-highlight'                        " vim-operator-highlight
 Plug 'shmup/vim-sql-syntax'                                   " vim-sql-syntax
 
 " git INTEGRATION

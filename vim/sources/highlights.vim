@@ -29,13 +29,6 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
-" Operators highlight // taken from plugin 'Valloric/vim-operator-highlight'
-function! s:HighlightOperators()
-  syntax match OperatorChars "?\|+\|-\|\*\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
-endfunction
-autocmd Syntax * call s:HighlightOperators()
-autocmd ColorScheme * call s:HighlightOperators()
-
 
 "-------------------------------------------------------------------------------
 " Clear all maches after leaving buffer
@@ -71,7 +64,6 @@ hi  WildMenu      ctermbg=cyan
 
 hi  C_PreProcDefine  ctermfg=DarkRed
 hi  ExtraWhitespace  ctermbg=red
-hi  OperatorChars    ctermfg=3
 
 
 "-------------------------------------------------------------------------------

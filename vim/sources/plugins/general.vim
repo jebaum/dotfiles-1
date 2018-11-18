@@ -30,8 +30,9 @@ autocmd VimEnter * VSO i               " Vissort - case insensivity
 " HIGHLIGHTS
 "-------------------------------------------------------------------------------
 
-hi  illuminatedWord   cterm=underline
-hi  jsObjectProp      ctermfg=yellow
+hi  illuminatedWord  cterm=underline
+hi  jsObjectProp     ctermfg=yellow
+hi  OperatorChars    ctermfg=3
 
 
 "-------------------------------------------------------------------------------

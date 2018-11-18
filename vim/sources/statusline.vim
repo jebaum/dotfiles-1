@@ -36,6 +36,8 @@ set statusline+=%w                                                              
 set statusline+=\ \                                                                           " Separator
 set statusline+=%m                                                                            " Modified flag
 set statusline+=%=                                                                            " Switch to the right side
+set statusline+=[0x%B]                                                                        " Value of character under cursor in hex
+set statusline+=\ \ \|\ \                                                                     " Separator
 set statusline+=%l/                                                                           " Current line
 set statusline+=%L                                                                            " Total lines
 set statusline+=\ \:\ %c\                                                                     " Current column
