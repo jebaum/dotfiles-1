@@ -31,6 +31,7 @@ Plug 'kshenoy/vim-signature'                                  " Signature
 Plug 'SirVer/ultisnips'                                       " UltiSnips
 Plug 'mbbill/undotree'                                        " UndoTree
 Plug 'skywind3000/vim-preview'                                " vim-preview
+Plug 'honza/vim-snippets'                                     " vim-snippets
 Plug 'thaerkh/vim-workspace'                                  " Workspace
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') } " YouCompleteMe
 

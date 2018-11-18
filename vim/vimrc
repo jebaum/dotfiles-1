@@ -28,17 +28,18 @@ source $HOME/dotfiles/vim/sources/highlights.vim
 " SOURCE FILES
 " ------------------------------------------------------------------------------
 
-" 'set' OPTIONS        | $HOME/dotfiles/vim/sources/set_options.vim
-" COMMANDS             | $HOME/dotfiles/vim/sources/commands.vim
-" FUNCTIONS            | $HOME/dotfiles/vim/sources/functions.vim
-" HIGHLIGHTS           | $HOME/dotfiles/vim/sources/highlights.vim
-" MAPPINGS             | $HOME/dotfiles/vim/sources/mappings.vim
-" OTHER                | $HOME/dotfiles/vim/sources/other.vim
-" PLUGINS - FUNCTIONS  | $HOME/dotfiles/vim/sources/plugins/functions.vim
-" PLUGINS - GENERAL    | $HOME/dotfiles/vim/sources/plugins/general.vim
-" PLUGINS - LIST       | $HOME/dotfiles/vim/sources/plugins/list.vim
-" PLUGINS - MAPPINGS   | $HOME/dotfiles/vim/sources/plugins/mappings.vim
-" PLUGINS - VARIABLES  | $HOME/dotfiles/vim/sources/plugins/variables.vim
-" RUN SINGLE FILE CODE | $HOME/dotfiles/vim/sources/run_single_file_code.vim
-" STATUS LINE          | $HOME/dotfiles/vim/sources/statusline.vim
-" SYNTAX               | $HOME/dotfiles/vim/sources/syntax_menegment.vim
+" 'set' OPTIONS           | $HOME/dotfiles/vim/sources/set_options.vim
+" COMMANDS                | $HOME/dotfiles/vim/sources/commands.vim
+" FUNCTIONS               | $HOME/dotfiles/vim/sources/functions.vim
+" HIGHLIGHTS              | $HOME/dotfiles/vim/sources/highlights.vim
+" MAPPINGS                | $HOME/dotfiles/vim/sources/mappings.vim
+" OTHER                   | $HOME/dotfiles/vim/sources/other.vim
+" PLUGINS - FUNCTIONS     | $HOME/dotfiles/vim/sources/plugins/functions.vim
+" PLUGINS - GENERAL       | $HOME/dotfiles/vim/sources/plugins/general.vim
+" PLUGINS - LIST          | $HOME/dotfiles/vim/sources/plugins/list.vim
+" PLUGINS - MAPPINGS      | $HOME/dotfiles/vim/sources/plugins/mappings.vim
+" PLUGINS - VARIABLES     | $HOME/dotfiles/vim/sources/plugins/variables.vim
+" PLUGINS - YCM VARIABLES | $HOME/dotfiles/vim/sources/plugins/ycm_variables.vim
+" RUN SINGLE FILE CODE    | $HOME/dotfiles/vim/sources/run_single_file_code.vim
+" STATUS LINE             | $HOME/dotfiles/vim/sources/statusline.vim
+" SYNTAX                  | $HOME/dotfiles/vim/sources/syntax_menegment.vim
