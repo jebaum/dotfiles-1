@@ -5,6 +5,9 @@
 " C/C++
 autocmd filetype c,cpp nnoremap <F8> :w! <bar> exec '!g++ -std=c++17 -g '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
 
+" Haskell // TODO
+autocmd filetype haskell nnoremap <F8> :w! <bar>
+
 " HTML
 autocmd filetype html nnoremap <F8> :w! <bar> !xdg-open %<CR><CR>
 

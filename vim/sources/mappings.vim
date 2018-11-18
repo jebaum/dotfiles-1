@@ -5,15 +5,13 @@ map <space> <leader>
 
 " leader + sth
 inoremap <leader><Tab> <C-v><Tab>
-map <leader>h :noh<CR>
 nnoremap <leader>v gg0vG$
 noremap <leader>= gg=G``
-noremap <leader>" :vnew<CR>
 
-" leader + function keys -- also mapped: <F1>, <F3>, <F4>
+" leader + function keys -- also mapped: <F1>, <F4>
 map <leader><F2> :set wrap!<CR>
 
-" Function keys -- also mapped: <F8>, <F10> ; do not use <F11>
+" Function keys -- also mapped: <F8>
 imap <F1> <Esc>gTi
 imap <F2> <Esc>gti
 map <F1> gT
@@ -28,7 +26,6 @@ inoremap <C-p> <ESC>"+pa
 noremap <C-d> :t.<CR>
 noremap <C-p> "+p
 noremap <C-q><C-q> q
-noremap <C-w><Tab> :vnew<CR>
 noremap <C-y> "+y
 
 " Normal keys
@@ -43,13 +40,9 @@ noremap '' ``
 noremap 0 ^
 noremap <CR> o<ESC>
 noremap <Tab> <C-w><C-w>
-noremap ^ 0
-noremap f z
-noremap F zfa{
+noremap Z zfa{
 noremap gff <C-w>gf
 noremap gfg gf
-noremap z f
-noremap Z z
 
 " <nop>
 map ` <nop>

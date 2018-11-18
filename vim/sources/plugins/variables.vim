@@ -9,12 +9,10 @@ let g:NERDCommentEmptyLines                         = 1                         
 let g:vim_markdown_new_list_item_indent             = 2                                             " Polyglot > vim-markdown - change list indent
 let g:SignatureMarkTextHLDynamic                    = 1                                             " Signature               - git gutter compability
 let g:Illuminate_delay                              = 0                                             " vim-illuminate          - time delay in milliseconds
-let g:ophigh_highlight_link_group                   = 1                                             " vim-operator-highlight  - add highlight group
 
 " NERDTree
 let g:NERDTreeWinPos                                = "right"                                       " Always on right side
 let g:nerdtree_tabs_smart_startup_focus             = 2                                             " Always focus file window after startup
-let g:nerdtree_tabs_autofind                        = 1                                             " Automatically find and select currently opened file
 let g:nerdtree_tabs_open_on_console_startup         = 1                                             " Open on startup
 
 " UltiSnips

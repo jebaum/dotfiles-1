@@ -17,7 +17,7 @@ call plug#end()
 
 
 "-------------------------------------------------------------------------------
-" AUTOCMD
+" au
 "-------------------------------------------------------------------------------
 
 autocmd FileType agit NERDTreeClose    " Fix for Agit and NERDTree
@@ -32,3 +32,13 @@ autocmd VimEnter * VSO i               " Vissort - case insensivity
 
 hi  illuminatedWord   cterm=underline
 hi  jsObjectProp      ctermfg=yellow
+
+
+"-------------------------------------------------------------------------------
+" COMMANDS
+"-------------------------------------------------------------------------------
+
+command -range -nargs=+ TabChar execute '<line1>,<line2>Tabularize / <args> /l0'
+command -range TabSpace execute '<line1>,<line2>Tabularize /\S\+/l1'
+command Plugins PlugUpgrade <bar> PlugUpdate
+command PlugPlug execute 'PlugClean | PlugUpgrade | PlugUpdate'

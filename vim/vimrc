@@ -20,7 +20,7 @@ endfunction
 call SourceDirectory('$HOME/dotfiles/vim/sources')
 call SourceDirectory('$HOME/dotfiles/vim/sources/plugins')
 
-" For some reason 'highlights.vim' doesn't source
+" For some reason 'highlights.vim' doesn't source properly
 source $HOME/dotfiles/vim/sources/highlights.vim
 
 

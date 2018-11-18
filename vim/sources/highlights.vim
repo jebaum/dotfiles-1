@@ -2,20 +2,6 @@
 " EXTRA HIGHLIGHT GROUPS
 "-------------------------------------------------------------------------------
 
-" Extra whitespace at the ends of lines
-hi ExtraWhitespace cterm=NONE
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-
-" Comments in SQL
-hi SQL_Comment cterm=NONE
-match SQL_Comment /\s*--.*$/
-autocmd BufWinEnter *.sql match SQL_Comment /\s*--.*$/
-autocmd InsertEnter *.sql match SQL_Comment /\s*--.*$/
-autocmd InsertLeave *.sql match SQL_Comment /\s*--.*$/
-
 " C/C++ preprocessor defined macros
 function! HighlightC_PreProcDefines()
     syn clear C_PreProcDefine
@@ -29,6 +15,27 @@ endfunction
 autocmd FileType c,cpp,h,hpp call HighlightC_PreProcDefines()
 autocmd InsertEnter c,cpp,h,hpp exec HighlightC_PreProcDefines()
 
+" Comments in SQL
+hi SQL_Comment cterm=NONE
+match SQL_Comment /\s*--.*$/
+autocmd BufWinEnter *.sql match SQL_Comment /\s*--.*$/
+autocmd InsertEnter *.sql match SQL_Comment /\s*--.*$/
+autocmd InsertLeave *.sql match SQL_Comment /\s*--.*$/
+
+" Extra whitespace at the ends of lines
+hi ExtraWhitespace cterm=NONE
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+
+" Operators highlight // taken from plugin 'Valloric/vim-operator-highlight'
+function! s:HighlightOperators()
+  syntax match OperatorChars "?\|+\|-\|\*\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
+endfunction
+autocmd Syntax * call s:HighlightOperators()
+autocmd ColorScheme * call s:HighlightOperators()
+
 
 "-------------------------------------------------------------------------------
 " Clear all maches after leaving buffer
@@ -37,7 +44,7 @@ autocmd BufWinLeave * call clearmatches()
 
 
 "-------------------------------------------------------------------------------
-" SYNTAX HIGHLIGHT
+" HIGHLIGHTS
 "-------------------------------------------------------------------------------
 
 hi  ColorColumn   ctermbg=233
@@ -56,10 +63,11 @@ hi  Special       ctermfg=red         ctermbg=black
 hi  StatusLine    ctermfg=yellow
 hi  StatusLineNC  ctermfg=white
 hi  String        ctermfg=DarkCyan
+hi  Todo          ctermfg=red
 hi  Type          ctermfg=white
 hi  WildMenu      ctermbg=cyan
 
-" EXTRA ------------------------------------------------------------------------
+" EXTRAS -----------------------------------------------------------------------
 
 hi  C_PreProcDefine  ctermfg=DarkRed
 hi  ExtraWhitespace  ctermbg=red
@@ -67,7 +75,7 @@ hi  OperatorChars    ctermfg=3
 
 
 "-------------------------------------------------------------------------------
-" HiLink
+" LINK
 "-------------------------------------------------------------------------------
 
 hi  link  Noise        OperatorChars
