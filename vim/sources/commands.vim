@@ -7,6 +7,7 @@ command QQ qa!
 command SortBlock :normal! vip:sort i<CR>
 command TrimWhitespace execute '%s/\s\+$//e | %s/\(\n\r\?\)\+\%$//e'
 command W wq
+command Vimrc e $MYVIMRC
 
 " WITH SHELL COMMAND ----------------------------------------------------------
 command Ctags w <bar> Silent !ctags --fields=+nS -a %

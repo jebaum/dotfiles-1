@@ -40,6 +40,6 @@ source $HOME/dotfiles/vim/sources/highlights.vim
 " PLUGINS - MAPPINGS      | $HOME/dotfiles/vim/sources/plugins/mappings.vim
 " PLUGINS - VARIABLES     | $HOME/dotfiles/vim/sources/plugins/variables.vim
 " PLUGINS - YCM VARIABLES | $HOME/dotfiles/vim/sources/plugins/ycm_variables.vim
-" RUN SINGLE FILE CODE    | $HOME/dotfiles/vim/sources/run_single_file_code.vim
+" SIMPLE (BUILD AND) RUN  | $HOME/dotfiles/vim/sources/simple_build_and_run.vim
 " STATUS LINE             | $HOME/dotfiles/vim/sources/statusline.vim
 " SYNTAX                  | $HOME/dotfiles/vim/sources/syntax_menegment.vim
