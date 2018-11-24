@@ -4,27 +4,24 @@
 
 " C/C++ preprocessor defined macros
 function! HighlightC_PreProcDefines()
-    syn clear C_PreProcDefine
+    syntax clear C_PreProcDefine
     for l in getline('1','$')
         if l =~ '^\s*#\s*define\s\+'
             let macro = substitute(l, '^\s*#\s*define\s\+\(\k\+\).*$', '\1', '')
-            exe 'syn keyword C_PreProcDefine ' . macro
+            exe 'syntax keyword C_PreProcDefine ' . macro
         endif
     endfor
 endfunction
 autocmd FileType c,cpp,h,hpp call HighlightC_PreProcDefines()
 autocmd InsertEnter c,cpp,h,hpp exec HighlightC_PreProcDefines()
 
-" Comments in SQL
-hi SQL_Comment cterm=NONE
-match SQL_Comment /\s*--.*$/
-autocmd BufWinEnter *.sql match SQL_Comment /\s*--.*$/
-autocmd InsertEnter *.sql match SQL_Comment /\s*--.*$/
-autocmd InsertLeave *.sql match SQL_Comment /\s*--.*$/
+" Comments starting with --
+autocmd filetype haskell,lua,sql syntax match DoublehyphenComment /\s*--.*$/
+
+" LUA block comments
+autocmd filetype lua syntax region LUA_Comment start='--\[\[' end='\]\]'
 
 " Extra whitespace at the ends of lines
-hi ExtraWhitespace cterm=NONE
-match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
@@ -70,5 +67,6 @@ hi  ExtraWhitespace  ctermbg=red
 " LINK
 "-------------------------------------------------------------------------------
 
-hi  link  Noise        OperatorChars
-hi  link  SQL_Comment  Comment
+hi  link  DoublehyphenComment  Comment
+hi  link  LUA_Comment          Comment
+hi  link  Noise                OperatorChars

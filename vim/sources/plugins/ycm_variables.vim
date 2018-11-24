@@ -26,13 +26,14 @@ let g:ycm_filetype_blacklist = {
 
 let g:ycm_semantic_triggers = {
             \   'c' : ['->', '.','re![_a-zA-z0-9]'],
+            \   'cpp' : ['->', '.', '::','re![_a-zA-Z0-9]'],
+            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+            \   'erlang' : [':'],
+            \   'lua' : ['.', ':'],
             \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s', 're!\[.*\]\s'],
             \   'ocaml' : ['.', '#'],
-            \   'cpp' : ['->', '.', '::','re![_a-zA-Z0-9]'],
             \   'perl' : ['->'],
             \   'php' : ['->', '::'],
-            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
             \   'ruby' : ['.', '::'],
-            \   'lua' : ['.', ':'],
-            \   'erlang' : [':'],
+            \   'sql' : ['.','re![_a-zA-z0-9]'],
             \ }
