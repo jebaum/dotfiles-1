@@ -23,9 +23,16 @@ for script in $HOME/scripts/wrappers/*; do
     fi
 done
 
-# Scripts needing to be sourced
-for script in $HOME/scripts/source/*; do
+# Launchers
+for script in $HOME/scripts/launchers/*; do
     if [ -f "$script" -a -x "$script" ]; then
         alias $(basename $script)="source $script"
+    fi
+done
+
+# Backup tools
+for script in $HOME/scripts/backup_tools/*; do
+    if [ -f "$script" -a -x "$script" ]; then
+        alias "$(basename $script)-backup"="$script"
     fi
 done

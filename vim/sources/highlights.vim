@@ -53,9 +53,9 @@ hi  Special       ctermfg=red         ctermbg=black
 hi  StatusLine    ctermfg=yellow
 hi  StatusLineNC  ctermfg=white
 hi  String        ctermfg=DarkCyan
-hi  Todo          ctermfg=red
 hi  Type          ctermfg=white
 hi  WildMenu      ctermbg=cyan
+
 
 " EXTRAS -----------------------------------------------------------------------
 

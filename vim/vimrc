@@ -23,6 +23,8 @@ call SourceDirectory('$HOME/dotfiles/vim/sources/plugins')
 " For some reason 'highlights.vim' doesn't source properly
 source $HOME/dotfiles/vim/sources/highlights.vim
 
+" Fixes -- has to be sourced as last
+source $HOME/dotfiles/vim/sources/fixes.vim
 
 " ------------------------------------------------------------------------------
 " SOURCE FILES
@@ -30,9 +32,10 @@ source $HOME/dotfiles/vim/sources/highlights.vim
 
 " 'set' OPTIONS           | $HOME/dotfiles/vim/sources/set_options.vim
 " COMMANDS                | $HOME/dotfiles/vim/sources/commands.vim
+" FIXES                   | $HOME/dotfiles/vim/sources/fixes.vim
+" FOLDING                 | $HOME/dotfiles/vim/sources/folding.vim
 " FUNCTIONS               | $HOME/dotfiles/vim/sources/functions.vim
 " HIGHLIGHTS              | $HOME/dotfiles/vim/sources/highlights.vim
-" INDENT AND FOLD         | $HOME/dotfiles/vim/sources/indent_and_fold.vim
 " MAPPINGS                | $HOME/dotfiles/vim/sources/mappings.vim
 " OTHER                   | $HOME/dotfiles/vim/sources/other.vim
 " PLUGINS - FUNCTIONS     | $HOME/dotfiles/vim/sources/plugins/functions.vim
@@ -43,3 +46,4 @@ source $HOME/dotfiles/vim/sources/highlights.vim
 " PLUGINS - YCM VARIABLES | $HOME/dotfiles/vim/sources/plugins/ycm_variables.vim
 " SIMPLE (BUILD AND) RUN  | $HOME/dotfiles/vim/sources/simple_build_and_run.vim
 " STATUS LINE             | $HOME/dotfiles/vim/sources/statusline.vim
+" VIM DEBUGGING etc.      | $HOME/dotfiles/vim/sources/vim_debugging.vim

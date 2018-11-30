@@ -14,14 +14,15 @@ let g:ycm_min_num_of_chars_for_completion           = 2
 let g:ycm_show_diagnostics_ui                       = 0
 
 let g:ycm_filetype_blacklist = {
-            \ 'tagbar': 1,
-            \ 'qf': 1,
-            \ 'notes': 1,
-            \ 'unite': 1,
-            \ 'vimwiki': 1,
-            \ 'pandoc': 1,
             \ 'infolog': 1,
             \ 'mail': 1,
+            \ 'man': 1,
+            \ 'notes': 1,
+            \ 'pandoc': 1,
+            \ 'qf': 1,
+            \ 'tagbar': 1,
+            \ 'unite': 1,
+            \ 'vimwiki': 1,
             \}
 
 let g:ycm_semantic_triggers = {
