@@ -17,13 +17,13 @@ call plug#end()
 
 
 "-------------------------------------------------------------------------------
-" au
+" AUTOCMD
 "-------------------------------------------------------------------------------
 
-autocmd FileType agit NERDTreeClose    " Fix for Agit and NERDTree
-autocmd BufEnter * SignatureRefresh    " Fix for Signature and gitgutter
-autocmd InsertEnter * SignatureRefresh " Fix for Signature and gitgutter
-autocmd VimEnter * VSO i               " Vissort - case insensivity
+autocmd BufEnter * SignatureRefresh                                " Fix for Signature and gitgutter
+autocmd FileType man let g:nerdtree_tabs_open_on_console_startup=0 " Not open NERDTree in man pages
+autocmd InsertEnter * SignatureRefresh                             " Fix for Signature and gitgutter
+autocmd VimEnter * VSO i                                           " Vissort - case insensivity
 
 
 "-------------------------------------------------------------------------------

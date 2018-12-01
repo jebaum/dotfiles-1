@@ -72,9 +72,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=always'
 fi
 
-# Changes default editor to vim
+# Changes default editor to Vim
 export EDITOR=vim
 
-
-
+# Changes default manpager to Vim
 export MANPAGER="vim -M +MANPAGER -"

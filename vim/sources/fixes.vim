@@ -3,7 +3,7 @@
 "-------------------------------------------------------------------------------
 
 " List of highlight groups needing to be reversed
-let groupList = ['Todo', 'SpellBad' ]
+let groupList = ['Todo']
 
 function ReverseHighlights(groupList)
     for group in a:groupList
@@ -20,6 +20,9 @@ function ReverseHighlights(groupList)
     endfor
 endfunction
 call ReverseHighlights(groupList)
+
+" Not workin propely even with ReverseHighlights
+hi SpellBad cterm=reverse ctermfg=9 ctermbg=0
 
 
 "-------------------------------------------------------------------------------
