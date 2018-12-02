@@ -40,7 +40,11 @@ endif
 
 
 "-------------------------------------------------------------------------------
-" REDRAW AFTER COMMAND 'silent'
+" 1-liners
 "-------------------------------------------------------------------------------
 
+" Redraw after command 'silent'
 command! -nargs=+ Silent execute 'silent <args>' | redraw!
+
+" Use 'javascript' filetype for *.js files
+autocmd VimEnter *.js set filetype=javascript
