@@ -42,6 +42,7 @@ hi  Comment       ctermfg=grey
 hi  CursorColumn  ctermbg=235
 hi  CursorLine    ctermbg=235         cterm=NONE
 hi  CursorLineNr  ctermfg=magenta
+hi  FoldColumn    ctermbg=black
 hi  LineNr        ctermfg=242
 hi  Normal        ctermfg=DarkGreen
 hi  Number        ctermfg=DarkCyan

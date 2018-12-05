@@ -15,24 +15,32 @@ set nofoldenable
 
 " C/C++/Java -------------------------------------------------------------------
 function! OutlineToggle()
-  if (! exists ("b:outline_mode"))
-    let b:outline_mode = 0
-  endif
-  if (b:outline_mode == 0)
-    syn region myFold start="{" end="}" transparent fold
-    syn sync fromstart
-    set foldmethod=syntax
-    silent! exec "%s/{{{/<<</"
-    silent! exec "%s/}}}/>>>/"
-    let b:outline_mode = 1
-  else
-    set foldmethod=marker
-    silent! exec "%s/<<</{{{/"
-    silent! exec "%s/>>>/}}}/"
-    let b:outline_mode = 0
-  endif
+    let OldLine = line(".")
+    let OldCol = virtcol(".")
+    if (! exists ("b:outline_mode"))
+        let b:outline_mode = 0
+        let b:OldMarker = &foldmarker
+    endif
+    if (b:outline_mode == 0)
+        let b:outline_mode = 1
+        set foldmethod=marker
+        set foldmarker={,}
+        silent! exec "%s/{{{/{<</"
+        silent! exec "%s/}}}/}>>/"
+    else
+        let b:outline_mode = 0
+        set foldmethod=marker
+        let &foldmarker=b:OldMarker
+        silent! exec "%s/{<</{{{/"
+        silent! exec "%s/}>>/{{{/"
+    endif
+    execute "normal! ".OldLine."G"
+    execute "normal! ".OldCol."|"
+    unlet OldLine
+    unlet OldCol
+    execute "normal! zv"
 endfunction
-autocmd VimEnter * exec OutlineToggle()
+autocmd VimEnter * call OutlineToggle()
 
 " JavaScript -------------------------------------------------------------------
 autocmd FileType javascript setlocal foldmethod=syntax

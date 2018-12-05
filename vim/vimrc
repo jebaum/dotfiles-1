@@ -26,6 +26,7 @@ source $HOME/dotfiles/vim/sources/highlights.vim
 " Fixes -- has to be sourced as last
 source $HOME/dotfiles/vim/sources/fixes.vim
 
+
 " ------------------------------------------------------------------------------
 " SOURCE FILES
 " ------------------------------------------------------------------------------
