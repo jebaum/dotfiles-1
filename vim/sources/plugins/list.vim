@@ -36,11 +36,12 @@ Plug 'thaerkh/vim-workspace'                                  " Workspace
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') } " YouCompleteMe
 
 " NAVIGATION, MOTION etc.
+Plug 'bkad/camelcasemotion'                                   " CamelCaseMotion
 Plug 'easymotion/vim-easymotion'                              " EasyMotion
 Plug 'junegunn/fzf'                                           " fzf
 Plug 'junegunn/fzf.vim'                                       " fzf.vim
 Plug 'christoomey/vim-tmux-navigator'                         " Tmux Navigator
 
 " DEPENDENCES
-Plug 'vim-scripts/dbext.vim'                                  " dbext.vim   | for: YouCompleteMe
+Plug 'vim-scripts/dbext.vim'                                  " dbext.vim   | for: YouCompleteMe with SQL
 Plug 'inkarkat/vim-ingo-library'                              " ingo-lirary | for: SyntaxRange

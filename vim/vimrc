@@ -4,29 +4,6 @@
 
 " "VIM is not an IDE"... but I still try to make it into one
 
-
-" ------------------------------------------------------------------------------
-" SOURCING
-" ------------------------------------------------------------------------------
-
-" Sourcing function
-function! SourceDirectory(file)
-  for s:fpath in split(globpath(a:file, '*.vim'), '\n')
-    exe 'source' s:fpath
-  endfor
-endfunction
-
-" Source directories
-call SourceDirectory('$HOME/dotfiles/vim/sources')
-call SourceDirectory('$HOME/dotfiles/vim/sources/plugins')
-
-" For some reason 'highlights.vim' doesn't source properly
-source $HOME/dotfiles/vim/sources/highlights.vim
-
-" Fixes -- has to be sourced as last
-source $HOME/dotfiles/vim/sources/fixes.vim
-
-
 " ------------------------------------------------------------------------------
 " SOURCE FILES
 " ------------------------------------------------------------------------------
@@ -48,3 +25,25 @@ source $HOME/dotfiles/vim/sources/fixes.vim
 " SIMPLE (BUILD AND) RUN  | $HOME/dotfiles/vim/sources/simple_build_and_run.vim
 " STATUS LINE             | $HOME/dotfiles/vim/sources/statusline.vim
 " VIM DEBUGGING etc.      | $HOME/dotfiles/vim/sources/vim_debugging.vim
+
+
+" ------------------------------------------------------------------------------
+" SOURCING
+" ------------------------------------------------------------------------------
+
+" Sourcing function
+function! SourceDirectory(file)
+  for s:fpath in split(globpath(a:file, '*.vim'), '\n')
+    exe 'source' s:fpath
+  endfor
+endfunction
+
+" Source directories
+call SourceDirectory('$HOME/dotfiles/vim/sources')
+call SourceDirectory('$HOME/dotfiles/vim/sources/plugins')
+
+" For some reason 'highlights.vim' doesn't source properly
+source $HOME/dotfiles/vim/sources/highlights.vim
+
+" Fixes -- has to be sourced as last
+source $HOME/dotfiles/vim/sources/fixes.vim
