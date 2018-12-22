@@ -1,4 +1,5 @@
 " CODE MANIPULATION
+Plug 'Chiel92/vim-autoformat'                                 " AutoFormat
 Plug 'scrooloose/nerdcommenter'                               " NERDCommenter
 Plug 'tpope/vim-surround'                                     " Surround
 Plug 'godlygeek/tabular'                                      " Tabular

@@ -89,9 +89,9 @@ ios-mnt()
     if [[ $plugged == "" ]]; then
         echo "No iOS device found, is it plugged in?"
     else
-        echo
-        echo -e "\e[4m0 | iOS\e[0m"
-        echo
+        # echo
+        # echo -e "\e[4m0 | iOS\e[0m"
+        # echo
 
         i=1
         while read app
@@ -125,7 +125,7 @@ ios-mnt()
         elif [[ $option =~ $re ]] ; then
             if ! [ $option -ge $i ]; then
                 mkdir /mnt/$x
-                ifuse --appid ${appid[$option]} /mnt/$x
+                ifuse --documents ${appid[$option]} /mnt/$x
             fi
         fi
     fi

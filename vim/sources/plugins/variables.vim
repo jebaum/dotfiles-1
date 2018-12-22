@@ -11,6 +11,12 @@ let g:SignatureMarkTextHLDynamic            = 1                                 
 let g:Illuminate_delay                      = 0                                 " vim-illuminate          - time delay in milliseconds
 let g:ophigh_highlight_link_group           = 1                                 " vim-operator-highlight  - add highlight group
 
+" AutoFormat
+let b:formatdef_custom_c                    = '"astyle --style=kr -s4 -N -S -xG -xU -f -k3 -xj -p"'
+
+let b:formatters_c                          = ['custom_c']
+let b:formatters_cpp                        = ['custom_c']
+
 " NERDTree
 let g:nerdtree_tabs_open_on_console_startup = 1                                 " Open on startup
 let g:nerdtree_tabs_smart_startup_focus     = 2                                 " Always focus file window after startup

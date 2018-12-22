@@ -47,4 +47,4 @@ endif
 command! -nargs=+ Silent execute 'silent <args>' | redraw!
 
 " Use 'javascript' filetype for *.js files
-autocmd VimEnter *.js set filetype=javascript
+autocmd VimEnter *.js setlocal filetype=javascript

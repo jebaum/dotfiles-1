@@ -1,5 +1,14 @@
 #!/bin/bash
 
+count-files()
+{
+    if [[ $1 == "-a" ]]; then
+        ls -1a | wc -l
+    else
+        ls -1 | wc -l
+    fi
+}
+
 
 offupg()
 {
@@ -19,7 +28,8 @@ term-title()
     command wmctrl -r :ACTIVE: -N "$title"
 }
 
-upgrade() {
+upgrade()
+{
     command sudo apt update
     command sudo apt full-upgrade
     command sudo apt autoremove -y

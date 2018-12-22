@@ -6,7 +6,6 @@ map <space> <leader>
 " leader + sth
 inoremap <leader><Tab> <C-v><Tab>
 nnoremap <leader>v gg0vG$
-noremap <leader>= gg=G``
 
 " leader + function keys -- also mapped: <F1>, <F4>
 map <leader><F2> :set wrap!<CR>
@@ -52,3 +51,6 @@ map K <nop>
 map q <nop>
 map Q <nop>
 map ZZ <nop>
+
+" UNUSED -----------------------------------------------------------------------
+" noremap <leader>= gg=G``

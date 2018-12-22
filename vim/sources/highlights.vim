@@ -26,6 +26,11 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
+" XOR operator: ^
+autocmd BufWinEnter * match OperatorCharXOR '\^'
+autocmd InsertEnter * match OperatorCharXOR '\^'
+autocmd InsertLeave * match OperatorCharXOR '\^'
+
 
 "-------------------------------------------------------------------------------
 " Clear all maches after leaving buffer
@@ -71,3 +76,4 @@ hi  ExtraWhitespace  ctermbg=red
 hi  link  DoublehyphenComment  Comment
 hi  link  LUA_Comment          Comment
 hi  link  Noise                OperatorChars
+hi  link  OperatorCharXOR      OperatorChars

@@ -21,6 +21,7 @@ set incsearch                        " Do incremental searching
 set smartcase                        " If searching with capital letter then use match case
 
 " UI
+set completeopt-=preview             " Disable preview window for completeopt // for: YCM
 set laststatus=2                     " To always display status line
 set number                           " Enable line numbers
 set showcmd                          " Display incomplete commands

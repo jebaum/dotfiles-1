@@ -5,6 +5,7 @@
 map <leader><F1> :UndotreeToggle<CR>
 map <leader><F4> :UltiSnipsEdit<CR>
 map tt :PreviewTag<CR>
+nnoremap <leader>= :Autoformat<CR>
 nnoremap <leader>s :ToggleWorkspace<CR>
 
 " Anzu

@@ -2,15 +2,6 @@
 ### BASHRC ###
 ##############
 
-#-------------------------------------------------------------------------------
-# SOURCING
-#-------------------------------------------------------------------------------
-
-for src in $HOME/dotfiles/bash/sources/*
-do
-    source $src
-done
-
 
 #-------------------------------------------------------------------------------
 # SOURCE FILES
@@ -24,3 +15,12 @@ done
 # OTHER            | $HOME/dotfiles/bash/sources/other
 # PRIVATE          | $HOME/dotfiles/bash/sources/private
 # WRAPPERS         | $HOME/dotfiles/bash/sources/wrappers
+
+#-------------------------------------------------------------------------------
+# SOURCING
+#-------------------------------------------------------------------------------
+
+for src in $HOME/dotfiles/bash/sources/*
+do
+    source $src
+done

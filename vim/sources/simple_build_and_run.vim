@@ -2,14 +2,17 @@
 " SIMLE (BUILD AND) RUN
 "-------------------------------------------------------------------------------
 
+" BASIC // for Vintage BASIC
+autocmd filetype basic nnoremap <F8> :w <bar> !vintbas %<CR>
+
 " C/C++
-autocmd filetype c,cpp nnoremap <F8> :w! <bar> exec '!g++ -std=c++17 -g '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
+autocmd filetype c,cpp nnoremap <F8> :w <bar> exec '!g++ -std=c++17 -g '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
 
 " Haskell // TODO
-" autocmd filetype haskell nnoremap <F8> :w! <bar>
+" autocmd filetype haskell nnoremap <F8> :w <bar>
 
 " HTML
-autocmd filetype html nnoremap <F8> :w! <bar> !xdg-open %<CR><CR>
+autocmd filetype html nnoremap <F8> :w <bar> !xdg-open %<CR><CR>
 
 " LaTeX
 autocmd filetype tex nnoremap <F8> :w <bar> !latexmk -pdf % && latexmk -c && zathura %:t:r.pdf<CR>
@@ -24,7 +27,7 @@ autocmd filetype lua nnoremap <F8> :w <bar> !lua %<CR>
 autocmd filetype markdown nnoremap <F8> :w <bar> !grip -b % 1> /dev/null<CR><CR>
 
 " Python
-autocmd filetype python nnoremap <F8> :w! <bar> !python %<CR>
+autocmd filetype python nnoremap <F8> :w <bar> !python3 %<CR>
 
 " Shell Script
-autocmd filetype sh nnoremap <F8> :w! <bar> !%:p<CR>
+autocmd filetype sh nnoremap <F8> :w <bar> !%:p<CR>

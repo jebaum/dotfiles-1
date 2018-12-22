@@ -2,7 +2,7 @@
 " PLUGINS - YouCompleteMe VARIABLES
 "-------------------------------------------------------------------------------
 
-let g:ycm_add_preview_to_completeopt                = 1
+let g:ycm_add_preview_to_completeopt                = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_collect_identifiers_from_tags_files       = 1
 let g:ycm_complete_in_comments                      = 1
@@ -27,6 +27,7 @@ let g:ycm_filetype_blacklist = {
 
 let g:ycm_semantic_triggers = {
             \   'c' : ['->', '.','re![_a-zA-z0-9]'],
+            \   'python' : ['->', '.','re![_a-zA-z0-9]'],
             \   'cpp' : ['->', '.', '::','re![_a-zA-Z0-9]'],
             \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
             \   'erlang' : [':'],

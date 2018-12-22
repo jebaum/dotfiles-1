@@ -43,3 +43,4 @@ command -range -nargs=+ TabChar execute '<line1>,<line2>Tabularize / <args> /l0'
 command -range TabSpace execute '<line1>,<line2>Tabularize /\S\+/l1'
 command Plugins PlugUpgrade <bar> PlugUpdate
 command PlugPlug execute 'PlugClean | PlugUpgrade | PlugUpdate'
+command UltiEdit UltiSnipsEdit
