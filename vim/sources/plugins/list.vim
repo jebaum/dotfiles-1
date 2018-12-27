@@ -38,7 +38,6 @@ Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') } " YouCompleteMe
 
 " NAVIGATION, MOTION etc.
 Plug 'bkad/camelcasemotion'                                   " CamelCaseMotion
-Plug 'easymotion/vim-easymotion'                              " EasyMotion
 Plug 'junegunn/fzf'                                           " fzf
 Plug 'junegunn/fzf.vim'                                       " fzf.vim
 Plug 'christoomey/vim-tmux-navigator'                         " Tmux Navigator

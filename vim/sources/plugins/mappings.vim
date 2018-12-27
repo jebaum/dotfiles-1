@@ -24,11 +24,6 @@ sunmap b
 sunmap e
 sunmap ge
 
-" EasyMotion
-map <leader>l <Plug>(easymotion-bd-jk)
-nmap <leader>l <Plug>(easymotion-overwin-line)
-map <leader>w <Plug>(easymotion-bd-w)
-
 " NERDCommenter
 map c- <plug>NERDCommenterToEOL
 map c<BS> <leader>cu
