@@ -22,7 +22,7 @@
 " PLUGINS - MAPPINGS      | $HOME/dotfiles/vim/sources/plugins/mappings.vim
 " PLUGINS - VARIABLES     | $HOME/dotfiles/vim/sources/plugins/variables.vim
 " PLUGINS - YCM VARIABLES | $HOME/dotfiles/vim/sources/plugins/ycm_variables.vim
-" SIMPLE (BUILD AND) RUN  | $HOME/dotfiles/vim/sources/simple_build_and_run.vim
+" SIMPLE COMPILE          | $HOME/dotfiles/vim/sources/simpleCompile.vim
 " STATUS LINE             | $HOME/dotfiles/vim/sources/statusline.vim
 " VIM DEBUGGING etc.      | $HOME/dotfiles/vim/sources/vim_debugging.vim
 

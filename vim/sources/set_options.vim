@@ -7,7 +7,7 @@ set undofile                         " Enable undo files
 
 " Looks
 set background=dark                  " Dark background (needed for proper colors)
-set colorcolumn=+1                   " Highlight 81st column
+set colorcolumn=81                   " Highlight 81st column
 set cursorcolumn                     " Current column highlight
 set cursorline                       " Current line highlight
 set listchars=""                     " Helps with vim-indentguides - no $ at the end of lines
@@ -39,4 +39,3 @@ set history=50                       " Keep 50 lines of command line history
 set modeline                         " Enable modelines
 set nrformats=                       " Ignore non-DEC numeral systems when in- or decrementing with <C-a>/<C-x>
 set omnifunc=syntaxcomplete#Complete " Omnifunc
-set textwidth=80                     " Set default textwidth to 80 columns

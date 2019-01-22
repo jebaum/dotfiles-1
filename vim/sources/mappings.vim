@@ -5,6 +5,8 @@ map <space> <leader>
 
 " leader + sth
 inoremap <leader><Tab> <C-v><Tab>
+nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <Leader>R :%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>
 nnoremap <leader>v gg0vG$
 
 " leader + function keys -- also mapped: <F1>, <F4>
@@ -46,7 +48,6 @@ noremap n nzz
 map ` <nop>
 map c <nop>
 map gh <nop>
-map K <nop>
 map q <nop>
 map Q <nop>
 map ZZ <nop>

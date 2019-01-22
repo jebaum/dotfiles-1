@@ -12,8 +12,7 @@ function! HighlightC_PreProcDefines()
         endif
     endfor
 endfunction
-autocmd FileType c,cpp,h,hpp call HighlightC_PreProcDefines()
-autocmd InsertEnter c,cpp,h,hpp exec HighlightC_PreProcDefines()
+autocmd FileType c,cpp,h,hpp autocmd VimEnter,InsertEnter,InsertLeave * call HighlightC_PreProcDefines()
 
 " Comments starting with --
 autocmd filetype haskell,lua,sql syntax match DoublehyphenComment /\s*--.*$/
@@ -77,3 +76,4 @@ hi  link  DoublehyphenComment  Comment
 hi  link  LUA_Comment          Comment
 hi  link  Noise                OperatorChars
 hi  link  OperatorCharXOR      OperatorChars
+hi  link  VimCommentString     Comment

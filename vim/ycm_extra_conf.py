@@ -1,4 +1,3 @@
-
 # Partially stolen from https://bitbucket.org/mblum/libgp/src/2537ea7329ef/.ycm_extra_conf.py
 import os
 import ycm_core
@@ -32,6 +31,7 @@ flags = [
 #    '-isystem', '/usr/local/include',
 #    '-isystem', '/usr/local/include/eigen3',
 
+    '-I', '/usr/include/c++/7',
     '-I', '/usr/lib/clang/3.6.0/include',
     '-I', '/usr/include',
     '-I', '.'

@@ -7,6 +7,7 @@ map <leader><F4> :UltiSnipsEdit<CR>
 map tt :PreviewTag<CR>
 nnoremap <leader>= :Autoformat<CR>
 nnoremap <leader>s :ToggleWorkspace<CR>
+nnoremap <F8> :MarkdownPreview<CR>
 
 " Anzu
 nmap n <Plug>(anzu-n-with-echo)
