@@ -10,10 +10,9 @@ autocmd filetype c nnoremap <buffer> <F8> :w <bar> exec '!gcc -std=c99 -g '.shel
 
 " C++
 autocmd filetype cpp nnoremap <buffer> <F8> :w <bar> exec '!g++ -std=c++11 -g '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
-" autocmd filetype c,cpp nnoremap <buffer> <F10> :w <bar> exec '!g++ -std=c++11 -g '.shellescape('%').' -o '.shellescape('%:t:r').'' <bar> terminal ./%:t:r<CR><CR>
 
 " Haskell // TODO
-" autocmd filetype haskell nnoremap <buffer> <F8> :w <bar>
+autocmd filetype haskell nnoremap <buffer> <F8> :w <bar>
 
 " HTML
 autocmd filetype html nnoremap <buffer> <F8> :w <bar> !xdg-open %<CR><CR>
@@ -27,11 +26,12 @@ autocmd filetype lisp nnoremap <buffer> <F8> :w <bar> !clisp %<CR>
 " Lua
 autocmd filetype lua nnoremap <buffer> <F8> :w <bar> !lua %<CR>
 
-" Markdown // useful only if not using Markdown Preview plugin
-" autocmd filetype markdown nnoremap <buffer> <F8> :w <bar> !grip -b % 1> /dev/null<CR><CR>
-
 " Python
 autocmd filetype python nnoremap <buffer> <F8> :w <bar> !python3 %<CR>
 
 " Shell Script
 autocmd filetype sh nnoremap <buffer> <F8> :w <bar> !%:p<CR>
+
+
+"-------------------------------------------------------------------------------
+" Markdown - look: Markdown Preview plugin

@@ -24,9 +24,9 @@ let g:NERDTreeWinPos                        = "right"                           
 
 " UltiSnips
 let g:UltiSnipsEditSplit                    = "context"                         " :UltiSnipsEdit splits window instead of taking over it
-let g:UltiSnipsExpandTrigger                = "<C-j>"                           " Custom expand key to work with YCM
+let g:UltiSnipsExpandTrigger                = "<C-i>"                           " Custom expand key to work with YCM
 let g:UltiSnipsJumpBackwardTrigger          = "<C-k>"                           " As variable suggests
-let g:UltiSnipsJumpForwardTrigger           = "<C-j>"                           " As variable suggests
+let g:UltiSnipsJumpForwardTrigger           = "<C-i>"                           " As variable suggests
 let g:UltiSnipsListSnippets                 = "<C-k>"                           " List maching snippets
 let g:UltiSnipsSnippetDirectories           = ['~/.vim/UltiSnips', 'UltiSnips'] " Set dafault directory for snippets
 

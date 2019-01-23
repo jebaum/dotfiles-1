@@ -36,8 +36,7 @@ noremap 0 ^
 noremap <CR> o<ESC>
 noremap <Tab> <C-w><C-w>
 noremap G G0
-noremap gff <C-w>gf
-noremap gfg gf
+noremap gf <C-w>gf
 noremap gg gg0
 noremap j gj
 noremap k gk
@@ -51,6 +50,3 @@ map gh <nop>
 map q <nop>
 map Q <nop>
 map ZZ <nop>
-
-" UNUSED -----------------------------------------------------------------------
-" noremap <leader>= gg=G``
