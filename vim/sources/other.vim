@@ -39,5 +39,5 @@ set tabstop=4     " Tab spacing
 " PACKAGES
 "-------------------------------------------------------------------------------
 
-packadd matchit
-packadd termdebug
+" packadd matchit
+" packadd termdebug

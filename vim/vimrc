@@ -14,6 +14,7 @@
 " FOLDING                 | $HOME/dotfiles/vim/sources/folding.vim
 " FUNCTIONS               | $HOME/dotfiles/vim/sources/functions.vim
 " HIGHLIGHTS              | $HOME/dotfiles/vim/sources/highlights.vim
+" INIT.VIM (for NeoVim)   | $HOME/dotfiles/vim/init.vim
 " MAPPINGS                | $HOME/dotfiles/vim/sources/mappings.vim
 " OTHER                   | $HOME/dotfiles/vim/sources/other.vim
 " PLUGINS - FUNCTIONS     | $HOME/dotfiles/vim/sources/plugins/functions.vim

@@ -29,6 +29,8 @@ set statusline+=%y                                                              
 set statusline+=[%{&ff}]                                                                       " File format
 set statusline+=[%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\"\ BOM\":\"\")}]  " File encoding
 set statusline+=\ \                                                                            " Separator
+set statusline+=[%{&fo}]                                                                       " Format options
+set statusline+=\ \                                                                            " Separator
 set statusline+=[%{FileSize()}]                                                                " File size
 set statusline+=\ \                                                                            " Separator
 set statusline+=%r                                                                             " Readonly flag

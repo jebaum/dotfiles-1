@@ -53,13 +53,17 @@ hi  Number        ctermfg=DarkCyan
 hi  Pmenu         ctermfg=black       ctermbg=cyan
 hi  PmenuSel      ctermfg=black       ctermbg=blue
 hi  PreProc       ctermfg=LightGreen
+hi  qfLineNr      ctermfg=yellow
 hi  SignColumn    ctermbg=black
 hi  Special       ctermfg=red         ctermbg=black
-hi  StatusLine    ctermfg=yellow
+hi  StatusLine    ctermfg=black       ctermbg=yellow  cterm=NONE
 hi  StatusLineNC  ctermfg=white
 hi  String        ctermfg=DarkCyan
 hi  Type          ctermfg=white
 hi  WildMenu      ctermbg=cyan
+hi  DiffAdd  ctermbg=none
+hi  DiffChange ctermbg=none
+hi  DiffDelete ctermbg=none
 
 " EXTRAS -----------------------------------------------------------------------
 

@@ -2,27 +2,9 @@
 " FIX FOR CursorLine BACKGROUND HIGHLIGHT AND OTHER BG HIGHLIGHTS
 "-------------------------------------------------------------------------------
 
-" List of highlight groups needing to be reversed
-let groupList = ['Todo']
-
-function ReverseHighlights(groupList)
-    for group in a:groupList
-        let output = execute('hi '.group)
-        let s:ctermfg2 = matchstr(output, 'ctermfg=\zs\S*')
-        let s:ctermbg2 = matchstr(output, 'ctermbg=\zs\S*')
-        if (s:ctermfg2 == "")
-            exe "hi ".group." cterm=reverse ctermfg=".s:ctermbg2." ctermbg=0"
-        elseif (s:ctermbg2 == "")
-            exe "hi ".group." cterm=reverse ctermfg=0 ctermbg=".s:ctermfg2
-        else
-            exe "hi ".group." cterm=reverse ctermfg=".s:ctermbg2." ctermbg=".s:ctermfg2
-        endif
-    endfor
-endfunction
-call ReverseHighlights(groupList)
-
 " Not workin propely even with ReverseHighlights
 hi SpellBad cterm=reverse ctermfg=9 ctermbg=0
+hi QuickFixLine cterm=reverse ctermfg=yellow ctermbg=0
 
 
 "-------------------------------------------------------------------------------

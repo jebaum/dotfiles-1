@@ -73,10 +73,10 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Changes default editor to Vim
-export EDITOR=vim
+export EDITOR=vi
 
 # Changes default manpager to Vim
-export MANPAGER="vim -M +MANPAGER -"
+export MANPAGER="vi +'set fletype=man' -"
 
 export VITASDK=/usr/local/vitasdk
 export PATH=$VITASDK/bin:$PATH # add vitasdk tool to $PATH

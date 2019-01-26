@@ -21,7 +21,6 @@ call plug#end()
 "-------------------------------------------------------------------------------
 
 autocmd BufEnter * SignatureRefresh                                " Fix for Signature and gitgutter
-autocmd FileType man let g:nerdtree_tabs_open_on_console_startup=0 " Not open NERDTree in man pages
 autocmd InsertEnter * SignatureRefresh                             " Fix for Signature and gitgutter
 autocmd VimEnter * VSO i                                           " Vissort - case insensivity
 

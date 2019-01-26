@@ -1,6 +1,8 @@
 " Fill rest of line with characters
 function! FillLine(str)
-    let tw = &textwidth
+    " let tw = &textwidth
+    let tw = 80
+
     if tw==0 | let tw = 80 | endif
     .s/[[:space:]]*$//
     let reps = (tw - col("$")) / len(a:str)
