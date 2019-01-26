@@ -61,7 +61,6 @@ hi  String        ctermfg=DarkCyan
 hi  Type          ctermfg=white
 hi  WildMenu      ctermbg=cyan
 
-
 " EXTRAS -----------------------------------------------------------------------
 
 hi  C_PreProcDefine  ctermfg=DarkRed

@@ -11,7 +11,8 @@ let g:ycm_global_ycm_extra_conf                     = '$HOME/dotfiles/vim/ycm_ex
 let g:ycm_key_list_stop_completion                  = ['<C-y>']
 let g:ycm_max_num_candidates                        = 20
 let g:ycm_min_num_of_chars_for_completion           = 2
-let g:ycm_show_diagnostics_ui                       = 0
+let g:ycm_show_diagnostics_ui                       = 1
+let g:ycm_use_ultisnips_completer                   = 1
 
 let g:ycm_filetype_blacklist = {
             \ 'infolog': 1,
@@ -23,19 +24,17 @@ let g:ycm_filetype_blacklist = {
             \ 'tagbar': 1,
             \ 'unite': 1,
             \ 'vimwiki': 1,
-            \}
+            \ }
 
 let g:ycm_semantic_triggers = {
-            \   'c' : ['->', '.','re![_a-zA-z0-9]'],
-            \   'python' : ['->', '.','re![_a-zA-z0-9]'],
-            \   'cpp' : ['->', '.', '::','re![_a-zA-Z0-9]'],
-            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-            \   'erlang' : [':'],
-            \   'lua' : ['.', ':'],
-            \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s', 're!\[.*\]\s'],
-            \   'ocaml' : ['.', '#'],
-            \   'perl' : ['->'],
-            \   'php' : ['->', '::'],
-            \   'ruby' : ['.', '::'],
-            \   'sql' : ['.','re![_a-zA-z0-9]'],
+            \ 'c'          :  ['->', '.', 're![_a-zA-z0-9]'],
+            \ 'cpp'        :  ['->', '.', '::', 're![_a-zA-Z0-9]'],
+            \ 'cs'         :  ['.', 're![_a-zA-z0-9]'],
+            \ 'java'       :  ['.', 're![_a-zA-z0-9]'],
+            \ 'javascript' :  ['.', 're![_a-zA-z0-9]'],
+            \ 'lua'        :  ['.', ':', 're![_a-zA-z0-9]'],
+            \ 'perl'       :  ['->', 're![_a-zA-z0-9]'],
+            \ 'php'        :  ['->', '::', 're![_a-zA-z0-9]'],
+            \ 'python'     :  ['->', '.', 're![_a-zA-z0-9]'],
+            \ 'sql'        :  ['.', 're![_a-zA-z0-9]'],
             \ }

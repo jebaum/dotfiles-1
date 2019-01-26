@@ -1,5 +1,5 @@
 " Fill rest of line with characters
-function! FillLine( str )
+function! FillLine(str)
     let tw = &textwidth
     if tw==0 | let tw = 80 | endif
     .s/[[:space:]]*$//
@@ -9,6 +9,11 @@ function! FillLine( str )
     endif
 endfunction
 
+function! RepeatStr(times, str)
+    exe ":normal a" . repeat(a:str, a:times)
+endfunction
+
 
 " CALLING COMMANDS -------------------------------------------------------------
 command! -nargs=+ FillLine call FillLine('<args>')
+command! -nargs=+ RepeatStr call RepeatStr(<f-args>)

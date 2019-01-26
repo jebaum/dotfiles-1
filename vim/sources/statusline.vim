@@ -21,23 +21,27 @@ endfunction
 "-------------------------------------------------------------------------------
 
 set statusline=
-set statusline+=[%n]                                                                          " Buffer number
-set statusline+=\ \                                                                           " Separator
-set statusline+=%f\                                                                           " Relative path to the file
-set statusline+=\                                                                             " Separator
-set statusline+=%y                                                                            " Filetype
-set statusline+=[%{&ff}]                                                                      " File format
-set statusline+=[%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\"\ BOM\":\"\")}] " File encoding
-set statusline+=\ \                                                                           " Separator
-set statusline+=[%{FileSize()}]                                                               " File size
-set statusline+=\ \                                                                           " Separator
-set statusline+=%r                                                                            " Readonly flag
-set statusline+=%w                                                                            " Preview flag
-set statusline+=\ \                                                                           " Separator
-set statusline+=%m                                                                            " Modified flag
-set statusline+=%=                                                                            " Switch to the right side
-set statusline+=[0x%B]                                                                        " Value of character under cursor in hex
-set statusline+=\ \ \|\ \                                                                     " Separator
-set statusline+=%l/                                                                           " Current line
-set statusline+=%L                                                                            " Total lines
-set statusline+=\ \:\ %c\                                                                     " Current column
+set statusline+=[%n]                                                                           " Buffer number
+set statusline+=\ \                                                                            " Separator
+set statusline+=%f\                                                                            " Relative path to the file
+set statusline+=\                                                                              " Separator
+set statusline+=%y                                                                             " Filetype
+set statusline+=[%{&ff}]                                                                       " File format
+set statusline+=[%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\"\ BOM\":\"\")}]  " File encoding
+set statusline+=\ \                                                                            " Separator
+set statusline+=[%{FileSize()}]                                                                " File size
+set statusline+=\ \                                                                            " Separator
+set statusline+=%r                                                                             " Readonly flag
+set statusline+=%w                                                                             " Preview flag
+set statusline+=\ \                                                                            " Separator
+set statusline+=%m                                                                             " Modified flag
+set statusline+=%=                                                                             " Switch to the right side
+set statusline+=%#SyntasticStatuslineHi#                                                       " Syntastic Statusline Highlight
+set statusline+=%{SyntasticStatuslineFlag()}                                                   " Syntastic Flag
+set statusline+=%*                                                                             " Back to normal 'StatusLine' highlight
+set statusline+=\ \                                                                            " Separator
+set statusline+=[0x%B]                                                                         " Value of character under cursor in hex
+set statusline+=\ \ \|\ \                                                                      " Separator
+set statusline+=%l/                                                                            " Current line
+set statusline+=%L                                                                             " Total lines
+set statusline+=\ \:\ %c\                                                                      " Current column

@@ -2,8 +2,6 @@
 " PLUGINS - VARIABLES
 "-------------------------------------------------------------------------------
 
-let g:ale_set_highlights                    = 0                                 " ALE                     - disable highlight
-let g:ale_sign_column_always                = 1                                 " ALE                     - sing column always visible
 let g:NERDSpaceDelims                       = 1                                 " NERDCommenter           - add space after comment delimiters
 let g:NERDCommentEmptyLines                 = 1                                 " NERDCommenter           - allow commenting empty lines
 let g:vim_markdown_new_list_item_indent     = 2                                 " Polyglot > vim-markdown - change list indent
@@ -22,11 +20,18 @@ let g:nerdtree_tabs_open_on_console_startup = 1                                 
 let g:nerdtree_tabs_smart_startup_focus     = 2                                 " Always focus file window after startup
 let g:NERDTreeWinPos                        = "right"                           " Always on right side
 
+" Syntastic
+let g:syntastic_c_include_dirs = ['/usr/local/vitasdk/arm-vita-eabi/include','/usr/include','include']
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_highlighting = 0
+let g:syntastic_shell = "/bin/bash"
+
 " UltiSnips
 let g:UltiSnipsEditSplit                    = "context"                         " :UltiSnipsEdit splits window instead of taking over it
-let g:UltiSnipsExpandTrigger                = "<C-i>"                           " Custom expand key to work with YCM
+let g:UltiSnipsExpandTrigger                = "<C-j>"                           " Custom expand key to work with YCM
 let g:UltiSnipsJumpBackwardTrigger          = "<C-k>"                           " As variable suggests
-let g:UltiSnipsJumpForwardTrigger           = "<C-i>"                           " As variable suggests
+let g:UltiSnipsJumpForwardTrigger           = "<C-j>"                           " As variable suggests
 let g:UltiSnipsListSnippets                 = "<C-k>"                           " List maching snippets
 let g:UltiSnipsSnippetDirectories           = ['~/.vim/UltiSnips', 'UltiSnips'] " Set dafault directory for snippets
 

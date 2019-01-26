@@ -7,12 +7,16 @@ set undofile                         " Enable undo files
 
 " Looks
 set background=dark                  " Dark background (needed for proper colors)
-set colorcolumn=81                   " Highlight 81st column
 set cursorcolumn                     " Current column highlight
 set cursorline                       " Current line highlight
 set listchars=""                     " Helps with vim-indentguides - no $ at the end of lines
 set scrolloff=5                      " Minimal number of screen lines to keep above and below the cursor
 set t_Co=256                         " 256 color support
+
+" PATH
+set path+=./
+set path+=/usr/include/c++/7
+set path+=/usr/local/vitasdk/arm-vita-eabi/include
 
 " Searching
 set hlsearch                         " Search highlight
@@ -23,6 +27,7 @@ set smartcase                        " If searching with capital letter then use
 " UI
 set completeopt-=preview             " Disable preview window for completeopt // for: YCM
 set laststatus=2                     " To always display status line
+set signcolumn=yes
 set number                           " Enable line numbers
 set showcmd                          " Display incomplete commands
 set splitbelow                       " New windows open on right when split verticaly

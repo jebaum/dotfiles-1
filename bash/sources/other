@@ -77,3 +77,6 @@ export EDITOR=vim
 
 # Changes default manpager to Vim
 export MANPAGER="vim -M +MANPAGER -"
+
+export VITASDK=/usr/local/vitasdk
+export PATH=$VITASDK/bin:$PATH # add vitasdk tool to $PATH

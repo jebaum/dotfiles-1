@@ -33,16 +33,16 @@
 
 " Sourcing function
 function! SourceDirectory(file)
-  for s:fpath in split(globpath(a:file, '*.vim'), '\n')
-    exe 'source' s:fpath
-  endfor
+    for s:fpath in split(globpath(a:file, '*.vim'), '\n')
+        exe 'source' s:fpath
+    endfor
 endfunction
 
 " Source directories
 call SourceDirectory('$HOME/dotfiles/vim/sources')
 call SourceDirectory('$HOME/dotfiles/vim/sources/plugins')
 
-" For some reason 'highlights.vim' doesn't source properly
+" Highlights needs to be sourced as one of lasts
 source $HOME/dotfiles/vim/sources/highlights.vim
 
 " Fixes -- has to be sourced as last
