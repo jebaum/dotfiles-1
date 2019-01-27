@@ -34,10 +34,3 @@ set shiftwidth=4  " Indent/outdent by 4 columns
 set smartindent   " Smart indention
 set softtabstop=4 " Unify tabs and spaces
 set tabstop=4     " Tab spacing
-
-"-------------------------------------------------------------------------------
-" PACKAGES
-"-------------------------------------------------------------------------------
-
-" packadd matchit
-" packadd termdebug

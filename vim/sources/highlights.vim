@@ -23,12 +23,9 @@ autocmd filetype lua syntax region LUA_Comment start='--\[\[' end='\]\]'
 " Extra whitespace at the ends of lines
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
 " XOR operator: ^
-autocmd BufWinEnter * match OperatorCharXOR '\^'
-autocmd InsertEnter * match OperatorCharXOR '\^'
-autocmd InsertLeave * match OperatorCharXOR '\^'
+autocmd BufWinEnter * syntax match OperatorCharXOR '\^'
 
 
 "-------------------------------------------------------------------------------
@@ -46,6 +43,9 @@ hi  Comment       ctermfg=grey
 hi  CursorColumn  ctermbg=235
 hi  CursorLine    ctermbg=235         cterm=NONE
 hi  CursorLineNr  ctermfg=magenta
+hi  DiffAdd       ctermfg=LightGreen  ctermbg=none
+hi  DiffChange    ctermfg=yellow      ctermbg=none
+hi  DiffDelete    ctermfg=red         ctermbg=none    cterm=bold
 hi  FoldColumn    ctermbg=black
 hi  LineNr        ctermfg=242
 hi  Normal        ctermfg=DarkGreen
@@ -54,16 +54,12 @@ hi  Pmenu         ctermfg=black       ctermbg=cyan
 hi  PmenuSel      ctermfg=black       ctermbg=blue
 hi  PreProc       ctermfg=LightGreen
 hi  qfLineNr      ctermfg=yellow
-hi  SignColumn    ctermbg=black
 hi  Special       ctermfg=red         ctermbg=black
 hi  StatusLine    ctermfg=black       ctermbg=yellow  cterm=NONE
 hi  StatusLineNC  ctermfg=white
 hi  String        ctermfg=DarkCyan
 hi  Type          ctermfg=white
 hi  WildMenu      ctermbg=cyan
-hi  DiffAdd  ctermbg=none
-hi  DiffChange ctermbg=none
-hi  DiffDelete ctermbg=none
 
 " EXTRAS -----------------------------------------------------------------------
 

@@ -46,4 +46,4 @@ set nrformats=                                      " Ignore non-DEC numeral sys
 set omnifunc=syntaxcomplete#Complete                " Omnifunc
 set wrapmargin=0                                    " No wrap margin
 set textwidth=80                                    " Default width of text (to wraping)
-set fo=cq                                           " No automatic wrapping, rewrapping will wrap to 'textwidth'
+set formatoptions=cq                                " No automatic wrapping, rewrapping will wrap to 'textwidth'
