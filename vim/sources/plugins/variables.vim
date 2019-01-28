@@ -25,6 +25,7 @@ let g:vim_markdown_new_list_item_indent      = 2
 
 " Signature
 let g:SignatureForceRemoveGlobal             = 1
+let g:SignatureForceRemoveLocal = 1
 let g:SignatureMarkTextHLDynamic             = 1
 
 " UltiSnips

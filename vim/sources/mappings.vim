@@ -1,6 +1,4 @@
 " Set leader
-let mapleader="`"
-let maplocalleader=','
 map <space> <leader>
 
 " leader + sth
@@ -33,6 +31,7 @@ noremap <C-y> "+y
 
 " Normal keys
 noremap '' ``
+noremap ' `
 noremap - $
 noremap 0 ^
 noremap <CR> o<ESC>

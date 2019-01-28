@@ -7,6 +7,7 @@ set guicursor=
 " ------------------------------------------------------------------------------
 " USE .vimrc
 " ------------------------------------------------------------------------------
+
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
@@ -16,12 +17,23 @@ source ~/.vimrc
 " FIXES/WORKAROUNDS
 "-------------------------------------------------------------------------------
 
+" DO NOT USE LOCAL MARKS, AS THEY ARE UNDELETEABLE -----------------------------
 function! NeoVim_fix_marks(cmd)
-    let chr = getchar() - 32
+    let chr = getchar()
+    let chr = chr >= 97 ? chr - 32 : chr
     let marker = nr2char(chr)
-    execute "normal! ".a:cmd.marker
+    if a:cmd == "D"
+        call signature#mark#Remove(marker)
+    else
+        try
+            execute "normal! ".a:cmd.marker
+        catch
+        endtry
+    endif
     execute "SignatureRefresh"
+    echo
 endfunction
 
-noremap ' :call NeoVim_fix_marks("'")<CR>
-noremap m :call NeoVim_fix_marks('m')<CR>
+nnoremap ' :call NeoVim_fix_marks("`")<CR>
+nnoremap dm :call NeoVim_fix_marks("D")<CR>
+nnoremap m :call NeoVim_fix_marks("m")<CR>
