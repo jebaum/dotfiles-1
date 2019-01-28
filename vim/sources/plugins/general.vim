@@ -33,9 +33,6 @@ hi  illuminatedWord  cterm=underline
 hi  jsObjectProp     ctermfg=yellow
 hi  OperatorChars    ctermfg=3
 
-" Custom
-hi  SyntasticStatuslineHi ctermbg=197 ctermfg=black
-
 
 "-------------------------------------------------------------------------------
 " COMMANDS

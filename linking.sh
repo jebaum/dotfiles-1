@@ -27,13 +27,13 @@ linking  $x  feh                     $HOME/.config/feh
 linking  $x  mpv/                    $HOME/.config/mpv
 linking  $x  mysql/my.cnf            $HOME/.my.cnf
 linking  $x  mysql/myclirc           $HOME/.myclirc
-linking  $x  vim/init.vim            $HOME/.config/nvim/init.vim
 linking  $x  other/dosbox-0.74.conf  $HOME/.dosbox/dosbox-0.74.conf
 linking  $x  other/inputrc           $HOME/.inputrc
 linking  $x  other/profile           $HOME/.profile
 linking  $x  other/tmux.conf         $HOME/.tmux.conf
 linking  $x  other/Xresources        $HOME/.Xresources
 linking  $x  other/zathurarc         $HOME/.config/zathura/zathurarc
+linking  $x  vim/init.vim            $HOME/.config/nvim/init.vim
 linking  $x  vim/UltiSnips           $HOME/.vim/UltiSnips
 linking  $x  vim/vimrc               $HOME/.vimrc
 

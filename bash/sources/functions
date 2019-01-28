@@ -13,9 +13,9 @@ count-files()
 offupg()
 {
     command sudo apt update
-    command sudo apt full-upgrade -y
     command sudo apt autoremove -y
     command sudo apt autoclean
+    command sudo apt full-upgrade -y
     if hash vim 2> /dev/null; then
         vim +PlugUpgrade +PlugUpdate +qa
     fi

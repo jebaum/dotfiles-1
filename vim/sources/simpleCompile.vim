@@ -15,7 +15,7 @@ autocmd filetype cpp nnoremap <buffer> <F8> :w <bar> exec '!g++ -std=c++11 -g '.
 autocmd filetype haskell nnoremap <buffer> <F8> :w <bar>
 
 " HTML
-autocmd filetype html nnoremap <buffer> <F8> :w <bar> !xdg-open %<CR><CR>
+autocmd filetype html nnoremap <buffer> <F8> :w <bar> !firefox %<CR><CR>
 
 " LaTeX
 autocmd filetype tex nnoremap <buffer> <F8> :w <bar> !latexmk -pdf % && latexmk -c && zathura %:t:r.pdf<CR>

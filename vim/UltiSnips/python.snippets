@@ -7,3 +7,31 @@ snippet read_word_by_word
 with open("${1:file}") as file:
 	${2:words} = [word for line in file for word in line.split()]
 endsnippet
+
+snippet ycm_extra_conf
+import os
+import ycm_core
+
+flags = [
+	'-Wall',
+	'-Wextra',
+	'-Wno-variadic-macros',
+	'-fexceptions',
+	'-DNDEBUG',
+	'-std=c99',
+	'-xc',
+	'-I.'
+	'-I/usr/include',
+	'-I/usr/include/c++/7',
+	'-I/usr/lib/clang/3.6.0/include',
+	'-I/usr/local/vitasdk/arm-vita-eabi/include'
+]
+
+SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', ]
+
+def FlagsForFile( filename, **kwargs ):
+	return {
+		'flags': flags,
+		'do_cache': True
+	}
+endsnippet

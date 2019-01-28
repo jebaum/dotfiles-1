@@ -19,7 +19,7 @@ noremap <F1> gT
 noremap <F2> gt
 noremap <F4> :set invrelativenumber<CR>
 noremap <F5> :setlocal cursorcolumn! cursorline!<CR>
-noremap <F7> :lwindow <bar> echo 'List of errors and warnings'<CR>
+noremap <F7> :cwindow <bar> echo 'QuickFix List'<CR>
 noremap <F9> :w <bar> make<CR>
 
 " Ctrl + sth

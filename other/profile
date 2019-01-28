@@ -3,5 +3,5 @@
 ###############
 
 # Update PATH variable to include $HOME/scripts/bin directory
-export PATH=$PATH":$HOME/scripts/bin"
+export PATH=$PATH":$HOME/scripts/shell_scripts/bin"
 export PATH=$PATH":$HOME/.bin"

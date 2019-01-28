@@ -1,37 +1,37 @@
 #!/bin/bash
 
-# Auto-alias for scripts in $HOME/scripts directory
+# Auto-alias for scripts/shell_scripts in $HOME/scripts/shell_scripts directory
 
-# Normal scripts
-for script in $HOME/scripts/*; do
+# Normal scripts/shell_scripts
+for script in $HOME/scripts/shell_scripts/*; do
     if [ -f "$script" -a -x "$script" ]; then
         alias $(basename $script)="$script"
     fi
 done
 
-# Scripts needing sudo
-for script in $HOME/scripts/sudo/*; do
+# scripts/shell_scripts needing sudo
+for script in $HOME/scripts/shell_scripts/sudo/*; do
     if [ -f "$script" -a -x "$script" ]; then
         alias $(basename $script)="sudo $script"
     fi
 done
 
 # Wrappers
-for script in $HOME/scripts/wrappers/*; do
+for script in $HOME/scripts/shell_scripts/wrappers/*; do
     if [ -f "$script" -a -x "$script" ]; then
         alias $(basename $script)="$script"
     fi
 done
 
 # Launchers
-for script in $HOME/scripts/launchers/*; do
+for script in $HOME/scripts/shell_scripts/launchers/*; do
     if [ -f "$script" -a -x "$script" ]; then
         alias $(basename $script)="source $script"
     fi
 done
 
 # Backup tools
-for script in $HOME/scripts/backup_tools/*; do
+for script in $HOME/scripts/shell_scripts/backup_tools/*; do
     if [ -f "$script" -a -x "$script" ]; then
         alias "$(basename $script)-backup"="$script"
     fi

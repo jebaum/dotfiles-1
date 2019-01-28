@@ -23,6 +23,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'                                        " NERD
 Plug 'tpope/vim-rhubarb'                                                  " rhubarb.vim
 
 " IDE
+Plug 'w0rp/ale'
 Plug 'ludovicchabant/vim-gutentags'                                       " Gutentags
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}  " Markdown Preview
 Plug 'scrooloose/nerdtree'                                                " NERDTree
@@ -30,11 +31,9 @@ Plug 'jistr/vim-nerdtree-tabs'                                            " NERD
 Plug 'chrisbra/nrrwrgn'                                                   " NrrwRgn
 Plug 'junegunn/vim-peekaboo'                                              " Peekaboo
 Plug 'kshenoy/vim-signature'                                              " Signature
-Plug 'vim-syntastic/syntastic'                                            " Syntastic
 Plug 'SirVer/ultisnips'                                                   " UltiSnips
 Plug 'mbbill/undotree'                                                    " UndoTree
 Plug 'skywind3000/vim-preview'                                            " vim-preview
-Plug 'thaerkh/vim-workspace'                                              " Workspace
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }             " YouCompleteMe
 
 " NAVIGATION, MOTION etc.

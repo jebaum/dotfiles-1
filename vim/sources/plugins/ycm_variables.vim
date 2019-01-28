@@ -43,7 +43,5 @@ let g:ycm_semantic_triggers = {
 
 " DIAGNOSTICS ------------------------------------------------------------------
 
-let g:ycm_register_as_syntastic_checker = 1
-let g:ycm_show_diagnostics_ui           = 1
-let g:ycm_warning_symbol                = '--'
-let g:ycm_always_populate_location_list = 1
+let g:ycm_show_diagnostics_ui           = 0
+let g:ycm_always_populate_location_list = 0
