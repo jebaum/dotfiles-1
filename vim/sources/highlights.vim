@@ -39,28 +39,28 @@ autocmd BufWinLeave * call clearmatches()
 " HIGHLIGHTS
 "-------------------------------------------------------------------------------
 
-hi  ColorColumn      ctermbg=233
-hi  Comment          ctermfg=grey
-hi  CursorColumn     ctermbg=235
-hi  CursorLine       ctermbg=235         cterm=NONE
-hi  CursorLineNr     ctermfg=magenta
-hi  DiffAdd          ctermfg=LightGreen  ctermbg=none
-hi  DiffChange       ctermfg=yellow      ctermbg=none
-hi  DiffDelete       ctermfg=red         ctermbg=none    cterm=bold
-hi  FoldColumn       ctermbg=black
-hi  LineNr           ctermfg=242
-hi  Normal           ctermfg=DarkGreen
-hi  Number           ctermfg=DarkCyan
-hi  Pmenu            ctermfg=black       ctermbg=cyan
-hi  PmenuSel         ctermfg=black       ctermbg=blue
-hi  PreProc          ctermfg=LightGreen
-hi  qfLineNr         ctermfg=yellow
-hi  Special          ctermfg=red         ctermbg=black
-hi  StatusLine       ctermfg=black       ctermbg=yellow  cterm=NONE
-hi  StatusLineNC     ctermfg=white
-hi  String           ctermfg=DarkCyan
-hi  Type             ctermfg=white
-hi  WildMenu         ctermbg=cyan
+hi  ColorColumn   ctermbg=233
+hi  Comment       ctermfg=grey
+hi  CursorColumn  ctermbg=235
+hi  CursorLine    ctermbg=235         cterm=NONE
+hi  CursorLineNr  ctermfg=magenta
+hi  DiffAdd       ctermfg=LightGreen  ctermbg=none
+hi  DiffChange    ctermfg=yellow      ctermbg=none
+hi  DiffDelete    ctermfg=red         ctermbg=none     cterm=bold
+hi  FoldColumn    ctermbg=black
+hi  LineNr        ctermfg=242
+hi  Normal        ctermfg=DarkGreen
+hi  Number        ctermfg=DarkCyan
+hi  Pmenu         ctermfg=black       ctermbg=cyan
+hi  PmenuSel      ctermfg=black       ctermbg=blue
+hi  PreProc       ctermfg=LightGreen
+hi  QuickFixLine  ctermbg=NONE        cterm=underline
+hi  Special       ctermfg=red         ctermbg=black
+hi  StatusLine    ctermfg=black       ctermbg=yellow   cterm=NONE
+hi  StatusLineNC  ctermfg=white
+hi  String        ctermfg=DarkCyan
+hi  Type          ctermfg=white
+hi  WildMenu      ctermbg=cyan
 
 " EXTRAS -----------------------------------------------------------------------
 

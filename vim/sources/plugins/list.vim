@@ -17,10 +17,9 @@ Plug 'romainl/vim-cool'                                                   " vim-
 Plug 'tpope/vim-fugitive'                                                 " fugitive.vim
 Plug 'airblade/vim-gitgutter'                                             " GitGutter
 Plug 'Xuyuanp/nerdtree-git-plugin'                                        " NERDTree-Git
-Plug 'tpope/vim-rhubarb'                                                  " rhubarb.vim
 
 " IDE
-Plug 'w0rp/ale'
+Plug 'w0rp/ale'                                                           " ALE
 Plug 'ludovicchabant/vim-gutentags'                                       " Gutentags
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}  " Markdown Preview
 Plug 'scrooloose/nerdtree'                                                " NERDTree
@@ -39,12 +38,15 @@ Plug 'junegunn/fzf'                                                       " fzf
 Plug 'junegunn/fzf.vim'                                                   " fzf.vim
 Plug 'christoomey/vim-tmux-navigator'                                     " Tmux Navigator
 
-" SYNTAX FILES
-Plug 'ricpelo/vim-gdscript'
+" HIGHLIGHTS / SYNTAX FILES ...
 Plug 'sheerun/vim-polyglot'                                               " Polyglot
-Plug 'shmup/vim-sql-syntax'                                               " vim-sql-syntax
 Plug 'Valloric/vim-operator-highlight'                                    " vim-operator-highlight
+
+"" ... FOR SPECIFIC LANGUAGES
+Plug 'calviken/vim-gdscript3'                                             " GDScript | vim-gdscript
+Plug 'shmup/vim-sql-syntax'                                               " SQL      | vim-sql-syntax
 
 " DEPENDENCES -------------------------
 Plug 'vim-scripts/dbext.vim'                                              " dbext.vim   | for: YouCompleteMe with SQL
 Plug 'inkarkat/vim-ingo-library'                                          " ingo-lirary | for: SyntaxRange
+Plug 'tpope/vim-rhubarb'                                                  " rhubarb.vim | for: fugitive.vim
