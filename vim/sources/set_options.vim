@@ -1,7 +1,7 @@
 " Backup, undo and swap
 set backup                                          " Enable backup files
 set backupdir=~/.vim/tmp/backup/                    " Directory for backup files
-set directory=~/.vim/tmp/
+set noswapfile
 set undodir=~/.vim/tmp/undo/                        " Directory for undo files
 set undofile                                        " Enable undo files
 
