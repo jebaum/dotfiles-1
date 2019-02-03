@@ -29,9 +29,11 @@ autocmd VimEnter * VSO i                                           " Vissort - c
 " HIGHLIGHTS
 "-------------------------------------------------------------------------------
 
-hi  illuminatedWord  cterm=underline
-hi  jsObjectProp     ctermfg=yellow
-hi  OperatorChars    ctermfg=3
+hi  illuminatedWord         cterm=underline
+hi  jsObjectProp            ctermfg=yellow
+hi  OperatorChars           ctermfg=3
+hi  StatusLine_ALE_Error    ctermbg=197      ctermfg=black
+hi  StatusLine_ALE_Warning  ctermbg=208      ctermfg=black
 
 
 "-------------------------------------------------------------------------------

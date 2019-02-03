@@ -1,13 +1,4 @@
 "-------------------------------------------------------------------------------
-" FIX FOR CursorLine BACKGROUND HIGHLIGHT AND OTHER BG HIGHLIGHTS
-"-------------------------------------------------------------------------------
-
-" Not workin propely even with ReverseHighlights
-hi SpellBad cterm=reverse ctermfg=9 ctermbg=0
-hi QuickFixLine cterm=reverse ctermfg=yellow ctermbg=0
-
-
-"-------------------------------------------------------------------------------
 " tmux - WINDOW TITLE FIX
 "-------------------------------------------------------------------------------
 

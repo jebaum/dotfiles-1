@@ -3,12 +3,8 @@
 "-------------------------------------------------------------------------------
 
 noremap <leader><F1> :UndotreeToggle<CR>
-noremap <leader><F4> :UltiSnipsEdit<CR>
-noremap tt :PreviewTag<CR>
 noremap <leader>= :Autoformat<CR>
-noremap <leader><F3> :YcmCompleter FixIt<CR>
-noremap <leader>s :ToggleWorkspace<CR>
-noremap <F8> :MarkdownPreview<CR>
+noremap tt :PreviewTag<CR>
 
 " Anzu
 nmap n <Plug>(anzu-n-with-echo)

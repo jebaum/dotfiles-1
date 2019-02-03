@@ -1,4 +1,4 @@
-" CODE MANIPULATION
+" CODE/TEXT MANIPULATION
 Plug 'Chiel92/vim-autoformat'                                             " AutoFormat
 Plug 'scrooloose/nerdcommenter'                                           " NERDCommenter
 Plug 'tpope/vim-surround'                                                 " Surround
@@ -6,15 +6,12 @@ Plug 'godlygeek/tabular'                                                  " Tabu
 Plug 'alcesleo/vim-uppercase-sql'                                         " vim-uppercase-sql
 Plug 'yaroot/vissort'                                                     " Visual Block Sorting
 
-" CODE VIEWING
+" CODE/TEXT VIEWING
 Plug 'osyo-manga/vim-anzu'                                                " Anzu
 Plug 'RRethy/vim-illuminate'                                              " Illuminate
 Plug 'Yggdroot/indentLine'                                                " indentLine
-Plug 'sheerun/vim-polyglot'                                               " Polyglot
 Plug 'inkarkat/vim-SyntaxRange'                                           " SyntaxRange
 Plug 'romainl/vim-cool'                                                   " vim-cool
-Plug 'Valloric/vim-operator-highlight'                                    " vim-operator-highlight
-Plug 'shmup/vim-sql-syntax'                                               " vim-sql-syntax
 
 " git INTEGRATION
 Plug 'tpope/vim-fugitive'                                                 " fugitive.vim
@@ -41,6 +38,12 @@ Plug 'bkad/camelcasemotion'                                               " Came
 Plug 'junegunn/fzf'                                                       " fzf
 Plug 'junegunn/fzf.vim'                                                   " fzf.vim
 Plug 'christoomey/vim-tmux-navigator'                                     " Tmux Navigator
+
+" SYNTAX FILES
+Plug 'ricpelo/vim-gdscript'
+Plug 'sheerun/vim-polyglot'                                               " Polyglot
+Plug 'shmup/vim-sql-syntax'                                               " vim-sql-syntax
+Plug 'Valloric/vim-operator-highlight'                                    " vim-operator-highlight
 
 " DEPENDENCES -------------------------
 Plug 'vim-scripts/dbext.vim'                                              " dbext.vim   | for: YouCompleteMe with SQL

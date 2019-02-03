@@ -1,13 +1,10 @@
-" Set leader
-map <space> <leader>
-
 " leader + sth
 inoremap <leader><Tab> <C-v><Tab>
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <Leader>R :%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>
 nnoremap <leader>v gg0vG$
 
-" leader + function keys -- also mapped: <F1>, <F3>, <F4>
+" leader + function keys -- also mapped: <F1>
 noremap <leader><F2> :set wrap!<CR>
 
 " Function keys -- also mapped: <F8>
@@ -34,7 +31,6 @@ noremap '' ``
 noremap ' `
 noremap - $
 noremap 0 ^
-noremap <CR> o<ESC>
 noremap <Tab> <C-w><C-w>
 noremap G G0
 noremap gf <C-w>gf

@@ -26,12 +26,11 @@ autocmd filetype lisp nnoremap <buffer> <F8> :w <bar> !clisp %<CR>
 " Lua
 autocmd filetype lua nnoremap <buffer> <F8> :w <bar> !lua %<CR>
 
+" Markdown // depends on Markdown Preview plugin
+autocmd filetype markdown nnoremap <buffer> <F8> :MarkdownPreview<CR>
+
 " Python
 autocmd filetype python nnoremap <buffer> <F8> :w <bar> !python3 %<CR>
 
 " Shell Script
 autocmd filetype sh nnoremap <buffer> <F8> :w <bar> !%:p<CR>
-
-
-"-------------------------------------------------------------------------------
-" Markdown - look: Markdown Preview plugin

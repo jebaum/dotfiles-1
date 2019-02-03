@@ -66,7 +66,6 @@ hi  WildMenu         ctermbg=cyan
 
 hi  C_PreProcDefine  ctermfg=DarkRed
 hi  ExtraWhitespace  ctermbg=red
-hi  StatusLineError  ctermbg=197         ctermfg=black
 
 
 "-------------------------------------------------------------------------------
