@@ -1,4 +1,13 @@
 "-------------------------------------------------------------------------------
+" HIGHLIGHTS -- change based on mode
+"-------------------------------------------------------------------------------
+
+hi  StatusLine ctermfg=black  ctermbg=yellow   cterm=NONE
+
+autocmd InsertEnter * hi StatusLine ctermfg=black  ctermbg=DarkCyan cterm=NONE
+autocmd InsertLeave * hi StatusLine ctermfg=black  ctermbg=yellow   cterm=NONE
+
+"-------------------------------------------------------------------------------
 " FUNCTIONS
 "-------------------------------------------------------------------------------
 

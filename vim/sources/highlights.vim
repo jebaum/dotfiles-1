@@ -56,7 +56,6 @@ hi  PmenuSel      ctermfg=black       ctermbg=blue
 hi  PreProc       ctermfg=LightGreen
 hi  QuickFixLine  ctermbg=NONE        cterm=underline
 hi  Special       ctermfg=red         ctermbg=black
-hi  StatusLine    ctermfg=black       ctermbg=yellow   cterm=NONE
 hi  StatusLineNC  ctermfg=white
 hi  String        ctermfg=DarkCyan
 hi  Type          ctermfg=white
