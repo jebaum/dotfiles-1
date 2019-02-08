@@ -19,7 +19,6 @@ noremap <F9> :w <bar> make<CR>
 
 " Ctrl + sth
 inoremap <C-d> <ESC>:t.<CR>i
-inoremap <C-o> <C-x><C-o>
 inoremap <C-p> <ESC>"+pa
 noremap <C-d> :t.<CR>
 noremap <C-p> "+p
@@ -29,8 +28,6 @@ noremap <C-y> "+y
 " Normal keys
 noremap '' ``
 noremap ' `
-noremap - $
-noremap 0 ^
 noremap <Tab> <C-w><C-w>
 noremap G G0
 noremap gf <C-w>gf

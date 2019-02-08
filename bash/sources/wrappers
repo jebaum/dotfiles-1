@@ -32,6 +32,10 @@ apt() {
     esac
 }
 
+find() {
+    command find $@ 2> /dev/null
+}
+
 git() {
     case "$1" in
         init)

@@ -6,10 +6,10 @@
 autocmd filetype basic nnoremap <buffer> <F8> :w <bar> !vintbas %<CR>
 
 " C
-autocmd filetype c nnoremap <buffer> <F8> :w <bar> exec '!gcc -g '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
+autocmd filetype c nnoremap <buffer> <F8> :w <bar> exec '!gcc -std=gnu11 -g '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
 
 " C++
-autocmd filetype cpp nnoremap <buffer> <F8> :w <bar> exec '!g++ -std=c++11 -g '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
+autocmd filetype cpp nnoremap <buffer> <F8> :w <bar> exec '!g++ -std=gnu++11 -g '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
 
 " Haskell // TODO
 autocmd filetype haskell nnoremap <buffer> <F8> :w <bar>
