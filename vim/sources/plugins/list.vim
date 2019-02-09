@@ -24,14 +24,14 @@ Plug 'Valloric/vim-operator-highlight'                                    " vim-
 
 "" ... FOR SPECIFIC LANGUAGES
 Plug 'calviken/vim-gdscript3'                                             " GDScript | vim-gdscript
+Plug 'plasticboy/vim-markdown'                                            " Markdown | vim-markdown
 Plug 'shmup/vim-sql-syntax'                                               " SQL      | vim-sql-syntax
 
 " IDE
 Plug 'w0rp/ale'                                                           " ALE
-Plug 'ludovicchabant/vim-gutentags'                                       " Gutentags
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}  " Markdown Preview
 Plug 'scrooloose/nerdtree'                                                " NERDTree
-Plug 'jistr/vim-nerdtree-tabs'                                            " NERDTree(Tabs)
+" Plug 'jistr/vim-nerdtree-tabs'                                            " NERDTree(Tabs)
 Plug 'SirVer/ultisnips'                                                   " UltiSnips
 Plug 'skywind3000/vim-preview'                                            " vim-preview
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }             " YouCompleteMe
@@ -53,3 +53,7 @@ Plug 'kshenoy/vim-signature'                                              " Sign
 Plug 'vim-scripts/dbext.vim'                                              " dbext.vim   | for: YouCompleteMe with SQL
 Plug 'inkarkat/vim-ingo-library'                                          " ingo-lirary | for: SyntaxRange
 Plug 'tpope/vim-rhubarb'                                                  " rhubarb.vim | for: fugitive.vim
+
+
+" UNUSED ------------------------------
+" Plug 'ludovicchabant/vim-gutentags'                                     " Gutentags

@@ -5,6 +5,7 @@
 let g:gitgutter_max_signs                    = 5000
 let g:Illuminate_delay                       = 0
 let g:ophigh_highlight_link_group            = 1
+let g:vim_markdown_new_list_item_indent      = 2
 
 " AutoFormat
 let b:formatdef_custom_c                     = '"astyle --style=kr -s4 -N -S -xG -xU -f -k3 -xj -p"'
@@ -26,7 +27,7 @@ let g:NERDTreeWinPos                         = "right"
 
 " Polyglot
 let g:python_highlight_space_errors          = 0
-let g:vim_markdown_new_list_item_indent      = 2
+let g:polyglot_disabled                      = ['markdown']
 
 " Signature
 let g:SignatureForceRemoveGlobal             = 1
