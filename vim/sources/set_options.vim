@@ -15,8 +15,10 @@ set t_Co=256                                        " 256 color support
 
 " PATH
 set path+=./
+set path+=/usr/include
 set path+=/usr/include/c++/7
 set path+=/usr/local/vitasdk/arm-vita-eabi/include
+set path+=/usr/local/vitasdk/arm-vita-eabi/include/SDL
 
 " Searching
 set hlsearch                                        " Search highlight

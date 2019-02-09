@@ -12,7 +12,7 @@ function! FillLine(str)
 endfunction
 
 function! RepeatStr(times, str)
-    exe ":normal a" . repeat(a:str, a:times)
+    execute ":normal a" . repeat(a:str, a:times)
 endfunction
 
 

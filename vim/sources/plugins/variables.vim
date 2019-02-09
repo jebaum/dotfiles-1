@@ -2,6 +2,7 @@
 " PLUGINS - VARIABLES
 "-------------------------------------------------------------------------------
 
+let g:gitgutter_max_signs                    = 5000
 let g:Illuminate_delay                       = 0
 let g:ophigh_highlight_link_group            = 1
 
@@ -9,6 +10,10 @@ let g:ophigh_highlight_link_group            = 1
 let b:formatdef_custom_c                     = '"astyle --style=kr -s4 -N -S -xG -xU -f -k3 -xj -p"'
 let b:formatters_c                           = ['custom_c']
 let b:formatters_cpp                         = ['custom_c']
+
+" Localvimrc
+let g:localvimrc_ask                         = 0
+let g:localvimrc_persistent                  = 1
 
 " NERDCommenter
 let g:NERDCommentEmptyLines                  = 1
@@ -25,7 +30,7 @@ let g:vim_markdown_new_list_item_indent      = 2
 
 " Signature
 let g:SignatureForceRemoveGlobal             = 1
-let g:SignatureForceRemoveLocal = 1
+let g:SignatureForceRemoveLocal              = 1
 let g:SignatureMarkTextHLDynamic             = 1
 
 " UltiSnips

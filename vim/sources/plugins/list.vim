@@ -18,17 +18,21 @@ Plug 'tpope/vim-fugitive'                                                 " fugi
 Plug 'airblade/vim-gitgutter'                                             " GitGutter
 Plug 'Xuyuanp/nerdtree-git-plugin'                                        " NERDTree-Git
 
+" HIGHLIGHTS / SYNTAX FILES ...
+Plug 'sheerun/vim-polyglot'                                               " Polyglot
+Plug 'Valloric/vim-operator-highlight'                                    " vim-operator-highlight
+
+"" ... FOR SPECIFIC LANGUAGES
+Plug 'calviken/vim-gdscript3'                                             " GDScript | vim-gdscript
+Plug 'shmup/vim-sql-syntax'                                               " SQL      | vim-sql-syntax
+
 " IDE
 Plug 'w0rp/ale'                                                           " ALE
 Plug 'ludovicchabant/vim-gutentags'                                       " Gutentags
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}  " Markdown Preview
 Plug 'scrooloose/nerdtree'                                                " NERDTree
 Plug 'jistr/vim-nerdtree-tabs'                                            " NERDTree(Tabs)
-Plug 'chrisbra/nrrwrgn'                                                   " NrrwRgn
-Plug 'junegunn/vim-peekaboo'                                              " Peekaboo
-Plug 'kshenoy/vim-signature'                                              " Signature
 Plug 'SirVer/ultisnips'                                                   " UltiSnips
-Plug 'mbbill/undotree'                                                    " UndoTree
 Plug 'skywind3000/vim-preview'                                            " vim-preview
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }             " YouCompleteMe
 
@@ -38,13 +42,12 @@ Plug 'junegunn/fzf'                                                       " fzf
 Plug 'junegunn/fzf.vim'                                                   " fzf.vim
 Plug 'christoomey/vim-tmux-navigator'                                     " Tmux Navigator
 
-" HIGHLIGHTS / SYNTAX FILES ...
-Plug 'sheerun/vim-polyglot'                                               " Polyglot
-Plug 'Valloric/vim-operator-highlight'                                    " vim-operator-highlight
+" VIM FUNCTIONALITY
+Plug 'embear/vim-localvimrc'                                              " Localvimrc
+Plug 'mbbill/undotree'                                                    " UndoTree
+Plug 'junegunn/vim-peekaboo'                                              " Peekaboo
+Plug 'kshenoy/vim-signature'                                              " Signature
 
-"" ... FOR SPECIFIC LANGUAGES
-Plug 'calviken/vim-gdscript3'                                             " GDScript | vim-gdscript
-Plug 'shmup/vim-sql-syntax'                                               " SQL      | vim-sql-syntax
 
 " DEPENDENCES -------------------------
 Plug 'vim-scripts/dbext.vim'                                              " dbext.vim   | for: YouCompleteMe with SQL
