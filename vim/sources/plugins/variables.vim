@@ -6,7 +6,6 @@ let g:gitgutter_max_signs                    = 5000
 let g:gutentags_cache_dir                    = $HOME."/.vim/cache/tags"
 let g:Illuminate_delay                       = 0
 let g:ophigh_highlight_link_group            = 1
-let g:vim_markdown_new_list_item_indent      = 2
 
 " AutoFormat
 let b:formatdef_custom_c                     = '"astyle --style=kr -s4 -N -S -xG -xU -f -k3 -xj -p"'
@@ -51,6 +50,10 @@ let g:UltiSnipsSnippetDirectories            = ['~/.vim/UltiSnips', 'UltiSnips']
 let g:undotree_SetFocusWhenToggle            = 1
 let g:undotree_ShortIndicators               = 1
 let g:undotree_SplitWidth                    = 32
+
+" Vim Markdown
+let g:vim_markdown_conceal                   = 0
+let g:vim_markdown_new_list_item_indent      = 2
 
 
 " SET BY AUTOCMD ---------------------------------------------------------------

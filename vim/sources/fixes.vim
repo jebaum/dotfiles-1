@@ -22,5 +22,7 @@ command! -nargs=+ Silent execute 'silent <args>' | redraw!
 " Use 'javascript' filetype for *.js files
 autocmd VimEnter *.js setlocal filetype=javascript
 
+autocmd VimEnter *tags setlocal filetype=tags
+
 " For any maping with 'd'
 nnoremap dd dd

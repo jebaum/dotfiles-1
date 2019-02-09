@@ -27,7 +27,6 @@
 " SIMPLE COMPILE          | $HOME/dotfiles/vim/sources/simpleCompile.vim
 " STATUS LINE             | $HOME/dotfiles/vim/sources/statusline.vim
 " VIM DEBUGGING etc.      | $HOME/dotfiles/vim/sources/vim_debugging.vim
-" VIM TIPS                | $HOME/dotfiles/vim/tips.vim
 
 
 " ------------------------------------------------------------------------------
