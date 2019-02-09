@@ -31,7 +31,7 @@ Plug 'shmup/vim-sql-syntax'                                               " SQL 
 Plug 'w0rp/ale'                                                           " ALE
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}  " Markdown Preview
 Plug 'scrooloose/nerdtree'                                                " NERDTree
-" Plug 'jistr/vim-nerdtree-tabs'                                            " NERDTree(Tabs)
+Plug 'jistr/vim-nerdtree-tabs'                                            " NERDTree(Tabs)
 Plug 'SirVer/ultisnips'                                                   " UltiSnips
 Plug 'skywind3000/vim-preview'                                            " vim-preview
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }             " YouCompleteMe
@@ -43,10 +43,11 @@ Plug 'junegunn/fzf.vim'                                                   " fzf.
 Plug 'christoomey/vim-tmux-navigator'                                     " Tmux Navigator
 
 " VIM FUNCTIONALITY
+Plug 'othree/eregex.vim'                                                  " eregex.vim
 Plug 'embear/vim-localvimrc'                                              " Localvimrc
-Plug 'mbbill/undotree'                                                    " UndoTree
 Plug 'junegunn/vim-peekaboo'                                              " Peekaboo
 Plug 'kshenoy/vim-signature'                                              " Signature
+Plug 'mbbill/undotree'                                                    " UndoTree
 
 
 " DEPENDENCES -------------------------

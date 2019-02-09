@@ -12,6 +12,10 @@ let b:formatdef_custom_c                     = '"astyle --style=kr -s4 -N -S -xG
 let b:formatters_c                           = ['custom_c']
 let b:formatters_cpp                         = ['custom_c']
 
+" eregex.vim
+let g:eregex_default_enable                  = 0
+let g:eregex_force_case                      = 1
+
 " Localvimrc
 let g:localvimrc_ask                         = 0
 let g:localvimrc_persistent                  = 1
