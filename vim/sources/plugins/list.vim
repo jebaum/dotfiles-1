@@ -29,6 +29,7 @@ Plug 'shmup/vim-sql-syntax'                                               " SQL 
 
 " IDE
 Plug 'w0rp/ale'                                                           " ALE
+Plug 'ludovicchabant/vim-gutentags'                                       " Gutentags
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}  " Markdown Preview
 Plug 'scrooloose/nerdtree'                                                " NERDTree
 Plug 'jistr/vim-nerdtree-tabs'                                            " NERDTree(Tabs)
@@ -54,7 +55,3 @@ Plug 'mbbill/undotree'                                                    " Undo
 Plug 'vim-scripts/dbext.vim'                                              " dbext.vim   | for: YouCompleteMe with SQL
 Plug 'inkarkat/vim-ingo-library'                                          " ingo-lirary | for: SyntaxRange
 Plug 'tpope/vim-rhubarb'                                                  " rhubarb.vim | for: fugitive.vim
-
-
-" UNUSED ------------------------------
-" Plug 'ludovicchabant/vim-gutentags'                                     " Gutentags

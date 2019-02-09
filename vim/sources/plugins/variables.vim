@@ -3,6 +3,7 @@
 "-------------------------------------------------------------------------------
 
 let g:gitgutter_max_signs                    = 5000
+let g:gutentags_cache_dir                    = $HOME."/.vim/cache/tags"
 let g:Illuminate_delay                       = 0
 let g:ophigh_highlight_link_group            = 1
 let g:vim_markdown_new_list_item_indent      = 2
