@@ -9,7 +9,7 @@
 " ------------------------------------------------------------------------------
 
 " 'set' OPTIONS           | $HOME/dotfiles/vim/sources/set_options.vim
-" (COMPILE AND) RUN       | $HOME/dotfiles/vim/sources/simpleCompile.vim
+" (COMPILE AND) RUN       | $HOME/dotfiles/vim/sources/compile_and_run.vim
 " COMMANDS                | $HOME/dotfiles/vim/sources/commands.vim
 " FIXES/WORKAROUNDS       | $HOME/dotfiles/vim/sources/fixes.vim
 " FOLDING                 | $HOME/dotfiles/vim/sources/folding.vim
