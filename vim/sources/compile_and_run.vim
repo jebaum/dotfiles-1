@@ -1,11 +1,12 @@
 function CompileAndRun(cmd)
-    if has('nvim')
+    if has('nvim') " you will have no way to break infinite loop
         exec "nnoremap <buffer> <F8> :w <bar> split <bar> term ".a:cmd."<CR>i"
     else
         exec "nnoremap <buffer> <F8> :w <bar> !".a:cmd."<CR>"
     endif
 endfunction
 
+" ------------------------------------------------------------------------------
 
 " BASIC // for Vintage BASIC
 autocmd filetype basic call CompileAndRun("vintbas %")

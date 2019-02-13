@@ -7,7 +7,6 @@ set undofile                                        " Enable undo files
 
 " Looks
 set background=dark                                 " Dark background (needed for proper colors)
-set cursorcolumn                                    " Current column highlight
 set cursorline                                      " Current line highlight
 set listchars=""                                    " Helps with vim-indentguides - no $ at the end of lines
 set scrolloff=5                                     " Minimal number of screen lines to keep above and below the cursor

@@ -34,11 +34,11 @@ linking  $x  other/profile           $HOME/.profile
 linking  $x  other/tmux.conf         $HOME/.tmux.conf
 linking  $x  other/Xresources        $HOME/.Xresources
 linking  $x  other/zathurarc         $HOME/.config/zathura/zathurarc
-linking  $x  vim/init.vim            $HOME/.config/nvim/init.vim
 linking  $x  vim/UltiSnips           $HOME/.vim/UltiSnips
 linking  $x  vim/vimrc               $HOME/.vimrc
 
 # linking  $x  other/terminator_config $HOME/.config/terminator
+# linking  $x  vim/init.vim            $HOME/.config/nvim/init.vim
 
 cd - > /dev/null
 

@@ -38,7 +38,7 @@ hi  C_PreProcDefine  ctermfg=DarkRed
 hi  ColorColumn      ctermbg=233
 hi  Comment          ctermfg=grey
 hi  CursorColumn     ctermbg=235
-hi  CursorLine       ctermbg=235         cterm=NONE
+hi  CursorLine       cterm=none
 hi  CursorLineNr     ctermfg=magenta
 hi  DiffAdd          ctermfg=LightGreen  ctermbg=none
 hi  DiffChange       ctermfg=yellow      ctermbg=none

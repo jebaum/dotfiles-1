@@ -24,7 +24,11 @@ command! -nargs=+ Silent execute 'silent <args>' | redraw!
 " Use 'javascript' filetype for *.js files
 autocmd VimEnter *.js setlocal filetype=javascript
 
+" Use 'tags' filetype for *tags
 autocmd VimEnter *tags setlocal filetype=tags
+
+" QuickFixLine highlight does not like CursorLine
+autocmd BufReadPost quickfix setlocal nocursorline
 
 " For any maping with 'd'
 nnoremap dd dd

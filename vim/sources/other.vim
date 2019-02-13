@@ -22,6 +22,20 @@ autocmd FileType * set fo-=c fo-=r fo-=o
 " Trim trailing whitespace
 autocmd BufWritePre * silent! undojoin | %s/\s\+$//e | %s/\(\n\r\?\)\+\%$//e
 
+" Toggle cursorline's underline
+let g:hl_state=0
+function CursorHighlightToggle()
+    setlocal cursorcolumn!
+    if (g:hl_state == 1)
+        hi CursorLine cterm=none ctermbg=none
+        let g:hl_state = 0
+    else
+        hi CursorLine cterm=none ctermbg=235
+        let g:hl_state = 1
+    endif
+endfunction
+map <F3> :call CursorHighlightToggle()<CR>
+
 "-------------------------------------------------------------------------------
 " INDENTATION RULES
 "-------------------------------------------------------------------------------
