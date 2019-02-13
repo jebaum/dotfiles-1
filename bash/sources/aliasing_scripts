@@ -1,15 +1,22 @@
 #!/bin/bash
 
-# Auto-alias for scripts/shell_scripts in $HOME/scripts/shell_scripts directory
+# Auto-alias for scripts in $HOME/scripts/shell_scripts directory
 
-# Normal scripts/shell_scripts
+# Normal scripts
 for script in $HOME/scripts/shell_scripts/*; do
     if [ -f "$script" -a -x "$script" ]; then
         alias $(basename $script)="$script"
     fi
 done
 
-# scripts/shell_scripts needing sudo
+# Menus
+for script in $HOME/scripts/shell_scripts/menus/*; do
+    if [ -f "$script" -a -x "$script" ]; then
+        alias $(basename $script)="$script"
+    fi
+done
+
+# Scripts needing sudo
 for script in $HOME/scripts/shell_scripts/sudo/*; do
     if [ -f "$script" -a -x "$script" ]; then
         alias $(basename $script)="sudo $script"

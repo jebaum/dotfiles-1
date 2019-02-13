@@ -27,6 +27,7 @@ linking  $x  feh                     $HOME/.config/feh
 linking  $x  mpv/                    $HOME/.config/mpv
 linking  $x  mysql/my.cnf            $HOME/.my.cnf
 linking  $x  mysql/myclirc           $HOME/.myclirc
+linking  $x  other/bvirc             $HOME/.bvirc
 linking  $x  other/dosbox-0.74.conf  $HOME/.dosbox/dosbox-0.74.conf
 linking  $x  other/inputrc           $HOME/.inputrc
 linking  $x  other/profile           $HOME/.profile
@@ -41,5 +42,5 @@ linking  $x  vim/vimrc               $HOME/.vimrc
 
 cd - > /dev/null
 
-mkdir -p $HOME/.vimtmp/backup
-mkdir -p $HOME/.vimtmp/undo
+mkdir -p $HOME/.vim/cache/backup
+mkdir -p $HOME/.vim/cache/undo

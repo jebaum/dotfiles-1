@@ -3,6 +3,7 @@ Plug 'Chiel92/vim-autoformat'                                             " Auto
 Plug 'scrooloose/nerdcommenter'                                           " NERDCommenter
 Plug 'tpope/vim-surround'                                                 " Surround
 Plug 'godlygeek/tabular'                                                  " Tabular
+Plug 'dhruvasagar/vim-table-mode'                                         " VIM Table Mode
 Plug 'alcesleo/vim-uppercase-sql'                                         " vim-uppercase-sql
 Plug 'yaroot/vissort'                                                     " Visual Block Sorting
 

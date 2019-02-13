@@ -1,11 +1,8 @@
-"-------------------------------------------------------------------------------
-" PLUGINS - VARIABLES
-"-------------------------------------------------------------------------------
-
 let g:gitgutter_max_signs                    = 5000
 let g:gutentags_cache_dir                    = $HOME."/.vim/cache/tags"
 let g:Illuminate_delay                       = 0
 let g:ophigh_highlight_link_group            = 1
+let g:table_mode_corner                      = '|'
 
 " AutoFormat
 let b:formatdef_custom_c                     = '"astyle --style=kr -s4 -N -S -xG -xU -f -k3 -xj -p"'
@@ -54,8 +51,3 @@ let g:undotree_SplitWidth                    = 32
 " Vim Markdown
 let g:vim_markdown_conceal                   = 0
 let g:vim_markdown_new_list_item_indent      = 2
-
-
-" SET BY AUTOCMD ---------------------------------------------------------------
-
-autocmd FileType man let g:nerdtree_tabs_open_on_console_startup=0 " Not open NERDTree in man pages

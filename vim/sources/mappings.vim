@@ -17,7 +17,6 @@ noremap <F9> :w <bar> make<CR>
 " Ctrl + sth
 inoremap <C-d> <ESC>:t.<CR>i
 inoremap <C-p> <ESC>"+pa
-noremap <C-d> :t.<CR>
 noremap <C-p> "+p
 noremap <C-q><C-q> q
 noremap <C-y> "+y

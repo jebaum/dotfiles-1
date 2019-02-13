@@ -19,6 +19,7 @@ set path+=/usr/include
 set path+=/usr/include/c++/7
 set path+=/usr/local/vitasdk/arm-vita-eabi/include
 set path+=/usr/local/vitasdk/arm-vita-eabi/include/SDL
+set path+=/usr/local/include/luajit-2.0
 
 " Searching
 set hlsearch                                        " Search highlight

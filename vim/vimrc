@@ -9,6 +9,7 @@
 " ------------------------------------------------------------------------------
 
 " 'set' OPTIONS           | $HOME/dotfiles/vim/sources/set_options.vim
+" (COMPILE AND) RUN       | $HOME/dotfiles/vim/sources/simpleCompile.vim
 " COMMANDS                | $HOME/dotfiles/vim/sources/commands.vim
 " FIXES/WORKAROUNDS       | $HOME/dotfiles/vim/sources/fixes.vim
 " FOLDING                 | $HOME/dotfiles/vim/sources/folding.vim
@@ -24,7 +25,6 @@
 " PLUGINS - MAPPINGS      | $HOME/dotfiles/vim/sources/plugins/mappings.vim
 " PLUGINS - VARIABLES     | $HOME/dotfiles/vim/sources/plugins/variables.vim
 " PLUGINS - YCM VARIABLES | $HOME/dotfiles/vim/sources/plugins/ycm_variables.vim
-" SIMPLE COMPILE          | $HOME/dotfiles/vim/sources/simpleCompile.vim
 " STATUS LINE             | $HOME/dotfiles/vim/sources/statusline.vim
 " VIM DEBUGGING etc.      | $HOME/dotfiles/vim/sources/vim_debugging.vim
 

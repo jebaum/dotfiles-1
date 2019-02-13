@@ -59,11 +59,11 @@ set statusline+=\ \                                                             
 set statusline+=%m                                                                             " Modified flag
 set statusline+=%=                                                                             " Switch to the right side
 set statusline+=%#Statusline_ALE_Error#                                                        " Statusline ALE Errors Highlight
-set statusline+=%{ALE_Errors()}                                                                " Statusline ALE Errors
+" set statusline+=%{ALE_Errors()}                                                                " Statusline ALE Errors
 set statusline+=%*                                                                             " Back to normal 'StatusLine' highlight
 set statusline+=\ \                                                                            " Separator
 set statusline+=%#Statusline_ALE_Warning#                                                      " Statusline ALE Warnings Highlights
-set statusline+=%{ALE_Warnings()}                                                              " Statusline ALE Warnings
+" set statusline+=%{ALE_Warnings()}                                                              " Statusline ALE Warnings
 set statusline+=%*                                                                             " Back to normal 'StatusLine' highlight
 set statusline+=\ \                                                                            " Separator
 set statusline+=[0x%B]                                                                         " Value of character under cursor in hex

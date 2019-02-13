@@ -1,36 +1,44 @@
-"-------------------------------------------------------------------------------
-" SIMPLE COMPILE
-"-------------------------------------------------------------------------------
+function CompileAndRun(cmd)
+    if has('nvim')
+        exec "nnoremap <buffer> <F8> :w <bar> split <bar> term ".a:cmd."<CR>i"
+    else
+        exec "nnoremap <buffer> <F8> :w <bar> !".a:cmd."<CR>"
+    endif
+endfunction
+
 
 " BASIC // for Vintage BASIC
-autocmd filetype basic nnoremap <buffer> <F8> :w <bar> !vintbas %<CR>
+autocmd filetype basic call CompileAndRun("vintbas %")
 
 " C
-autocmd filetype c nnoremap <buffer> <F8> :w <bar> exec '!gcc -std=gnu11 -g '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
+autocmd filetype c call CompileAndRun("gcc -std=gnu11 -g % -o %< && ./%<")
 
 " C++
-autocmd filetype cpp nnoremap <buffer> <F8> :w <bar> exec '!g++ -std=gnu++11 -g '.shellescape('%').' -o '.shellescape('%:t:r').' && ./'.shellescape('%:t:r')<CR>
+autocmd filetype cpp call CompileAndRun("g++ -std=gnu++11 -g % -o %< && ./%<")
 
-" Haskell // TODO
-autocmd filetype haskell nnoremap <buffer> <F8> :w <bar>
+" Haskell
+autocmd filetype haskell call CompileAndRun("ghc -o %< %; rm %<.hi %<.o && ./%<")
 
 " HTML
 autocmd filetype html nnoremap <buffer> <F8> :w <bar> !firefox %<CR><CR>
 
 " LaTeX
-autocmd filetype tex nnoremap <buffer> <F8> :w <bar> !latexmk -pdf % && latexmk -c && zathura %:t:r.pdf<CR>
+autocmd filetype tex nnoremap <buffer> <F8> :w <bar> !latexmk -pdf % && latexmk -c && zathura %<.pdf<CR>
 
 " Lisp
-autocmd filetype lisp nnoremap <buffer> <F8> :w <bar> !clisp %<CR>
+autocmd filetype lisp call CompileAndRun("clisp %")
 
 " Lua
-autocmd filetype lua nnoremap <buffer> <F8> :w <bar> !lua %<CR>
+autocmd filetype lua call CompileAndRun("lua %")
 
 " Markdown // depends on Markdown Preview plugin
 autocmd filetype markdown nnoremap <buffer> <F8> :MarkdownPreview<CR>
 
 " Python
-autocmd filetype python nnoremap <buffer> <F8> :w <bar> !python3 %<CR>
+autocmd filetype python call CompileAndRun("python3 %")
+
+" Rust
+autocmd filetype rust call CompileAndRun("rustc % && ./%<")
 
 " Shell Script
-autocmd filetype sh nnoremap <buffer> <F8> :w <bar> !%:p<CR>
+autocmd filetype sh call CompileAndRun("%:p")
