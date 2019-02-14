@@ -46,6 +46,7 @@ Plug 'christoomey/vim-tmux-navigator'                                     " Tmux
 
 " VIM FUNCTIONALITY
 Plug 'othree/eregex.vim'                                                  " eregex.vim
+Plug 'kana/vim-fakeclip'                                                  " fakeclip
 Plug 'embear/vim-localvimrc'                                              " Localvimrc
 Plug 'junegunn/vim-peekaboo'                                              " Peekaboo
 Plug 'kshenoy/vim-signature'                                              " Signature

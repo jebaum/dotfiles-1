@@ -15,11 +15,11 @@ noremap <F7> :cwindow <bar> echo 'QuickFix List'<CR>
 noremap <F9> :w <bar> make<CR>
 
 " Ctrl + sth
+imap <C-p> <ESC>"+pa
 inoremap <C-d> <ESC>:t.<CR>i
-inoremap <C-p> <ESC>"+pa
-noremap <C-p> "+p
-noremap <C-q><C-q> q
-noremap <C-y> "+y
+map <C-p> "+p
+map <C-q><C-q> q
+map <C-y> "+y
 
 " Normal keys
 noremap '' ``

@@ -37,14 +37,8 @@ endfunction
 map <F3> :call CursorHighlightToggle()<CR>
 
 "-------------------------------------------------------------------------------
-" INDENTATION RULES
+" PACKAGES
 "-------------------------------------------------------------------------------
 
-set autoindent    " Enable automatic indenting
-set cindent       " Automatic C program indenting
-set expandtab     " Use spaces instead of tabs
-set shiftround    " Always indent/outdent to the nearest tabstop
-set shiftwidth=4  " Indent/outdent by 4 columns
-set smartindent   " Smart indention
-set softtabstop=4 " Unify tabs and spaces
-set tabstop=4     " Tab spacing
+packadd matchit
+packadd termdebug
