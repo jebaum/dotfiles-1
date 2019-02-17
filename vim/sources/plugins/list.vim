@@ -19,13 +19,14 @@ Plug 'tpope/vim-fugitive'                                                 " fugi
 Plug 'airblade/vim-gitgutter'                                             " GitGutter
 Plug 'Xuyuanp/nerdtree-git-plugin'                                        " NERDTree-Git
 
-" HIGHLIGHTS / SYNTAX FILES ...
+" HIGHLIGHTS / SYNTAX /INDENT FILES ...
 Plug 'sheerun/vim-polyglot'                                               " Polyglot
 Plug 'Valloric/vim-operator-highlight'                                    " vim-operator-highlight
 
 "" ... FOR SPECIFIC LANGUAGES
 Plug 'calviken/vim-gdscript3'                                             " GDScript | vim-gdscript
 Plug 'plasticboy/vim-markdown'                                            " Markdown | vim-markdown
+Plug 'vim-scripts/sh.vim'                                                 " sh/bash | sh.vim
 Plug 'shmup/vim-sql-syntax'                                               " SQL      | vim-sql-syntax
 
 " IDE
@@ -46,7 +47,6 @@ Plug 'christoomey/vim-tmux-navigator'                                     " Tmux
 
 " VIM FUNCTIONALITY
 Plug 'othree/eregex.vim'                                                  " eregex.vim
-Plug 'kana/vim-fakeclip'                                                  " fakeclip
 Plug 'embear/vim-localvimrc'                                              " Localvimrc
 Plug 'junegunn/vim-peekaboo'                                              " Peekaboo
 Plug 'kshenoy/vim-signature'                                              " Signature

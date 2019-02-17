@@ -4,22 +4,20 @@ nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <Leader>R :%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>
 nnoremap <leader>v gg0vG$
 
-" Function keys -- also mapped: <F8>
+" Function keys -- also mapped: <F3>, <F8>
 inoremap <F1> <Esc>gTi
 inoremap <F2> <Esc>gti
 noremap <F1> gT
 noremap <F2> gt
-noremap <F4> :set invrelativenumber<CR>
-noremap <F5> :setlocal cursorcolumn! cursorline!<CR>
+noremap <F4> :setlocal cursorcolumn! cursorline!<CR>
 noremap <F7> :cwindow <bar> echo 'QuickFix List'<CR>
 noremap <F9> :w <bar> make<CR>
 
 " Ctrl + sth
 imap <C-p> <ESC>"+pa
-inoremap <C-d> <ESC>:t.<CR>i
-map <C-p> "+p
 map <C-q><C-q> q
-map <C-y> "+y
+noremap <C-p> "+p
+noremap <C-y> "+y
 
 " Normal keys
 noremap '' ``

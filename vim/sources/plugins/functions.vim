@@ -5,13 +5,13 @@
 " Build YouCompleteMe - for Plug
 function! BuildYCM(info)
     if a:info.status == 'installed' || a:info.force
-        !./install.py --clang-completer --java-completer
+        execute "!./install.py ".g:BuildYCM_flags
     endif
 endfunction
 
 " Build YouCompleteMe
 function! BuildYCM_manual()
-    !~/.vim/bundle/YouCompleteMe/install.py --clang-completer --java-completer
+    execute "!~/.vim/bundle/YouCompleteMe/install.py ".g:BuildYCM_flags
 endfunction
 
 " Set different syntax in range between specified points
@@ -25,5 +25,15 @@ function! RangeFT(start, end, filetype, ...)
 endfunction
 
 
-" CALLING COMMANDS -------------------------------------------------------------
+" ------------------------------------------------------------------------------
+" NECESSARY VARIABLES
+" ------------------------------------------------------------------------------
+
+let g:BuildYCM_flags = "--clang-completer"
+
+
+" ------------------------------------------------------------------------------
+" CALLING COMMANDS
+" ------------------------------------------------------------------------------
+
 command! -nargs=+ RangeFT call RangeFT(<f-args>)
