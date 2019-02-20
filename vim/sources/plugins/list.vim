@@ -3,13 +3,11 @@ Plug 'Chiel92/vim-autoformat'                                             " Auto
 Plug 'scrooloose/nerdcommenter'                                           " NERDCommenter
 Plug 'tpope/vim-surround'                                                 " Surround
 Plug 'godlygeek/tabular'                                                  " Tabular
-Plug 'dhruvasagar/vim-table-mode'                                         " VIM Table Mode
 Plug 'alcesleo/vim-uppercase-sql'                                         " vim-uppercase-sql
 Plug 'yaroot/vissort'                                                     " Visual Block Sorting
 
 " CODE/TEXT VIEWING
 Plug 'osyo-manga/vim-anzu'                                                " Anzu
-Plug 'RRethy/vim-illuminate'                                              " Illuminate
 Plug 'Yggdroot/indentLine'                                                " indentLine
 Plug 'inkarkat/vim-SyntaxRange'                                           " SyntaxRange
 Plug 'romainl/vim-cool'                                                   " vim-cool
@@ -19,14 +17,13 @@ Plug 'tpope/vim-fugitive'                                                 " fugi
 Plug 'airblade/vim-gitgutter'                                             " GitGutter
 Plug 'Xuyuanp/nerdtree-git-plugin'                                        " NERDTree-Git
 
-" HIGHLIGHTS / SYNTAX /INDENT FILES ...
+" HIGHLIGHTS / SYNTAX / INDENT FILES ...
 Plug 'sheerun/vim-polyglot'                                               " Polyglot
-Plug 'Valloric/vim-operator-highlight'                                    " vim-operator-highlight
 
 "" ... FOR SPECIFIC LANGUAGES
 Plug 'calviken/vim-gdscript3'                                             " GDScript | vim-gdscript
 Plug 'plasticboy/vim-markdown'                                            " Markdown | vim-markdown
-Plug 'vim-scripts/sh.vim'                                                 " sh/bash | sh.vim
+Plug 'vim-scripts/sh.vim'                                                 " sh/bash  | sh.vim
 Plug 'shmup/vim-sql-syntax'                                               " SQL      | vim-sql-syntax
 
 " IDE
@@ -47,8 +44,6 @@ Plug 'christoomey/vim-tmux-navigator'                                     " Tmux
 
 " VIM FUNCTIONALITY
 Plug 'othree/eregex.vim'                                                  " eregex.vim
-Plug 'embear/vim-localvimrc'                                              " Localvimrc
-Plug 'junegunn/vim-peekaboo'                                              " Peekaboo
 Plug 'kshenoy/vim-signature'                                              " Signature
 Plug 'mbbill/undotree'                                                    " UndoTree
 

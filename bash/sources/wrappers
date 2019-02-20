@@ -32,20 +32,9 @@ apt() {
     esac
 }
 
-find() {
+find()
+{
     command find $@ 2> /dev/null
-}
-
-git() {
-    case "$1" in
-        init)
-            command git init
-            echo "tags" > .gitignore
-            ;;
-        *)
-            command git $@
-            ;;
-    esac
 }
 
 mpv() {

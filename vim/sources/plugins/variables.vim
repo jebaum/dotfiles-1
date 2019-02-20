@@ -1,13 +1,14 @@
 let g:gitgutter_max_signs                    = 5000
 let g:gutentags_cache_dir                    = $HOME."/.vim/cache/tags"
-let g:Illuminate_delay                       = 0
-let g:ophigh_highlight_link_group            = 1
-let g:table_mode_corner                      = '|'
 
 " AutoFormat
 let b:formatdef_custom_c                     = '"astyle --style=kr -s4 -N -S -xG -xU -f -k3 -xj -p"'
+let b:formatdef_custom_css                   = '"css-beautify"'
+let b:formatdef_custom_html                  = '"html-beautify"'
 let b:formatters_c                           = ['custom_c']
 let b:formatters_cpp                         = ['custom_c']
+let b:formatters_css                         = ['custom_css']
+let b:formatters_html                        = ['custom_html']
 
 " eregex.vim
 let g:eregex_default_enable                  = 0

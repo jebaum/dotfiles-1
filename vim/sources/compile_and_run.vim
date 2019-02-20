@@ -24,7 +24,7 @@ autocmd filetype haskell call CompileAndRun("ghc -o %< %; rm %<.hi %<.o && ./%<"
 autocmd filetype html nnoremap <buffer> <F8> :w <bar> !firefox %<CR><CR>
 
 " LaTeX
-autocmd filetype tex nnoremap <buffer> <F8> :w <bar> !latexmk -pdf % && latexmk -c && zathura %<.pdf<CR>
+autocmd filetype tex nnoremap <buffer> <F8> :w <bar> !latexmk -pdf % && latexmk -c; zathura %<.pdf<CR>
 
 " Lisp
 autocmd filetype lisp call CompileAndRun("clisp %")
@@ -34,6 +34,9 @@ autocmd filetype lua call CompileAndRun("lua %")
 
 " Markdown // depends on Markdown Preview plugin
 autocmd filetype markdown nnoremap <buffer> <F8> :MarkdownPreview<CR>
+
+" Perl
+autocmd filetype perl call CompileAndRun("perl %")
 
 " Python
 autocmd filetype python call CompileAndRun("python3 %")

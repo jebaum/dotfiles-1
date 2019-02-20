@@ -20,8 +20,8 @@ autocmd filetype haskell,lua,sql syntax match DoublehyphenComment /\s*--.*$/
 " LUA block comments
 autocmd filetype lua syntax region LUA_Comment start='--\[\[' end='\]\]'
 
-" XOR operator: ^
-autocmd BufWinEnter * syntax match OperatorCharXOR '\^'
+" OperatorChars
+autocmd BufWinEnter * syntax match OperatorChars "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
 
 
 "-------------------------------------------------------------------------------
@@ -47,11 +47,13 @@ hi  FoldColumn       ctermbg=black
 hi  LineNr           ctermfg=242
 hi  Normal           ctermfg=DarkGreen
 hi  Number           ctermfg=DarkCyan
+hi  OperatorChars    ctermfg=3
 hi  Pmenu            ctermfg=black       ctermbg=cyan
 hi  PmenuSel         ctermfg=black       ctermbg=blue
 hi  PreProc          ctermfg=LightGreen
 hi  QuickFixLine     ctermbg=NONE        cterm=underline
 hi  Special          ctermfg=red         ctermbg=black
+hi  StatusLine       ctermfg=black       ctermbg=yellow   cterm=NONE
 hi  StatusLineNC     ctermfg=white
 hi  String           ctermfg=DarkCyan
 hi  Type             ctermfg=white
@@ -65,5 +67,4 @@ hi  WildMenu         ctermbg=cyan
 hi  link  DoublehyphenComment  Comment
 hi  link  LUA_Comment          Comment
 hi  link  Noise                OperatorChars
-hi  link  OperatorCharXOR      OperatorChars
 hi  link  VimCommentString     Comment

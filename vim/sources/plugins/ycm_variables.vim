@@ -1,7 +1,3 @@
-"-------------------------------------------------------------------------------
-" PLUGINS - YouCompleteMe VARIABLES
-"-------------------------------------------------------------------------------
-
 let g:ycm_add_preview_to_completeopt                 = 0
 let g:ycm_always_populate_location_list              = 0
 let g:ycm_autoclose_preview_window_after_completion  = 1
@@ -29,15 +25,17 @@ let g:ycm_filetype_blacklist = {
             \ }
 
 let g:ycm_semantic_triggers = {
-            \ 'c'          :  ['->', '.', '#', 're!\w'],
-            \ 'cpp'        :  ['->', '.', '#', 're!\w', '::'],
-            \ 'cs'         :  ['.', 're!\w'],
-            \ 'java'       :  ['.', 're!\w'],
-            \ 'javascript' :  ['.', 're!\w'],
-            \ 'lua'        :  ['.', ':', 're!\w'],
-            \ 'perl'       :  ['->', 're!\w'],
-            \ 'php'        :  ['->', '::', 're!\w'],
-            \ 'python'     :  ['.', 're!\w'],
-            \ 'sql'        :  ['.', 're!\w'],
-            \ 'vim'        :  ['re!\w'],
+            \ 'c'           : ['re!\w', '.', '->', '#'],
+            \ 'cpp'         : ['re!\w', '.', '->', '#', '::'],
+            \ 'cs'          : ['re!\w', '.'],
+            \ 'css'         : ['re!\w', '#', ':', '!'],
+            \ 'java'        : ['re!\w', '.'],
+            \ 'javascript'  : ['re!\w', '.'],
+            \ 'lua'         : ['re!\w', '.', ':'],
+            \ 'perl'        : ['re!\w', '->'],
+            \ 'php'         : ['re!\w', '->', '::'],
+            \ 'python'      : ['re!\w', '.'],
+            \ 'snippets'    : ['re!\w'],
+            \ 'sql'         : ['re!\w', '.'],
+            \ 'vim'         : ['re!\w'],
             \ }

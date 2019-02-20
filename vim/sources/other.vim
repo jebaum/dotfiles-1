@@ -7,6 +7,9 @@ filetype plugin indent on
 " Enable syntax
 syntax enable
 
+" Default filetype
+autocmd BufEnter * if &filetype == "" | setlocal filetype=text | endif
+
 " Quit QuickFix window along with source file window
 autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix" | q | endif
 
@@ -26,9 +29,7 @@ autocmd BufWritePre * silent! undojoin | %s/\s\+$//e | %s/\(\n\r\?\)\+\%$//e
 autocmd BufEnter *.list setlocal comments=:# commentstring=#%s | syn match listComment "#.*$" | hi link listComment Comment
 
 
-"-------------------------------------------------------------------------------
-" PACKAGES
-"-------------------------------------------------------------------------------
+" PACKAGES ---------------------------------------------------------------------
 
 packadd matchit
 packadd termdebug

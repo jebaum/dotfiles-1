@@ -1,7 +1,3 @@
-"-------------------------------------------------------------------------------
-" PLUGINS - MAPPINGS
-"-------------------------------------------------------------------------------
-
 noremap <leader><F1> :UndotreeToggle<CR>
 noremap <leader>= :Autoformat<CR>
 noremap tt :PreviewTag<CR>

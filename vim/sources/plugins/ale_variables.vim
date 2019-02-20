@@ -1,8 +1,3 @@
-"-------------------------------------------------------------------------------
-" PLUGINS - ALE VARIABLES
-"-------------------------------------------------------------------------------
-
-" let g:ale_c_parse_compile_commands = 1
 let g:ale_c_parse_makefile         = 1
 let g:ale_set_highlights           = 0
 let g:ale_set_quickfix             = 1

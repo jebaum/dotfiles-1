@@ -9,13 +9,11 @@ inoremap <F1> <Esc>gTi
 inoremap <F2> <Esc>gti
 noremap <F1> gT
 noremap <F2> gt
-noremap <F4> :setlocal cursorcolumn! cursorline!<CR>
 noremap <F7> :cwindow <bar> echo 'QuickFix List'<CR>
 noremap <F9> :w <bar> make<CR>
 
 " Ctrl + sth
-imap <C-p> <ESC>"+pa
-map <C-q><C-q> q
+inoremap <C-p> <ESC>"+pa
 noremap <C-p> "+p
 noremap <C-y> "+y
 
@@ -23,9 +21,7 @@ noremap <C-y> "+y
 noremap '' ``
 noremap ' `
 noremap <Tab> <C-w><C-w>
-noremap G G0
 noremap gf <C-w>gf
-noremap gg gg0
 noremap j gj
 noremap k gk
 noremap N Nzz

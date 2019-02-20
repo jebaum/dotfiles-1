@@ -9,6 +9,7 @@ function! FillLine(str)
     endif
 endfunction
 
+" Repeats given string
 function! RepeatStr(times, str)
     execute ":normal a" . repeat(a:str, a:times)
 endfunction
@@ -27,23 +28,17 @@ function CursorHighlightToggle()
 endfunction
 
 
-" ------------------------------------------------------------------------------
-" NECESSARY VARIABLES
-" ------------------------------------------------------------------------------
+" NECESSARY VARIABLES ----------------------------------------------------------
 
 let g:CursorHighlight_state=0
 
 
-" ------------------------------------------------------------------------------
-" CALLING COMMANDS
-" ------------------------------------------------------------------------------
+" CALLING COMMANDS -------------------------------------------------------------
 
 command! -nargs=+ FillLine call FillLine('<args>')
 command! -nargs=+ RepeatStr call RepeatStr(<f-args>)
 
 
-" ------------------------------------------------------------------------------
-" MAPPINGS
-" ------------------------------------------------------------------------------
+" MAPPINGS ---------------------------------------------------------------------
 
 map <F3> :call CursorHighlightToggle()<CR>

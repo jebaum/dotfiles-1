@@ -1,7 +1,3 @@
-"-------------------------------------------------------------------------------
-" FOLDING
-"-------------------------------------------------------------------------------
-
 autocmd BufReadPre * setlocal foldmethod=indent
 autocmd BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 
