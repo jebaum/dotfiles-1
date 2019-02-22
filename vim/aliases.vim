@@ -5,15 +5,13 @@ let g:cmdaliasCmdPrefixes = 'verbose debug silent redir'
 let s:aliases = {}
 
 function! s:ExpandAlias(lhs, rhs)
-    if getcmdtype() == ":"
-        let partCmd = strpart(getcmdline(), 0, getcmdpos())
-        let prefixes = ['^'] + map(split(g:cmdaliasCmdPrefixes, ' '), '"^".v:val."!\\?"." "')
-        for prefix in prefixes
-            if partCmd =~ prefix.a:lhs.'$'
-                return a:rhs
-            endif
-        endfor
-    endif
+    let partCmd = strpart(getcmdline(), 0, getcmdpos())
+    let prefixes = ['^'] + map(split(g:cmdaliasCmdPrefixes, ' '), '"^".v:val."!\\?"." "')
+    for prefix in prefixes
+        if partCmd =~ prefix.a:lhs.'$'
+            return a:rhs
+        endif
+    endfor
     return a:lhs
 endfunction
 

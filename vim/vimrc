@@ -18,7 +18,6 @@
 " INIT.VIM (for NeoVim)   | $HOME/dotfiles/vim/init.vim
 " MAPPINGS                | $HOME/dotfiles/vim/sources/mappings.vim
 " OTHER                   | $HOME/dotfiles/vim/sources/other.vim
-" PLUGINS - ALE VARIABLES | $HOME/dotfiles/vim/sources/plugins/ale_variables.vim
 " PLUGINS - FUNCTIONS     | $HOME/dotfiles/vim/sources/plugins/functions.vim
 " PLUGINS - GENERAL       | $HOME/dotfiles/vim/sources/plugins/general.vim
 " PLUGINS - LIST          | $HOME/dotfiles/vim/sources/plugins/list.vim
