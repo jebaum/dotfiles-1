@@ -20,5 +20,5 @@ autocmd VimEnter *tags setlocal filetype=tags
 " QuickFixLine highlight does not like CursorLine
 autocmd BufReadPost quickfix setlocal nocursorline
 
-" For any maping with 'd'
+" For any maping starting with 'd'
 nnoremap dd dd

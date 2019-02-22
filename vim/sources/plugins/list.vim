@@ -51,6 +51,6 @@ Plug 'shougo/vinarise.vim'                                                " Vina
 
 
 " DEPENDENCES -------------------------
-Plug 'vim-scripts/dbext.vim'                                              " dbext.vim   | for: YouCompleteMe with SQL
+Plug 'vim-scripts/dbext.vim' , { 'for' : 'sql' }                          " dbext.vim   | for: YouCompleteMe with SQL
 Plug 'inkarkat/vim-ingo-library'                                          " ingo-lirary | for: SyntaxRange
 Plug 'tpope/vim-rhubarb'                                                  " rhubarb.vim | for: fugitive.vim
