@@ -45,6 +45,7 @@ Plug 'christoomey/vim-tmux-navigator'                                     " Tmux
 " VIM FUNCTIONALITY
 Plug 'othree/eregex.vim'                                                  " eregex.vim
 Plug 'kshenoy/vim-signature'                                              " Signature
+Plug 'christoomey/vim-system-copy'                                        " System Copy
 Plug 'mbbill/undotree'                                                    " UndoTree
 Plug 'shougo/vinarise.vim'                                                " Vinarise
 

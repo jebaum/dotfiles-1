@@ -36,6 +36,10 @@ let g:SignatureForceRemoveGlobal             = 1
 let g:SignatureForceRemoveLocal              = 1
 let g:SignatureMarkTextHLDynamic             = 1
 
+" System Copy
+let g:system_copy#copy_command               = 'xclip -sel clipboard'
+let g:system_copy#paste_command              = 'xclip -sel clipboard -o'
+
 " UltiSnips
 let g:UltiSnipsEditSplit                     = "context"
 let g:UltiSnipsExpandTrigger                 = "<C-j>"
