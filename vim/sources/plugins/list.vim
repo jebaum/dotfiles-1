@@ -46,6 +46,7 @@ Plug 'christoomey/vim-tmux-navigator'                                     " Tmux
 Plug 'othree/eregex.vim'                                                  " eregex.vim
 Plug 'kshenoy/vim-signature'                                              " Signature
 Plug 'mbbill/undotree'                                                    " UndoTree
+Plug 'shougo/vinarise.vim'                                                " Vinarise
 
 
 " DEPENDENCES -------------------------

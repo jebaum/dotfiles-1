@@ -17,7 +17,6 @@ map <silent> ge <Plug>CamelCaseMotion_ge
 " NERDCommenter
 map c- <plug>NERDCommenterToEOL
 map c<BS> <leader>cu
-map c<space> <leader>c<space>
 map cc <leader>cc
 map cm <leader>cm
 

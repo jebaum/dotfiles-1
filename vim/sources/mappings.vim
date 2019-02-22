@@ -1,8 +1,7 @@
 " leader + sth
-inoremap <leader><Tab> <C-v><Tab>
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <Leader>R :%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>
-nnoremap <leader>v gg0vG$
+nnoremap <leader>v ggVG
 
 " Function keys -- also mapped: <F3>, <F8>
 inoremap <F1> <Esc>gTi
@@ -28,7 +27,6 @@ noremap N Nzz
 noremap n nzz
 
 " <nop>
-map ` <nop>
 map c <nop>
 map gh <nop>
 map q <nop>

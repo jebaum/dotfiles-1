@@ -1,9 +1,7 @@
-"-------------------------------------------------------------------------------
-" EXTRA HIGHLIGHT GROUPS
-"-------------------------------------------------------------------------------
+" EXTRA HIGHLIGHT GROUPS -------------------------------------------------------
 
 " C/C++ preprocessor defined macros
-function! HighlightC_PreProcDefines()
+function! s:HighlightC_PreProcDefines()
     syntax clear C_PreProcDefine
     for l in getline('1','$')
         if l =~ '^\s*#\s*define\s\+'
@@ -12,10 +10,10 @@ function! HighlightC_PreProcDefines()
         endif
     endfor
 endfunction
-autocmd FileType c,cpp,h,hpp autocmd VimEnter,InsertEnter,InsertLeave * call HighlightC_PreProcDefines()
+autocmd FileType c,cpp,h,hpp autocmd VimEnter,InsertEnter,InsertLeave * call <SID>HighlightC_PreProcDefines()
 
 " Comments starting with --
-autocmd filetype haskell,lua,sql syntax match DoublehyphenComment /\s*--.*$/
+autocmd filetype haskell,lua,sql syntax match DoubleHyphenComment /\s*--.*$/
 
 " LUA block comments
 autocmd filetype lua syntax region LUA_Comment start='--\[\[' end='\]\]'
@@ -24,15 +22,15 @@ autocmd filetype lua syntax region LUA_Comment start='--\[\[' end='\]\]'
 autocmd BufWinEnter * syntax match OperatorChars "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
 
 
-"-------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " Clear all maches after leaving buffer
 
 autocmd BufWinLeave * call clearmatches()
 
 
-"-------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " HIGHLIGHTS
-"-------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 
 hi  C_PreProcDefine  ctermfg=DarkRed
 hi  ColorColumn      ctermbg=233
@@ -60,11 +58,9 @@ hi  Type             ctermfg=white
 hi  WildMenu         ctermbg=cyan
 
 
-"-------------------------------------------------------------------------------
-" LINK
-"-------------------------------------------------------------------------------
+" LINK -------------------------------------------------------------------------
 
-hi  link  DoublehyphenComment  Comment
+hi  link  DoubleHyphenComment  Comment
 hi  link  LUA_Comment          Comment
 hi  link  Noise                OperatorChars
 hi  link  VimCommentString     Comment

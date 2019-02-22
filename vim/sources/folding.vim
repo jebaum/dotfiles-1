@@ -5,12 +5,11 @@ set foldlevel=10
 set foldnestmax=10
 set nofoldenable
 
-"-------------------------------------------------------------------------------
-"FOLDING RULES FOR LANGUAGES
-"-------------------------------------------------------------------------------
 
-" C/C++/Java -------------------------------------------------------------------
-function! OutlineToggle()
+" FOLDING RULES FOR LANGUAGES --------------------------------------------------
+
+" C/C++/Java
+function! s:OutlineToggle()
     let OldLine = line(".")
     let OldCol = virtcol(".")
     if (! exists ("b:outline_mode"))
@@ -36,7 +35,7 @@ function! OutlineToggle()
     unlet OldCol
     execute "normal! zv"
 endfunction
-autocmd VimEnter * call OutlineToggle()
+autocmd VimEnter * call <SID>OutlineToggle()
 
-" JavaScript -------------------------------------------------------------------
+" JavaScript
 autocmd FileType javascript setlocal foldmethod=syntax
