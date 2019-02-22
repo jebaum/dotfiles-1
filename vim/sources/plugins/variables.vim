@@ -21,10 +21,6 @@ let b:formatters_html                        = ['custom_html']
 let g:eregex_default_enable                  = 0
 let g:eregex_force_case                      = 1
 
-" Localvimrc
-let g:localvimrc_ask                         = 0
-let g:localvimrc_persistent                  = 1
-
 " NERDCommenter
 let g:NERDCommentEmptyLines                  = 1
 let g:NERDSpaceDelims                        = 1
