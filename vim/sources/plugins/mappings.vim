@@ -1,4 +1,5 @@
 imap <C-p> <ESC><Plug>SystemPaste
+" imap <C-p> <ESC>:execute "normal \<Plug>SystemPaste"<CR>A
 map <C-p> <Plug>SystemPaste
 map <C-y> <Plug>SystemCopy
 noremap <leader><F1> :UndotreeToggle<CR>
@@ -10,12 +11,6 @@ nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
-
-" CamelCaseMotion
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-map <silent> ge <Plug>CamelCaseMotion_ge
 
 " NERDCommenter
 map c- <plug>NERDCommenterToEOL

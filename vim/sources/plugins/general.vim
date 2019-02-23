@@ -14,7 +14,7 @@ call plug#end()
 
 " AUTOCMD ----------------------------------------------------------------------
 
-autocmd BufReadPost * if &bin | Vinarise | endif                   " Vinarise - open automatically when 'binary' is set
+" autocmd BufReadPost * if &bin | Vinarise | endif                   " Vinarise - open automatically when 'binary' is set
 autocmd FileType man let g:nerdtree_tabs_open_on_console_startup=0 " Not open NERDTree in man pages
 autocmd VimEnter * autocmd BufEnter,InsertEnter * SignatureRefresh " Fix for Signature and gitgutter
 autocmd VimEnter * VSO i                                           " Vissort - case insensivity
@@ -30,3 +30,4 @@ hi  StatusLine_ALE_Warning  ctermbg=208      ctermfg=black
 " COMMANDS ---------------------------------------------------------------------
 
 command -range TabularizeBySpace execute '<line1>,<line2>Tabularize /\S\+/l1'
+command AllToClipboard execute "normal gg\<Plug>SystemCopyG``"
