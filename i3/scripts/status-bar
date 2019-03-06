@@ -1,0 +1,48 @@
+#!/bin/bash
+
+wifi_ssid=$(iwgetid -r)
+wifi_signal=$(awk 'NR==3 {print $4}''' /proc/net/wireless)
+wifi_signal="[${wifi_signal:0:-1} dBm]"
+
+if [ "$wifi_ssid" == "" ]; then
+    wifi_ssid="[X]"
+fi
+
+wifi="$wifi_ssid $wifi_signal"
+# ethernet=$(cat /sys/class/net/e*/carrier)
+
+date=$(LC_ALL=C date "+%a, %F %T") # %:z")
+
+if [[ "$(bluetooth)" == "bluetooth = on" ]]; then
+    bluetooth="on"
+else
+    bluetooth="off"
+fi
+
+if [[ $(amixer get Master | command grep % | command awk '{print $3}') == 0 ]]; then
+    volume="[X]"
+else
+    volume=$(amixer get Master | command grep % | command awk '{print $5}'|sed -e 's/\[//' -e 's/\]//')
+fi
+
+if [ $(amixer get Master | command grep % | command awk '{print $6}') == "[off]" ]; then
+    volume="$volume (muted)"
+fi
+
+battery=$($HOME/.i3/scripts/battery)
+
+cpu_temp=$(sensors | grep "Package id 0:" | cut -c15-23)
+
+cpu_freq=$(lscpu | grep "CPU MHz")
+cpu_freq="${cpu_freq:21:-4} MHz"
+
+if [[ "$(glxinfo | command grep "OpenGL vendor")" =~ .*Intel.* ]]; then
+    gpu=Intel
+else
+    gpu=Nvidia
+fi
+
+
+###################
+
+echo "$cpu_temp | $cpu_freq | WiFi: $wifi | BT: $bluetooth | GPU: $gpu | $battery | $volume | $date   "

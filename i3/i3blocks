@@ -1,0 +1,3 @@
+[status-bar]
+command=$HOME/.i3/scripts/status-bar
+interval=1

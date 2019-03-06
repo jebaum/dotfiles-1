@@ -63,7 +63,7 @@ bind '"\e[Z":menu-complete'
 # Enable extended globbing
 shopt -s extglob
 
-# Enable color support of ls and also add handy aliases
+# Enable color support of ls and grep
 if [ -x /usr/bin/dircolors ]; then
     test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=always'
@@ -72,7 +72,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=always'
 fi
 
-# Changes default editor to Vim
+# Changes default editor to Vi
 export EDITOR=vi
 
 # Changes default manpager to Vim
@@ -80,3 +80,13 @@ export MANPAGER="vim -M +MANPAGER -"
 
 export VITASDK=/usr/local/vitasdk
 export PATH=$VITASDK/bin:$PATH
+
+# Logout alias (uncomment needed)
+
+# XFCE4
+# LOGOUT='xfce4-session-logout --logout'
+
+# i3
+LOGOUT="i3-msg exit"
+
+alias logout="$LOGOUT"

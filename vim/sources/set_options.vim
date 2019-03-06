@@ -57,5 +57,3 @@ set modeline                                            " Enable modelines
 set nrformats=                                          " Ignore non-DEC numeral systems when in- or decrementing with <C-a>/<C-x>
 set omnifunc=syntaxcomplete#Complete                    " Omnifunc
 set wrapmargin=0                                        " No wrap margin
-set textwidth=80                                        " Default width of text (to wraping)
-set formatoptions=cq                                    " No automatic wrapping, rewrapping will wrap to 'textwidth'
