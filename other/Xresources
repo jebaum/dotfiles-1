@@ -3,28 +3,30 @@
 ! ##################
 
 ! General settings
-XTerm*termName: xterm-256color
-XTerm*geometry: 220x55+80+30
-XTerm*loginshell: False
-XTerm*cursorBlink: True
+UXTerm*termName: xterm-256color
+UXTerm*geometry: 220x55+80+30
+UXTerm*loginshell: False
+UXTerm*cursorBlink: True
 
 ! Fonts and Encoding
-XTerm*faceName: xft:Inconsolata-10
-XTerm*locale: True
-XTerm*preeditType: Root
-XTerm*renderFont: True
-XTerm*utf8: True
-XTerm*utf8Title: True
-XTerm*xftAntialias: true
+UXTerm*faceName: Dejavu Sans Mono:style=book
+UXTerm*faceNameDoublesize: IPAGothic:style=Regular
+UXTerm*faceSize: 10
+UXTerm*locale: True
+UXTerm*preeditType: Root
+UXTerm*renderFont: True
+UXTerm*utf8: True
+UXTerm*utf8Title: True
+UXTerm*xftAntialias: true
 
 ! Copy and paste with clipboard
-XTerm*translations: #override \
+UXTerm*translations: #override \
     Ctrl Shift <KeyPress> C: copy-selection(CLIPBOARD) \n\
     Ctrl Shift <KeyPress> V: insert-selection(CLIPBOARD)
 
 ! Allow selecting email/url by double-click
-XTerm*charClass: 33:48,37-38:48,45-47:48,64:48,58:48,126:48,61:48,63:48,43:48,35:48
+UXTerm*charClass: 33:48,37-38:48,45-47:48,64:48,58:48,126:48,61:48,63:48,43:48,35:48
 
 ! Colors
-XTerm*background: black
-XTerm*foreground: green
+UXTerm*background: black
+UXTerm*foreground: green

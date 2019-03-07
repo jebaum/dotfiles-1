@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ "$(glxinfo | command grep "OpenGL vendor")" =~ .*Intel.* ]]; then
+    echo "Intel"
+else
+    echo "Nvidia"
+fi

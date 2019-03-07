@@ -16,19 +16,27 @@ workspace_layout tabbed
 
 # i3bar
 bar {
+    font pango: DejaVu Sans Mono 9
     status_command i3blocks -c $HOME/.i3/i3blocks
+    separator_symbol "|"
     tray_padding 1
     position top
 }
 
 # border / titlebar
 new_window normal
-hide_edge_borders vertical
+hide_edge_borders smart
 bindsym Control+Shift+x [class="^.*"] border toggle
 for_window [class="^.*"] border pixel 1
 
 # set background
 exec --no-startup-id xsetroot -solid "#000000"
+
+# start fcitx
+exec --no-startup-id fcitx -d
+
+# disable touchpad on startup
+exec --no-startup-id $HOME/.i3/scripts/autostart
 
 
 # SHORTCUTS BINDINGS -----------------------------------------------------------
@@ -145,25 +153,30 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 
-# Make the currently focused window a scratchpad
+# touchpad toggle
+bindsym $mod+F4 exec $HOME/.i3/scripts/touchpad-toggle
+
+# make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
 
-# Show the first scratchpad window
+# show the first scratchpad window
 bindsym $mod+minus scratchpad show
 
-# Audio controls
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 3dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 3dB- unmute
+# audio controls
+bindsym XF86AudioLowerVolume exec $HOME/.i3/scripts/volume_down
 bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 3dB+ unmute
 
-# Sreen brightness controls
+## send signal to change i3blocks
+bindsym --release XF86AudioLowerVolume exec pkill -SIGRTMIN+10 i3blocks
+bindsym --release XF86AudioMute exec pkill -SIGRTMIN+10 i3blocks
+bindsym --release XF86AudioRaiseVolume exec pkill -SIGRTMIN+10 i3blocks
+
+# sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec # decrease screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
-# Touchpad controls
-bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
-
-# Media player controls
+# media player controls
 bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next

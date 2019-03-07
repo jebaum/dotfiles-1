@@ -29,7 +29,20 @@ if [ $(amixer get Master | command grep % | command awk '{print $6}') == "[off]"
     volume="$volume (muted)"
 fi
 
-battery=$($HOME/.i3/scripts/battery)
+
+battery=$(upower -i $(upower -e | command grep battery) | grep percentage)
+battery=$(echo ${battery//"percentage:"/})
+battery_state=$(upower -i $(upower -e | command grep battery) | grep state)
+battery_state=$(echo ${battery_state//"state:"/})
+battery_time=$(upower -i $(upower -e | command grep battery) | grep "time to empty")
+battery_time=$(echo ${battery_time//"time to empty:"/})
+
+
+if [ $battery_state == "discharging" ]; then
+    battery="$battery [$battery_time]"
+else
+    battery="AC ($battery)"
+fi
 
 cpu_temp=$(sensors | grep "Package id 0:" | cut -c15-23)
 
@@ -45,4 +58,4 @@ fi
 
 ###################
 
-echo "$cpu_temp | $cpu_freq | WiFi: $wifi | BT: $bluetooth | GPU: $gpu | $battery | $volume | $date   "
+echo "$cpu_temp | $cpu_freq | WiFi: $wifi | BT: $bluetooth | GPU: $gpu | $battery | $volume | $date"

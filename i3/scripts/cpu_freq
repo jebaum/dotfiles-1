@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cpu_freq=$(lscpu | grep "CPU MHz")
+echo "${cpu_freq:21:-4} MHz"

@@ -5,3 +5,11 @@
 # Update PATH variable to include $HOME/scripts/bin directory
 export PATH=$PATH":$HOME/scripts/shell_scripts/bin"
 export PATH=$PATH":$HOME/.bin"
+
+# Japanese input
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx
+
+
+# vim: set filetype=sh:

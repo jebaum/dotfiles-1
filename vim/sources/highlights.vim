@@ -13,10 +13,13 @@ endfunction
 autocmd FileType c,cpp,h,hpp autocmd VimEnter,InsertEnter,InsertLeave * call <SID>HighlightC_PreProcDefines()
 
 " Comments starting with --
-autocmd filetype haskell,lua,sql syntax match DoubleHyphenComment /\s*--.*$/
+autocmd filetype haskell,lua,sql match DoubleHyphenComment /\s*--.*$/
 
 " LUA block comments
 autocmd filetype lua syntax region LUA_Comment start='--\[\[' end='\]\]'
+
+" Xdefaults comment
+autocmd filetype xdefaults match BangComment /^\!.*$/
 
 " OperatorChars
 autocmd BufWinEnter * syntax match OperatorChars "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
@@ -60,6 +63,7 @@ hi  WildMenu         ctermbg=cyan
 
 " LINK -------------------------------------------------------------------------
 
+hi  link  BangComment          Comment
 hi  link  DoubleHyphenComment  Comment
 hi  link  LUA_Comment          Comment
 hi  link  Noise                OperatorChars

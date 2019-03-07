@@ -1,3 +1,33 @@
-[status-bar]
-command=$HOME/.i3/scripts/status-bar
+[cpu-temp]
+command=sensors | grep "Package id 0:" | cut -c15-23
+interval=5
+
+[cpu-freq]
+command=$HOME/.i3/scripts/cpu_freq
+interval=5
+
+[wifi]
+command=$HOME/.i3/scripts/wifi
+interval=5
+
+[bluetooth]
+command=$HOME/.i3/scripts/bluetooth
+interval=15
+
+[gpu]
+command=$HOME/.i3/scripts/gpu
+interval=once
+
+[battery2]
+command=$HOME/.i3/scripts/battery
+markup=pango
+interval=30
+
+[volume]
+command=$HOME/.i3/scripts/volume
+interval=once
+signal=10
+
+[date]
+command=LC_ALL=C date "+%a, %F %T"
 interval=1

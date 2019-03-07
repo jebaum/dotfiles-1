@@ -23,13 +23,6 @@ for script in $HOME/scripts/shell_scripts/sudo/*; do
     fi
 done
 
-# Wrappers
-for script in $HOME/scripts/shell_scripts/wrappers/*; do
-    if [ -f "$script" -a -x "$script" ]; then
-        alias $(basename $script)="$script"
-    fi
-done
-
 # Launchers
 for script in $HOME/scripts/shell_scripts/launchers/*; do
     if [ -f "$script" -a -x "$script" ]; then

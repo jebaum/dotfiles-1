@@ -3,37 +3,58 @@
 
 apt() {
     case "$1" in
-        --no-rec)
-            shift 1
-            command apt install --no-install-recommends $@
-            ;;
-        auto)
-            shift 1
-            command sudo apt-mark auto $@
-            ;;
-        purge)
-            shift 1
-            command sudo apt purge --auto-remove $@
-            ;;
-        reinstall)
-            shift 1
-            command sudo apt install --reinstall $@
-            ;;
-        show)
-            shift 1
-            command apt show $@
-            ;;
-        upgrade)
-            shift 1
-            command sudo apt update
-            command sudo apt full-upgrade
-            command sudo apt autoremove -y
-            command sudo apt autoclean
-            ;;
-        *)
-            command sudo apt $@
-            ;;
+    --no-rec)
+        shift 1
+        command apt install --no-install-recommends $@
+        ;;
+    auto)
+        shift 1
+        command sudo apt-mark auto $@
+        ;;
+    purge)
+        shift 1
+        command sudo apt purge --auto-remove $@
+        ;;
+    reinstall)
+        shift 1
+        command sudo apt install --reinstall $@
+        ;;
+    show)
+        shift 1
+        command apt show $@
+        ;;
+    upgrade)
+        shift 1
+        command sudo apt update
+        command sudo apt full-upgrade
+        command sudo apt autoremove -y
+        command sudo apt autoclean
+        ;;
+    *)
+        command sudo apt $@
+        ;;
     esac
+}
+
+feh() {
+    if [[ $1 == "-r" ]]; then
+        R="-r"
+        shift 1
+    fi
+
+    if [[ -z $1 ]]; then
+        command feh $R 2> /dev/null & disown
+    elif [[ ! -z $2 ]]; then
+        command feh $R "$@" & disown
+    else
+        file="$(readlink -f $1)"
+        if [ -d "$file" ]; then
+            command feh $R "$file" 2> /dev/null & disown
+        else
+            dir="$(dirname "$file")"
+            command feh $R --start-at "$file" "$dir" 2> /dev/null & disown
+        fi
+    fi
 }
 
 find()

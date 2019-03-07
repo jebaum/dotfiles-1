@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+rm -rf /home/x/.cache/
+
+sudo rfkill block bluetooth
+
+synclient TouchpadOff=1
+
+sudo tlp start
