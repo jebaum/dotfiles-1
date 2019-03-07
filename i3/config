@@ -51,13 +51,20 @@ bindsym $mod+Shift+Return exec i3-sensible-terminal
 bindsym $mod+w exec firefox
 
 # open QuiteRSS
-bindsym $mod+q exec quiterss
+for_window [class="QuiteRss"] floating enable
+for_window [class="QuiteRss"] move position 80px 50px
+for_window [class="QuiteRss"] resize set 1400 900
+for_window [class="QuiteRss"] move scratchpad
+bindsym $mod+q exec $HOME/dotfiles/i3/scripts/quiterss
+
+# vim-anywhere
+bindsym $mod+v exec $HOME/scripts/shell_scripts/bin/vim-anywhere
 
 
 # BINDINGS ---------------------------------------------------------------------
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym Mod1+F4 kill
 
 # start dmenu
 # bindsym $mod+d exec dmenu_run

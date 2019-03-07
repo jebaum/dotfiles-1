@@ -24,3 +24,5 @@ for src in $HOME/dotfiles/bash/sources/*
 do
     source $src
 done
+
+source $HOME/dotfiles/private/bash

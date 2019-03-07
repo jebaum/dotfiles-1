@@ -31,3 +31,7 @@ signal=10
 [date]
 command=LC_ALL=C date "+%a, %F %T"
 interval=1
+
+[separator]
+command=echo " "
+interval=once
