@@ -1,37 +1,58 @@
+full_text=|
+align=center
+color=#BBB
+separator=false
+separator_block_width=7
+
+
 [cpu-temp]
 command=sensors | grep "Package id 0:" | cut -c15-23
 interval=5
+
+[separator]
 
 [cpu-freq]
 command=$HOME/.i3/scripts/cpu_freq
 interval=5
 
+[separator]
+
 [wifi]
 command=$HOME/.i3/scripts/wifi
 interval=5
+
+[separator]
 
 [bluetooth]
 command=$HOME/.i3/scripts/bluetooth
 interval=15
 
+[separator]
+
 [gpu]
 command=$HOME/.i3/scripts/gpu
 interval=once
+
+[separator]
 
 [battery2]
 command=$HOME/.i3/scripts/battery
 markup=pango
 interval=30
 
+[separator]
+
 [volume]
 command=$HOME/.i3/scripts/volume
 interval=once
 signal=10
 
+[separator]
+
 [date]
 command=LC_ALL=C date "+%a, %F %T"
 interval=1
 
-[separator]
+[separator-transparent]
 command=echo " "
 interval=once

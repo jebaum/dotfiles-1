@@ -7,14 +7,13 @@
 # SOURCE FILES
 #-------------------------------------------------------------------------------
 
-# ALIASES          | $HOME/dotfiles/bash/sources/aliases
-# ALIASING SCRIPTS | $HOME/dotfiles/bash/sources/aliasing_scripts
-# BINDINGS         | $HOME/dotfiles/bash/sources/bindings
-# FUNCTIONS        | $HOME/dotfiles/bash/sources/functions
-# MOUNTING         | $HOME/dotfiles/bash/sources/mounting
-# OTHER            | $HOME/dotfiles/bash/sources/other
-# PRIVATE          | $HOME/dotfiles/private/bash
-# WRAPPERS         | $HOME/dotfiles/bash/sources/wrappers
+# ALIASES   | $HOME/dotfiles/bash/sources/aliases
+# BINDINGS  | $HOME/dotfiles/bash/sources/bindings
+# FUNCTIONS | $HOME/dotfiles/bash/sources/functions
+# MOUNTING  | $HOME/dotfiles/bash/sources/mounting
+# OTHER     | $HOME/dotfiles/bash/sources/other
+# PRIVATE   | $HOME/dotfiles/private/bash
+# WRAPPERS  | $HOME/dotfiles/bash/sources/wrappers
 
 #-------------------------------------------------------------------------------
 # SOURCING
