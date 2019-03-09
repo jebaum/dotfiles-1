@@ -30,7 +30,7 @@ alternative_order text/plain text/enriched text/html     # save html for last
 auto_view text/html                                      # view html automatically
 
 # View in Firefox
-macro index,pager H v/text\/html<enter><enter>
+macro index,pager \cW v/text\/html<enter><enter>
 
 
 # ------------------------------------------------------------------------------
