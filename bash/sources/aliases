@@ -20,6 +20,7 @@ alias ls='ls -CF'
 alias Ls='ls -CF1'
 alias mkdir='mkdir -p'
 alias mkpasswd='expect_mkpasswd'
+alias mutt="neomutt"
 alias off='shutdown -h now'
 alias op='xdg-open'
 alias python='python3'

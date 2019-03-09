@@ -26,6 +26,7 @@ linking  $x  bash/bashrc             $HOME/.bashrc
 linking  $x  feh                     $HOME/.config/feh
 linking  $x  i3/                     $HOME/.i3
 linking  $x  mpv/                    $HOME/.config/mpv
+linking  $x  mutt/mailcap            $HOME/.mailcap
 linking  $x  mutt/muttrc             $HOME/.muttrc
 linking  $x  mysql/my.cnf            $HOME/.my.cnf
 linking  $x  mysql/myclirc           $HOME/.myclirc

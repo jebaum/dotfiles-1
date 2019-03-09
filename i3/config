@@ -8,10 +8,9 @@
 # set mod key
 set $mod Mod4
 
-# double monitor
-exec --no-startup-id xrandr --output eDP-1-1 --primary
-exec --no-startup-id xrandr --output HDMI-0 --auto --right-of eDP-1-1
-workspace 1 output eDP-1-1
+# multi-monitor
+# workspace 1 output primary
+exec --no-startup-id $HOME/.i3/scripts/multi-monitor
 
 # font for window titles
 font pango:DejaVu Sans Mono 8
