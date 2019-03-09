@@ -31,6 +31,7 @@ linking  $x  mysql/my.cnf            $HOME/.my.cnf
 linking  $x  mysql/myclirc           $HOME/.myclirc
 linking  $x  other/bvirc             $HOME/.bvirc
 linking  $x  other/dosbox-0.74.conf  $HOME/.dosbox/dosbox-0.74.conf
+linking  $x  other/gpg-agent.conf    $HOME/.gnupg/gpg-agent.conf
 linking  $x  other/inputrc           $HOME/.inputrc
 linking  $x  other/profile           $HOME/.profile
 linking  $x  other/tmux.conf         $HOME/.tmux.conf

@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# Magic space
-bind Space:magic-space

@@ -8,7 +8,7 @@
 #-------------------------------------------------------------------------------
 
 # ALIASES   | $HOME/dotfiles/bash/sources/aliases
-# BINDINGS  | $HOME/dotfiles/bash/sources/bindings
+# EXPORTS   | $HOME/dotfiles/bash/sources/export
 # FUNCTIONS | $HOME/dotfiles/bash/sources/functions
 # MOUNTING  | $HOME/dotfiles/bash/sources/mounting
 # OTHER     | $HOME/dotfiles/bash/sources/other

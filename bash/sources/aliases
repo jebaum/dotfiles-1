@@ -16,6 +16,7 @@ alias less='less -R'
 alias lh='ls -a | grep "^\."'
 alias list-devices='lsblk'
 alias ll='ls -alhF --color | less -R'
+alias logout="i3-msg exit"
 alias ls='ls -CF'
 alias Ls='ls -CF1'
 alias mkdir='mkdir -p'

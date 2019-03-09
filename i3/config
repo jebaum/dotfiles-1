@@ -45,6 +45,19 @@ exec --no-startup-id fcitx -d
 # disable touchpad on startup
 exec --no-startup-id $HOME/.i3/scripts/autostart
 
+# WINDOWS RULES ----------------------------------------------------------------
+
+# QuiteRSS
+for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] floating enable
+for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] move position 80px 50px
+for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] resize set 1400 900
+for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] move scratchpad
+
+# KanjiTomo
+for_window [class="kanjitomo-reader-Launcher" instance="sun-awt-X11-XFramePeer" title="KanjiTomo"] floating enable
+for_window [class="kanjitomo-reader-Launcher" instance="sun-awt-X11-XFramePeer" title="KanjiTomo"] move position 1370 70
+for_window [class="kanjitomo-reader-Launcher" instance="sun-awt-X11-XFramePeer" title="KanjiTomo"] resize set 550 880
+
 
 # SHORTCUTS BINDINGS -----------------------------------------------------------
 
@@ -55,10 +68,6 @@ bindsym $mod+Return exec --no-startup-id uxterm
 bindsym $mod+w exec firefox
 
 # open QuiteRSS
-for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] floating enable
-for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] move position 80px 50px
-for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] resize set 1400 900
-for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] move scratchpad
 bindsym $mod+q exec --no-startup-id $HOME/dotfiles/i3/scripts/quiterss
 
 # vim-anywhere
