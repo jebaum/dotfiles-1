@@ -14,6 +14,9 @@ export MANPAGER="vim -M +MANPAGER -"
 # Set Qt to use GTK theme
 export QT_QPA_PLATFORMTHEME="gtk2"
 
+# Set default terminal for i3
+export TERMINAL=xterm
+
 # Update PATH variable
 export PATH=$PATH":$HOME/scripts/bin"
 export PATH=$PATH":$HOME/.bin"

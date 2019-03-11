@@ -52,6 +52,16 @@ term-title()
     command wmctrl -r :ACTIVE: -N "$title"
 }
 
+umount-ios()
+{
+    cd
+    for i in $@; do
+        fusermount -u /media/ios$i
+    done
+    rmdir /media/* &> /dev/null
+    cd - &> /dev/null
+}
+
 upgrade()
 {
     command sudo apt update

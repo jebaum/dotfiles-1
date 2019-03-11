@@ -1,5 +1,5 @@
-#!/bin/bash
 
+#!/bin/bash
 alias ap='clear && sudo create_ap'
 alias bash-reload='source $HOME/.bash_profile'
 alias battery='upower -i $(upower -e | command grep battery)'
@@ -20,6 +20,7 @@ alias ls='ls -CF'
 alias Ls='ls -CF1'
 alias mkdir='mkdir -p'
 alias mkpasswd='expect_mkpasswd'
+alias mnt='udisksctl mount -b'
 alias mutt="neomutt"
 alias off='shutdown -h now'
 alias op='xdg-open'
@@ -30,6 +31,7 @@ alias s='sudo "$BASH" -c "$(history -p !!)"'
 alias sudo='sudo '
 alias suspend='systemctl suspend'
 alias type='type -a'
+alias umnt='udisksctl unmount -b'
 alias vi='vi -p'
 alias volume='amixer -- set Master'
 alias wicd='wicd-curses'

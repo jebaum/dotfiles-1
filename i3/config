@@ -3,7 +3,9 @@
 ###################
 
 
-# GENERAL ----------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# GENERAL
+# ------------------------------------------------------------------------------
 
 # set mod key
 set $mod Mod4
@@ -28,6 +30,10 @@ bar {
     status_command i3blocks -c $HOME/.i3/i3blocks
     tray_output primary
     tray_padding 1
+    colors {
+        focused_workspace  #333333 #222222 #FFFFFF
+        inactive_workspace #000000 #000000 #AAAAAA
+    }
 }
 
 # border / titlebar
@@ -35,6 +41,8 @@ new_window normal
 hide_edge_borders smart
 bindsym Control+Shift+x [class="^.*"] border toggle
 for_window [class="^.*"] border pixel 1
+client.unfocused #222222 #222222 #888888 #2e9ef4   #285577
+client.focused   #444444 #333333 #FFFFFF #292d2e   #222222
 
 # set background
 exec --no-startup-id xsetroot -solid "#000000"
@@ -46,25 +54,12 @@ exec --no-startup-id fcitx -d
 exec --no-startup-id synclient TouchpadOff=1
 
 
-# WINDOWS RULES ----------------------------------------------------------------
-
-# QuiteRSS
-for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] floating enable
-for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] move position 80px 50px
-for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] resize set 1400 900
-for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] move scratchpad
-
-# KanjiTomo
-for_window [class="kanjitomo-reader-Launcher" instance="kanjitomo-reader-Launcher" title="KanjiTomo"] floating enable
-for_window [class="kanjitomo-reader-Launcher" instance="kanjitomo-reader-Launcher" title="KanjiTomo"] move position 1370 70
-for_window [class="kanjitomo-reader-Launcher" instance="kanjitomo-reader-Launcher" title="KanjiTomo"] resize set 550 880
-for_window [class="kanjitomo-reader-Launcher" instance="kanjitomo-reader-Launcher" title="win0"] move scratchpad
-
-
-# SHORTCUTS BINDINGS -----------------------------------------------------------
+# ------------------------------------------------------------------------------
+# SHORTCUTS BINDINGS
+# ------------------------------------------------------------------------------
 
 # start TERMINAL
-bindsym $mod+Return exec --no-startup-id xterm
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 
 # open Firefox
 bindsym $mod+w exec firefox
@@ -73,13 +68,38 @@ bindsym $mod+w exec firefox
 bindsym $mod+q exec --no-startup-id $HOME/dotfiles/i3/scripts/quiterss
 
 # open neomutt in xterm
-bindsym $mod+m exec --no-startup-id xterm -T Mutt neomutt
+bindsym $mod+m exec --no-startup-id i3-sensible-terminal -T Mutt neomutt
 
 # vim-anywhere
 bindsym $mod+v exec --no-startup-id vim-anywhere
 
 
-# BINDINGS ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# WINDOWS RULES
+# ------------------------------------------------------------------------------
+
+# QuiteRSS
+for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] floating enable         # 1
+for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] move position 80px 50px # 2
+for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] resize set 1400 900     # 3
+for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] move scratchpad         # 4
+
+# KanjiTomo
+for_window [class="kanjitomo-reader-Launcher" instance="kanjitomo-reader-Launcher" title="KanjiTomo"] floating enable       # 1
+for_window [class="kanjitomo-reader-Launcher" instance="kanjitomo-reader-Launcher" title="KanjiTomo"] move position 1370 70 # 2
+for_window [class="kanjitomo-reader-Launcher" instance="kanjitomo-reader-Launcher" title="KanjiTomo"] resize set 550 880    # 3
+for_window [class="kanjitomo-reader-Launcher" instance="kanjitomo-reader-Launcher" title="win0"] move scratchpad            # 4
+
+# GIMP
+for_window [class="^Gimp$" title="^GNU Image Manipulation Program$"] floating disabled
+for_window [class="^Gimp$" title=" ? GIMP$"] floating disabled
+for_window [class="^Gimp$" title="Tool Options$"] floating enable
+for_window [class="^Gimp$" title="^Quit GIMP$"] floating enable
+
+
+# ------------------------------------------------------------------------------
+# BINDINGS
+# ------------------------------------------------------------------------------
 
 # kill focused window
 bindsym Mod1+F4 kill
