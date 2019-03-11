@@ -2,14 +2,8 @@
 ### PROFILE ###
 ###############
 
-# Update PATH variable
-export PATH=$PATH":$HOME/scripts/bin"
-export PATH=$PATH":$HOME/.bin"
+source $HOME/dotfiles/private/profile
 
-# Japanese input
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-export GTK_IM_MODULE=fcitx
-
+source $HOME/dotfiles/bash/sources/export
 
 # vim: set filetype=sh:

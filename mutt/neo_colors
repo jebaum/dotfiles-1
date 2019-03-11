@@ -2,7 +2,7 @@
 
 # Author name, %A %a %F %L %n
 # Give the author column a dark grey background
-color index_author default color234 '.*'
+color index_author color69 default '.*'
 
 # Message flags, %S %Z
 # Highlight the flags for flagged (~F) emails

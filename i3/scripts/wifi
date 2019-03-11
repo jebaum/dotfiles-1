@@ -1,11 +1,11 @@
 #!/bin/bash
 
-wifi_ssid=$(iwgetid -r)
-wifi_signal=$(awk 'NR==3 {print $4}''' /proc/net/wireless)
-wifi_signal="[${wifi_signal:0:-1} dBm]"
+ssid=$(iwgetid -r)
+signal=$(awk 'NR==3 {print $4}''' /proc/net/wireless)
+signal=" [${signal:0:-1} dBm]"
 
-if [ "$wifi_ssid" == "" ]; then
-    wifi_ssid="[X]"
+if [ "$ssid" == "" ]; then
+    ssid="[X]"
 fi
 
-echo "$wifi_ssid $wifi_signal"
+echo "$ssid$signal"

@@ -74,3 +74,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=always'
     alias egrep='egrep --color=always'
 fi
+
+# Update xterm on start
+xrdb -load $HOME/.Xresources &
+xrdb -merge $HOME/.Xresources
+
+# Update .tmux.conf on start
+tmux source $HOME/.tmux.conf

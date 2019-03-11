@@ -1,24 +1,6 @@
 #!/bin/bash
 
 
-apt-install-from-list()
-{
-    for file in $@; do
-        if [ -e $file ]; then
-            if [[ ${file: -5} == ".list" ]]; then
-                while IFS= read -r pkg; do
-                    list=$list' '$(echo $pkg| cut -f1 -d"#")
-                done < "$1"
-                echo $list
-            else
-                echo "$file - file in not a list"
-            fi
-        else
-            echo "$file - file does not exist"
-        fi
-    done
-}
-
 count-files()
 {
     if [[ $1 == "-a" ]]; then

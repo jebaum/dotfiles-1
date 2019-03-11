@@ -43,7 +43,8 @@ exec --no-startup-id xsetroot -solid "#000000"
 exec --no-startup-id fcitx -d
 
 # disable touchpad on startup
-exec --no-startup-id $HOME/.i3/scripts/autostart
+exec --no-startup-id synclient TouchpadOff=1
+
 
 # WINDOWS RULES ----------------------------------------------------------------
 
@@ -54,21 +55,25 @@ for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] resize set 14
 for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] move scratchpad
 
 # KanjiTomo
-for_window [class="kanjitomo-reader-Launcher" instance="sun-awt-X11-XFramePeer" title="KanjiTomo"] floating enable
-for_window [class="kanjitomo-reader-Launcher" instance="sun-awt-X11-XFramePeer" title="KanjiTomo"] move position 1370 70
-for_window [class="kanjitomo-reader-Launcher" instance="sun-awt-X11-XFramePeer" title="KanjiTomo"] resize set 550 880
+for_window [class="kanjitomo-reader-Launcher" instance="kanjitomo-reader-Launcher" title="KanjiTomo"] floating enable
+for_window [class="kanjitomo-reader-Launcher" instance="kanjitomo-reader-Launcher" title="KanjiTomo"] move position 1370 70
+for_window [class="kanjitomo-reader-Launcher" instance="kanjitomo-reader-Launcher" title="KanjiTomo"] resize set 550 880
+for_window [class="kanjitomo-reader-Launcher" instance="kanjitomo-reader-Launcher" title="win0"] move scratchpad
 
 
 # SHORTCUTS BINDINGS -----------------------------------------------------------
 
 # start TERMINAL
-bindsym $mod+Return exec --no-startup-id uxterm
+bindsym $mod+Return exec --no-startup-id xterm
 
 # open Firefox
 bindsym $mod+w exec firefox
 
 # open QuiteRSS
 bindsym $mod+q exec --no-startup-id $HOME/dotfiles/i3/scripts/quiterss
+
+# open neomutt in xterm
+bindsym $mod+m exec --no-startup-id xterm -T Mutt neomutt
 
 # vim-anywhere
 bindsym $mod+v exec --no-startup-id vim-anywhere
@@ -80,8 +85,7 @@ bindsym $mod+v exec --no-startup-id vim-anywhere
 bindsym Mod1+F4 kill
 
 # start dmenu
-# bindsym $mod+d exec dmenu_run
-bindsym $mod+colon exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -148,7 +152,7 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+r restart
 
 # touchpad toggle
-bindsym $mod+F4 exec $HOME/.i3/scripts/touchpad-toggle
+bindsym $mod+F4 exec --no-startup-id $HOME/.i3/scripts/touchpad-toggle
 
 # make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad

@@ -1,20 +1,27 @@
-####################
-### BASH_PROFILE ###
-####################
+##############
+### BASHRC ###
+##############
 
 
-# Disable XON flow control
-stty -ixon
+#-------------------------------------------------------------------------------
+# SOURCE FILES
+#-------------------------------------------------------------------------------
 
-# Green text (I'm hacker!)
-# setterm -foreground green -store
+# ALIASES   | $HOME/dotfiles/bash/sources/aliases
+# EXPORTS   | $HOME/dotfiles/bash/sources/export
+# FUNCTIONS | $HOME/dotfiles/bash/sources/functions
+# MOUNTING  | $HOME/dotfiles/bash/sources/mounting
+# OTHER     | $HOME/dotfiles/bash/sources/other
+# PRIVATE   | $HOME/dotfiles/private/bash
+# WRAPPERS  | $HOME/dotfiles/bash/sources/wrappers
 
-# Source .bashrc
-source $HOME/.bashrc
+#-------------------------------------------------------------------------------
+# SOURCING
+#-------------------------------------------------------------------------------
 
-# Update xterm on start
-xrdb -load $HOME/.Xresources &
-xrdb -merge $HOME/.Xresources
+for src in $HOME/dotfiles/bash/sources/*
+do
+    source $src
+done
 
-# Update .tmux.conf on start
-tmux source $HOME/.tmux.conf
+source $HOME/dotfiles/private/bash
