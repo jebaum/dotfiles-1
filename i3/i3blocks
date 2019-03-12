@@ -37,7 +37,6 @@ interval=once
 
 [battery]
 command=$HOME/.i3/scripts/battery
-markup=pango
 interval=15
 
 [separator]

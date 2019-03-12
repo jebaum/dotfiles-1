@@ -1,5 +1,5 @@
-
 #!/bin/bash
+
 alias ap='clear && sudo create_ap'
 alias bash-reload='source $HOME/.bash_profile'
 alias battery='upower -i $(upower -e | command grep battery)'

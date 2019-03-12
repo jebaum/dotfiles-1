@@ -65,7 +65,7 @@ bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+w exec firefox
 
 # open QuiteRSS
-bindsym $mod+q exec --no-startup-id $HOME/dotfiles/i3/scripts/quiterss
+bindsym $mod+q exec --no-startup-id $HOME/.i3/scripts/quiterss
 
 # open neomutt in xterm
 bindsym $mod+m exec --no-startup-id i3-sensible-terminal -T Mutt neomutt

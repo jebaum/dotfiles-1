@@ -56,9 +56,9 @@ umount-ios()
 {
     cd
     for i in $@; do
-        fusermount -u /media/ios$i
+        fusermount -u $HOME/.mount/ios$i
     done
-    rmdir /media/* &> /dev/null
+    rmdir $HOME/.mount/* &> /dev/null
     cd - &> /dev/null
 }
 
