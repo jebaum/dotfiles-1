@@ -73,6 +73,10 @@ bindsym $mod+m exec --no-startup-id i3-sensible-terminal -T Mutt neomutt
 # vim-anywhere
 bindsym $mod+v exec --no-startup-id vim-anywhere
 
+# passmenu
+bindsym $mod+p exec --no-startup-id $HOME/.i3/scripts/passmenu
+bindsym $mod+shift+p exec --no-startup-id $HOME/.i3/scripts/passmenu --type
+
 
 # ------------------------------------------------------------------------------
 # WINDOWS RULES
