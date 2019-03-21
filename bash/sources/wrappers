@@ -19,16 +19,15 @@ apt() {
         shift 1
         command sudo apt install --reinstall $@
         ;;
-    show)
-        shift 1
-        command apt show $@
-        ;;
     upgrade)
         shift 1
         command sudo apt update
         command sudo apt full-upgrade
         command sudo apt autoremove -y
         command sudo apt autoclean
+        ;;
+    list|search|show)
+        command apt $@
         ;;
     *)
         command sudo apt $@

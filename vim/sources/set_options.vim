@@ -52,8 +52,9 @@ set nowrap                                              " Do not wrap lines on d
 
 " OTHER
 set backspace=indent,eol,start                          " Allow backspacing over everything in insert mode
-set history=50                                          " Keep 50 lines of command line history
+set viminfo+=n~/.vim/viminfo                            " Change viminfo location
 set modeline                                            " Enable modelines
 set nrformats=                                          " Ignore non-DEC numeral systems when in- or decrementing with <C-a>/<C-x>
-set omnifunc=syntaxcomplete#Complete                    " Omnifunc
+set history=50                                          " Keep 50 lines of command line history
 set wrapmargin=0                                        " No wrap margin
+set omnifunc=syntaxcomplete#Complete                    " Omnifunc

@@ -20,7 +20,11 @@ export TERMINAL=xterm
 # Enable extensions for pass
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
+# Enable GPG agent
 export GPG_AGENT_INFO
+
+# Local applications menu
+export XDG_DATA_HOME=$HOME/.applications
 
 # Update PATH variable
 export PATH=$PATH":$HOME/scripts/bin"

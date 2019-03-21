@@ -1,0 +1,67 @@
+#!/bin/bash
+
+declare list_file_name
+
+steam_menu() {
+    i=1
+    declare -A id
+    while read line; do
+        if [[ ${line:0:1} != '#' ]]; then
+            titles[$i]="$( echo $line | cut -d' ' -f2-)"
+            id["${titles[$i]}"]=$( echo "$line" | head -n1 | awk '{print $1;}')
+            ((i++))
+        fi
+    done < "$HOME/lists/games/steam.list"
+
+    game=$(printf '%s\n' "${titles[@]}" | dmenu -i "$@")
+    [[ -n $game ]] || exit
+
+    steam steam://rungameid/${id[$game]}
+}
+
+menu_template() {
+    separatorStr='COMMAND'
+    i=1
+    declare -A commands
+    while read line; do
+        if [[ ${line:0:1} != '#' ]]; then
+            titles[$i]="$(echo -e "${line%$separatorStr*}" | sed -e 's/[[:space:]]*$//')"
+            commands["${titles[$i]}"]="${line#*$separatorStr}"
+            ((i++))
+        fi
+    done < "$HOME/lists/games/$list_file_name.list"
+
+    game=$(printf '%s\n' "${titles[@]}" | dmenu -i "$@")
+    [[ -n $game ]] || exit
+
+    bash -c "${commands[$game]}"
+}
+
+menus[0]="DOS Games"
+menus[1]="Gaming apps"
+menus[2]="Regular games"
+menus[3]="Steam games"
+
+option=$(printf '%s\n' "${menus[@]}" | dmenu -i "$@")
+
+[[ -n $option ]] || exit
+
+case $option in
+"DOS Games")
+    list_file_name="dos"
+    menu_template
+    ;;
+"Gaming apps")
+    list_file_name="gaming_apps"
+    menu_template
+    ;;
+"Regular games")
+    list_file_name="regular"
+    menu_template regular
+    ;;
+"Steam games")
+    steam_menu
+    ;;
+*)
+    ;;
+esac

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [[ "$(bluetooth)" == "bluetooth = on" ]]; then
-    echo "BT: on"
-else
+if [[ "$(hcitool dev)" == "Devices:" ]]; then
     echo "BT: off"
+else
+    echo "BT: on"
 fi

@@ -2,8 +2,6 @@
 ### PROFILE ###
 ###############
 
-source $HOME/dotfiles/private/profile
-
 source $HOME/dotfiles/bash/sources/export
 
 # vim: set filetype=sh:

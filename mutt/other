@@ -22,6 +22,9 @@ set header_cache=~/.hcache
 # Display download progress every 5K
 set net_inc=5
 
+# Turn off the help line at the top
+set help=no
+
 # Set mailcap path
 set mailcap_path="$HOME/dotfiles/mutt/mailcap"
 

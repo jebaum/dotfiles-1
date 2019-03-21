@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Use Vi mode
 set -o vi
 set show-mode-in-prompt on
@@ -10,6 +9,7 @@ set show-mode-in-prompt on
 
 # Update Xresources
 if [ -f $HOME/.Xresources ]; then
+    xrdb -remove $HOME/.Xresources
     xrdb -merge $HOME/.Xresources
 fi
 

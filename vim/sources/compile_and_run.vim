@@ -8,6 +8,12 @@ endfunction
 
 " ------------------------------------------------------------------------------
 
+" Assembly (GAS)
+autocmd BufRead *.S autocmd filetype asm call <SID>CompileAndRun("as -o %<.o % && ld -s -o %< %<.o && rm %<.o && ./%<")
+
+" Assembly (NASM)
+autocmd BufRead *.asm autocmd filetype asm call <SID>CompileAndRun("nasm -f elf % && ld -s -o %< %<.o && rm %<.o && ./%<")
+
 " BASIC // for Vintage BASIC
 autocmd filetype basic call <SID>CompileAndRun("vintbas %")
 

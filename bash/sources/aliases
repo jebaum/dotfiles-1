@@ -1,6 +1,5 @@
 #!/bin/bash
 
-alias ap='clear && sudo create_ap'
 alias bash-reload='source $HOME/.bash_profile'
 alias battery='upower -i $(upower -e | command grep battery)'
 alias cal='LC_ALL=en_EN.utf8 ncal -Mb 2> /dev/null'
@@ -9,11 +8,8 @@ alias date='date "+%F_%T"'
 alias du='du -h'
 alias game="source $HOME/scripts/game"
 alias git-update='command git add -A && command git commit -m "$(command date "+%F_%T")" && command git push -u origin master'
-alias la='ls -a'
-alias Ld='ls -lhF --block-size=MiB'
 alias less='less -R'
 alias lh='ls -a | grep "^\."'
-alias list-devices='lsblk'
 alias ll='ls -alhF --color | less -R'
 alias logout="i3-msg exit"
 alias ls='ls -CF'
@@ -26,10 +22,9 @@ alias off='shutdown -h now'
 alias op='xdg-open'
 alias python='python3'
 alias qmv='command qmv -v -f "do"'
-alias qt5ct="QT_QPA_PLATFORMTHEME=qt5ct qt5ct"
-alias s='sudo "$BASH" -c "$(history -p !!)"'
 alias sudo='sudo '
 alias suspend='systemctl suspend'
+alias tor-browser='torbrowser-launcher'
 alias type='type -a'
 alias umnt='udisksctl unmount -b'
 alias vi='vi -p'
