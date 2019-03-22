@@ -66,17 +66,17 @@ bindsym $mod+x exec --no-startup-id i3-sensible-terminal
 bindsym $mod+w exec firefox
 
 # open QuiteRSS
-bindsym $mod+q exec --no-startup-id $HOME/.i3/scripts/quiterss
+bindsym $mod+q exec --no-startup-id $HOME/.i3/scripts/programs/quiterss
 
 # open neomutt in xterm
 bindsym $mod+m exec --no-startup-id i3-sensible-terminal -T Mutt neomutt
 
 # vim-anywhere
-bindsym $mod+v exec --no-startup-id vim-anywhere
+bindsym $mod+v exec --no-startup-id $HOME/.i3/scripts/programs/vim-anywhere
 
 # passmenu
-bindsym $mod+p exec --no-startup-id $HOME/.i3/scripts/passmenu
-bindsym $mod+shift+p exec --no-startup-id $HOME/.i3/scripts/passmenu --type
+bindsym $mod+p exec --no-startup-id $HOME/scripts/dmenu/passmenu --type
+bindsym $mod+shift+p exec --no-startup-id $HOME/scripts/dmenu/passmenu
 
 
 # ------------------------------------------------------------------------------

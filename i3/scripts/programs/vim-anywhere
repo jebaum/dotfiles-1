@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+mkdir -p /tmp/vim-anywhere
+file=$(mktemp -p /tmp/vim-anywhere)
+
+xclip -out -selection clipboard > $file
+
+$TERMINAL -e "vim +'Silent !wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz' $file"
+
+sh -c "cat $file | xclip -selection clipboard"
