@@ -54,15 +54,15 @@ rebuild-hosts-file()
     sudo echo >> /tmp/hosts
 
     cat $HOME/dotfiles/private/hosts/* \
-        | tr A-Z a-z \
-        | tr -d '\r' \
-        | awk '{gsub("#.*$", ""); gsub(" *$",""); if (NF==2) {print $1 " " $2;}}' \
-        | grep -v '^localhost$' \
-        | sed 's/\.$//' \
-        | sort -k 2\
-        | uniq  \
-        | sed 's/\.$//' \
-        | awk '{printf("%-20s %s\n", $1, $2);}' \
+    | tr A-Z a-z \
+    | tr -d '\r' \
+    | awk '{gsub("#.*$", ""); gsub(" *$",""); if (NF==2) {print $1 " " $2;}}' \
+    | grep -v '^localhost$' \
+    | sed 's/\.$//' \
+    | sort -k 2\
+    | uniq  \
+    | sed 's/\.$//' \
+    | awk '{printf("%-20s %s\n", $1, $2);}' \
     >> /tmp/hosts
 
     sudo mv /tmp/hosts /etc/hosts

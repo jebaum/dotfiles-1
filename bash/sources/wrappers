@@ -1,40 +1,6 @@
 #!/bin/bash
 
 
-apt() {
-    case "$1" in
-    --no-rec)
-        shift 1
-        command apt install --no-install-recommends $@
-        ;;
-    auto)
-        shift 1
-        command sudo apt-mark auto $@
-        ;;
-    purge)
-        shift 1
-        command sudo apt purge --auto-remove $@
-        ;;
-    reinstall)
-        shift 1
-        command sudo apt install --reinstall $@
-        ;;
-    upgrade)
-        shift 1
-        command sudo apt update
-        command sudo apt full-upgrade
-        command sudo apt autoremove -y
-        command sudo apt autoclean
-        ;;
-    list|search|show)
-        command apt $@
-        ;;
-    *)
-        command sudo apt $@
-        ;;
-    esac
-}
-
 feh() {
     if [[ $1 == "-r" ]]; then
         R="-r"

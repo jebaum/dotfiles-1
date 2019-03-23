@@ -1,0 +1,55 @@
+#!/bin/bash
+
+apt() {
+    case "$1" in
+    --no-rec)
+        shift 1
+        command apt install --no-install-recommends $@
+        ;;
+    auto)
+        shift 1
+        command sudo apt-mark auto $@
+        ;;
+    purge)
+        shift 1
+        command sudo apt purge --auto-remove $@
+        ;;
+    reinstall)
+        shift 1
+        command sudo apt install --reinstall $@
+        ;;
+    upgrade)
+        shift 1
+        command sudo apt update
+        command sudo apt full-upgrade
+        command sudo apt autoremove -y
+        command sudo apt autoclean
+        ;;
+    list|search|show)
+        command apt $@
+        ;;
+    *)
+        command sudo apt $@
+        ;;
+    esac
+}
+
+apt-install-from-list()
+{
+    for file in $@; do
+        if [ -e $file ]; then
+            if [[ ${file: -5} == ".list" ]]; then
+                while IFS= read -r pkg; do
+                    list=$list' '$(echo $pkg | cut -f1 -d"#")
+                done < "$file"
+            else
+                echo "$file - file in not a list"
+            fi
+        else
+            echo "$file - file does not exist"
+        fi
+    done
+
+    command sudo apt install $list
+    unset list
+}
