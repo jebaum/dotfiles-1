@@ -1,6 +1,6 @@
 let g:gitgutter_max_signs                    = 5000
 let g:gutentags_cache_dir                    = $HOME."/.vim/cache/tags"
-" let g:vinarise_enable_auto_detect            = 1
+let g:vinarise_enable_auto_detect            = 1
 
 " ALE
 let g:ale_c_parse_makefile                   = 1
@@ -59,4 +59,4 @@ let g:undotree_SplitWidth                    = 32
 
 " Vim Markdown
 let g:vim_markdown_conceal                   = 0
-let g:vim_markdown_new_list_item_indent      = 2
+let g:vim_markdown_new_list_item_indent      = 0

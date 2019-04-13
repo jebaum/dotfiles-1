@@ -28,6 +28,9 @@ autocmd BufWritePre * silent! undojoin | %s/\s\+$//e | %s/\(\n\r\?\)\+\%$//e
 " Define comments for *.list
 autocmd BufEnter *.list setlocal comments=:# commentstring=#%s | syn match listComment "#.*$" | hi link listComment Comment
 
+" Markdown TAB = 2 SPACES
+autocmd filetype markdown setlocal tabstop=2 softtabstop=2
+
 
 " PACKAGES ---------------------------------------------------------------------
 
