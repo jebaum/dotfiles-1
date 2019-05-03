@@ -46,7 +46,7 @@ hi  DiffChange       ctermfg=yellow      ctermbg=none
 hi  DiffDelete       ctermfg=red         ctermbg=none     cterm=bold
 hi  FoldColumn       ctermbg=black
 hi  LineNr           ctermfg=242
-hi  Normal           ctermfg=DarkGreen
+" hi  Normal           ctermfg=DarkGreen
 hi  Number           ctermfg=DarkCyan
 hi  OperatorChars    ctermfg=3
 hi  Pmenu            ctermfg=black       ctermbg=cyan

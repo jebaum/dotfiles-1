@@ -114,6 +114,9 @@ bindsym Mod1+F4 kill
 # start dmenu
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+# desktop screenshot
+bindsym --release Print exec "scrot ~/$(date --iso-8601='seconds').png -m -e 'xclip -selection c -t image/png < $f'"
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -201,8 +204,10 @@ bindsym --release XF86AudioMute        exec pkill -SIGRTMIN+10 i3blocks
 bindsym --release XF86AudioRaiseVolume exec pkill -SIGRTMIN+10 i3blocks
 
 # sreen brightness controls
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 # decrease screen brightness
-bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 10 # increase screen brightness
+# bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 10 # increase screen brightness
+# bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp   exec --no-startup-id sudo light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 5 # decrease screen brightness
 
 # media player controls
 bindsym XF86AudioNext  exec playerctl next
