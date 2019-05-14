@@ -22,6 +22,3 @@ autocmd BufReadPost quickfix setlocal nocursorline
 
 " For any maping starting with 'd'
 nnoremap dd dd
-
-" Markdown - no auto fold
-autocmd BufEnter * normal zR

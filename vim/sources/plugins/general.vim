@@ -31,3 +31,23 @@ hi  StatusLine_ALE_Warning  ctermbg=208      ctermfg=black
 
 command -range TabularizeBySpace execute '<line1>,<line2>Tabularize /\S\+/l1'
 command AllToClipboard execute "normal gg\<Plug>SystemCopyG``"
+
+
+" MAPPINGS ---------------------------------------------------------------------
+
+noremap <leader><F1> :UndotreeToggle<CR>
+noremap <leader>= :Autoformat<CR>
+noremap tt :PreviewTag<CR>
+
+map <C-p> <Plug>SystemPaste
+map <C-y> <Plug>SystemCopy
+
+" Anzu
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+
+" Surround
+nmap s ysiw
+vmap s S
