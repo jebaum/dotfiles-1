@@ -39,9 +39,6 @@ noremap <leader><F1> :UndotreeToggle<CR>
 noremap <leader>= :Autoformat<CR>
 noremap tt :PreviewTag<CR>
 
-map <C-p> <Plug>SystemPaste
-map <C-y> <Plug>SystemCopy
-
 " Anzu
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
