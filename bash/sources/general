@@ -91,7 +91,7 @@ HISTFILESIZE=2000
 # Check the window size after each command and update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Set window title to user@host:dir
+# Set window title to "command | user@host:dir"
 case "$TERM" in
 xterm*|rxvt*|screen*)
     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"

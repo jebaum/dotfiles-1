@@ -25,6 +25,9 @@ function s:CursorHighlightToggle()
     echo
 endfunction
 
+" Delete "expired" cache files
+" TODO
+
 
 " NECESSARY VARIABLES ----------------------------------------------------------
 

@@ -4,8 +4,6 @@ nnoremap <Leader>R :%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>
 nnoremap <leader>v ggVG
 
 " Function keys -- also mapped: <F3>, <F8>
-inoremap <F1> <Esc>gTi
-inoremap <F2> <Esc>gti
 noremap <F1> gT
 noremap <F2> gt
 noremap <F7> :cwindow <bar> echo 'QuickFix List'<CR>
@@ -22,8 +20,7 @@ noremap N Nzz
 noremap n nzz
 
 " <nop>
-map c <nop>
 map gh <nop>
-map q <nop>
 map Q <nop>
+map q: <nop>
 map ZZ <nop>

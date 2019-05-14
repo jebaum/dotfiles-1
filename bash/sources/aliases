@@ -12,7 +12,6 @@ alias logout="i3-msg exit"
 alias ls='ls -CF'
 alias Ls='ls -CF1'
 alias mkdir='mkdir -p'
-alias mkpasswd='expect_mkpasswd'
 alias mnt='udisksctl mount -b'
 alias mutt="neomutt"
 alias off='shutdown -h now'
