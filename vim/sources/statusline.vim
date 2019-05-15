@@ -31,9 +31,7 @@ endfunction
 " ------------------------------------------------------------------------------
 
 set statusline=
-set statusline+=[%n]                                                                           " Buffer number
-set statusline+=\ \                                                                            " Separator
-set statusline+=%f\                                                                            " Relative path to the file
+set statusline+=\ %f\                                                                          " Relative path to the file
 set statusline+=\                                                                              " Separator
 set statusline+=%y                                                                             " Filetype
 set statusline+=[%{&ff}]                                                                       " File format
