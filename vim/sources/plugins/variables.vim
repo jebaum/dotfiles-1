@@ -18,22 +18,13 @@ let b:formatters_cpp                         = ['custom_c']
 let b:formatters_css                         = ['custom_css']
 let b:formatters_html                        = ['custom_html']
 
-" eregex.vim
-let g:eregex_default_enable                  = 0
-let g:eregex_force_case                      = 1
-
 " NERDCommenter
 let g:NERDCommentEmptyLines                  = 1
 let g:NERDSpaceDelims                        = 1
 
-" NERDTree
-let g:nerdtree_tabs_open_on_console_startup  = 1
-let g:nerdtree_tabs_smart_startup_focus      = 2
-let g:NERDTreeWinPos                         = "right"
-
 " Polyglot
 let g:python_highlight_space_errors          = 0
-let g:polyglot_disabled                      = ['markdown']
+let g:vim_markdown_new_list_item_indent      = 0
 
 " Signature
 let g:SignatureForceRemoveGlobal             = 1
@@ -52,7 +43,3 @@ let g:UltiSnipsSnippetDirectories            = ['~/.vim/UltiSnips', 'UltiSnips']
 let g:undotree_SetFocusWhenToggle            = 1
 let g:undotree_ShortIndicators               = 1
 let g:undotree_SplitWidth                    = 32
-
-" Vim Markdown
-let g:vim_markdown_conceal                   = 0
-let g:vim_markdown_new_list_item_indent      = 0

@@ -1,6 +1,3 @@
-" Use VIM's defaults instad of VI's
-set nocompatible
-
 " Turns on detection, plugin and indent
 filetype plugin indent on
 
@@ -31,6 +28,8 @@ autocmd BufEnter *.list setlocal comments=:# commentstring=#%s | syn match listC
 " Markdown TAB = 2 SPACES
 autocmd filetype markdown setlocal tabstop=2 softtabstop=2
 
+" Default TeX dialect
+let g:tex_flavor = 'tex'
 
 " PACKAGES ---------------------------------------------------------------------
 

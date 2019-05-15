@@ -1,19 +1,20 @@
-" BASED ON: https://github.com/christoomey/vim-system-copy
-
-let s:blockwise = 'blockwise visual'
-let s:visual = 'visual'
-let s:motion = 'motion'
-let s:linewise = 'linewise'
-let s:copy_command = 'xsel --clipboard --input'
+let s:copy_command  = 'xsel --clipboard --input'
 let s:paste_command = 'xsel --clipboard --output'
 
 function! s:system_copy(type, ...) abort
-    let mode = <SID>resolve_mode(a:type, a:0)
+    let visual_mode = a:0 != 0
+    if visual_mode
+        let mode = (a:type == '') ?  'blockwise visual' : 'visual'
+    elseif a:type == 'line'
+        let mode = 'linewise'
+    else
+        let mode = 'motion'
+    endif
     let unnamed = @@
-    if mode == s:linewise
+    if mode == 'linewise'
         let lines = { 'start': line("'["), 'end': line("']") }
         silent exe lines.start . "," . lines.end . "y"
-    elseif mode == s:visual || mode == s:blockwise
+    elseif mode == 'visual' || mode == 'blockwise visual'
         silent exe "normal! `<" . a:type . "`>y"
     else
         silent exe "normal! `[v`]y"
@@ -32,26 +33,28 @@ function! s:system_paste() abort
     endif
 endfunction
 
-function! s:resolve_mode(type, arg)
-    let visual_mode = a:arg != 0
-    if visual_mode
-        return (a:type == '') ?  s:blockwise : s:visual
-    elseif a:type == 'line'
-        return s:linewise
-    else
-        return s:motion
-    endif
-endfunction
-
+" ------------------------------------------------------------------------------
 
 if has("clipboard")
     nnoremap <C-p> "+p
     nnoremap <C-y> "+y
     xnoremap <C-y> "+y
 else
-    xnoremap <silent> <C-y> :<C-U>call <SID>system_copy(visualmode(),visualmode() ==# 'V' ? 1 : 0)<CR>
-    nnoremap <silent> <C-y> :<C-U>set opfunc=<SID>system_copy<CR>g@
+
+    " Paste
+    nnoremap <silent> <C-p> :<C-U>call <SID>system_paste()<CR>
+
+    " Normal copy
+    nnoremap <silent> <C-y>  :<C-U>set opfunc=<SID>system_copy<CR>g@
+
+    " Copy line
     nnoremap <silent> <C-y>y :<C-U>set opfunc=<SID>system_copy<Bar>exe 'norm! 'v:count1.'g@_'<CR>
 
-    nnoremap <silent> <C-p> :<C-U>call <SID>system_paste()<CR>
+    " Copy in Visual mode
+    xnoremap <silent> <C-y>  :<C-U>call <SID>system_copy(visualmode(),visualmode() ==# 'V' ? 1 : 0)<CR>
+
 endif
+
+" ------------------------------------------------------------------------------
+
+command AllToClipboard execute "normal! gg:<C-U>set opfunc=<SID>system_copy<CR>g@G``"

@@ -25,6 +25,7 @@ function! ALE_Warnings() abort
     return l:all_non_errors == 0 ? '' : printf( ' Warnings: %d ', all_non_errors )
 endfunction
 
+
 " ------------------------------------------------------------------------------
 " STATUS LINE
 " ------------------------------------------------------------------------------

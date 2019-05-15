@@ -41,7 +41,6 @@ linking  $x  vim/UltiSnips           $HOME/.vim/UltiSnips
 linking  $x  vim/vimrc               $HOME/.vimrc
 
 # linking  $x  other/bvirc             $HOME/.bvirc
-# linking  $x  other/terminator_config $HOME/.config/terminator
 # linking  $x  vim/init.vim            $HOME/.config/nvim/init.vim
 
 cd - > /dev/null

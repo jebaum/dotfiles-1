@@ -1,7 +1,7 @@
 " Fill rest of line with characters
 function! s:FillLine(str)
     .s/[[:space:]]*$//
-    let reps = (g:textwidth - col("$")) / len(a:str)
+    let reps = (s:textwidth - col("$")) / len(a:str)
     if reps > 0
         .s/$/\=(' '.repeat(a:str, reps))/
     endif
@@ -12,18 +12,38 @@ function! s:RepeatStr(times, str)
     execute ":normal a" . repeat(a:str, a:times)
 endfunction
 
-" Toggle cursorline's underline
+" Toggle cursor line and column highlight
 function s:CursorHighlightToggle()
     setlocal cursorcolumn!
-    if (g:CursorHighlight_state == 1)
+    if (s:CursorHighlight_state == 1)
         hi CursorLine cterm=none ctermbg=none
-        let g:CursorHighlight_state = 0
+        let s:CursorHighlight_state = 0
     else
         hi CursorLine cterm=none ctermbg=235
-        let g:CursorHighlight_state = 1
+        let s:CursorHighlight_state = 1
     endif
     echo
 endfunction
+
+" Sorts lines based on visual-block selected portion of the lines
+function! s:VisSort(isnmbr) range
+    if visualmode() != "\<c-v>"
+        exe "sil! ".a:firstline.",".a:lastline.s:vissort_sort
+        return
+    endif
+    let firstline= line("'<")
+    let lastline = line("'>")
+    let keeprega = @a
+    silent norm! gv"ay
+    '<,'>s/^/@@@/
+    silent! keepj norm! '<0"aP
+    if a:isnmbr
+        sil! '<,'>s/^\s\+/\=substitute(submatch(0),' ','0','g')/
+    endif
+    execute "sil! keepj '<,'>".s:vissort_sort
+    execute "sil! keepj ".firstline.",".lastline.'s/^.\{-}@@@//'
+    let @a= keeprega
+endfun
 
 " Delete "expired" cache files
 " TODO
@@ -31,15 +51,16 @@ endfunction
 
 " NECESSARY VARIABLES ----------------------------------------------------------
 
-let g:CursorHighlight_state = 0
-let g:textwidth             = 80
+let s:CursorHighlight_state = 0
+let s:textwidth             = 80
+let s:vissort_sort          = "sort i"
 
 
 " CALLING COMMANDS -------------------------------------------------------------
 
 command! -nargs=+ FillLine call <SID>FillLine('<args>')
 command! -nargs=+ RepeatStr call <SID>RepeatStr(<f-args>)
-
+command! -range -nargs=0 -bang Vissort sil! keepj <line1>,<line2>call <SID>VisSort(<bang>0)
 
 " MAPPINGS ---------------------------------------------------------------------
 

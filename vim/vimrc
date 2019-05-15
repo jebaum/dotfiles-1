@@ -4,20 +4,23 @@
 
 " "VIM is not an IDE"... but I still try to make it into one
 
+" Use VIM's defaults instad of VI's
+set nocompatible
+
+
 " ------------------------------------------------------------------------------
 " FILES
 " ------------------------------------------------------------------------------
 
-" ALIASES                 | $HOME/dotfiles/vim/sources/aliases.vim
-" COMMANDS                | $HOME/dotfiles/vim/sources/commands.vim
 " CLIPBOARD               | $HOME/dotfiles/vim/sources/clipboard.vim
+" COMMANDS                | $HOME/dotfiles/vim/sources/commands.vim
 " COMPILE AND RUN         | $HOME/dotfiles/vim/sources/compile_and_run.vim
-" FIXES/WORKAROUNDS       | $HOME/dotfiles/vim/sources/fixes.vim
+" FIXES                   | $HOME/dotfiles/vim/sources/fixes.vim
 " FOLDING                 | $HOME/dotfiles/vim/sources/folding.vim
 " FUNCTIONS               | $HOME/dotfiles/vim/sources/functions.vim
 " HIGHLIGHTS              | $HOME/dotfiles/vim/sources/highlights.vim
-" INIT.VIM (for NeoVim)   | $HOME/dotfiles/vim/init.vim
 " MAPPINGS                | $HOME/dotfiles/vim/sources/mappings.vim
+" netrw CUSTOMIZATION     | $HOME/dotfiles/vim/sources/netrw_customization.vim
 " OTHER                   | $HOME/dotfiles/vim/sources/other.vim
 " PLUGINS - FUNCTIONS     | $HOME/dotfiles/vim/sources/plugins/functions.vim
 " PLUGINS - GENERAL       | $HOME/dotfiles/vim/sources/plugins/general.vim
@@ -36,7 +39,7 @@
 " Sourcing function
 function! s:SourceDirectory(dir)
     for s:fpath in split(globpath(a:dir, '*.vim'), '\n')
-        exe 'source' s:fpath
+        execute "source ".s:fpath
     endfor
 endfunction
 
@@ -44,7 +47,7 @@ endfunction
 call <SID>SourceDirectory('$HOME/dotfiles/vim/sources')
 call <SID>SourceDirectory('$HOME/dotfiles/vim/sources/plugins')
 
-" Highlights needs to be sourced as one of lasts
+" Highlights needs to be sourced here
 source $HOME/dotfiles/vim/sources/highlights.vim
 
 " Fixes -- has to be sourced as last

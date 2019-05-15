@@ -11,14 +11,19 @@ endif
 " Redraw after command 'silent'
 command! -nargs=+ Silent execute 'silent <args>' | redraw!
 
-" Use 'javascript' filetype for *.js files
-autocmd VimEnter *.js setlocal filetype=javascript
-
-" Use 'tags' filetype for *tags
-autocmd VimEnter *tags setlocal filetype=tags
-
-" QuickFixLine highlight does not like CursorLine
-autocmd BufReadPost quickfix setlocal nocursorline
-
 " For any maping starting with 'd'
 nnoremap dd dd
+
+
+" Filetype issues --------------------------------------------------------------
+" Dict structure:   FILE ENDING : FILETYPE
+"   FILE ENDING may or not may be with dot (eg. tags files)
+let s:temp = {
+            \ ".js"  : "javascript",
+            \ ".php" : "php",
+            \ "tags" : "tags",
+            \}
+
+for [ending, ft] in items(s:temp)
+    execute "autocmd BufWinEnter *".ending." setlocal filetype=".ft
+endfor
