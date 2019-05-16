@@ -1,13 +1,7 @@
-let g:gitgutter_max_signs                    = 5000
-let g:gutentags_cache_dir                    = $HOME."/.vim/cache/tags"
-let g:vinarise_enable_auto_detect            = 1
-
 " ALE
 let g:ale_c_parse_makefile                   = 1
 let g:ale_set_highlights                     = 0
 let g:ale_set_quickfix                       = 1
-let g:ale_sign_column_always                 = 1
-let g:ale_sign_column_always                 = 1
 
 " AutoFormat
 let b:formatdef_custom_c                     = '"astyle --style=kr -s4 -N -S -xG -xU -f -k3 -xj -p"'
@@ -17,6 +11,9 @@ let b:formatters_c                           = ['custom_c']
 let b:formatters_cpp                         = ['custom_c']
 let b:formatters_css                         = ['custom_css']
 let b:formatters_html                        = ['custom_html']
+
+" Gutentags
+let g:gutentags_cache_dir                    = $HOME."/.vim/cache/tags"
 
 " NERDCommenter
 let g:NERDCommentEmptyLines                  = 1

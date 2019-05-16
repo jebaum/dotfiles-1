@@ -21,7 +21,6 @@ nnoremap dd dd
 let s:temp = {
             \ ".js"  : "javascript",
             \ ".php" : "php",
-            \ "tags" : "tags",
             \}
 
 for [ending, ft] in items(s:temp)

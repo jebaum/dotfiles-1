@@ -40,7 +40,7 @@ set smartcase                                           " If searching with capi
 " UI
 set completeopt-=preview                                " Disable preview window for completeopt // for: YCM
 set laststatus=2                                        " To always display status line
-set signcolumn=yes
+set signcolumn=yes                                      " Always display sign column
 set number                                              " Enable line numbers
 set showcmd                                             " Display incomplete commands
 set splitbelow                                          " New windows open on right when split verticaly
