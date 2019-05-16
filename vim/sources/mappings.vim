@@ -14,17 +14,17 @@ noremap <F7> :cwindow <bar> echo 'QuickFix List'<CR>
 noremap <F9> :w <bar> make<CR>
 
 " Normal keys
-noremap '' ``
 noremap ' `
+noremap '' ``
 noremap <Tab> <C-w><C-w>
 noremap gf <C-w>gf
 noremap j gj
 noremap k gk
 noremap N Nzz
 noremap n nzz
+noremap Q gq
 
 " <nop>
 map gh <nop>
-map Q <nop>
 map q: <nop>
 map ZZ <nop>

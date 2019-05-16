@@ -23,7 +23,6 @@ set scrolloff=5                                                         " Minima
 set t_Co=256                                                            " 256 color support
 
 " NETRW
-let g:netrw_altv = 0                                                    " Split opening file to the right
 let g:netrw_banner = 0                                                  " Do not display info on the top of window
 let g:netrw_browse_split = 4                                            " Use the previous window to open file
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+,\(^\|\s\s\)ntuser\.\S\+'  " Do not show hidden files

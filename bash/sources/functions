@@ -9,13 +9,13 @@ i3-get-window-criteria()
 
     {
         xprop |
-        sed -nr \
-        -e "s/^WM_CLASS\(STRING\) = ($match_qstring), ($match_qstring)$/instance=\1\nclass=\3/p" \
-        -e "s/^WM_WINDOW_ROLE\(STRING\) = ($match_qstring)$/window_role=\1/p" \
-        -e "/^WM_NAME\(STRING\) = ($match_string)$/{s//title=\1/; h}" \
-        -e "/^_NET_WM_NAME\(UTF8_STRING\) = ($match_qstring)$/{s//title=\1/; h}" \
-        -e '${g; p}'
-    } | sort | tr "\n" " " | sed -r 's/^(.*) $/[\1]\n/'
+            sed -nr \
+            -e "s/^WM_CLASS\(STRING\) = ($match_qstring), ($match_qstring)$/instance=\1\nclass=\3/p" \
+            -e "s/^WM_WINDOW_ROLE\(STRING\) = ($match_qstring)$/window_role=\1/p" \
+            -e "/^WM_NAME\(STRING\) = ($match_string)$/{s//title=\1/; h}" \
+            -e "/^_NET_WM_NAME\(UTF8_STRING\) = ($match_qstring)$/{s//title=\1/; h}" \
+            -e '${g; p}'
+        } | sort | tr "\n" " " | sed -r 's/^(.*) $/[\1]\n/'
 }
 
 offupg()
@@ -38,16 +38,16 @@ rebuild-hosts-file()
     sudo echo >> /tmp/hosts
 
     cat $HOME/dotfiles/private/hosts/* \
-    | tr A-Z a-z \
-    | tr -d '\r' \
-    | awk '{gsub("#.*$", ""); gsub(" *$",""); if (NF==2) {print $1 " " $2;}}' \
-    | grep -v '^localhost$' \
-    | sed 's/\.$//' \
-    | sort -k 2\
-    | uniq  \
-    | sed 's/\.$//' \
-    | awk '{printf("%-20s %s\n", $1, $2);}' \
-    >> /tmp/hosts
+        | tr A-Z a-z \
+        | tr -d '\r' \
+        | awk '{gsub("#.*$", ""); gsub(" *$",""); if (NF==2) {print $1 " " $2;}}' \
+        | grep -v '^localhost$' \
+        | sed 's/\.$//' \
+        | sort -k 2\
+        | uniq  \
+        | sed 's/\.$//' \
+        | awk '{printf("%-20s %s\n", $1, $2);}' \
+        >> /tmp/hosts
 
     sudo mv /tmp/hosts /etc/hosts
 }

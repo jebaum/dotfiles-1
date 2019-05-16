@@ -58,7 +58,7 @@ function! s:ToggleNetrw()
         let t:NetrwIsOpen=0
     else
         let t:NetrwIsOpen=1
-        silent Lexplore!
+        silent Lexplore
     endif
 endfunction
 

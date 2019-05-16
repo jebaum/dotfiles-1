@@ -4,9 +4,6 @@ filetype plugin indent on
 " Enable syntax
 syntax enable
 
-" Default filetype
-autocmd BufEnter * if &filetype == "" | setlocal filetype=text | endif
-
 " Open file at the last known position
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
 
@@ -42,9 +39,8 @@ autocmd QuickFixCmdPost l*    lwindow
 autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" || &buftype == 'quickfix' | q | endif
 
 " NETRW autocmds
-autocmd filetype netrw set nolist
 autocmd filetype netrw nnoremap <buffer> <F1> gT
-autocmd filetype netrw setlocal statusline=NETRW
+autocmd filetype netrw setlocal statusline=\ NETRW
 
 
 " PACKAGES ---------------------------------------------------------------------

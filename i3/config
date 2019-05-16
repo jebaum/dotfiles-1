@@ -150,9 +150,6 @@ bindsym $mod+z focus child
 # change focus between tiling / floating windows
 bindsym $mod+g focus mode_toggle
 
-# new workspace
-bindsym $mod+n exec $HOME/.i3/scripts/new_workspace
-
 # switch to next workspace
 bindsym $mod+Tab workspace next
 

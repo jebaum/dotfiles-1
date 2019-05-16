@@ -8,16 +8,16 @@ feh() {
     fi
 
     if [[ -z $1 ]]; then
-        command feh $R 2> /dev/null & disown
+        command feh -B black -. $R 2> /dev/null & disown
     elif [[ ! -z $2 ]]; then
-        command feh $R "$@" & disown
+        command feh -B black -. $R "$@" & disown
     else
         file="$(readlink -f $1)"
         if [ -d "$file" ]; then
-            command feh $R "$file" 2> /dev/null & disown
+            command feh -B black -. $R "$file" 2> /dev/null & disown
         else
             dir="$(dirname "$file")"
-            command feh $R --start-at "$file" "$dir" 2> /dev/null & disown
+            command feh -B black -. $R --start-at "$file" "$dir" 2> /dev/null & disown
         fi
     fi
 }

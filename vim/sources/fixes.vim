@@ -11,16 +11,14 @@ endif
 " Redraw after command 'silent'
 command! -nargs=+ Silent execute 'silent <args>' | redraw!
 
-" For any maping starting with 'd'
-nnoremap dd dd
-
 
 " Filetype issues --------------------------------------------------------------
 " Dict structure:   FILE ENDING : FILETYPE
 "   FILE ENDING may or not may be with dot (eg. tags files)
 let s:temp = {
-            \ ".js"  : "javascript",
-            \ ".php" : "php",
+            \ ".conf" : "conf",
+            \ ".js"   : "javascript",
+            \ ".php"  : "php",
             \}
 
 for [ending, ft] in items(s:temp)
