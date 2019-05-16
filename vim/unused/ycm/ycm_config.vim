@@ -1,3 +1,20 @@
+let s:BuildYCM_flags = "--clang-completer"
+
+" Build YouCompleteMe - for Plug
+function! BuildYCM(info)
+    if a:info.status == 'installed' || a:info.force
+        execute "!./install.py ".s:BuildYCM_flags
+    endif
+endfunction
+
+" Build YouCompleteMe
+function! BuildYCM_manual()
+    execute "!~/.vim/bundle/YouCompleteMe/install.py ".s:BuildYCM_flags
+endfunction
+
+
+" VARIABLES --------------------------------------------------------------------
+
 let g:ycm_add_preview_to_completeopt                 = 0
 let g:ycm_always_populate_location_list              = 0
 let g:ycm_autoclose_preview_window_after_completion  = 1

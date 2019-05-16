@@ -20,13 +20,10 @@ set nocompatible
 " FUNCTIONS               | $HOME/dotfiles/vim/sources/functions.vim
 " HIGHLIGHTS              | $HOME/dotfiles/vim/sources/highlights.vim
 " MAPPINGS                | $HOME/dotfiles/vim/sources/mappings.vim
-" netrw CUSTOMIZATION     | $HOME/dotfiles/vim/sources/netrw_customization.vim
 " OTHER                   | $HOME/dotfiles/vim/sources/other.vim
-" PLUGINS - FUNCTIONS     | $HOME/dotfiles/vim/sources/plugins/functions.vim
 " PLUGINS - GENERAL       | $HOME/dotfiles/vim/sources/plugins/general.vim
 " PLUGINS - LIST          | $HOME/dotfiles/vim/sources/plugins/list.vim
 " PLUGINS - VARIABLES     | $HOME/dotfiles/vim/sources/plugins/variables.vim
-" PLUGINS - YCM VARIABLES | $HOME/dotfiles/vim/sources/plugins/ycm_variables.vim
 " set OPTIONS             | $HOME/dotfiles/vim/sources/set_options.vim
 " STATUS LINE             | $HOME/dotfiles/vim/sources/statusline.vim
 " VIM DEBUGGING etc.      | $HOME/dotfiles/vim/sources/vim_debugging.vim

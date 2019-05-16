@@ -39,22 +39,21 @@ if has("clipboard")
     nnoremap <C-p> "+p
     nnoremap <C-y> "+y
     xnoremap <C-y> "+y
+    command AllToClipboard execute "normal! gg\"+yG``"
 else
 
     " Paste
-    nnoremap <silent> <C-p> :<C-U>call <SID>system_paste()<CR>
+    nnoremap <silent> <C-p> :call <SID>system_paste()<CR>
 
     " Normal copy
-    nnoremap <silent> <C-y>  :<C-U>set opfunc=<SID>system_copy<CR>g@
+    nnoremap <silent> <C-y>  :set opfunc=<SID>system_copy<CR>g@
 
     " Copy line
-    nnoremap <silent> <C-y>y :<C-U>set opfunc=<SID>system_copy<Bar>exe 'norm! 'v:count1.'g@_'<CR>
+    nnoremap <silent> <C-y>y :set opfunc=<SID>system_copy<Bar>exe 'norm! 'v:count1.'g@_'<CR>
 
     " Copy in Visual mode
-    xnoremap <silent> <C-y>  :<C-U>call <SID>system_copy(visualmode(),visualmode() ==# 'V' ? 1 : 0)<CR>
+    xnoremap <silent> <C-y>  :call <SID>system_copy(visualmode(),visualmode() ==# 'V' ? 1 : 0)<CR>
+
+    command AllToClipboard execute "normal! gg:set opfunc=<SID>system_copy<CR>g@G``"
 
 endif
-
-" ------------------------------------------------------------------------------
-
-command AllToClipboard execute "normal! gg:<C-U>set opfunc=<SID>system_copy<CR>g@G``"

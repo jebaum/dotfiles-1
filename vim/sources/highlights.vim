@@ -53,6 +53,7 @@ hi  Pmenu            ctermfg=black       ctermbg=cyan
 hi  PmenuSel         ctermfg=black       ctermbg=blue
 hi  PreProc          ctermfg=LightGreen
 hi  QuickFixLine     ctermbg=NONE        cterm=underline
+hi  SignColumn       ctermbg=black
 hi  Special          ctermfg=red         ctermbg=black
 hi  StatusLine       ctermfg=black       ctermbg=yellow   cterm=NONE
 hi  StatusLineNC     ctermfg=white

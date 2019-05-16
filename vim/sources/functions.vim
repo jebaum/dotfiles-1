@@ -45,6 +45,23 @@ function! s:VisSort(isnmbr) range
     let @a= keeprega
 endfun
 
+" Toggle Netrw window
+function! s:ToggleNetrw()
+    if t:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout! " . i
+            endif
+            let i-=1
+        endwhile
+        let t:NetrwIsOpen=0
+    else
+        let t:NetrwIsOpen=1
+        silent Lexplore!
+    endif
+endfunction
+
 " Delete "expired" cache files
 " TODO
 
@@ -55,6 +72,7 @@ let s:CursorHighlight_state = 0
 let s:textwidth             = 80
 let s:vissort_sort          = "sort i"
 
+autocmd VimEnter,TabEnter * let t:NetrwIsOpen=0
 
 " CALLING COMMANDS -------------------------------------------------------------
 
@@ -62,6 +80,8 @@ command! -nargs=+ FillLine call <SID>FillLine('<args>')
 command! -nargs=+ RepeatStr call <SID>RepeatStr(<f-args>)
 command! -range -nargs=0 -bang Vissort sil! keepj <line1>,<line2>call <SID>VisSort(<bang>0)
 
+
 " MAPPINGS ---------------------------------------------------------------------
 
 map <F3> :call <SID>CursorHighlightToggle()<CR>
+noremap <silent> <F4> :call <SID>ToggleNetrw()<CR>

@@ -13,6 +13,7 @@ let s:languages = {
             \ "html"     : "firefox %<CR>",
             \ "lisp"     : "clisp %",
             \ "lua"      : "lua %",
+            \ "markdown" : "grip -b % 1> /dev/null<CR>",
             \ "perl"     : "perl %",
             \ "python"   : "python3 %",
             \ "rust"     : "rustc % && ./%<",
@@ -34,8 +35,3 @@ endfor
 for [ext, ft_cmd] in items(s:languages2)
     call <SID>CompileAndRun(ft_cmd[0], ft_cmd[1], ext)
 endfor
-
-" ------------------------------------------------------------------------------
-
-" Markdown // depends on Markdown Preview plugin
-autocmd filetype markdown nnoremap <buffer> <F8> :MarkdownPreview<CR>

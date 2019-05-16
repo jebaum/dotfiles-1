@@ -12,11 +12,6 @@ source $HOME/dotfiles/vim/sources/plugins/list.vim
 call plug#end()
 
 
-" AUTOCMD ----------------------------------------------------------------------
-
-autocmd FileType man let g:nerdtree_tabs_open_on_console_startup=0 " Do not open NERDTree in man pages
-
-
 " HIGHLIGHTS -------------------------------------------------------------------
 
 hi  jsObjectProp            ctermfg=yellow
@@ -31,16 +26,7 @@ command -range TabularizeBySpace execute '<line1>,<line2>Tabularize /\S\+/l1'
 
 " MAPPINGS ---------------------------------------------------------------------
 
+nmap s ysiw
 noremap <leader><F1> :UndotreeToggle<CR>
 noremap <leader>= :Autoformat<CR>
-noremap tt :PreviewTag<CR>
-
-" Anzu
-nmap n <Plug>(anzu-n-with-echo)
-nmap N <Plug>(anzu-N-with-echo)
-nmap * <Plug>(anzu-star-with-echo)
-nmap # <Plug>(anzu-sharp-with-echo)
-
-" Surround
-nmap s ysiw
 vmap s S

@@ -23,6 +23,7 @@ set scrolloff=5                                         " Minimal number of scre
 set t_Co=256                                            " 256 color support
 
 " PATH
+set path+=**
 set path+=./
 set path+=/usr/include
 set path+=/usr/include/c++/7
