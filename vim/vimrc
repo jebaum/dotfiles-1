@@ -2,7 +2,7 @@
 " ### VIMRC ###
 " #############
 
-" "VIM is not an IDE"... but I still try to make it into one
+" "VIM is not an IDE"
 
 " ------------------------------------------------------------------------------
 " FILES
@@ -16,10 +16,9 @@
 " FUNCTIONS               | $HOME/dotfiles/vim/sources/functions.vim
 " HIGHLIGHTS              | $HOME/dotfiles/vim/sources/highlights.vim
 " MAPPINGS                | $HOME/dotfiles/vim/sources/mappings.vim
+" OPTIONS                 | $HOME/dotfiles/vim/sources/options.vim
 " OTHER                   | $HOME/dotfiles/vim/sources/other.vim
-" PLUGINS - GENERAL       | $HOME/dotfiles/vim/sources/plugins_general.vim
-" PLUGINS - VARIABLES     | $HOME/dotfiles/vim/sources/plugins_variables.vim
-" set OPTIONS             | $HOME/dotfiles/vim/sources/set_options.vim
+" PLUGINS                 | $HOME/dotfiles/vim/sources/plugins.vim
 " STATUS LINE             | $HOME/dotfiles/vim/sources/statusline.vim
 " VIM DEBUGGING etc.      | $HOME/dotfiles/vim/sources/vim_debugging.vim
 

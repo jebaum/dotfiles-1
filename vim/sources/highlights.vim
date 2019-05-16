@@ -1,4 +1,6 @@
-" EXTRA HIGHLIGHT GROUPS -------------------------------------------------------
+" ------------------------------------------------------------------------------
+" EXTRA HIGHLIGHT GROUPS
+" ------------------------------------------------------------------------------
 
 " C/C++ preprocessor defined macros
 function! s:HighlightC_PreProcDefines()
@@ -23,12 +25,6 @@ autocmd filetype xdefaults match BangComment /^\!.*$/
 
 " OperatorChars
 autocmd BufWinEnter * syntax match OperatorChars "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
-
-
-" ------------------------------------------------------------------------------
-" Clear all maches after leaving buffer
-
-autocmd BufWinLeave * call clearmatches()
 
 
 " ------------------------------------------------------------------------------
