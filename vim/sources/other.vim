@@ -10,9 +10,6 @@ autocmd FileType * set fo-=c fo-=r fo-=o
 " Trim trailing whitespace
 autocmd BufWritePre * silent! undojoin | %s/\s\+$//e | %s/\(\n\r\?\)\+\%$//e
 
-" Define comments for *.list
-" autocmd BufEnter *.list setlocal comments=:# commentstring=#%s | syn match Comment "#.*$"
-
 " Markdown TAB = 2 SPACES
 autocmd filetype markdown setlocal tabstop=2 softtabstop=2
 
@@ -20,7 +17,7 @@ autocmd filetype markdown setlocal tabstop=2 softtabstop=2
 autocmd BufWinLeave * call clearmatches()
 
 " C/C++ formatting
-autocmd filetype c,cpp setlocal equalprg=astyle\ --style=kr\ -s4\ -N\ -S\ -xG\ -xU\ -f\ -k3\ -xj\ -p
+autocmd filetype c,cpp setlocal formatprg=astyle\ --style=kr\ -s4\ -N\ -S\ -xG\ -xU\ -f\ -k3\ -xj\ -p
 
 " Quit QuickFix window along with source file window
 autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix" | q | endif
@@ -42,3 +39,17 @@ autocmd filetype netrw setlocal statusline=\ NETRW
 " PACKAGES
 packadd matchit
 packadd termdebug
+
+
+" Filetype issues --------------------------------------------------------------
+" Dict structure:   FILE ENDING : FILETYPE
+"   FILE ENDING may or not may be with dot (eg. tags files)
+let s:ft_issues = {
+            \ ".asm"  : "nasm",
+            \ ".js"   : "javascript",
+            \ ".S"    : "asm",
+            \}
+
+for [ending, ft] in items(s:ft_issues)
+    execute "autocmd BufWinEnter *".ending." setlocal filetype=".ft
+endfor

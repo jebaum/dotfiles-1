@@ -1,5 +1,6 @@
 " leader + sth
 noremap <leader>= gg=G``
+noremap <leader>q gggqG``
 noremap <leader>h :nohlsearch<CR>
 noremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 noremap <Leader>R :%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>

@@ -8,18 +8,17 @@
 " FILES
 " ------------------------------------------------------------------------------
 
-" CLIPBOARD          | $HOME/dotfiles/vim/sources/clipboard.vim
-" COMMANDS           | $HOME/dotfiles/vim/sources/commands.vim
-" COMPILE AND RUN    | $HOME/dotfiles/vim/sources/compile_and_run.vim
-" FIXES              | $HOME/dotfiles/vim/sources/fixes.vim
-" FOLDING            | $HOME/dotfiles/vim/sources/folding.vim
-" FUNCTIONS          | $HOME/dotfiles/vim/sources/functions.vim
-" HIGHLIGHTS         | $HOME/dotfiles/vim/sources/highlights.vim
-" MAPPINGS           | $HOME/dotfiles/vim/sources/mappings.vim
-" OPTIONS            | $HOME/dotfiles/vim/sources/options.vim
-" OTHER              | $HOME/dotfiles/vim/sources/other.vim
-" PLUGINS            | $HOME/dotfiles/vim/sources/plugins.vim
-" STATUS LINE        | $HOME/dotfiles/vim/sources/statusline.vim
+" CLIPBOARD       | $HOME/dotfiles/vim/sources/clipboard.vim
+" COMMANDS        | $HOME/dotfiles/vim/sources/commands.vim
+" COMPILE AND RUN | $HOME/dotfiles/vim/sources/compile_and_run.vim
+" FOLDING         | $HOME/dotfiles/vim/sources/folding.vim
+" FUNCTIONS       | $HOME/dotfiles/vim/sources/functions.vim
+" HIGHLIGHTS      | $HOME/dotfiles/vim/sources/highlights.vim
+" MAPPINGS        | $HOME/dotfiles/vim/sources/mappings.vim
+" OPTIONS         | $HOME/dotfiles/vim/sources/options.vim
+" OTHER           | $HOME/dotfiles/vim/sources/other.vim
+" PLUGINS         | $HOME/dotfiles/vim/sources/plugins.vim
+" STATUS LINE     | $HOME/dotfiles/vim/sources/statusline.vim
 
 
 " ------------------------------------------------------------------------------
@@ -31,6 +30,3 @@ set nocompatible
 for s:fpath in split(glob('$HOME/dotfiles/vim/sources/*.vim'), '\n')
     execute "source ".s:fpath
 endfor
-
-" FIXES
-source $HOME/dotfiles/vim/sources/fixes.vim

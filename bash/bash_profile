@@ -11,7 +11,6 @@
 # EXPORTS   | $HOME/dotfiles/bash/sources/export
 # FUNCTIONS | $HOME/dotfiles/bash/sources/functions
 # GENERAL   | $HOME/dotfiles/bash/sources/general
-# PRIVATE   | $HOME/dotfiles/private/bash
 # WRAPPERS  | $HOME/dotfiles/bash/sources/wrappers
 
 #-------------------------------------------------------------------------------
@@ -22,5 +21,3 @@ for src in $HOME/dotfiles/bash/sources/*
 do
     source $src
 done
-
-source $HOME/dotfiles/private/bash

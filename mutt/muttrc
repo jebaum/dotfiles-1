@@ -10,7 +10,7 @@
 # COLORS (NEO) | $HOME/dotfiles/mutt/neo_colors
 # MAILCAP      | $HOME/dotfiles/mutt/mailcap
 # OTHER        | $HOME/dotfiles/mutt/other
-# PRIVATE      | $HOME/dotfiles/private/mutt
+# PRIVATE      | $HOME/dotfiles/mutt/private
 # SIDEBAR      | $HOME/dotfiles/mutt/sidebar
 # VI KEYS      | $HOME/dotfiles/mutt/vim-keys.rc
 
@@ -22,6 +22,6 @@
 source $HOME/dotfiles/mutt/colors
 source $HOME/dotfiles/mutt/neo_colors
 source $HOME/dotfiles/mutt/other
+source $HOME/dotfiles/mutt/private
 source $HOME/dotfiles/mutt/sidebar
 source $HOME/dotfiles/mutt/vim-keys.rc
-source $HOME/dotfiles/private/mutt
