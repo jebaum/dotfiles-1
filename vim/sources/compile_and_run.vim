@@ -2,8 +2,6 @@ function s:CompileAndRun(filetype, cmd)
     exec "autocmd filetype ".a:filetype." nnoremap <buffer> <F8> :w <bar> !".a:cmd."<CR>"
 endfunction
 
-" Those languages have "normal apportionment", i.e.: one filetype equals one compiling command
-" Dict structure:   FILETYPE : COMMAND
 let s:languages = {
             \ "asm"      : "as -o %<.o % && ld -s -o %< %<.o && rm %<.o && ./%<",
             \ "basic"    : "vintbas %",

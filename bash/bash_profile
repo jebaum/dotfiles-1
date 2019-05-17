@@ -7,7 +7,6 @@
 #-------------------------------------------------------------------------------
 
 # ALIASES   | $HOME/dotfiles/bash/sources/aliases
-# APT       | $HOME/dotfiles/bash/sources/apt
 # EXPORTS   | $HOME/dotfiles/bash/sources/export
 # FUNCTIONS | $HOME/dotfiles/bash/sources/functions
 # GENERAL   | $HOME/dotfiles/bash/sources/general

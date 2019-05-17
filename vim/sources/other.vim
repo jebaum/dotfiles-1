@@ -19,6 +19,9 @@ autocmd BufWinLeave * call clearmatches()
 " C/C++ formatting
 autocmd filetype c,cpp setlocal formatprg=astyle\ --style=kr\ -s4\ -N\ -S\ -xG\ -xU\ -f\ -k3\ -xj\ -p
 
+" In some cases less than 80 columns of code is impossible
+autocmd filetype java,javascript setlocal colorcolumn=
+
 " Quit QuickFix window along with source file window
 autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix" | q | endif
 
@@ -46,6 +49,7 @@ packadd termdebug
 "   FILE ENDING may or not may be with dot (eg. tags files)
 let s:ft_issues = {
             \ ".asm"  : "nasm",
+            \ ".conf" : "conf",
             \ ".js"   : "javascript",
             \ ".S"    : "asm",
             \}

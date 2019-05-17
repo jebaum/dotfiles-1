@@ -35,7 +35,7 @@ function! s:OutlineToggle()
     unlet OldCol
     execute "normal! zv"
 endfunction
-autocmd VimEnter x call <SID>OutlineToggle()
+autocmd VimEnter * call <SID>OutlineToggle()
 
 " JavaScript
 autocmd FileType javascript setlocal foldmethod=syntax

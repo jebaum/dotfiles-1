@@ -15,11 +15,6 @@ set smartindent                                                             " Sm
 set softtabstop=4                                                           " Unify tabs and spaces
 set tabstop=4                                                               " Tab spacing
 
-" Looks
-set cursorline                                                              " Current line highlight
-set scrolloff=5                                                             " Minimal number of screen lines to keep above and below the cursor
-set t_Co=256                                                                " 256 color support
-
 " NETRW
 let g:netrw_banner        = 0                                               " Do not display info on the top of window
 let g:netrw_browse_split  = 4                                               " Use the previous window to open file
@@ -35,28 +30,30 @@ set incsearch                                                               " Do
 set smartcase                                                               " If searching with capital letter then use match case
 
 " UI
+set colorcolumn=81                                                          " Highlight column 81
 set completeopt-=preview                                                    " Disable preview window for completeopt // for: YCM
+set cursorline                                                              " Current line highlight
 set laststatus=2                                                            " To always display status line
 set number                                                                  " Enable line numbers
+set scrolloff=5                                                             " Minimal number of screen lines to keep above and below the cursor
 set showcmd                                                                 " Display incomplete commands
 set splitbelow                                                              " New windows open on right when split verticaly
 set splitright                                                              " New windows open on right when split horizontaly
+set t_Co=256                                                                " 256 color support
 set wildmenu                                                                " Menu for command line completion
-set colorcolumn=81                                                          " Highlight column 81
-
-" Wraping
-set linebreak                                                               " Don't break words while wraping lines
-set nowrap                                                                  " Do not wrap lines on default
 
 " OTHER
-set backspace=indent,eol,start                                              " Allow backspacing over everything in insert mode
-set viminfo+=n~/.vim/viminfo                                                " Change viminfo location
 let g:tex_flavor = 'tex'                                                    " Default TeX dialect
-set modeline                                                                " Enable modelines
-set nrformats=                                                              " Ignore non-DEC numeral systems when in- or decrementing with <C-a>/<C-x>
+set backspace=indent,eol,start                                              " Allow backspacing over everything in insert mode
 set history=50                                                              " Keep 50 lines of command line history
-set wrapmargin=0                                                            " No wrap margin
+set linebreak                                                               " Don't break words while wraping lines
+set modeline                                                                " Enable modelines
+set nowrap                                                                  " Do not wrap lines on default
+set nrformats=                                                              " Ignore non-DEC numeral systems when in- or decrementing with <C-a>/<C-x>
 set omnifunc=syntaxcomplete#Complete                                        " Omnifunc
+set viminfo+=n~/.vim/viminfo                                                " Change viminfo location
+set wrapmargin=0                                                            " No wrap margin
+
 
 " ------------------
 
@@ -67,4 +64,3 @@ set path+=/usr/include
 set path+=/usr/include/c++/7
 set path+=/usr/local/vitasdk/arm-vita-eabi/include
 set path+=/usr/local/vitasdk/arm-vita-eabi/include/SDL
-set path+=/usr/local/include/luajit-2.0

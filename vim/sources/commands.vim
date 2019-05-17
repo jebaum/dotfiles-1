@@ -11,6 +11,5 @@ command Whitespace setlocal list!
 command Wrap setlocal wrap!
 
 " SHELL COMMANDS ---------------------------------------------------------------
-command Ctags w <bar> Silent !ctags --fields=+nS -a %
 command ExecCurrentLine normal :.w !sh<CR>
 command SudoW :execute ':silent w !sudo tee % > /dev/null' | :edit!

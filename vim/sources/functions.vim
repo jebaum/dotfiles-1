@@ -7,11 +7,6 @@ function! s:FillLine(str)
     endif
 endfunction
 
-" Repeats given string
-function! s:RepeatStr(times, str)
-    execute ":normal a" . repeat(a:str, a:times)
-endfunction
-
 " Toggle cursor line and column highlight
 function s:CursorHighlightToggle()
     setlocal cursorcolumn!
@@ -100,7 +95,6 @@ autocmd VimEnter,TabEnter * let t:NetrwIsOpen=0
 " CALLING COMMANDS -------------------------------------------------------------
 
 command! -nargs=+ FillLine call <SID>FillLine('<args>')
-command! -nargs=+ RepeatStr call <SID>RepeatStr(<f-args>)
 command! -range -nargs=0 -bang Vissort sil! keepj <line1>,<line2>call <SID>VisSort(<bang>0)
 
 

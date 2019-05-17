@@ -20,6 +20,7 @@ endfunction
 autocmd filetype c,cpp autocmd VimEnter,InsertEnter,InsertLeave * call <SID>HighlightC_PreProcDefines()
 
 " Operator Characters
+autocmd filetype c,cpp syntax match OperatorChars "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
 autocmd BufReadPre * syntax match OperatorChars "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
 
 
@@ -50,4 +51,5 @@ hi  StatusLine       ctermfg=black       ctermbg=yellow   cterm=NONE
 hi  StatusLineNC     ctermfg=white
 hi  String           ctermfg=DarkCyan
 hi  Type             ctermfg=white
+hi  VimCommentString ctermfg=grey
 hi  WildMenu         ctermbg=cyan

@@ -25,8 +25,7 @@ bind index                      \Ce next-line
 bind index                      \Cy previous-line
 
 # Deleting
-bind pager,index                d   noop
-macro pager,index               dd  <delete-message><sync-mailbox><enter>
+macro pager,index               d  <delete-message><sync-mailbox><enter>
 
 # Threads
 bind browser,pager,index        N   search-opposite

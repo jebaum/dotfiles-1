@@ -18,6 +18,28 @@ i3-get-window-criteria()
         } | sort | tr "\n" " " | sed -r 's/^(.*) $/[\1]\n/'
 }
 
+install-from-list()
+{
+    for file in $@; do
+        if [ -e $file ]; then
+            if [[ ${file: -5} == ".list" ]]; then
+                while IFS= read -r pkg; do
+                    list=$list' '$(echo $pkg | cut -f1 -d"#")
+                done < "$file"
+            else
+                echo "$file - file in not a list"
+            fi
+        else
+            echo "$file - file does not exist"
+        fi
+    done
+
+    read -r -p 'Installation command: ' installation_command
+    $installation_command $list
+
+    unset list
+}
+
 offupg()
 {
     command sudo apt update
