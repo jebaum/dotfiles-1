@@ -27,7 +27,6 @@ linking  $x  gtk/gtkrc-2.0           $HOME/.gtkrc-2.0
 linking  $x  i3/                     $HOME/.i3
 linking  $x  mpv/                    $HOME/.config/mpv
 linking  $x  mutt/muttrc             $HOME/.muttrc
-linking  $x  other/dosbox-0.74.conf  $HOME/.dosbox/dosbox-0.74.conf
 linking  $x  other/feh_keys          $HOME/.config/feh/keys
 linking  $x  other/gpg-agent.conf    $HOME/.gnupg/gpg-agent.conf
 linking  $x  other/inputrc           $HOME/.inputrc
@@ -35,10 +34,10 @@ linking  $x  other/profile           $HOME/.profile
 linking  $x  other/tmux.conf         $HOME/.tmux.conf
 linking  $x  other/Xresources        $HOME/.Xresources
 linking  $x  other/zathurarc         $HOME/.config/zathura/zathurarc
+linking  $x  vim/indent              $HOME/.vim/indent
 linking  $x  vim/UltiSnips           $HOME/.vim/UltiSnips
 linking  $x  vim/vimrc               $HOME/.vimrc
 
-# linking  $x  other/bvirc             $HOME/.bvirc
 # linking  $x  other/myclirc           $HOME/.myclirc
 
 cd - > /dev/null

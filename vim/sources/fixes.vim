@@ -15,12 +15,12 @@ command! -nargs=+ Silent execute 'silent <args>' | redraw!
 " Filetype issues --------------------------------------------------------------
 " Dict structure:   FILE ENDING : FILETYPE
 "   FILE ENDING may or not may be with dot (eg. tags files)
-let s:temp = {
-            \ ".conf" : "conf",
+let s:ft_issues = {
+            \ ".asm"  : "nasm",
             \ ".js"   : "javascript",
-            \ ".php"  : "php",
+            \ ".S"    : "asm",
             \}
 
-for [ending, ft] in items(s:temp)
+for [ending, ft] in items(s:ft_issues)
     execute "autocmd BufWinEnter *".ending." setlocal filetype=".ft
 endfor

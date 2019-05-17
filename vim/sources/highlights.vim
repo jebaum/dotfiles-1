@@ -1,3 +1,10 @@
+" Enable syntax
+syntax enable
+
+" Dark background (needed for proper colors)
+set background=dark
+
+
 " ------------------------------------------------------------------------------
 " EXTRA HIGHLIGHT GROUPS
 " ------------------------------------------------------------------------------
@@ -24,7 +31,13 @@ autocmd filetype lua syntax region LUA_Comment start='--\[\[' end='\]\]'
 autocmd filetype xdefaults match BangComment /^\!.*$/
 
 " OperatorChars
-autocmd BufWinEnter * syntax match OperatorChars "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
+let s:OperatorChars_blacklist = ["vim", "help", "markdown", "qf", "conque_term", "diff", "html", "css", "less", "xml", "sh", "bash", "notes", "jinja", "php"]
+function! s:OperatorChars()
+    if index(s:OperatorChars_blacklist, &ft) < 0
+        syntax match OperatorChars "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
+    endif
+endfunction
+autocmd BufWinEnter * call <SID>OperatorChars()
 
 
 " ------------------------------------------------------------------------------
@@ -37,6 +50,7 @@ hi  Comment          ctermfg=grey
 hi  CursorColumn     ctermbg=235
 hi  CursorLine       cterm=none
 hi  CursorLineNr     ctermfg=magenta
+hi  debugBreakpoint  ctermfg=black       ctermbg=red
 hi  DiffAdd          ctermfg=LightGreen  ctermbg=none
 hi  DiffChange       ctermfg=yellow      ctermbg=none
 hi  DiffDelete       ctermfg=red         ctermbg=none     cterm=bold

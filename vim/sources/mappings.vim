@@ -1,5 +1,5 @@
 " leader + sth
-noremap <leader>= gg=G
+noremap <leader>= gg=G``
 noremap <leader>h :nohlsearch<CR>
 noremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 noremap <Leader>R :%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>
@@ -10,7 +10,7 @@ inoremap <F1> <ESC>gT
 inoremap <F2> <ESC>gt
 noremap <F1> gT
 noremap <F2> gt
-noremap <F7> :cwindow <bar> echo 'QuickFix List'<CR>
+noremap <F7> :cwindow<CR>
 noremap <F9> :w <bar> make<CR>
 
 " Normal keys

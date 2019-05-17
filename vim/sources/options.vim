@@ -16,7 +16,6 @@ set softtabstop=4                                                       " Unify 
 set tabstop=4                                                           " Tab spacing
 
 " Looks
-set background=dark                                                     " Dark background (needed for proper colors)
 set cursorline                                                          " Current line highlight
 set listchars=""                                                        " Helps with vim-indentguides - no $ at the end of lines
 set scrolloff=5                                                         " Minimal number of screen lines to keep above and below the cursor
@@ -39,7 +38,6 @@ set smartcase                                                           " If sea
 " UI
 set completeopt-=preview                                                " Disable preview window for completeopt // for: YCM
 set laststatus=2                                                        " To always display status line
-set signcolumn=no                                                       " Disable signcolumn
 set number                                                              " Enable line numbers
 set showcmd                                                             " Display incomplete commands
 set splitbelow                                                          " New windows open on right when split verticaly

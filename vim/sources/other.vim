@@ -1,9 +1,6 @@
 " Turns on detection, plugin and indent
 filetype plugin indent on
 
-" Enable syntax
-syntax enable
-
 " Open file at the last known position
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
 
@@ -14,7 +11,7 @@ autocmd FileType * set fo-=c fo-=r fo-=o
 autocmd BufWritePre * silent! undojoin | %s/\s\+$//e | %s/\(\n\r\?\)\+\%$//e
 
 " Define comments for *.list
-autocmd BufEnter *.list setlocal comments=:# commentstring=#%s | syn match listComment "#.*$" | hi link listComment Comment
+" autocmd BufEnter *.list setlocal comments=:# commentstring=#%s | syn match Comment "#.*$"
 
 " Markdown TAB = 2 SPACES
 autocmd filetype markdown setlocal tabstop=2 softtabstop=2
@@ -35,15 +32,13 @@ autocmd FileType qf wincmd J
 autocmd QuickFixCmdPost [^l]* cwindow
 autocmd QuickFixCmdPost l*    lwindow
 
-" If last window is netrw/QuickFix, close Vim
-autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" || &buftype == 'quickfix' | q | endif
+" Close Vim, if last window is netrw
+autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" | q | endif
 
 " NETRW autocmds
 autocmd filetype netrw nnoremap <buffer> <F1> gT
 autocmd filetype netrw setlocal statusline=\ NETRW
 
-
-" PACKAGES ---------------------------------------------------------------------
-
+" PACKAGES
 packadd matchit
 packadd termdebug

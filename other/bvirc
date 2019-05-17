@@ -1,9 +1,0 @@
-" #############
-" ### VIMRC ###
-" #############
-
-" vim: set filetype=vim:
-
-
-set ignorecase
-set showmode
