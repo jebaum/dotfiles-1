@@ -2,7 +2,7 @@
 " ### VIMRC ###
 " #############
 
-" "VIM is not an IDE"
+" "It is a text editor, not an IDE" ~ every experienced vimmer
 
 " ------------------------------------------------------------------------------
 " FILES
@@ -11,7 +11,6 @@
 " CLIPBOARD       | $HOME/dotfiles/vim/sources/clipboard.vim
 " COMMANDS        | $HOME/dotfiles/vim/sources/commands.vim
 " COMPILE AND RUN | $HOME/dotfiles/vim/sources/compile_and_run.vim
-" FOLDING         | $HOME/dotfiles/vim/sources/folding.vim
 " FUNCTIONS       | $HOME/dotfiles/vim/sources/functions.vim
 " HIGHLIGHTS      | $HOME/dotfiles/vim/sources/highlights.vim
 " MAPPINGS        | $HOME/dotfiles/vim/sources/mappings.vim

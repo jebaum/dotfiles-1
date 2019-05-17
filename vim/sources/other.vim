@@ -44,7 +44,7 @@ packadd matchit
 packadd termdebug
 
 
-" Filetype issues --------------------------------------------------------------
+" FILETYPE ISSUES --------------------------------------------------------------
 " Dict structure:   FILE ENDING : FILETYPE
 "   FILE ENDING may or not may be with dot (eg. tags files)
 let s:ft_issues = {
@@ -56,4 +56,15 @@ let s:ft_issues = {
 
 for [ending, ft] in items(s:ft_issues)
     execute "autocmd BufWinEnter *".ending." setlocal filetype=".ft
+endfor
+
+
+" FOLDING ----------------------------------------------------------------------
+
+autocmd BufReadPre * set foldmethod=indent
+autocmd BufWinEnter * if &fdm == 'indent' | set foldmethod=manual | endif
+
+let s:syntax_fold_languages = [ "c", "cpp", "java", "javascript" ]
+for ft in s:syntax_fold_languages
+    execute "autocmd filetype ".ft." setlocal foldmethod=syntax"
 endfor

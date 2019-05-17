@@ -48,6 +48,7 @@ set backspace=indent,eol,start                                              " Al
 set history=50                                                              " Keep 50 lines of command line history
 set linebreak                                                               " Don't break words while wraping lines
 set modeline                                                                " Enable modelines
+set nofoldenable                                                            " Do not fold on start
 set nowrap                                                                  " Do not wrap lines on default
 set nrformats=                                                              " Ignore non-DEC numeral systems when in- or decrementing with <C-a>/<C-x>
 set omnifunc=syntaxcomplete#Complete                                        " Omnifunc
