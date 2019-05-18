@@ -38,10 +38,6 @@ autocmd BufWinLeave * call clearmatches()
 " C/C++ formatting
 autocmd filetype c,cpp setlocal formatprg=astyle\ --style=kr\ -s4\ -N\ -S\ -xG\ -xU\ -f\ -k3\ -xj\ -p
 
-" Persistent folds
-autocmd BufWinLeave *.* mkview!
-autocmd BufWinEnter *.* silent loadview
-
 " Quit QuickFix window along with source file window
 autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix" | q | endif
 
@@ -146,17 +142,17 @@ endfunction
 " Sorts lines based on visual-block selected portion of the lines
 function! s:VisSort(isnmbr) range
     if visualmode() != "\<c-v>"
-        exe "sil! ".a:firstline.",".a:lastline.s:vissort_sort
+        execute "silent! ".a:firstline.",".a:lastline.s:vissort_sort
         return
     endif
     let firstline= line("'<")
     let lastline = line("'>")
     let keeprega = @a
-    silent norm! gv"ay
+    silent normal! gv"ay
     '<,'>s/^/@@@/
-    silent! keepj norm! '<0"aP
+    silent! keepjumps normal! '<0"aP
     if a:isnmbr
-        sil! '<,'>s/^\s\+/\=substitute(submatch(0),' ','0','g')/
+        silent! '<,'>s/^\s\+/\=substitute(submatch(0),' ','0','g')/
     endif
     execute "sil! keepj '<,'>".s:vissort_sort
     execute "sil! keepj ".firstline.",".lastline.'s/^.\{-}@@@//'
@@ -435,9 +431,16 @@ endfor
 autocmd BufReadPre * set foldmethod=indent
 autocmd BufWinEnter * if &fdm == 'indent' | set foldmethod=manual | endif
 
-let s:syntax_fold_languages = [ "c", "cpp", "java", "javascript" ]
-for ft in s:syntax_fold_languages
-    execute "autocmd filetype ".ft." setlocal foldmethod=syntax"
+let s:fdm_for_lang = {
+            \ "c" : "syntax",
+            \ "cpp": "syntax",
+            \ "java" : "syntax",
+            \ "javascript" : "syntax",
+            \ "markdown" : "indent",
+            \}
+
+for [ft, method] in items(s:fdm_for_lang)
+    execute "autocmd filetype ".ft." setlocal foldmethod=".method
 endfor
 
 
@@ -500,7 +503,6 @@ Plug 'godlygeek/tabular'               " Tabular
 Plug 'christoomey/vim-tmux-navigator'  " Tmux Navigator
 Plug 'SirVer/ultisnips'                " UltiSnips
 Plug 'mbbill/undotree'                 " UndoTree
-Plug 'Shougo/vinarise.vim'             " Vinarise
 call plug#end()
 
 
@@ -518,7 +520,6 @@ let g:UltiSnipsSnippetDirectories       = ['~/.vim/UltiSnips', 'UltiSnips']  "  
 let g:undotree_SetFocusWhenToggle       = 1                                  "  UndoTree
 let g:undotree_ShortIndicators          = 1                                  "  UndoTree
 let g:undotree_SplitWidth               = 28                                 "  UndoTree
-let g:vinarise_enable_auto_detect       = 1                                  "  Vinarise
 
 
 " OTHER
