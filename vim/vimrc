@@ -2,22 +2,6 @@
 " ### VIMRC ###
 " #############
 
-" PROVERBS {{{
-"    - It is a text editor, not an IDE
-"    - It probably has that feature built in
-"    - Move with deliberate purpose
-"    - The documentation is better than you imagine
-"    - HJKL is not an important part of vim navigation
-"    - Project drawers conflict with split windows, favor splits
-"    - Visual clutter saps mental energy
-"    - Use plugins sparingly
-"    - Navigate by tags and search, not files
-"    - If it feels hard, there is probably a better way
-"    - You should understand every line in your vimrc
-"    - UI "tabs" are probably not what you expect
-"    - Don't seek mastery, seek proficiency
-" }}}
-
 " BASIC {{{
 
 " Use VIM's defaults instad of VI's
@@ -26,67 +10,64 @@ set nocompatible
 " Turns on detection, plugin and indent
 filetype plugin indent on
 
+" Enable syntax
+syntax enable
+
+" Dark background (needed for proper colors)
+set background=dark
+
 " }}}
 
-" CLIPBOARD {{{
+" AUTOCMDS {{{
 
-let s:copy_command  = 'xsel --clipboard --input'
-let s:paste_command = 'xsel --clipboard --output'
+" Open file at the last known position
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
 
-function! s:system_copy(type, ...) abort
-    let visual_mode = a:0 != 0
-    if visual_mode
-        let mode = (a:type == '') ?  'blockwise visual' : 'visual'
-    elseif a:type == 'line'
-        let mode = 'linewise'
-    else
-        let mode = 'motion'
-    endif
-    let unnamed = @@
-    if mode == 'linewise'
-        let lines = { 'start': line("'["), 'end': line("']") }
-        silent exe lines.start . "," . lines.end . "y"
-    elseif mode == 'visual' || mode == 'blockwise visual'
-        silent exe "normal! `<" . a:type . "`>y"
-    else
-        silent exe "normal! `[v`]y"
-    endif
-    let command = s:copy_command
-    silent call system(command, getreg('@'))
-    let @@ = unnamed
-endfunction
+" Disable continuation of comments to the next line (it cannot be just '-cro')
+autocmd FileType * set fo-=c fo-=r fo-=o
 
-function! s:system_paste() abort
-    let lines = system('xsel --clipboard --output | wc -l')
-    if lines == 0
-        execute "normal! a".system(s:paste_command)
-    else
-        put = system(s:paste_command)
-    endif
-endfunction
+" Trim trailing whitespace
+autocmd BufWritePre * silent! undojoin | %s/\s\+$//e | %s/\(\n\r\?\)\+\%$//e
 
-if has("clipboard")
-    nnoremap <C-p> "+p
-    nnoremap <C-y> "+y
-    xnoremap <C-y> "+y
-    command AllToClipboard execute "normal! gg\"+yG``"
-else
+" Markdown TAB = 2 SPACES
+autocmd filetype markdown setlocal tabstop=2 softtabstop=2
 
-    " Paste
-    nnoremap <silent> <C-p> :call <SID>system_paste()<CR>
+" Clear all maches after leaving buffer
+autocmd BufWinLeave * call clearmatches()
 
-    " Normal copy
-    nnoremap <silent> <C-y>  :set opfunc=<SID>system_copy<CR>g@
+" C/C++ formatting
+autocmd filetype c,cpp setlocal formatprg=astyle\ --style=kr\ -s4\ -N\ -S\ -xG\ -xU\ -f\ -k3\ -xj\ -p
 
-    " Copy line
-    nnoremap <silent> <C-y>y :set opfunc=<SID>system_copy<Bar>exe 'norm! 'v:count1.'g@_'<CR>
+" Persistent folds
+autocmd BufWinLeave *.* mkview!
+autocmd BufWinEnter *.* silent loadview
 
-    " Copy in Visual mode
-    xnoremap <silent> <C-y>  :call <SID>system_copy(visualmode(),visualmode() ==# 'V' ? 1 : 0)<CR>
+" Quit QuickFix window along with source file window
+autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix" | q | endif
 
-    command AllToClipboard execute "normal! gg:set opfunc=<SID>system_copy<CR>g@G``"
+" QuickFix window below other windows
+autocmd FileType qf wincmd J
 
-endif
+" Open QuickFix window after Grep
+autocmd QuickFixCmdPost [^l]* cwindow
+autocmd QuickFixCmdPost l*    lwindow
+
+" Close Vim, if last window is netrw
+autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" | q | endif
+
+" NETRW autocmds
+autocmd filetype netrw nnoremap <buffer> <F1> gT
+autocmd filetype netrw setlocal statusline=\ NETRW
+
+" C/C++ preprocessor defined macros
+autocmd filetype c,cpp autocmd VimEnter,InsertEnter,InsertLeave * call <SID>HighlightC_PreProcDefines()
+
+" Fold markers
+autocmd BufWinEnter * match FoldMarker '.* [{}]\{3}$'
+
+" Operator Characters
+autocmd filetype c,cpp syntax match OperatorChars display "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
+autocmd BufReadPost * syntax match OperatorChars display "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
 
 " }}}
 
@@ -98,6 +79,8 @@ command -range=% Enumerate normal :let i=1 | <line1>,<line2>g/^/s//\=i.'. '/ | l
 command -range=% Sort normal :<line1>,<line2>sort i<CR>
 command Debug normal :Termdebug<CR><C-w>H
 command SortBlock :normal! vip:sort i<CR>
+command! -nargs=+ FillLine call <SID>FillLine(<f-args>)
+command! -range -nargs=0 -bang Vissort sil! keepj <line1>,<line2>call <SID>VisSort(<bang>0)
 
 " SIMPLE TOGGLE
 command RelativeNumber setlocal relativenumber!
@@ -197,6 +180,59 @@ function! s:ToggleNetrw()
     endif
 endfunction
 
+" System copy function if Vim does not have 'clipboard' support
+function! s:system_copy(type, ...) abort
+    let visual_mode = a:0 != 0
+    if visual_mode
+        let mode = (a:type == '') ?  'blockwise visual' : 'visual'
+    elseif a:type == 'line'
+        let mode = 'linewise'
+    else
+        let mode = 'motion'
+    endif
+    let unnamed = @@
+    if mode == 'linewise'
+        let lines = { 'start': line("'["), 'end': line("']") }
+        silent exe lines.start . "," . lines.end . "y"
+    elseif mode == 'visual' || mode == 'blockwise visual'
+        silent exe "normal! `<" . a:type . "`>y"
+    else
+        silent exe "normal! `[v`]y"
+    endif
+    let command = s:copy_command
+    silent call system(command, getreg('@'))
+    let @@ = unnamed
+endfunction
+
+" System paste function if Vim does not have 'clipboard' support
+function! s:system_paste() abort
+    let lines = system('xsel --clipboard --output | wc -l')
+    if lines == 0
+        execute "normal! a".system(s:paste_command)
+    else
+        put = system(s:paste_command)
+    endif
+endfunction
+
+" Status line - file size
+function! FileSize()
+    let bytes = getfsize(expand(@%))
+    if (bytes >= 1024*1024)
+        return '~' . float2nr(round(bytes/(1024*1024.0))) . ' MiB'
+    elseif (bytes >= 1024)
+        return '~' . float2nr(round(bytes/1024.0)) . ' KiB'
+    elseif (bytes <= 0)
+        return '0 B'
+    else
+        return bytes . ' B'
+    endif
+endfunction
+
+" Status line - file encoding
+function! FileEncoding()
+    return (&fenc == "" ? &enc : &fenc).((exists("+bomb") && &bomb) ? " BOM" : "")
+endfunction
+
 " Preview of Vim 256 colors
 function! Color_demo()
     30 vnew
@@ -213,46 +249,13 @@ function! Color_demo()
 endfunction
 
 " Check highlight group under the cursor
-function! WhatHighlishtItIs()
+function! WhatsHighlightIt()
     echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
                 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
                 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
 endfunction
 
-" Delete "expired" cache files
-" TODO
-
-
-" NECESSARY VARIABLES ----------------------------
-
-let s:CursorHighlight_state = 0
-let s:vissort_sort          = "sort i"
-
-autocmd VimEnter,TabEnter * let t:NetrwIsOpen=0
-
-
-" CALLING COMMANDS -------------------------------
-
-command! -nargs=+ FillLine call <SID>FillLine(<f-args>)
-command! -range -nargs=0 -bang Vissort sil! keepj <line1>,<line2>call <SID>VisSort(<bang>0)
-
-
-" MAPPINGS ---------------------------------------
-
-map <F3> :call <SID>CursorHighlightToggle()<CR>
-noremap <silent> <F4> :call <SID>ToggleNetrw()<CR>
-
-" }}}
-
-" HIGHLIGHTS {{{
-
-" Enable syntax
-syntax enable
-
-" Dark background (needed for proper colors)
-set background=dark
-
-" C/C++ preprocessor defined macros
+" Function to match C/C++ #define macros
 function! s:HighlightC_PreProcDefines()
     syntax clear C_PreProcDefine
     for line in getline('1','$')
@@ -261,17 +264,13 @@ function! s:HighlightC_PreProcDefines()
         endif
     endfor
 endfunction
-autocmd filetype c,cpp autocmd VimEnter,InsertEnter,InsertLeave * call <SID>HighlightC_PreProcDefines()
 
-" Fold markers
-autocmd BufWinEnter * match FoldMarker '.* [{}]\{3}$'
+" Delete "expired" cache files
+" TODO
 
-" Operator Characters
-autocmd filetype c,cpp syntax match OperatorChars display "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
-autocmd BufReadPost * syntax match OperatorChars display "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
+" }}}
 
-
-" HIGHLIGHTS -------------------------------------
+" HIGHLIGHTS {{{
 
 hi  C_PreProcDefine   ctermfg=DarkRed
 hi  ColorColumn       ctermbg=magenta
@@ -314,13 +313,18 @@ noremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 noremap <Leader>R :%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>
 noremap <leader>v ggVG
 
-" Function keys -- also mapped: <F3>, <F4>, <F8>
+" Function keys -- also mapped: <F8>
 inoremap <F1> <ESC>gT
 inoremap <F2> <ESC>gt
 noremap <F1> gT
 noremap <F2> gt
+noremap <F3> :call <SID>CursorHighlightToggle()<CR>
 noremap <F7> :cwindow<CR>
 noremap <F9> :w <bar> make<CR>
+noremap <silent> <F4> :call <SID>ToggleNetrw()<CR>
+
+" Ctrl
+inoremap <C-o> <C-x><C-o>
 
 " Normal keys
 noremap ' `
@@ -343,103 +347,68 @@ map ZZ <nop>
 " OPTIONS {{{
 
 " Backup, undo and swap
-set backup                                                                  " Enable backup files
-set backupdir=~/.vim/cache/backup/                                          " Directory for backup files
-set noswapfile                                                              " Disable swap files
-set undodir=~/.vim/cache/undo/                                              " Directory for undo files
-set undofile                                                                " Enable undo files
+set backup
+set backupdir=~/.vim/cache/backup/
+set noswapfile
+set undodir=~/.vim/cache/undo/
+set undofile
+
+" Displaying text/code
+set linebreak
+set nofoldenable
+set nowrap
+set t_Co=256
 
 " Indentation
-set autoindent                                                              " Enable automatic indenting
-set cindent                                                                 " Automatic C program indenting
-set expandtab                                                               " Use spaces instead of tabs
-set shiftround                                                              " Always indent/outdent to the nearest tabstop
-set shiftwidth=4                                                            " Indent/outdent by 4 columns
-set smartindent                                                             " Smart indention
-set softtabstop=4                                                           " Unify tabs and spaces
-set tabstop=4                                                               " Tab spacing
+set autoindent
+set cindent
+set expandtab
+set shiftround
+set shiftwidth=4
+set smartindent
+set softtabstop=4
+set tabstop=4
 
 " NETRW
-let g:netrw_banner        = 0                                               " Do not display info on the top of window
-let g:netrw_browse_split  = 4                                               " Use the previous window to open file
-let g:netrw_list_hide     = '\(^\|\s\s\)\zs\.\S\+,\(^\|\s\s\)ntuser\.\S\+'  " Do not show hidden files
-let g:netrw_liststyle     = 3                                               " Tree-view
-let g:netrw_sort_sequence = '[\/]$,*'                                       " Sort is affecting only: directories on the top, files below
-let g:netrw_winsize       = -28                                             " Absolute width of netrw window
+let g:netrw_banner        = 0
+let g:netrw_browse_split  = 4
+let g:netrw_list_hide     = '\(^\|\s\s\)\zs\.\S\+,\(^\|\s\s\)ntuser\.\S\+'
+let g:netrw_liststyle     = 3
+let g:netrw_sort_sequence = '[\/]$,*'
+let g:netrw_winsize       = -28
 
 " Searching
-set hlsearch                                                                " Search highlight
-set ignorecase                                                              " Ignoring case of letters while searching
-set incsearch                                                               " Do incremental searching
-set smartcase                                                               " If searching with capital letter then use match case
+set hlsearch
+set ignorecase
+set incsearch
+set smartcase
 
 " UI
-set completeopt-=preview                                                    " Disable preview window for completeopt // for: YCM
-set cursorline                                                              " Current line highlight
-set laststatus=2                                                            " To always display status line
-set number                                                                  " Enable line numbers
-set scrolloff=5                                                             " Minimal number of screen lines to keep above and below the cursor
-set showcmd                                                                 " Display incomplete commands
-set signcolumn=yes                                                          " Always display sign column
-set splitbelow                                                              " New windows open on right when split verticaly
-set splitright                                                              " New windows open on right when split horizontaly
-set t_Co=256                                                                " 256 color support
-set wildmenu                                                                " Menu for command line completion
+set cursorline
+set laststatus=2
+set mouse=a
+set number
+set scrolloff=5
+set signcolumn=yes
+set splitbelow
+set splitright
+set wildmenu
 
 " OTHER
-let g:tex_flavor = 'tex'                                                    " Default TeX dialect
-set backspace=indent,eol,start                                              " Allow backspacing over everything in insert mode
-set history=50                                                              " Keep 50 lines of command line history
-set linebreak                                                               " Don't break words while wraping lines
-set modeline                                                                " Enable modelines
-set nofoldenable                                                            " Do not fold on start
-set nowrap                                                                  " Do not wrap lines on default
-set nrformats=                                                              " Ignore non-DEC numeral systems when in- or decrementing with <C-a>/<C-x>
-set omnifunc=syntaxcomplete#Complete                                        " Omnifunc
-set viminfo+=n~/.vim/viminfo                                                " Change viminfo location
-set wrapmargin=0                                                            " No wrap margin
+let g:tex_flavor = 'tex'
+set backspace=indent,eol,start
+set history=50
+set modeline
+set nrformats=
+set omnifunc=syntaxcomplete#Complete
+set shortmess+=I
+set viewoptions-=options
+set viminfo+=n~/.vim/viminfo
+set wrapmargin=0
 
 " }}}
 
 " OTHER {{{
-
-" Open file at the last known position
-autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
-
-" Disable continuation of comments to the next line (it cannot be just '-cro')
-autocmd FileType * set fo-=c fo-=r fo-=o
-
-" Trim trailing whitespace
-autocmd BufWritePre * silent! undojoin | %s/\s\+$//e | %s/\(\n\r\?\)\+\%$//e
-
-" Markdown TAB = 2 SPACES
-autocmd filetype markdown setlocal tabstop=2 softtabstop=2
-
-" Clear all maches after leaving buffer
-autocmd BufWinLeave * call clearmatches()
-
-" C/C++ formatting
-autocmd filetype c,cpp setlocal formatprg=astyle\ --style=kr\ -s4\ -N\ -S\ -xG\ -xU\ -f\ -k3\ -xj\ -p
-
-" In some cases less than 80 columns of code is impossible
-autocmd filetype java,javascript setlocal colorcolumn=
-
-" Quit QuickFix window along with source file window
-autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix" | q | endif
-
-" QuickFix window below other windows
-autocmd FileType qf wincmd J
-
-" Open QuickFix window after Grep
-autocmd QuickFixCmdPost [^l]* cwindow
-autocmd QuickFixCmdPost l*    lwindow
-
-" Close Vim, if last window is netrw
-autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" | q | endif
-
-" NETRW autocmds
-autocmd filetype netrw nnoremap <buffer> <F1> gT
-autocmd filetype netrw setlocal statusline=\ NETRW
 
 " PACKAGES
 packadd matchit
@@ -470,6 +439,32 @@ let s:syntax_fold_languages = [ "c", "cpp", "java", "javascript" ]
 for ft in s:syntax_fold_languages
     execute "autocmd filetype ".ft." setlocal foldmethod=syntax"
 endfor
+
+
+" CLIPBOARD --------------------------------------
+
+if has("clipboard")
+    nnoremap <C-p> "+p
+    nnoremap <C-y> "+y
+    xnoremap <C-y> "+y
+    command AllToClipboard execute "normal! gg\"+yG``"
+else
+
+    " Paste
+    nnoremap <silent> <C-p> :call <SID>system_paste()<CR>
+
+    " Normal copy
+    nnoremap <silent> <C-y>  :set opfunc=<SID>system_copy<CR>g@
+
+    " Copy line
+    nnoremap <silent> <C-y>y :set opfunc=<SID>system_copy<Bar>exe 'norm! 'v:count1.'g@_'<CR>
+
+    " Copy in Visual mode
+    xnoremap <silent> <C-y>  :call <SID>system_copy(visualmode(),visualmode() ==# 'V' ? 1 : 0)<CR>
+
+    command AllToClipboard execute "normal! gg:set opfunc=<SID>system_copy<CR>g@G``"
+
+endif
 
 " }}}
 
@@ -538,26 +533,6 @@ vmap s S
 
 " STATUS LINE {{{
 
-function! FileSize()
-    let bytes = getfsize(expand(@%))
-    if (bytes >= 1024*1024)
-        return '~' . float2nr(round(bytes/(1024*1024.0))) . ' MiB'
-    elseif (bytes >= 1024)
-        return '~' . float2nr(round(bytes/1024.0)) . ' KiB'
-    elseif (bytes <= 0)
-        return '0 B'
-    else
-        return bytes . ' B'
-    endif
-endfunction
-
-function! FileEncoding()
-    return (&fenc == "" ? &enc : &fenc).((exists("+bomb") && &bomb) ? " BOM" : "")
-endfunction
-
-
-" STATUS LINE ------------------------------------
-
 set statusline=
 set statusline+=\ %f                " Relative path to the file
 set statusline+=\ \                 " Separator
@@ -577,6 +552,16 @@ set statusline+=%=                  " Switch to the right side
 set statusline+=%l/                 " Current line
 set statusline+=%L                  " Total lines
 set statusline+=\ \:\ %c\           " Current column
+
+" }}}
+
+" VARIABLES {{{
+
+autocmd VimEnter,TabEnter * let t:NetrwIsOpen=0
+let s:copy_command  = 'xsel --clipboard --input'
+let s:CursorHighlight_state = 0
+let s:paste_command = 'xsel --clipboard --output'
+let s:vissort_sort          = "sort i"
 
 " }}}
 
