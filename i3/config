@@ -2,10 +2,7 @@
 ### i3 - config ###
 ###################
 
-
-# ------------------------------------------------------------------------------
-# GENERAL
-# ------------------------------------------------------------------------------
+# GENERAL {{{
 
 # set mod key
 set $mod Mod4
@@ -53,10 +50,9 @@ exec --no-startup-id fcitx -d
 # disable touchpad on startup
 exec --no-startup-id synclient TouchpadOff=1
 
+# }}}
 
-# ------------------------------------------------------------------------------
-# SHORTCUTS BINDINGS
-# ------------------------------------------------------------------------------
+# SHORTCUTS BINDINGS {{{
 
 # start TERMINAL
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
@@ -78,10 +74,9 @@ bindsym $mod+v exec --no-startup-id $HOME/.i3/scripts/programs/vim-anywhere
 bindsym $mod+p exec --no-startup-id $HOME/scripts/dmenu/passmenu --type
 bindsym $mod+shift+p exec --no-startup-id $HOME/scripts/dmenu/passmenu
 
+# }}}
 
-# ------------------------------------------------------------------------------
-# WINDOWS RULES
-# ------------------------------------------------------------------------------
+# WINDOWS RULES {{{
 
 # QuiteRSS
 for_window [class="QuiteRss" instance="quiterss" title="QuiteRSS"] floating enable         # 1
@@ -104,9 +99,9 @@ for_window [class="^Gimp$" title="^Quit GIMP$"] floating enable
 # The Binding of Isaac
 for_window [class="Wine" instance="isaac.exe" title="Isaac"] floating disable
 
-# ------------------------------------------------------------------------------
-# BINDINGS
-# ------------------------------------------------------------------------------
+# }}}
+
+# BINDINGS {{{
 
 # kill focused window
 bindsym Mod1+F4 kill
@@ -211,3 +206,7 @@ bindsym XF86AudioNext  exec playerctl next
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioPlay  exec playerctl play
 bindsym XF86AudioPrev  exec playerctl previous
+
+# }}}
+
+# vim: set fdm=marker foldenable:

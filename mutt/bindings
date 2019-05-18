@@ -1,6 +1,0 @@
-# bind pager <up>     previous-thread
-# bind pager <down>   next-thread
-
-
-# ------------------------------------------------------------------------------
-# vim: set filetype=muttrc:
