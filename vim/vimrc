@@ -2,30 +2,577 @@
 " ### VIMRC ###
 " #############
 
-" "It is a text editor, not an IDE" ~ every experienced vimmer
+" PROVERBS {{{
+"    - It is a text editor, not an IDE
+"    - It probably has that feature built in
+"    - Move with deliberate purpose
+"    - The documentation is better than you imagine
+"    - HJKL is not an important part of vim navigation
+"    - Project drawers conflict with split windows, favor splits
+"    - Visual clutter saps mental energy
+"    - Use plugins sparingly
+"    - Navigate by tags and search, not files
+"    - If it feels hard, there is probably a better way
+"    - You should understand every line in your vimrc
+"    - UI "tabs" are probably not what you expect
+"    - Don't seek mastery, seek proficiency
+" }}}
 
-" ------------------------------------------------------------------------------
-" FILES
-" ------------------------------------------------------------------------------
-
-" CLIPBOARD       | $HOME/dotfiles/vim/sources/clipboard.vim
-" COMMANDS        | $HOME/dotfiles/vim/sources/commands.vim
-" COMPILE AND RUN | $HOME/dotfiles/vim/sources/compile_and_run.vim
-" FUNCTIONS       | $HOME/dotfiles/vim/sources/functions.vim
-" HIGHLIGHTS      | $HOME/dotfiles/vim/sources/highlights.vim
-" MAPPINGS        | $HOME/dotfiles/vim/sources/mappings.vim
-" OPTIONS         | $HOME/dotfiles/vim/sources/options.vim
-" OTHER           | $HOME/dotfiles/vim/sources/other.vim
-" PLUGINS         | $HOME/dotfiles/vim/sources/plugins.vim
-" STATUS LINE     | $HOME/dotfiles/vim/sources/statusline.vim
-
-
-" ------------------------------------------------------------------------------
+" BASIC {{{
 
 " Use VIM's defaults instad of VI's
 set nocompatible
 
-" Sourcing
-for s:fpath in split(glob('$HOME/dotfiles/vim/sources/*.vim'), '\n')
-    execute "source ".s:fpath
+" Turns on detection, plugin and indent
+filetype plugin indent on
+
+" }}}
+
+" CLIPBOARD {{{
+
+let s:copy_command  = 'xsel --clipboard --input'
+let s:paste_command = 'xsel --clipboard --output'
+
+function! s:system_copy(type, ...) abort
+    let visual_mode = a:0 != 0
+    if visual_mode
+        let mode = (a:type == '') ?  'blockwise visual' : 'visual'
+    elseif a:type == 'line'
+        let mode = 'linewise'
+    else
+        let mode = 'motion'
+    endif
+    let unnamed = @@
+    if mode == 'linewise'
+        let lines = { 'start': line("'["), 'end': line("']") }
+        silent exe lines.start . "," . lines.end . "y"
+    elseif mode == 'visual' || mode == 'blockwise visual'
+        silent exe "normal! `<" . a:type . "`>y"
+    else
+        silent exe "normal! `[v`]y"
+    endif
+    let command = s:copy_command
+    silent call system(command, getreg('@'))
+    let @@ = unnamed
+endfunction
+
+function! s:system_paste() abort
+    let lines = system('xsel --clipboard --output | wc -l')
+    if lines == 0
+        execute "normal! a".system(s:paste_command)
+    else
+        put = system(s:paste_command)
+    endif
+endfunction
+
+if has("clipboard")
+    nnoremap <C-p> "+p
+    nnoremap <C-y> "+y
+    xnoremap <C-y> "+y
+    command AllToClipboard execute "normal! gg\"+yG``"
+else
+
+    " Paste
+    nnoremap <silent> <C-p> :call <SID>system_paste()<CR>
+
+    " Normal copy
+    nnoremap <silent> <C-y>  :set opfunc=<SID>system_copy<CR>g@
+
+    " Copy line
+    nnoremap <silent> <C-y>y :set opfunc=<SID>system_copy<Bar>exe 'norm! 'v:count1.'g@_'<CR>
+
+    " Copy in Visual mode
+    xnoremap <silent> <C-y>  :call <SID>system_copy(visualmode(),visualmode() ==# 'V' ? 1 : 0)<CR>
+
+    command AllToClipboard execute "normal! gg:set opfunc=<SID>system_copy<CR>g@G``"
+
+endif
+
+" }}}
+
+" COMMANDS {{{
+
+command -nargs=+ Grep execute "vimgrep /".<f-args>."/j **"
+command -nargs=+ Spelling execute 'setlocal spell spelllang=<args>'
+command -range=% Enumerate normal :let i=1 | <line1>,<line2>g/^/s//\=i.'. '/ | let i=i+1 | noh<CR>
+command -range=% Sort normal :<line1>,<line2>sort i<CR>
+command Debug normal :Termdebug<CR><C-w>H
+command SortBlock :normal! vip:sort i<CR>
+
+" SIMPLE TOGGLE
+command RelativeNumber setlocal relativenumber!
+command Whitespace setlocal list!
+command Wrap setlocal wrap!
+
+" SHELL COMMANDS
+command ExecCurrentLine normal :.w !sh<CR>
+command SudoW :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
+" }}}
+
+" COMPILE AND RUN {{{
+
+let s:languages = {
+            \ "asm"      : "as -o %<.o % && ld -s -o %< %<.o && rm %<.o && ./%<",
+            \ "basic"    : "vintbas %",
+            \ "c"        : "gcc -std=gnu11 -g % -o %< && ./%<",
+            \ "cpp"      : "g++ -std=gnu++11 -g % -o %< && ./%<",
+            \ "haskell"  : "ghc -o %< %; rm %<.hi %<.o && ./%<",
+            \ "html"     : "firefox %",
+            \ "lisp"     : "clisp %",
+            \ "lua"      : "lua %",
+            \ "markdown" : "grip -b % 1> /dev/null<CR>",
+            \ "nasm"     : "yasm -f elf64 % && ld -g -o %< %<.o && rm %<.o && ./%<",
+            \ "perl"     : "perl %",
+            \ "python"   : "python3 %",
+            \ "rust"     : "rustc % && ./%<",
+            \ "sh"       : "%:p",
+            \ "tex"      : "latexmk -pdf % && latexmk -c; zathura %<.pdf",
+            \}
+
+for [ft, cmd] in items(s:languages)
+    exec "autocmd filetype ".ft." nnoremap <buffer> <F8> :w <bar> !".cmd."<CR>"
 endfor
+
+" }}}
+
+" FUNCTIONS {{{
+
+" Fill rest of line with characters
+function! s:FillLine(str, to_column)
+    .s/[[:space:]]*$//
+    let reps = (a:to_column - col("$")) / len(a:str)
+    if reps > 0
+        .s/$/\=(' '.repeat(a:str, reps))/
+    endif
+endfunction
+
+" Toggle cursor line and column highlight
+function s:CursorHighlightToggle()
+    setlocal cursorcolumn!
+    if (s:CursorHighlight_state == 1)
+        hi CursorLine cterm=none ctermbg=none
+        let s:CursorHighlight_state = 0
+    else
+        hi CursorLine cterm=none ctermbg=235
+        let s:CursorHighlight_state = 1
+    endif
+    echo
+endfunction
+
+" Sorts lines based on visual-block selected portion of the lines
+function! s:VisSort(isnmbr) range
+    if visualmode() != "\<c-v>"
+        exe "sil! ".a:firstline.",".a:lastline.s:vissort_sort
+        return
+    endif
+    let firstline= line("'<")
+    let lastline = line("'>")
+    let keeprega = @a
+    silent norm! gv"ay
+    '<,'>s/^/@@@/
+    silent! keepj norm! '<0"aP
+    if a:isnmbr
+        sil! '<,'>s/^\s\+/\=substitute(submatch(0),' ','0','g')/
+    endif
+    execute "sil! keepj '<,'>".s:vissort_sort
+    execute "sil! keepj ".firstline.",".lastline.'s/^.\{-}@@@//'
+    let @a= keeprega
+endfun
+
+" Toggle Netrw window
+function! s:ToggleNetrw()
+    if t:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout! " . i
+            endif
+            let i-=1
+        endwhile
+        let t:NetrwIsOpen=0
+    else
+        let t:NetrwIsOpen=1
+        silent Lexplore
+    endif
+endfunction
+
+" Preview of Vim 256 colors
+function! Color_demo()
+    30 vnew
+    setlocal nonumber buftype=nofile bufhidden=hide noswapfile
+    setlocal statusline=[%n]
+    setlocal statusline+=\ Color\ demo
+    let num = 255
+    while num >= 0
+        exec 'hi col_'.num.' ctermbg='.num.' ctermfg=white'
+        exec 'syn match col_'.num.' "ctermbg='.num.':...." containedIn=ALL'
+        call append(0, 'ctermbg='.num.':....')
+        let num = num - 1
+    endwhile
+endfunction
+
+" Check highlight group under the cursor
+function! WhatHighlishtItIs()
+    echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+                \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+                \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
+endfunction
+
+" Delete "expired" cache files
+" TODO
+
+
+" NECESSARY VARIABLES ----------------------------
+
+let s:CursorHighlight_state = 0
+let s:vissort_sort          = "sort i"
+
+autocmd VimEnter,TabEnter * let t:NetrwIsOpen=0
+
+
+" CALLING COMMANDS -------------------------------
+
+command! -nargs=+ FillLine call <SID>FillLine(<f-args>)
+command! -range -nargs=0 -bang Vissort sil! keepj <line1>,<line2>call <SID>VisSort(<bang>0)
+
+
+" MAPPINGS ---------------------------------------
+
+map <F3> :call <SID>CursorHighlightToggle()<CR>
+noremap <silent> <F4> :call <SID>ToggleNetrw()<CR>
+
+" }}}
+
+" HIGHLIGHTS {{{
+
+" Enable syntax
+syntax enable
+
+" Dark background (needed for proper colors)
+set background=dark
+
+" C/C++ preprocessor defined macros
+function! s:HighlightC_PreProcDefines()
+    syntax clear C_PreProcDefine
+    for l in getline('1','$')
+        if l =~ '^\s*#\s*define\s\+'
+            let macro = substitute(l, '^\s*#\s*define\s\+\(\k\+\).*$', '\1', '')
+            exe 'syntax keyword C_PreProcDefine ' . macro
+        endif
+    endfor
+endfunction
+autocmd filetype c,cpp autocmd VimEnter,InsertEnter,InsertLeave * call <SID>HighlightC_PreProcDefines()
+
+" Operator Characters
+autocmd filetype c,cpp syntax match OperatorChars display "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
+autocmd BufReadPost * syntax match OperatorChars display "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
+
+
+" HIGHLIGHTS -------------------------------------
+
+hi  C_PreProcDefine  ctermfg=DarkRed
+hi  ColorColumn      ctermbg=magenta
+hi  Comment          ctermfg=grey
+hi  CursorColumn     ctermbg=235
+hi  CursorLine       cterm=none
+hi  CursorLineNr     ctermfg=magenta
+hi  debugBreakpoint  ctermfg=black       ctermbg=red
+hi  DiffAdd          ctermfg=LightGreen  ctermbg=none
+hi  DiffChange       ctermfg=yellow      ctermbg=none
+hi  DiffDelete       ctermfg=red         ctermbg=none     cterm=bold
+hi  FoldColumn       ctermbg=black
+hi  LineNr           ctermfg=242
+hi  Normal           ctermfg=DarkGreen
+hi  Number           ctermfg=DarkCyan
+hi  OperatorChars    ctermfg=3
+hi  Pmenu            ctermfg=black       ctermbg=cyan
+hi  PmenuSel         ctermfg=black       ctermbg=blue
+hi  PreProc          ctermfg=LightGreen
+hi  QuickFixLine     ctermbg=NONE        cterm=underline
+hi  SignColumn       ctermbg=black
+hi  Special          ctermfg=red         ctermbg=black
+hi  StatusLine       ctermfg=black       ctermbg=yellow   cterm=NONE
+hi  StatusLineNC     ctermfg=white
+hi  String           ctermfg=DarkCyan
+hi  Type             ctermfg=white
+hi  VimCommentString ctermfg=grey
+hi  WildMenu         ctermbg=cyan
+
+" }}}
+
+" MAPPINGS {{{
+
+" leader + sth
+noremap <leader>= gg=G``
+noremap <leader>q gggqG``
+noremap <leader>h :nohlsearch<CR>
+noremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+noremap <Leader>R :%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>
+noremap <leader>v ggVG
+
+" Function keys -- also mapped: <F3>, <F4>, <F8>
+inoremap <F1> <ESC>gT
+inoremap <F2> <ESC>gt
+noremap <F1> gT
+noremap <F2> gt
+noremap <F7> :cwindow<CR>
+noremap <F9> :w <bar> make<CR>
+
+" Normal keys
+noremap ' `
+noremap '' ``
+noremap <Tab> <C-w><C-w>
+noremap gf <C-w>gf
+noremap j gj
+noremap k gk
+noremap N Nzz
+noremap n nzz
+noremap Q gq
+
+" <nop>
+map gh <nop>
+map q: <nop>
+map ZZ <nop>
+
+" }}}
+
+" OPTIONS {{{
+
+" Backup, undo and swap
+set backup                                                                  " Enable backup files
+set backupdir=~/.vim/cache/backup/                                          " Directory for backup files
+set noswapfile                                                              " Disable swap files
+set undodir=~/.vim/cache/undo/                                              " Directory for undo files
+set undofile                                                                " Enable undo files
+
+" Indentation
+set autoindent                                                              " Enable automatic indenting
+set cindent                                                                 " Automatic C program indenting
+set expandtab                                                               " Use spaces instead of tabs
+set shiftround                                                              " Always indent/outdent to the nearest tabstop
+set shiftwidth=4                                                            " Indent/outdent by 4 columns
+set smartindent                                                             " Smart indention
+set softtabstop=4                                                           " Unify tabs and spaces
+set tabstop=4                                                               " Tab spacing
+
+" NETRW
+let g:netrw_banner        = 0                                               " Do not display info on the top of window
+let g:netrw_browse_split  = 4                                               " Use the previous window to open file
+let g:netrw_list_hide     = '\(^\|\s\s\)\zs\.\S\+,\(^\|\s\s\)ntuser\.\S\+'  " Do not show hidden files
+let g:netrw_liststyle     = 3                                               " Tree-view
+let g:netrw_sort_sequence = '[\/]$,*'                                       " Sort is affecting only: directories on the top, files below
+let g:netrw_winsize       = -28                                             " Absolute width of netrw window
+
+" Searching
+set hlsearch                                                                " Search highlight
+set ignorecase                                                              " Ignoring case of letters while searching
+set incsearch                                                               " Do incremental searching
+set smartcase                                                               " If searching with capital letter then use match case
+
+" UI
+set completeopt-=preview                                                    " Disable preview window for completeopt // for: YCM
+set cursorline                                                              " Current line highlight
+set laststatus=2                                                            " To always display status line
+set number                                                                  " Enable line numbers
+set scrolloff=5                                                             " Minimal number of screen lines to keep above and below the cursor
+set showcmd                                                                 " Display incomplete commands
+set splitbelow                                                              " New windows open on right when split verticaly
+set splitright                                                              " New windows open on right when split horizontaly
+set t_Co=256                                                                " 256 color support
+set wildmenu                                                                " Menu for command line completion
+
+" OTHER
+let g:tex_flavor = 'tex'                                                    " Default TeX dialect
+set backspace=indent,eol,start                                              " Allow backspacing over everything in insert mode
+set history=50                                                              " Keep 50 lines of command line history
+set linebreak                                                               " Don't break words while wraping lines
+set modeline                                                                " Enable modelines
+set nofoldenable                                                            " Do not fold on start
+set nowrap                                                                  " Do not wrap lines on default
+set nrformats=                                                              " Ignore non-DEC numeral systems when in- or decrementing with <C-a>/<C-x>
+set omnifunc=syntaxcomplete#Complete                                        " Omnifunc
+set viminfo+=n~/.vim/viminfo                                                " Change viminfo location
+set wrapmargin=0                                                            " No wrap margin
+
+
+" ------------------
+
+" PATH
+set path+=**
+set path+=./
+set path+=/usr/include
+set path+=/usr/include/c++/7
+set path+=/usr/local/vitasdk/arm-vita-eabi/include
+set path+=/usr/local/vitasdk/arm-vita-eabi/include/SDL
+
+" }}}
+
+" OTHER {{{
+
+" Open file at the last known position
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
+
+" Disable continuation of comments to the next line (it cannot be just '-cro')
+autocmd FileType * set fo-=c fo-=r fo-=o
+
+" Trim trailing whitespace
+autocmd BufWritePre * silent! undojoin | %s/\s\+$//e | %s/\(\n\r\?\)\+\%$//e
+
+" Markdown TAB = 2 SPACES
+autocmd filetype markdown setlocal tabstop=2 softtabstop=2
+
+" Clear all maches after leaving buffer
+autocmd BufWinLeave * call clearmatches()
+
+" C/C++ formatting
+autocmd filetype c,cpp setlocal formatprg=astyle\ --style=kr\ -s4\ -N\ -S\ -xG\ -xU\ -f\ -k3\ -xj\ -p
+
+" In some cases less than 80 columns of code is impossible
+autocmd filetype java,javascript setlocal colorcolumn=
+
+" Quit QuickFix window along with source file window
+autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix" | q | endif
+
+" QuickFix window below other windows
+autocmd FileType qf wincmd J
+
+" Open QuickFix window after Grep
+autocmd QuickFixCmdPost [^l]* cwindow
+autocmd QuickFixCmdPost l*    lwindow
+
+" Close Vim, if last window is netrw
+autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" | q | endif
+
+" NETRW autocmds
+autocmd filetype netrw nnoremap <buffer> <F1> gT
+autocmd filetype netrw setlocal statusline=\ NETRW
+
+" PACKAGES
+packadd matchit
+packadd termdebug
+
+
+" FILETYPE ISSUES --------------------------------
+" Dict structure:   FILE ENDING : FILETYPE
+"   FILE ENDING may or not may be with dot (eg. tags files)
+let s:ft_issues = {
+            \ ".asm"  : "nasm",
+            \ ".conf" : "conf",
+            \ ".js"   : "javascript",
+            \ ".S"    : "asm",
+            \}
+
+for [ending, ft] in items(s:ft_issues)
+    execute "autocmd BufWinEnter *".ending." setlocal filetype=".ft
+endfor
+
+
+" FOLDING ----------------------------------------
+
+autocmd BufReadPre * set foldmethod=indent
+autocmd BufWinEnter * if &fdm == 'indent' | set foldmethod=manual | endif
+
+let s:syntax_fold_languages = [ "c", "cpp", "java", "javascript" ]
+for ft in s:syntax_fold_languages
+    execute "autocmd filetype ".ft." setlocal foldmethod=syntax"
+endfor
+
+" }}}
+
+" PLUGINS {{{
+
+" DOWNLOAD VIM-PLUG (if is not installed)
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl --create-dirs -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+
+" INSTALL PLUGINS (via Plug)
+
+call plug#begin('~/.vim/bundle')
+Plug 'ludovicchabant/vim-gutentags'    " Gutentags
+Plug 'scrooloose/nerdcommenter'        " NERDCommenter
+Plug 'sheerun/vim-polyglot'            " Polyglot
+Plug 'tpope/vim-surround'              " Surround
+Plug 'godlygeek/tabular'               " Tabular
+Plug 'christoomey/vim-tmux-navigator'  " Tmux Navigator
+Plug 'SirVer/ultisnips'                " UltiSnips
+Plug 'mbbill/undotree'                 " UndoTree
+Plug 'Shougo/vinarise.vim'             " Vinarise
+call plug#end()
+
+
+" VARIABLES
+
+let g:gutentags_cache_dir               = $HOME."/.vim/cache/tags"           "  Gutentags
+let g:NERDCommentEmptyLines             = 1                                  "  NERDCommenter
+let g:NERDSpaceDelims                   = 1                                  "  NERDCommenter
+let g:python_highlight_space_errors     = 0                                  "  Polyglot
+let g:vim_markdown_new_list_item_indent = 0                                  "  Polyglot
+let g:UltiSnipsEditSplit                = "context"                          "  UltiSnips
+let g:UltiSnipsExpandTrigger            = "<C-j>"                            "  UltiSnips
+let g:UltiSnipsListSnippets             = "<C-k>"                            "  UltiSnips
+let g:UltiSnipsSnippetDirectories       = ['~/.vim/UltiSnips', 'UltiSnips']  "  UltiSnips
+let g:undotree_SetFocusWhenToggle       = 1                                  "  UndoTree
+let g:undotree_ShortIndicators          = 1                                  "  UndoTree
+let g:undotree_SplitWidth               = 28                                 "  UndoTree
+let g:vinarise_enable_auto_detect       = 1                                  "  Vinarise
+
+
+" OTHER
+
+command -range TabularizeBySpace execute '<line1>,<line2>Tabularize /\S\+/l1'
+hi jsObjectProp ctermfg=yellow
+nmap s ysiw
+noremap <leader><F1> :UndotreeToggle<CR>
+vmap s S
+
+" }}}
+
+" STATUS LINE {{{
+
+function! FileSize()
+    let bytes = getfsize(expand(@%))
+    if (bytes >= 1024*1024)
+        return '~' . float2nr(round(bytes/(1024*1024.0))) . ' MiB'
+    elseif (bytes >= 1024)
+        return '~' . float2nr(round(bytes/1024.0)) . ' KiB'
+    elseif (bytes <= 0)
+        return '0 B'
+    else
+        return bytes . ' B'
+    endif
+endfunction
+
+function! FileEncoding()
+    return (&fenc == "" ? &enc : &fenc).((exists("+bomb") && &bomb) ? " BOM" : "")
+endfunction
+
+
+" STATUS LINE ------------------------------------
+
+set statusline=
+set statusline+=\ %f                " Relative path to the file
+set statusline+=\ \                 " Separator
+set statusline+=%y                  " Filetype
+set statusline+=[%{&ff}]            " File format
+set statusline+=[%{FileEncoding()}] " File encoding
+set statusline+=\ \                 " Separator
+set statusline+=[%{&fo}]            " Format options
+set statusline+=\ \                 " Separator
+set statusline+=[%{FileSize()}]     " File size
+set statusline+=\ \                 " Separator
+set statusline+=%r                  " Readonly flag
+set statusline+=%w                  " Preview flag
+set statusline+=\ \                 " Separator
+set statusline+=%m                  " Modified flag
+set statusline+=%=                  " Switch to the right side
+set statusline+=%l/                 " Current line
+set statusline+=%L                  " Total lines
+set statusline+=\ \:\ %c\           " Current column
+
+" }}}
+
+" vim: set fdm=marker foldenable:
