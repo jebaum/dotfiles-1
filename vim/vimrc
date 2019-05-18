@@ -44,10 +44,6 @@ autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype"
 " QuickFix window below other windows
 autocmd FileType qf wincmd J
 
-" Open QuickFix window after Grep
-autocmd QuickFixCmdPost [^l]* cwindow
-autocmd QuickFixCmdPost l*    lwindow
-
 " Close Vim, if last window is netrw
 autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" | q | endif
 
@@ -69,7 +65,7 @@ autocmd BufReadPost * syntax match OperatorChars display "?\|+\|-\|\*\|\^\|;\|:\
 
 " COMMANDS {{{
 
-command -nargs=+ Grep execute "vimgrep /".<f-args>."/j **"
+command -nargs=+ Grep execute "vimgrep /".<f-args>."/j ** | :copen"
 command -nargs=+ Spelling execute 'setlocal spell spelllang=<args>'
 command -range=% Enumerate normal :let i=1 | <line1>,<line2>g/^/s//\=i.'. '/ | let i=i+1 | noh<CR>
 command -range=% Sort normal :<line1>,<line2>sort i<CR>
@@ -90,6 +86,8 @@ command SudoW :execute ':silent w !sudo tee % > /dev/null' | :edit!
 " }}}
 
 " COMPILE AND RUN {{{
+
+" ATTENTION: This is VERY simple and basic "Compile and Run"
 
 let s:languages = {
             \ "asm"      : "as -o %<.o % && ld -s -o %< %<.o && rm %<.o && ./%<",
@@ -142,21 +140,21 @@ endfunction
 " Sorts lines based on visual-block selected portion of the lines
 function! s:VisSort(isnmbr) range
     if visualmode() != "\<c-v>"
-        execute "silent! ".a:firstline.",".a:lastline.s:vissort_sort
+        execute "silent! ".a:firstline.",".a:lastline."sort i"
         return
     endif
-    let firstline= line("'<")
-    let lastline = line("'>")
-    let keeprega = @a
+    let firstline = line("'<")
+    let lastline  = line("'>")
+    let keeprega  = @a
     silent normal! gv"ay
     '<,'>s/^/@@@/
     silent! keepjumps normal! '<0"aP
     if a:isnmbr
         silent! '<,'>s/^\s\+/\=substitute(submatch(0),' ','0','g')/
     endif
-    execute "sil! keepj '<,'>".s:vissort_sort
+    execute "sil! keepj '<,'>sort i"
     execute "sil! keepj ".firstline.",".lastline.'s/^.\{-}@@@//'
-    let @a= keeprega
+    let @a = keeprega
 endfun
 
 " Toggle Netrw window
@@ -350,6 +348,7 @@ set undodir=~/.vim/cache/undo/
 set undofile
 
 " Displaying text/code
+set foldmethod=manual
 set linebreak
 set nofoldenable
 set nowrap
@@ -361,7 +360,6 @@ set cindent
 set expandtab
 set shiftround
 set shiftwidth=4
-set smartindent
 set softtabstop=4
 set tabstop=4
 
@@ -385,6 +383,7 @@ set laststatus=2
 set mouse=a
 set number
 set scrolloff=5
+set showcmd
 set signcolumn=yes
 set splitbelow
 set splitright
@@ -406,7 +405,7 @@ set wrapmargin=0
 
 " OTHER {{{
 
-" PACKAGES
+" PACKAGES ---------------------------------------
 packadd matchit
 packadd termdebug
 
@@ -426,10 +425,7 @@ for [ending, ft] in items(s:ft_issues)
 endfor
 
 
-" FOLDING ----------------------------------------
-
-autocmd BufReadPre * set foldmethod=indent
-autocmd BufWinEnter * if &fdm == 'indent' | set foldmethod=manual | endif
+" FOLDING METHODS --------------------------------
 
 let s:fdm_for_lang = {
             \ "c" : "syntax",
@@ -477,8 +473,6 @@ set path+=**
 set path+=./
 set path+=/usr/include
 set path+=/usr/include/c++/7
-set path+=/usr/local/vitasdk/arm-vita-eabi/include
-set path+=/usr/local/vitasdk/arm-vita-eabi/include/SDL
 
 " }}}
 
@@ -562,7 +556,6 @@ autocmd VimEnter,TabEnter * let t:NetrwIsOpen=0
 let s:copy_command  = 'xsel --clipboard --input'
 let s:CursorHighlight_state = 0
 let s:paste_command = 'xsel --clipboard --output'
-let s:vissort_sort          = "sort i"
 
 " }}}
 
