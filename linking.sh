@@ -23,7 +23,8 @@ linking  $x  gtk/gtkrc-2.0          $HOME/.gtkrc-2.0
 linking  $x  i3/                    $HOME/.i3
 linking  $x  mpv/                   $HOME/.config/mpv
 linking  $x  mutt/muttrc            $HOME/.muttrc
-linking  $x  other/bash_profile     $HOME/.bash_profile
+linking  $x  other/bashrc           $HOME/.bash_profile
+linking  $x  other/bashrc           $HOME/.bashrc
 linking  $x  other/feh_keys         $HOME/.config/feh/keys
 linking  $x  other/gpg-agent.conf   $HOME/.gnupg/gpg-agent.conf
 linking  $x  other/inputrc          $HOME/.inputrc

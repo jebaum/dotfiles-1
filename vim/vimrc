@@ -433,6 +433,19 @@ else
 
 endif
 
+" ------------------------------------------------
+
+" tmux - WINDOW TITLE FIX
+
+if has ("title")
+    if &t_ts == "" && ( &term =~ "screen" || &term =~ "xterm" )
+        let &t_ts = "\e]2;"
+    endif
+    if &t_ts != ""
+        set title
+    endif
+endif
+
 " }}}
 
 " PATH {{{
@@ -522,5 +535,6 @@ let s:CursorHighlight_state = 0
 let s:paste_command = 'xsel --clipboard --output'
 
 " }}}
+
 
 " vim: set fdm=marker foldenable:

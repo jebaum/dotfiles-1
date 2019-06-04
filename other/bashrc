@@ -10,9 +10,9 @@ alias du='du -h'
 alias git-update='command git add -A && command git commit -m "$(command date "+%F_%T")" && command git push -u origin master'
 alias grep='grep --color'
 alias less='less -R'
-alias ll='ls -alhF --color | less -R'
+alias ll='ls -alhF | less -R'
 alias logout="i3-msg exit"
-alias ls='ls --color'
+alias ls='ls -F'
 alias mkdir='mkdir -p'
 alias mnt='udisksctl mount -b'
 alias off='shutdown -h now'
@@ -236,8 +236,8 @@ if [ -n $TMUX ]; then
     tmux source $HOME/.tmux.conf
 fi
 
-# Prompt
-PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+# PROMPT
+PS1='\[\e[1m\]\u@\h:\[\033[90m\]\w\[\033[0m\]\[\033[1m\]\$\[\e[0m\] '
 
 # }}}
 
@@ -249,7 +249,7 @@ shopt -s checkwinsize
 # Set window title to "command | user@host:dir"
 case "$TERM" in
     xterm*|rxvt*|screen*)
-        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        PS1="\[\e]0;\u@\h: \w\a\]$PS1"
         ;;
     *)
         ;;
