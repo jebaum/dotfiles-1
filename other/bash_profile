@@ -159,7 +159,7 @@ rebuild-hosts-file()
     sudo echo "# Created $(command date '+%F %T') by $USER" > /tmp/hosts
     sudo echo >> /tmp/hosts
 
-    cat $HOME/dotfiles/private/hosts/* \
+    cat $HOME/.hosts/* \
         | tr A-Z a-z \
         | tr -d '\r' \
         | awk '{gsub("#.*$", ""); gsub(" *$",""); if (NF==2) {print $1 " " $2;}}' \
@@ -236,12 +236,8 @@ if [ -n $TMUX ]; then
     tmux source $HOME/.tmux.conf
 fi
 
-# Colored prompt
-if [ -x /usr/bin/tput ] && tput setaf 1 &> /dev/null; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
+# Prompt
+PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 
 # }}}
 

@@ -31,6 +31,7 @@ linking  $x  other/profile          $HOME/.profile
 linking  $x  other/tmux.conf        $HOME/.tmux.conf
 linking  $x  other/Xresources       $HOME/.Xresources
 linking  $x  other/zathurarc        $HOME/.config/zathura/zathurarc
+linking  $x  vim/colors             $HOME/.vim/colors
 linking  $x  vim/indent             $HOME/.vim/indent
 linking  $x  vim/UltiSnips          $HOME/.vim/UltiSnips
 linking  $x  vim/vimrc              $HOME/.vimrc

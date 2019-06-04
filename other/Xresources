@@ -10,7 +10,7 @@ XTerm*cursorBlink: True
 
 ! Fonts and Encoding
 XTerm*faceName: Dejavu Sans Mono:style=book
-XTerm*faceNameDoublesize: IPAGothic:style=Regular
+XTerm.vt100.faceNameDoublesize: WenQuanYi Zen Hei Mono
 XTerm*faceSize: 10
 XTerm*locale: True
 XTerm*preeditType: Root
@@ -29,4 +29,4 @@ XTerm*charClass: 33:48,37-38:48,45-47:48,64:48,58:48,126:48,61:48,63:48,43:48,35
 
 ! Colors
 XTerm*background: black
-XTerm*foreground: green
+XTerm*foreground: grey

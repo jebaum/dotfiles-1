@@ -16,6 +16,9 @@ syntax enable
 " Dark background (needed for proper colors)
 set background=dark
 
+" Set colorscheme
+colorscheme off
+
 " }}}
 
 " AUTOCMDS {{{
@@ -38,6 +41,9 @@ autocmd BufWinLeave * call clearmatches()
 " C/C++ formatting
 autocmd filetype c,cpp setlocal formatprg=astyle\ --style=kr\ -s4\ -N\ -S\ -xG\ -xU\ -f\ -k3\ -xj\ -p
 
+" JavaScript formatting
+autocmd filetype javascript setlocal formatprg=js-beautify
+
 " Quit QuickFix window along with source file window
 autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix" | q | endif
 
@@ -51,15 +57,9 @@ autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype
 autocmd filetype netrw nnoremap <buffer> <F1> gT
 autocmd filetype netrw setlocal statusline=\ NETRW
 
-" C/C++ preprocessor defined macros
-autocmd filetype c,cpp autocmd VimEnter,InsertEnter,InsertLeave * call <SID>HighlightC_PreProcDefines()
-
-" Fold markers
-autocmd BufWinEnter * match FoldMarker '.* [{}]\{3}$'
-
-" Operator Characters
-autocmd filetype c,cpp syntax match OperatorChars display "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
-autocmd BufReadPost * syntax match OperatorChars display "?\|+\|-\|\*\|\^\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
+" Default fold method (for some reason this works)
+autocmd BufReadPre * set foldmethod=indent
+autocmd BufWinEnter * if &fdm == 'indent' | set foldmethod=manual | endif
 
 " }}}
 
@@ -105,6 +105,7 @@ let s:languages = {
             \ "rust"     : "rustc % && ./%<",
             \ "sh"       : "%:p",
             \ "tex"      : "latexmk -pdf % && latexmk -c; zathura %<.pdf",
+            \ "xhtml"     : "firefox %",
             \}
 
 for [ft, cmd] in items(s:languages)
@@ -264,39 +265,6 @@ endfunction
 
 " }}}
 
-" HIGHLIGHTS {{{
-
-hi  C_PreProcDefine   ctermfg=DarkRed
-hi  ColorColumn       ctermbg=magenta
-hi  Comment           ctermfg=grey
-hi  CursorColumn      ctermbg=235
-hi  CursorLine        cterm=none
-hi  CursorLineNr      ctermfg=magenta
-hi  debugBreakpoint   ctermfg=black       ctermbg=red
-hi  DiffAdd           ctermfg=LightGreen  ctermbg=none
-hi  DiffChange        ctermfg=yellow      ctermbg=none
-hi  DiffDelete        ctermfg=red         ctermbg=none     cterm=bold
-hi  FoldColumn        ctermbg=black
-hi  FoldMarker        ctermfg=cyan        cterm=bold,underline
-hi  LineNr            ctermfg=242
-hi  Normal            ctermfg=DarkGreen
-hi  Number            ctermfg=DarkCyan
-hi  OperatorChars     ctermfg=3
-hi  Pmenu             ctermfg=black       ctermbg=cyan
-hi  PmenuSel          ctermfg=black       ctermbg=blue
-hi  PreProc           ctermfg=LightGreen
-hi  QuickFixLine      ctermbg=NONE        cterm=underline
-hi  SignColumn        ctermbg=black
-hi  Special           ctermfg=red         ctermbg=black
-hi  StatusLine        ctermfg=black       ctermbg=yellow   cterm=NONE
-hi  StatusLineNC      ctermfg=white
-hi  String            ctermfg=DarkCyan
-hi  Type              ctermfg=white
-hi  VimCommentString  ctermfg=grey
-hi  WildMenu          ctermbg=cyan
-
-" }}}
-
 " MAPPINGS {{{
 
 " leader + sth
@@ -393,6 +361,7 @@ set wildmenu
 let g:tex_flavor = 'tex'
 set backspace=indent,eol,start
 set history=50
+set lazyredraw
 set modeline
 set nrformats=
 set omnifunc=syntaxcomplete#Complete
@@ -413,11 +382,11 @@ packadd termdebug
 " FILETYPE ISSUES --------------------------------
 " Dict structure:   FILE ENDING : FILETYPE
 "   FILE ENDING may or not may be with dot (eg. tags files)
+
 let s:ft_issues = {
-            \ ".asm"  : "nasm",
-            \ ".conf" : "conf",
-            \ ".js"   : "javascript",
-            \ ".S"    : "asm",
+            \ ".asm"   : "nasm",
+            \ ".conf"  : "conf",
+            \ ".js"    : "javascript",
             \}
 
 for [ending, ft] in items(s:ft_issues)
@@ -431,7 +400,6 @@ let s:fdm_for_lang = {
             \ "c" : "syntax",
             \ "cpp": "syntax",
             \ "java" : "syntax",
-            \ "javascript" : "syntax",
             \ "markdown" : "indent",
             \}
 
@@ -488,9 +456,8 @@ endif
 " INSTALL PLUGINS (via Plug)
 
 call plug#begin('~/.vim/bundle')
+Plug 'tpope/vim-commentary'            " Commentary
 Plug 'ludovicchabant/vim-gutentags'    " Gutentags
-Plug 'scrooloose/nerdcommenter'        " NERDCommenter
-Plug 'sheerun/vim-polyglot'            " Polyglot
 Plug 'kshenoy/vim-signature'           " Signature
 Plug 'tpope/vim-surround'              " Surround
 Plug 'godlygeek/tabular'               " Tabular
@@ -505,8 +472,6 @@ call plug#end()
 let g:gutentags_cache_dir               = $HOME."/.vim/cache/tags"           "  Gutentags
 let g:NERDCommentEmptyLines             = 1                                  "  NERDCommenter
 let g:NERDSpaceDelims                   = 1                                  "  NERDCommenter
-let g:python_highlight_space_errors     = 0                                  "  Polyglot
-let g:vim_markdown_new_list_item_indent = 0                                  "  Polyglot
 let g:UltiSnipsEditSplit                = "context"                          "  UltiSnips
 let g:UltiSnipsExpandTrigger            = "<C-j>"                            "  UltiSnips
 let g:UltiSnipsListSnippets             = "<C-k>"                            "  UltiSnips
@@ -519,7 +484,6 @@ let g:undotree_SplitWidth               = 28                                 "  
 " OTHER
 
 command -range TabularizeBySpace execute '<line1>,<line2>Tabularize /\S\+/l1'
-hi jsObjectProp ctermfg=yellow
 nmap s ysiw
 noremap <leader><F1> :UndotreeToggle<CR>
 vmap s S
